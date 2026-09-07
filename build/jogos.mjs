@@ -4,4 +4,4 @@ import { FJ2 } from './jogo-fj2.mjs';
 import { DB3 } from './jogo-db3.mjs';
 import { CT }  from './jogo-ct.mjs';
 import { GAIA, NEKKETSU } from './jogos-novos.mjs';
-export const JOGOS = [FJ2, DB3, CT, GAIA, NEKKETSU];
+export const JOGOS = [FJ2, CT, DB3, GAIA, NEKKETSU];
