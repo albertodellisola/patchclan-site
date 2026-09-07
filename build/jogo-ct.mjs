@@ -6,7 +6,7 @@ export const CT = {
   publisher: 'Tecmo', dev: 'Tecmo', ano: 1988, data: '1988',
   sistema: 'Famicom', mapper: 'MMC1 · 128 KB PRG expanded to 256 KB · 128 KB CHR-ROM',
   categoria: { pt:'Tradução + melhorias', en:'Translation + improvement', es:'Traducción + mejoras' },
-  nivel: 'beta',
+  nivel: 'release',
   capa: 'ct/01-titulo.png',
   linha: {
     pt: 'O futebol que é quase um RPG. Existiam <b>dezesseis letras latinas</b> no cartucho inteiro — as outras tiveram de ser desenhadas do nada.',
@@ -48,9 +48,16 @@ export const CT = {
       { t: { pt: '<b>Logo do título redesenhado</b> — <code>CAPTAIN TSUBASA</code> em duas linhas, no mesmo estilo e na mesma paleta, com a bola redesenhada e o avião movido para o canto. São <b>122 tiles</b> nos 127 disponíveis, e a tela reconstruída da ROM bate com o mockup em <b>0 pixels</b> de diferença.', en: '<b>The title logo redrawn</b> — <code>CAPTAIN TSUBASA</code> on two lines, in the same style and palette, with the ball redrawn and the aeroplane moved to the corner. It is <b>122 tiles</b> in the 127 available, and the screen reconstructed from the ROM matches the mockup at <b>0 pixels</b> of difference.' }, foto: 'ct/01-titulo.png' },
       { t: { pt: '<b>O logo pequeno da sala de aula</b>, feito de 13 sprites, redesenhado como <code>TSUBASA</code> em miniatura — só os bitmaps mudam, as posições são as do jogo.', en: '<b>The small classroom logo</b>, made of 13 sprites, redrawn as a miniature <code>TSUBASA</code> — only the bitmaps change, the positions are the game’s own.' } }
     ]},
-    { titulo: { pt: 'Prova, e o que ainda falta', en: 'Proof, and what is still open' }, itens: [
-      { t: { pt: '<b>A relocação foi provada por igualdade.</b> Uma build que só move o texto japonês, sem traduzir, foi comparada com a original: <b>225 dumps, 0 bytes diferentes</b> em nametable, OAM e paleta no percurso inteiro. Dois defeitos reais só apareceram nesse teste.', en: '<b>Relocation was proved by equality.</b> A build that only moves the Japanese text, without translating it, was compared against the original: <b>225 dumps, 0 bytes differing</b> in nametable, OAM and palette across the whole run. Two real defects showed up only in that test.' } },
-      { t: { pt: 'Ainda aberto: o <b>motor dos créditos</b> não foi relocado, a tela de <b>erro de senha</b> tem 19 caracteres fixos no código, e a lista de nomes do <b>ending</b> ainda precisa mudar de coluna. Por isso o rótulo é <b>beta</b>, e não lançamento.', en: 'Still open: the <b>credits engine</b> is not relocated, the <b>password error</b> screen has 19 characters hard-coded, and the name list in the <b>ending</b> still has to move a column. That is why the label is <b>beta</b>, not release.' } }
+    { titulo: { pt: 'Como se provou que nada quebrou', en: 'How it was proved nothing broke', es: 'Cómo se probó que nada se rompió' }, itens: [
+      { t: { pt: '<b>A relocação foi provada por igualdade.</b> Uma build que só move o texto japonês, sem traduzir nada, foi comparada com a ROM original: <b>225 dumps, 0 bytes diferentes</b> em nametable, OAM e paleta no percurso inteiro. Se mover o texto tivesse quebrado alguma coisa, essa build já mostraria.',
+             en: '<b>Relocation was proved by equality.</b> A build that only moves the Japanese text, translating nothing, was compared against the original ROM: <b>225 dumps, 0 bytes differing</b> in nametable, OAM and palette across the whole run. If moving the text had broken anything, that build would already show it.',
+             es: '<b>La reubicación se probó por igualdad.</b> Una build que solo mueve el texto japonés, sin traducir nada, se comparó con la ROM original: <b>225 volcados, 0 bytes distintos</b> en nametable, OAM y paleta en todo el recorrido. Si mover el texto hubiera roto algo, esa build ya lo mostraría.' } },
+      { t: { pt: '<b>Dois defeitos reais só apareceram nesse teste</b>, e não em nenhum outro: uma rotina que trocava de banco por byte estourava o quadro e fazia sumir uma linha do torneio, e uma string que mora na RAM — e que o jogo <b>escreve</b> — fazia os números das camisas saírem errados. Nenhum dos dois apareceria numa leitura de código.',
+             en: '<b>Two real defects showed up only in that test</b>, and in no other: a routine switching banks byte by byte overran the frame and made a line of the tournament vanish, and a string that lives in RAM — and that the game <b>writes to</b> — made the shirt numbers come out wrong. Neither would have shown up in a code review.',
+             es: '<b>Dos defectos reales aparecieron solo en esa prueba</b>, y en ninguna otra: una rutina que cambiaba de banco byte a byte desbordaba el cuadro y hacía desaparecer una línea del torneo, y una string que vive en la RAM — y que el juego <b>escribe</b> — hacía que los números de las camisetas salieran mal. Ninguno habría aparecido leyendo el código.' } },
+      { t: { pt: 'O save novo foi testado <b>desligando e ligando de verdade</b>, com dois processos de emulador e um arquivo de save real de permeio — não com savestate, que não prova bateria nenhuma.',
+             en: 'The new save was tested by <b>really powering off and on</b>, with two emulator processes and a real save file in between — not with a savestate, which proves nothing about a battery.',
+             es: 'El guardado nuevo se probó <b>apagando y encendiendo de verdad</b>, con dos procesos de emulador y un archivo de guardado real de por medio — no con un savestate, que no prueba nada sobre la pila.' } }
     ]}
   ],
   patch: { versoes: { en: { arquivo: 'captain-tsubasa-en.ips' }, pt: null, es: null }, rom: 'Captain Tsubasa (Japan).nes', rom_md5: 'eeb77e6e0e0b5695f9a35f47979c4722' },

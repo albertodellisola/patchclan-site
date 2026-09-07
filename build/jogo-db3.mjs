@@ -7,7 +7,7 @@ export const DB3 = {
   publisher: 'Bandai', dev: 'Bandai', ano: 1989, data: '1989',
   sistema: 'Famicom', mapper: 'Mapper 16 (Bandai FCG-1/2) · 128 KB PRG expanded to 256 KB · 256 KB CHR',
   categoria: { pt:'Tradução + arte', en:'Translation + artwork', es:'Traducción + arte' },
-  nivel: 'release',
+  nivel: 'beta',
   versao: 'English v1.0',
   capa: 'db3/01-titulo.png',
   linha: {
