@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel · Patch Clan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+<style>
+:root{
+  --ground:#dde0d6; --ground-2:#eaece4; --ink:#14180f; --ink-2:#4d5442;
+  --rule:#c3c8b7; --rule-soft:#d2d6c8; --accent:#3d5a13; --flag:#a8321f; --chip:#cfd4c4;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root{
+  --ground:#12150e; --ground-2:#1b1f16; --ink:#e2e5da; --ink-2:#99a189;
+  --rule:#2c3324; --rule-soft:#232a1c; --accent:#a3c24a; --flag:#e0705c; --chip:#232a1c;
+}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5}
+button{font-family:var(--mono);cursor:pointer}
+input,textarea,select{font-family:var(--serif);font-size:14px;color:var(--ink);
+  background:var(--ground);border:1px solid var(--rule);border-radius:3px;padding:7px 9px;width:100%}
+textarea{min-height:84px;resize:vertical;line-height:1.5}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:-1px}
+input[type=checkbox]{width:auto}
+
+/* login */
+#login{max-width:340px;margin:16vh auto;padding:0 20px}
+#login h1{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0 0 4px}
+#login p{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin:0 0 24px}
+#login .f{margin-bottom:12px}
+#login label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2);display:block;margin-bottom:5px}
+
+/* moldura */
+#app{display:none;grid-template-columns:216px minmax(0,1fr);min-height:100vh}
+body.dentro #app{display:grid}
+body.dentro #login{display:none}
+aside{border-right:1px solid var(--rule);padding:22px 0;position:sticky;top:0;height:100vh;overflow:auto}
+.marca{font-weight:800;font-size:15px;letter-spacing:-.02em;text-transform:uppercase;padding:0 20px 18px}
+aside nav{display:flex;flex-direction:column}
+aside nav button{background:transparent;border:0;text-align:left;padding:9px 20px;
+  font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);
+  border-left:2px solid transparent}
+aside nav button:hover{color:var(--ink)}
+aside nav button.on{color:var(--ink);border-left-color:var(--accent);background:var(--ground-2)}
+.rodape-aside{padding:20px;margin-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:11px;color:var(--ink-2);display:flex;flex-direction:column;gap:8px}
+.rodape-aside a{color:var(--accent)}
+main{padding:28px 32px 80px;max-width:900px}
+.cab{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-bottom:16px;border-bottom:1px solid var(--rule);margin-bottom:24px;flex-wrap:wrap}
+.cab h2{font-size:19px;font-weight:700;letter-spacing:-.02em;margin:0}
+.acoes{display:flex;gap:9px;align-items:center}
+.bt{padding:8px 14px;border-radius:3px;border:1px solid var(--rule);background:transparent;
+  color:var(--ink);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase}
+.bt:hover{border-color:var(--accent)}
+.bt.ok{background:var(--accent);border-color:var(--accent);color:var(--ground)}
+.bt.perigo{color:var(--flag);border-color:var(--flag)}
+.msg{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+.msg.erro{color:var(--flag)}
+
+/* campos */
+.campo{margin-bottom:18px}
+.campo > label,.rot{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2);display:block;margin-bottom:6px}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tripla{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:900px){.tripla{grid-template-columns:1fr}}
+.dupla .sub{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink-2);margin-bottom:4px}
+.item{border:1px solid var(--rule-soft);border-radius:4px;padding:14px;margin-bottom:12px;background:var(--ground-2)}
+.item-cab{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.item-num{font-family:var(--mono);font-size:11px;color:var(--ink-2);letter-spacing:.1em}
+.item-bts{display:flex;gap:5px}
+.item-bts button{border:1px solid var(--rule);background:transparent;color:var(--ink-2);
+  border-radius:3px;width:26px;height:24px;font-size:12px;line-height:1;padding:0}
+.item-bts button:hover{color:var(--ink);border-color:var(--accent)}
+.linha4{display:grid;grid-template-columns:1fr 68px 1fr 68px;gap:10px;align-items:end}
+.mais{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;background:transparent;
+  border:1px dashed var(--rule);color:var(--ink-2);border-radius:3px;padding:8px 14px;width:100%}
+.mais:hover{border-color:var(--accent);color:var(--ink)}
+
+/* listas */
+.lista-linha{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:start;
+  padding:14px 0;border-top:1px solid var(--rule-soft)}
+.lista-linha:first-child{border-top:0}
+.lista-linha .quando{font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.lista-linha h4{margin:0 0 3px;font-size:14.5px;font-weight:700}
+.lista-linha .resumo{font-family:var(--serif);font-size:13px;color:var(--ink-2);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pill{display:inline-block;padding:2px 7px;border-radius:2px;background:var(--chip);
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;margin-right:6px}
+.pill.off{color:var(--flag)}
+.thumb{width:96px;height:auto;aspect-ratio:160/144;image-rendering:pixelated;
+  border-radius:2px;background:#9bbc0f}
+.grade-prints{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+@media (max-width:760px){
+  #app{grid-template-columns:1fr}
+  aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--rule)}
+  aside nav{flex-direction:row;flex-wrap:wrap}
+  .dupla,.linha4{grid-template-columns:1fr}
+  main{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <h1>Patch Clan</h1>
+  <p>Painel do site</p>
+  <div class="f"><label for="lg-mail">E-mail</label><input type="email" id="lg-mail" autocomplete="username"></div>
+  <div class="f"><label for="lg-senha">Senha</label><input type="password" id="lg-senha" autocomplete="current-password"></div>
+  <div class="acoes" style="margin-top:16px">
+    <button class="bt ok" id="lg-entrar">Entrar</button>
+    <span class="msg" id="lg-msg"></span>
+  </div>
+</div>
+
+<div id="app">
+  <aside>
+    <div class="marca">Patch Clan</div>
+    <nav id="menu"></nav>
+    <div class="rodape-aside">
+      <a href="index.html" target="_blank" rel="noopener">Ver o site ↗</a>
+      <span id="quem-sou"></span>
+      <button class="bt" id="sair" style="width:100%">Sair</button>
+    </div>
+  </aside>
+  <main>
+    <div class="cab">
+      <h2 id="titulo-aba"></h2>
+      <div class="acoes">
+        <span class="msg" id="msg"></span>
+        <button class="bt ok" id="salvar">Salvar</button>
+      </div>
+    </div>
+    <div id="painel"></div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js" onerror="void 0"></script>
+<script>
+(function(){
+'use strict';
+var CFG = window.PATCHCLAN_CONFIG;
+if (!CFG || !CFG.url) { document.getElementById('lg-msg').textContent = 'config.js não encontrado.'; return; }
+var sb = window.supabase.createClient(CFG.url, CFG.anon);
+var $ = function(id){ return document.getElementById(id); };
+
+var SPECS = {
+  hero: { nome:'Abertura', campos:[
+    {k:'kicker', t:'bi',  rot:'Linha de cima'},
+    {k:'title',  t:'bi',  rot:'Título — parte escura'},
+    {k:'accent', t:'bi',  rot:'Título — parte verde'},
+    {k:'lede',   t:'bia', rot:'Parágrafo de abertura'},
+    {k:'note',   t:'bia', rot:'Segundo parágrafo'},
+    {k:'caption',t:'bia', rot:'Legenda do print do topo'}
+  ]},
+  rules: { nome:'Regras', campos:[
+    {k:'items', t:'lista', rot:'Regras', sub:[
+      {k:'title', t:'bi',  rot:'Título'},
+      {k:'text',  t:'bia', rot:'Texto'}
+    ]}
+  ]},
+  who: { nome:'Quem', campos:[
+    {k:'paras', t:'listabi', rot:'Parágrafos'},
+    {k:'sign',  t:'bi', rot:'Assinatura'}
+  ]},
+  patreon: { nome:'Patreon', campos:[
+    {k:'url',      t:'txt', rot:'Endereço da página no Patreon'},
+    {k:'chamada',  t:'bia', rot:'Chamada — o que a assinatura compra'},
+    {k:'promessa', t:'bia', rot:'As três promessas'},
+    {k:'rodape',   t:'bia', rot:'Nota de rodapé'},
+    {k:'tiers',    t:'lista', rot:'Níveis', sub:[
+      {k:'nome',  t:'txt', rot:'Nome do nível'},
+      {k:'preco', t:'txt', rot:'Preço'},
+      {k:'nota',  t:'bi',  rot:'Explicação do nome'},
+      {k:'itens', t:'listabi', rot:'O que inclui'}
+    ]}
+  ]},
+  footer: { nome:'Rodapé', campos:[{k:'tagline', t:'bi', rot:'Frase do rodapé'}]}
+};
+var ABAS = Object.keys(SPECS).concat(['games','posts','shots']);
+var NOMES = { games:'Jogos', posts:'Blog', shots:'Prints' };
+
+var CONTEUDO = {}, POSTS = [], SHOTS = [], GAMES = [], aba = 'hero', leitor = null;
+
+function el(tag, cls, html){
+  var n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (html != null) n.innerHTML = html;
+  return n;
+}
+function aviso(t, erro){
+  var m = $('msg'); m.textContent = t; m.className = 'msg' + (erro ? ' erro' : '');
+  if (!erro) setTimeout(function(){ if (m.textContent === t) m.textContent = ''; }, 3500);
+}
+
+/* ---------- geradores de campo: cada um devolve {no, ler} ---------- */
+function campoTexto(val, spec, tipo){
+  var c = el('div','campo');
+  c.appendChild(el('label', null, spec.rot));
+  var i = document.createElement('input');
+  i.type = tipo === 'num' ? 'number' : 'text';
+  i.value = val == null ? '' : val;
+  c.appendChild(i);
+  return { no:c, ler:function(){ return tipo === 'num' ? (+i.value || 0) : i.value; } };
+}
+var ROTULO_IDIOMA = { en:'🇺🇸 ENGLISH', pt:'🇧🇷 PORTUGUÊS', es:'🇪🇸 ESPAÑOL' };
+function campoBi(val, spec, area){
+  val = val || {};
+  var c = el('div','campo');
+  if (spec.rot) c.appendChild(el('label', null, spec.rot));
+  var d = el('div','tripla');
+  var campos = {};
+  ['en','pt','es'].forEach(function(l){
+    var box = el('div');
+    box.appendChild(el('div','sub', ROTULO_IDIOMA[l]));
+    var f = document.createElement(area ? 'textarea' : 'input');
+    if (!area) f.type = 'text';
+    f.value = val[l] || '';
+    box.appendChild(f); d.appendChild(box); campos[l] = f;
+  });
+  c.appendChild(d);
+  return { no:c, ler:function(){
+    var o = { en:campos.en.value, pt:campos.pt.value };
+    if (campos.es.value) o.es = campos.es.value;   /* vazio = cai no inglês */
+    return o;
+  }};
+}
+function repetidor(val, spec, fabrica, rotuloItem){
+  val = Array.isArray(val) ? val : [];
+  var c = el('div','campo');
+  c.appendChild(el('label', null, spec.rot));
+  var caixa = el('div');
+  var linhas = [];
+  function pinta(){
+    caixa.textContent = '';
+    linhas.forEach(function(l, i){
+      var it = el('div','item');
+      var cab = el('div','item-cab');
+      cab.appendChild(el('span','item-num', rotuloItem + ' ' + (i+1)));
+      var bts = el('div','item-bts');
+      [['↑', function(){ if (i>0){ linhas.splice(i-1,0,linhas.splice(i,1)[0]); pinta(); } }],
+       ['↓', function(){ if (i<linhas.length-1){ linhas.splice(i+1,0,linhas.splice(i,1)[0]); pinta(); } }],
+       ['✕', function(){ linhas.splice(i,1); pinta(); }]
+      ].forEach(function(par){
+        var b = document.createElement('button'); b.type='button'; b.textContent = par[0];
+        b.addEventListener('click', par[1]); bts.appendChild(b);
+      });
+      cab.appendChild(bts); it.appendChild(cab); it.appendChild(l.no); caixa.appendChild(it);
+    });
+    var mais = document.createElement('button');
+    mais.type='button'; mais.className='mais'; mais.textContent = '+ ' + rotuloItem;
+    mais.addEventListener('click', function(){ linhas.push(fabrica(null)); pinta(); });
+    caixa.appendChild(mais);
+  }
+  val.forEach(function(v){ linhas.push(fabrica(v)); });
+  pinta();
+  c.appendChild(caixa);
+  return { no:c, ler:function(){ return linhas.map(function(l){ return l.ler(); }); } };
+}
+function grupoDeCampos(val, subs){
+  val = val || {};
+  var caixa = el('div'), partes = {};
+  subs.forEach(function(s){
+    var p = monta(val[s.k], s);
+    partes[s.k] = p; caixa.appendChild(p.no);
+  });
+  return { no:caixa, ler:function(){
+    var o = {}; subs.forEach(function(s){ o[s.k] = partes[s.k].ler(); }); return o;
+  }};
+}
+function campoBytes(val, spec){
+  val = Array.isArray(val) ? val : [];
+  return repetidor(val, spec, function(v){
+    v = v || {en:'',b1:0,pt:'',b2:0};
+    var l = el('div','linha4'), fs = {};
+    [['en','Inglês','text'],['b1','B','number'],['pt','Português','text'],['b2','B','number']].forEach(function(d){
+      var box = el('div');
+      box.appendChild(el('div','sub', d[1]));
+      var i = document.createElement('input'); i.type = d[2]; i.value = v[d[0]] == null ? '' : v[d[0]];
+      box.appendChild(i); l.appendChild(box); fs[d[0]] = i;
+    });
+    return { no:l, ler:function(){ return {en:fs.en.value, b1:+fs.b1.value||0, pt:fs.pt.value, b2:+fs.b2.value||0}; } };
+  }, 'Linha');
+}
+function monta(val, spec){
+  switch (spec.t) {
+    case 'txt':   return campoTexto(val, spec, 'txt');
+    case 'num':   return campoTexto(val, spec, 'num');
+    case 'bi':    return campoBi(val, spec, false);
+    case 'bia':   return campoBi(val, spec, true);
+    case 'bytes': return campoBytes(val, spec);
+    case 'listabi':
+      return repetidor(val, spec, function(v){ return campoBi(v, {rot:''}, true); }, 'Item');
+    case 'lista':
+      return repetidor(val, spec, function(v){ return grupoDeCampos(v, spec.sub); }, 'Bloco');
+  }
+  return { no: el('div'), ler:function(){ return val; } };
+}
+
+/* ---------- abas ---------- */
+function abaConteudo(chave){
+  var spec = SPECS[chave], val = CONTEUDO[chave] || {}, alvo = $('painel');
+  alvo.textContent = '';
+  var partes = {};
+  spec.campos.forEach(function(cp){
+    var p = monta(val[cp.k], cp);
+    partes[cp.k] = p; alvo.appendChild(p.no);
+  });
+  leitor = function(){
+    var o = {}; spec.campos.forEach(function(cp){ o[cp.k] = partes[cp.k].ler(); });
+    return sb.from('content').upsert({ key: chave, value: o }).then(function(r){
+      if (r.error) throw r.error;
+      CONTEUDO[chave] = o;
+    });
+  };
+}
+
+function abaPosts(){
+  var alvo = $('painel'); alvo.textContent = '';
+  leitor = null;
+  var novo = document.createElement('button');
+  novo.className = 'mais'; novo.type='button'; novo.textContent = '+ Nova atualização';
+  novo.addEventListener('click', function(){ editaPost(null); });
+  alvo.appendChild(novo);
+  var lista = el('div'); lista.style.marginTop = '18px';
+  POSTS.forEach(function(p){
+    var l = el('div','lista-linha');
+    l.appendChild(el('div','quando', p.date));
+    var meio = el('div');
+    meio.appendChild(el('h4', null, p.title_pt || p.title_en || '(sem título)'));
+    var pills = (p.build ? '<span class="pill">' + p.build + '</span>' : '') +
+                (p.tag ? '<span class="pill">' + p.tag + '</span>' : '') +
+                (p.published ? '' : '<span class="pill off">RASCUNHO</span>');
+    meio.appendChild(el('div', null, pills));
+    meio.appendChild(el('div','resumo', (p.body_pt || p.body_en || []).join(' ')));
+    l.appendChild(meio);
+    var bts = el('div','item-bts');
+    var be = document.createElement('button'); be.type='button'; be.textContent='✎';
+    be.addEventListener('click', function(){ editaPost(p); });
+    var bx = document.createElement('button'); bx.type='button'; bx.textContent='✕';
+    bx.addEventListener('click', function(){
+      if (!confirm('Apagar esta atualização?')) return;
+      sb.from('posts').delete().eq('id', p.id).then(function(){ carrega().then(function(){ mostra('posts'); }); });
+    });
+    bts.appendChild(be); bts.appendChild(bx); l.appendChild(bts);
+    lista.appendChild(l);
+  });
+  alvo.appendChild(lista);
+}
+
+function editaPost(p){
+  p = p || { date: new Date().toISOString().slice(0,10), build:'', tag:'Foot Clan DX',
+             title_pt:'', title_en:'', body_pt:[], body_en:[], published:true };
+  var alvo = $('painel'); alvo.textContent = '';
+  var voltar = document.createElement('button');
+  voltar.className='bt'; voltar.type='button'; voltar.textContent='← Voltar';
+  voltar.addEventListener('click', function(){ mostra('posts'); });
+  alvo.appendChild(voltar);
+
+  var g = el('div','dupla'); g.style.marginTop='18px';
+  function mini(rot, tipo, valor){
+    var b = el('div','campo'); b.appendChild(el('label',null,rot));
+    var i = document.createElement('input'); i.type = tipo; i.value = valor || '';
+    b.appendChild(i); return { no:b, i:i };
+  }
+  var fd = mini('Data','date',p.date), fb = mini('Build','text',p.build), ft = mini('Tag','text',p.tag);
+  g.appendChild(fd.no); g.appendChild(fb.no); alvo.appendChild(g);
+  alvo.appendChild(ft.no);
+
+  var tit = campoBi({pt:p.title_pt, en:p.title_en}, {rot:'Título'}, false);
+  alvo.appendChild(tit.no);
+  var corpo = campoBi({pt:(p.body_pt||[]).join('\n\n'), en:(p.body_en||[]).join('\n\n')},
+                      {rot:'Texto — um parágrafo por bloco, separados por linha em branco'}, true);
+  alvo.appendChild(corpo.no);
+
+  var pubc = el('div','campo');
+  var lab = document.createElement('label'); lab.style.display='flex'; lab.style.gap='8px'; lab.style.alignItems='center';
+  var chk = document.createElement('input'); chk.type='checkbox'; chk.checked = p.published !== false;
+  lab.appendChild(chk); lab.appendChild(document.createTextNode('Publicado (aparece no site)'));
+  pubc.appendChild(lab); alvo.appendChild(pubc);
+
+  leitor = function(){
+    function paras(t){ return t.split(/\n\s*\n/).map(function(s){ return s.trim().replace(/\s*\n\s*/g,' '); }).filter(Boolean); }
+    var t = tit.ler(), c = corpo.ler();
+    var reg = { date: fd.i.value, build: fb.i.value, tag: ft.i.value,
+                title_pt: t.pt, title_en: t.en,
+                body_pt: paras(c.pt), body_en: paras(c.en), published: chk.checked };
+    var q = p.id ? sb.from('posts').update(reg).eq('id', p.id) : sb.from('posts').insert(reg);
+    return q.then(function(r){ if (r.error) throw r.error; return carrega(); });
+  };
+}
+
+function abaShots(){
+  var alvo = $('painel'); alvo.textContent = ''; leitor = null;
+  var up = el('div','campo');
+  up.appendChild(el('label', null, 'Subir print novo (PNG do emulador, 160×144)'));
+  var arq = document.createElement('input'); arq.type='file'; arq.accept='image/png,image/jpeg';
+  up.appendChild(arq); alvo.appendChild(up);
+  arq.addEventListener('change', function(){
+    var f = arq.files[0]; if (!f) return;
+    var nome = Date.now() + '-' + f.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+    aviso('subindo…');
+    sb.storage.from('shots').upload(nome, f, { contentType: f.type, upsert: true })
+      .then(function(r){
+        if (r.error) throw r.error;
+        var pub = sb.storage.from('shots').getPublicUrl(nome).data.publicUrl;
+        return sb.from('shots').insert({ ord: SHOTS.length, url: pub, alt:'', title_pt:'', title_en:'', caption_pt:'', caption_en:'', visible:true });
+      })
+      .then(function(){ return carrega(); })
+      .then(function(){ mostra('shots'); aviso('print adicionado'); })
+      .catch(function(e){ aviso(e.message || 'falhou', true); });
+  });
+
+  var grade = el('div','grade-prints');
+  var partes = [];
+  SHOTS.forEach(function(s, idx){
+    var it = el('div','item');
+    var cab = el('div','item-cab');
+    cab.appendChild(el('span','item-num','PRINT ' + (idx+1)));
+    var bts = el('div','item-bts');
+    [['↑', -1], ['↓', 1]].forEach(function(par){
+      var b = document.createElement('button'); b.type='button'; b.textContent = par[0];
+      b.addEventListener('click', function(){
+        var j = idx + par[1]; if (j < 0 || j >= SHOTS.length) return;
+        Promise.all([
+          sb.from('shots').update({ ord: SHOTS[j].ord }).eq('id', SHOTS[idx].id),
+          sb.from('shots').update({ ord: SHOTS[idx].ord }).eq('id', SHOTS[j].id)
+        ]).then(carrega).then(function(){ mostra('shots'); });
+      });
+      bts.appendChild(b);
+    });
+    var bx = document.createElement('button'); bx.type='button'; bx.textContent='✕';
+    bx.addEventListener('click', function(){
+      if (!confirm('Tirar este print do site?')) return;
+      sb.from('shots').delete().eq('id', s.id).then(carrega).then(function(){ mostra('shots'); });
+    });
+    bts.appendChild(bx); cab.appendChild(bts); it.appendChild(cab);
+
+    var img = document.createElement('img'); img.className='thumb'; img.src = s.url; img.alt='';
+    it.appendChild(img);
+    var tit = campoBi({pt:s.title_pt, en:s.title_en}, {rot:'Rótulo'}, false);
+    var cap = campoBi({pt:s.caption_pt, en:s.caption_en}, {rot:'Legenda'}, true);
+    it.appendChild(tit.no); it.appendChild(cap.no);
+    var vis = el('div','campo');
+    var lab = document.createElement('label'); lab.style.display='flex'; lab.style.gap='8px'; lab.style.alignItems='center';
+    var chk = document.createElement('input'); chk.type='checkbox'; chk.checked = s.visible !== false;
+    lab.appendChild(chk); lab.appendChild(document.createTextNode('Aparece no site'));
+    vis.appendChild(lab); it.appendChild(vis);
+    grade.appendChild(it);
+    partes.push({ id:s.id, tit:tit, cap:cap, chk:chk });
+  });
+  alvo.appendChild(grade);
+
+  leitor = function(){
+    return Promise.all(partes.map(function(p){
+      var t = p.tit.ler(), c = p.cap.ler();
+      return sb.from('shots').update({
+        title_pt:t.pt, title_en:t.en, alt:t.en,
+        caption_pt:c.pt, caption_en:c.en, visible:p.chk.checked
+      }).eq('id', p.id);
+    })).then(carrega);
+  };
+}
+
+function abaGames(){
+  var alvo = $('painel'); alvo.textContent = ''; leitor = null;
+  if (!GAMES.length) {
+    alvo.appendChild(el('p', null, 'Nenhum jogo no banco ainda. Rode <code>node build/semear.mjs</code>.'));
+    return;
+  }
+  var partes = [];
+  GAMES.forEach(function(g){
+    var d = g.data || {};
+    var it = el('div','item');
+    var cab = el('div','item-cab');
+    cab.appendChild(el('span','item-num', (d.nome || g.slug).toUpperCase()));
+    cab.appendChild(el('span','pill', d.pronto ? 'PRONTO' : 'BETA'));
+    it.appendChild(cab);
+    var campos = {
+      status: monta(d.status, { t:'bi',  rot:'Selo de status' }),
+      linha:  monta(d.linha,  { t:'bia', rot:'Frase de chamada (aparece no cartucho e no topo da página)' })
+    };
+    Object.keys(campos).forEach(function(k){ it.appendChild(campos[k].no); });
+    alvo.appendChild(it);
+    partes.push({ id: g.id, campos: campos });
+  });
+  var nota = el('p','cnote', 'As features, as fotos e a ficha técnica de cada jogo moram no código ' +
+    '(<code>build/jogo-*.mjs</code>) — são estrutura, não conteúdo do dia a dia. Aqui ficam os textos que mudam: ' +
+    'o selo de status e a frase de chamada.');
+  nota.style.marginTop = '18px';
+  alvo.appendChild(nota);
+  leitor = function(){
+    return Promise.all(partes.map(function(p){
+      var g = GAMES.filter(function(x){ return x.id === p.id; })[0];
+      var d = JSON.parse(JSON.stringify(g.data || {}));
+      Object.keys(p.campos).forEach(function(k){ d[k] = p.campos[k].ler(); });
+      return sb.from('games').update({ data: d }).eq('id', p.id);
+    })).then(carrega);
+  };
+}
+
+function mostra(nome){
+  aba = nome;
+  Array.prototype.forEach.call($('menu').children, function(b){
+    b.classList.toggle('on', b.dataset.aba === nome);
+  });
+  $('titulo-aba').textContent = SPECS[nome] ? SPECS[nome].nome : NOMES[nome];
+  $('salvar').style.display = '';
+  if (nome === 'games') abaGames();
+  else if (nome === 'posts') { abaPosts(); $('salvar').style.display = 'none'; }
+  else if (nome === 'shots') abaShots();
+  else abaConteudo(nome);
+}
+
+function carrega(){
+  return Promise.all([
+    sb.from('content').select('key,value'),
+    sb.from('posts').select('*').order('date', { ascending:false }),
+    sb.from('shots').select('*').order('ord', { ascending:true }),
+    sb.from('games').select('*').order('ord', { ascending:true })
+  ]).then(function(r){
+    if (r[0].error) throw r[0].error;
+    CONTEUDO = {}; (r[0].data || []).forEach(function(l){ CONTEUDO[l.key] = l.value; });
+    POSTS = r[1].data || []; SHOTS = r[2].data || []; GAMES = (r[3] && r[3].data) || [];
+  });
+}
+
+function montaMenu(){
+  var m = $('menu'); m.textContent = '';
+  ABAS.forEach(function(a){
+    var b = document.createElement('button'); b.type='button'; b.dataset.aba = a;
+    b.textContent = SPECS[a] ? SPECS[a].nome : NOMES[a];
+    b.addEventListener('click', function(){ mostra(a); });
+    m.appendChild(b);
+  });
+}
+
+$('salvar').addEventListener('click', function(){
+  if (!leitor) return;
+  aviso('salvando…');
+  Promise.resolve(leitor())
+    .then(function(){ if (aba === 'posts' || leitor === null) return; })
+    .then(function(){ aviso('salvo'); if (aba === 'shots') mostra('shots'); })
+    .catch(function(e){ aviso(e.message || 'falhou', true); });
+});
+
+function entrou(sessao){
+  document.body.classList.add('dentro');
+  $('quem-sou').textContent = sessao.user.email;
+  montaMenu();
+  carrega().then(function(){ mostra('hero'); })
+    .catch(function(e){ aviso(e.message || 'falhou ao carregar', true); });
+}
+
+$('lg-entrar').addEventListener('click', function(){
+  var m = $('lg-msg'); m.textContent = 'entrando…'; m.className = 'msg';
+  sb.auth.signInWithPassword({ email: $('lg-mail').value.trim(), password: $('lg-senha').value })
+    .then(function(r){
+      if (r.error) { m.textContent = r.error.message; m.className = 'msg erro'; return; }
+      m.textContent = ''; entrou(r.data.session);
+    });
+});
+$('lg-senha').addEventListener('keydown', function(e){ if (e.key === 'Enter') $('lg-entrar').click(); });
+$('sair').addEventListener('click', function(){
+  sb.auth.signOut().then(function(){ location.reload(); });
+});
+
+sb.auth.getSession().then(function(r){ if (r.data && r.data.session) entrou(r.data.session); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# credenciais — NUNCA sobem
+.env.local
+.env
+*.pem
+
+node_modules/
+supabase/.temp/
+supabase/.branches/
+
+# scans dos manuais japoneses: referência pesada, não faz parte do site
+build/manuais/
+build/shots/
+build/artifact.html
+
+# PDFs retidos até a revisão do texto
+manuais/_rascunho/

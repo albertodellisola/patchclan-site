@@ -1,0 +1,595 @@
+
+<a class="skip" href="#conteudo"><span class="en" lang="en">Skip to content</span><span class="pt" lang="pt-BR">Ir para o conteúdo</span><span class="es" lang="es">Ir al contenido</span></a>
+<div class="faixa"></div>
+<div class="page">
+  <header class="masthead">
+    <a class="brand" href="#/">
+      <div class="tile mark-tile" id="mark" aria-hidden="true"></div>
+      <div class="marca-txt">
+        <div class="wordmark">Patch&nbsp;Clan</div>
+        <div class="selo-marca" id="selo-marca"></div>
+      </div>
+    </a>
+    <div class="mhright">
+      <nav id="nav" aria-label="Principal"></nav>
+      <details class="langsw" id="langsw"></details>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu">☰</button>
+    </div>
+  </header>
+  <main id="conteudo" tabindex="-1"></main>
+  <footer>
+    <span>patchclan.com · 2026</span>
+    <span id="tagline"></span>
+  </footer>
+</div>
+
+<script type="application/json" id="seed">__SEED__</script>
+<script src="config.js" onerror="void 0"></script>
+<script>
+(function(){
+  'use strict';
+  var CFG = window.PATCHCLAN_CONFIG || null;
+  var D = JSON.parse(document.getElementById('seed').textContent);
+  var MESES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var MESES_ES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  var LANG_ATTR = { en:'en', pt:'pt-BR', es:'es' };
+
+  function e(s){ return s == null ? '' : String(s); }
+  function L(par){
+    if (!par) return '';
+    if (typeof par === 'string') par = { en: par };
+    var v = { en: par.en || par.pt || par.es, pt: par.pt || par.en || par.es, es: par.es || par.en || par.pt };
+    return ['en','pt','es'].map(function(l){
+      return '<span class="'+l+'" lang="'+LANG_ATTR[l]+'">'+e(v[l])+'</span>';
+    }).join('');
+  }
+  function txt(par, l){                      /* uma língua só, para atributos */
+    if (!par) return '';
+    if (typeof par === 'string') return par;
+    return e(par[l] || par.en || par.pt || par.es);
+  }
+  function pix(l){ return l.join('').split('').map(function(c){ return c==='#'?'<i class="on"></i>':'<i></i>'; }).join(''); }
+  var T_MARK=['...##...','..#..#..','.#....#.','##....##','##....##','.#....#.','..#..#..','...##...'];
+  function jogo(slug){ return (D.games||[]).filter(function(g){ return g.slug===slug; })[0]; }
+  function img(f){ return (f && f.slice(0,5) === 'data:') ? f : 'shots/' + e(f); }
+  function crt(src, alt){ return '<div class="crt"><img src="'+img(src)+'" alt="'+e(alt)+'" loading="lazy"></div>'; }
+  function data(iso){
+    var d = String(iso).split('-'), n = +d[2], m = +d[1]-1;
+    return { pt: d[2]+' '+MESES[m]+' '+d[0], en: n+' '+MONTHS[m]+' '+d[0], es: d[2]+' '+MESES_ES[m]+' '+d[0] };
+  }
+  var IDI = [['en','🇺🇸',{en:'English',pt:'Inglês',es:'Inglés'}],
+             ['pt','🇧🇷',{en:'Portuguese',pt:'Português',es:'Portugués'}],
+             ['es','🇪🇸',{en:'Spanish',pt:'Espanhol',es:'Español'}]];
+  /* grade de download por idioma: o que não existe fica esmaecido */
+  function gradeIdiomas(versoes, pasta, tipo){
+    return '<div class="patches">' + IDI.map(function(x){
+      var v = (versoes||{})[x[0]];
+      var cab = '<div class="idi"><span class="fl" aria-hidden="true">'+x[1]+'</span>'+L(x[2])+'</div>';
+      if (!v) {
+        return '<div class="pt-item vazio">'+cab+'<div class="aviso">' +
+          L({pt:'ainda não existe',en:'does not exist yet',es:'todavía no existe'})+'</div></div>';
+      }
+      return '<div class="pt-item">'+cab +
+        '<div class="tam">'+tipo+' · '+e(v.tamanho)+'</div>' +
+        '<a class="bt" href="'+pasta+'/'+e(v.arquivo)+'" download>▶ ' +
+        L({pt:'Baixar',en:'Download',es:'Descargar'})+'</a></div>';
+    }).join('') + '</div>';
+  }
+  /* Três níveis, e só três. O nível de um projeto é o mesmo que os apoiadores
+     recebem: alfa no Seventh Hero, beta no Bank Switch, release para todo mundo. */
+  var NIVEIS = {
+    release: { marca:'✓', cls:'on',   rot:{pt:'Release',en:'Release',es:'Release'} },
+    beta:    { marca:'●', cls:'beta', rot:{pt:'Beta',   en:'Beta',   es:'Beta'} },
+    alfa:    { marca:'○', cls:'alfa', rot:{pt:'Alfa',   en:'Alpha',  es:'Alfa'} }
+  };
+  function nivel(g){ return NIVEIS[g.nivel] || NIVEIS.alfa; }
+  function selo(g){
+    var n = nivel(g);
+    return '<span class="pill '+n.cls+'">'+n.marca+' '+L(n.rot)+'</span>' + bandeiras(g);
+  }
+  /* As bandeiras saem do que existe em patches/, não de uma lista escrita à mão:
+     um idioma só aparece quando o arquivo dele existe. */
+  function bandeiras(g){
+    var v = (g.patch||{}).versoes||{};
+    var tem = IDI.filter(function(x){ return v[x[0]]; });
+    if (!tem.length) return '';
+    return '<span class="idiomas" role="list">' + tem.map(function(x){
+      return '<span role="listitem" class="fl" title="'+txt(x[2],'en')+'">' + x[1] +
+        '<span class="cod">'+x[0].toUpperCase()+'</span></span>';
+    }).join('') + '</span>';
+  }
+
+  /* ---------------- HOME ---------------- */
+  function home(){
+    var c = D.content, h = c.hero||{}, jogos = D.games||[];
+    function conta(n){ return jogos.filter(function(g){ return g.nivel === n; }).length; }
+    var prontos = conta('release'), betas = conta('beta'), alfas = conta('alfa');
+    var d = jogos.filter(function(g){ return g.destaque; })[0] || jogos[0];
+    var out = '<div class="hero"><div class="hero-txt">' +
+      '<p class="kicker">'+L(h.eyebrow)+'</p>' +
+      '<h1>'+L(h.title)+'<em>'+L(h.accent)+'</em></h1>' +
+      '<p class="lede">'+L(h.curta)+'</p>' +
+      '<div class="hero-ctas">' +
+        '<a class="bt" href="#/projetos">'+L((h.ctas||{}).projetos)+'</a>' +
+        '<div class="cta-apoio">' +
+          '<a class="bt fora" href="#/apoie">♥ '+L((h.ctas||{}).apoiar)+'</a>' +
+          '<span class="nota">'+L((h.ctas||{}).apoiarNota)+'</span>' +
+        '</div>' +
+      '</div>' +
+      '<p class="hero-regra">'+L((h.ctas||{}).regra)+'</p></div>';
+
+    /* o showcase: o visitante vê um jogo antes de rolar */
+    if (d) {
+      out += '<a class="vitrine" href="#/jogo/'+e(d.slug)+'">' +
+        '<div class="tela"><img src="'+img(d.capa)+'" alt="'+e(d.nome)+' — '+txt(d.linha,'en')+'" loading="eager"></div>' +
+        '<div class="corpo">' +
+          '<div class="topo">'+selo(d)+'</div>' +
+          '<h2>'+e(d.nome)+'</h2>' +
+          '<p class="ficha-card">'+e(d.sistema)+' · '+e(d.ano)+' · '+L({pt:'inglês',en:'English',es:'inglés'})+'</p>' +
+          '<p class="cat">'+L(d.categoria)+'</p>' +
+          '<p class="ir">'+L({pt:'Ver o projeto →',en:'View project →',es:'Ver el proyecto →'})+'</p>' +
+        '</div></a>';
+    }
+    out += '</div>';
+
+    /* rodapé da dobra: o placar, com a atividade em destaque */
+    out += '<div class="placar">' +
+      '<div class="nums">' +
+        '<span><b>'+jogos.length+'</b> '+L({pt:'projetos',en:'projects',es:'proyectos'})+'</span>' +
+        '<span><b>'+prontos+'</b> release</span>' +
+        '<span><b>'+betas+'</b> beta</span>' +
+        '<span><b>'+alfas+'</b> '+L({pt:'alfa',en:'alpha',es:'alfa'})+'</span>' +
+      '</div>' +
+      ((D.posts||[])[0] ? '<div class="vivo"><span class="bolinha" aria-hidden="true"></span>' +
+        L(h.ativo)+' — '+L({pt:'build',en:'build',es:'build'})+' '+L(data(D.posts[0].date))+'</div>' : '') +
+    '</div>';
+
+    /* projetos */
+    out += '<section><p class="label">'+L({pt:'Projetos',en:'Projects',es:'Proyectos'})+'</p><div class="projetos">' +
+      jogos.slice(0, 4).map(cardProjeto).join('') + '</div>' +
+      '<p class="ver-todas"><a href="#/projetos">' +
+        L({pt:'Ver todos os '+jogos.length+' projetos →', en:'View all '+jogos.length+' projects →', es:'Ver los '+jogos.length+' proyectos →'}) +
+      '</a></p></section>';
+
+    /* nao e so traducao */
+    out += secaoProvas();
+
+    /* ultimas atualizacoes */
+    var ps = (D.posts||[]).slice(0,3);
+    if (ps.length) {
+      out += '<section><p class="label">'+L({pt:'Últimas atualizações',en:'Latest updates',es:'Últimas novedades'})+'</p>' +
+        '<div class="updates">' + ps.map(cardUpdate).join('') + '</div>' +
+        '<p class="ver-todas"><a href="#/atualizacoes">'+L({pt:'Ver todas →',en:'View all →',es:'Ver todas →'})+'</a></p></section>';
+    }
+
+    out += patreonResumo();
+    out += secaoPromessas();
+    return out;
+  }
+
+  function cardProjeto(g){
+    return '<article class="proj">' +
+      '<a class="tela" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true"><img src="'+img(g.capa)+'" alt="" loading="lazy"></a>' +
+      '<div class="corpo">' +
+        '<div>'+selo(g)+'</div>' +
+        '<h3><a href="#/jogo/'+e(g.slug)+'">'+e(g.nome)+'</a></h3>' +
+        '<div class="ficha">'+e(g.publisher)+' · '+e(g.ano)+' · '+e(g.sistema)+'</div>' +
+        '<div class="cat">'+L(g.categoria)+'</div>' +
+        '<p class="linha">'+L(g.linha)+'</p>' +
+        '<div class="ir"><a href="#/jogo/'+e(g.slug)+'">'+L({pt:'Ver projeto →',en:'View project →',es:'Ver proyecto →'})+'</a></div>' +
+      '</div></article>';
+  }
+
+  function resumo(o, l){
+    var b = (o['body_'+l] && o['body_'+l].length ? o['body_'+l] : o.body_en) || [];
+    var t = b[0] || '';
+    return t.length > 165 ? t.slice(0,162).replace(/\s+\S*$/,'') + '…' : t;
+  }
+  function cardUpdate(o){
+    return '<article class="upd">' +
+      '<div class="quando">'+L(data(o.date))+(o.tag?' · '+e(o.tag):'')+'</div>' +
+      '<h3>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h3>' +
+      '<p>'+L({pt:resumo(o,'pt'),en:resumo(o,'en'),es:resumo(o,'es')})+'</p>' +
+      '<div class="ler"><a href="#/atualizacoes">'+L({pt:'Ler o devlog →',en:'Read the devlog →',es:'Leer el devlog →'})+'</a></div>' +
+      '</article>';
+  }
+
+  function secaoProvas(){
+    var p = (D.content.provas||{}).itens||[];
+    if (!p.length) return '';
+    return '<section><p class="label">'+L({pt:'Não é só tradução',en:'Not just translation',es:'No es solo traducción'})+'</p>' +
+      '<div class="col"><h2>'+L({pt:'O que muda dentro do cartucho.',en:'What changes inside the cartridge.',es:'Lo que cambia dentro del cartucho.'})+'</h2></div>' +
+      '<div class="provas" style="margin-top:34px">' + p.map(function(x){
+        var g = jogo(x.jogo);
+        return '<div class="prova"><p class="et">'+L(x.etiqueta)+'</p>' +
+          '<b class="n">'+L(x.numero)+'</b><span class="u">'+L(x.unidade)+'</span>' +
+          '<p>'+L(x.texto)+'</p>' +
+          (g ? '<p class="onde"><a href="#/jogo/'+e(g.slug)+'">'+e(g.nome)+' →</a></p>' : '') +
+          '</div>';
+      }).join('') + '</div></section>';
+  }
+  function secaoPromessas(){
+    var p = (D.content.promessas||{}).itens||[];
+    if (!p.length) return '';
+    return '<section style="border-bottom:0"><div class="promessas">' + p.map(function(x){
+      return '<div class="promessa"><h4>'+L(x.titulo)+'</h4><p>'+L(x.texto)+'</p></div>';
+    }).join('') + '</div></section>';
+  }
+
+  /* ---------------- PROJETOS ---------------- */
+  function paginaProjetos(){
+    var jogos = D.games||[];
+    var grupos = ['release','beta','alfa'].map(function(n){
+      return { n:n, t:NIVEIS[n].rot, f:function(g){ return g.nivel === n; } };
+    });
+    var out = '<section><p class="label">'+L({pt:'Projetos',en:'Projects',es:'Proyectos'})+'</p>' +
+      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px)">'+L({pt:'Projetos',en:'Projects',es:'Proyectos'})+'</h1>' +
+      '<p class="lede">'+L({pt:'O Patch Clan não é um site sobre alguns jogos: é uma oficina de projetos, e estes são os que existem hoje.',
+                            en:'Patch Clan is not a site about a few games: it is a workshop of projects, and these are the ones that exist today.',
+                            es:'Patch Clan no es un sitio sobre unos juegos: es un taller de proyectos, y estos son los que existen hoy.'})+'</p></div>';
+    var nv = D.content.niveis;
+    if (nv) {
+      out += '<div class="regua"><h3>'+L(nv.titulo)+'</h3><p class="intro">'+L(nv.intro)+'</p><dl>' +
+        (nv.itens||[]).map(function(x){
+          var n = NIVEIS[x.chave];
+          return '<div><dt><span class="pill '+n.cls+'">'+x.marca+' '+L(n.rot)+'</span></dt>' +
+            '<dd>'+L(x.texto)+'</dd></div>';
+        }).join('') + '</dl>' +
+        (nv.fecho ? '<p class="fecho">'+L(nv.fecho)+'</p>' : '') + '</div>';
+    }
+    grupos.forEach(function(gr){
+      var lista = jogos.filter(gr.f);
+      if (!lista.length) return;
+      out += '<div class="grupo-status" style="margin-top:44px"><h3>'+L(gr.t)+' <span style="color:var(--accent)">'+lista.length+'</span></h3>' +
+        '<div class="projetos">' + lista.map(cardProjeto).join('') + '</div></div>';
+    });
+    var fl = D.content.fila;
+    if (fl && (fl.itens||[]).length) {
+      out += '<div class="fila"><h3>'+L(fl.titulo)+' <span>'+fl.itens.length+'</span></h3>' +
+        '<p class="intro">'+L(fl.intro)+'</p>' +
+        '<p class="intro">'+L(fl.criterio)+'</p>' +
+        '<ol>' + fl.itens.map(function(x){
+          return '<li><div class="jogo"><b>'+e(x.nome)+'</b>' +
+            '<span class="ficha">'+e(x.sistema)+' · '+e(x.ano)+'</span></div>' +
+            '<p>'+L(x.porque)+'</p></li>';
+        }).join('') + '</ol>' +
+        '<p class="aviso">'+L(fl.aviso)+'</p></div>';
+    }
+    return out + '</section>';
+  }
+
+  /* ---------------- PÁGINA DO PROJETO ---------------- */
+  function paginaJogo(slug){
+    var g = jogo(slug); if(!g) return paginaProjetos();   /* projeto que saiu da lista */
+    var out = '<div class="jogo-cab"><div>' +
+      '<div class="selos">' +
+        (g.primeiro?'<span class="pill gold">'+L({pt:'A primeira tradução do clã',en:'The clan’s first translation',es:'La primera traducción del clan'})+'</span>':'') +
+        selo(g) + '<span class="pill">'+L(g.categoria)+'</span></div>' +
+      '<p class="jp">'+e(g.jp)+'</p>' +
+      '<h1>'+e(g.nome)+'</h1>' +
+      '<p class="sub">'+e(g.subtitulo)+(g.traducao_titulo?' · '+e(g.traducao_titulo):'')+'</p>' +
+      '<p style="color:var(--ink-2);max-width:32em">'+L(g.linha)+'</p>' +
+      '<p class="ficha">'+e(g.publisher)+(g.dev&&g.dev!==g.publisher?' · '+e(g.dev):'')+' · '+e(g.data)+' · '+e(g.sistema)+'<br>'+e(g.mapper) +
+        (g.versao ? '<br><span class="versao">'+L({pt:'Patch',en:'Patch',es:'Parche'})+' <b>'+e(g.versao)+'</b></span>' : '')+'</p>' +
+      '<div class="acoes-jogo">' +
+        '<a class="bt" href="#/jogo/'+e(g.slug)+'" data-ir="baixar">▶ '+L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>' +
+        '<a class="bt fora" href="#/manual/'+e(g.slug)+'">'+L({pt:'Ler o manual',en:'Read the manual',es:'Leer el manual'})+'</a>' +
+      '</div></div><div>'+crt(g.capa, txt(g.linha,'en'))+'</div></div>';
+
+    out += '<nav class="abas" aria-label="'+e(g.nome)+'">' +
+      '<a class="on" href="#/jogo/'+e(g.slug)+'" data-ir="sobre">'+L({pt:'Visão geral',en:'Overview',es:'Vista general'})+'</a>' +
+      (g.nivel === 'release' ? '<a href="#/jogo/'+e(g.slug)+'" data-ir="tudo">'+L({pt:'O que mudou',en:'What changed',es:'Qué cambió'})+'</a>' : '') +
+      '<a href="#/jogo/'+e(g.slug)+'" data-ir="telas">'+L({pt:'Telas',en:'Screens',es:'Pantallas'})+'</a>' +
+      '<a href="#/jogo/'+e(g.slug)+'" data-ir="baixar">'+L({pt:'Baixar',en:'Download',es:'Descargar'})+'</a>' +
+      ((D.manuais||{})[g.slug] ? '<a href="#/manual/'+e(g.slug)+'">'+L({pt:'Manual',en:'Manual',es:'Manual'})+'</a>' : '') +
+      '</nav>';
+
+    var completa = g.nivel === 'release';   /* só release documenta o trabalho inteiro */
+    if (completa) {
+      out += '<div class="numeros">' + (g.numeros||[]).map(function(n){
+        return '<div class="num"><b>'+e(n.v)+'</b><span>'+L(n.r)+'</span></div>'; }).join('') + '</div>';
+    }
+
+    out += '<section id="sobre"><div class="col">' + (g.resumo ?
+      (g.resumo.en||g.resumo.pt||[]).map(function(_,i){
+        return '<p>'+L({pt:(g.resumo.pt||[])[i], en:(g.resumo.en||[])[i], es:(g.resumo.es||[])[i]})+'</p>'; }).join('') : '') + '</div></section>';
+
+    if (completa) {
+      out += '<section id="tudo"><p class="label">'+L({pt:'O que mudou',en:'What changed',es:'Qué cambió'})+'</p>';
+      (g.grupos||[]).forEach(function(gr){
+        out += '<div class="grupo"><h3>'+L(gr.titulo)+'</h3>' + (gr.itens||[]).map(function(it){
+          return '<div class="feat'+(it.foto?'':' solo')+'"><p>'+L(it.t)+'</p>' +
+            (it.foto ? crt(it.foto, '') : '') + '</div>'; }).join('') + '</div>';
+      });
+      out += '</section>';
+    } else {
+      out += '<section><div class="em-obra">' +
+        '<p>'+L({pt:'Este projeto ainda está em andamento. <b>A lista completa do que entrou é publicada quando ele vira release</b> — até lá, o que está aqui é o jogo, não o relatório do trabalho.',
+                 en:'This project is still under way. <b>The full list of what went in is published when it becomes a release</b> — until then, what is here is the game, not the report on the work.',
+                 es:'Este proyecto sigue en marcha. <b>La lista completa de lo que entró se publica cuando pasa a release</b> — hasta entonces, lo que hay aquí es el juego, no el informe del trabajo.'})+'</p>' +
+        '<p class="onde"><a href="#/projetos">'+L({pt:'Como as traduções são classificadas →',en:'How the translations are classified →',es:'Cómo se clasifican las traducciones →'})+'</a></p>' +
+        '</div></section>';
+    }
+
+    out += '<section id="telas"><p class="label">'+L({pt:'As telas',en:'The screens',es:'Las pantallas'})+'</p><div class="galeria">' +
+      (g.fotos||[]).map(function(f){
+        return '<figure>'+crt(f.f, e(g.nome)+' — '+txt(f.t,'en'))+
+          '<figcaption><b>'+L(f.t)+'</b>'+L(f.c)+'</figcaption></figure>'; }).join('') + '</div></section>';
+
+    out += '<section id="baixar"><p class="label">'+L({pt:'Baixar',en:'Download',es:'Descargar'})+'</p>' +
+      '<h3 style="margin-bottom:14px">'+L({pt:'O patch',en:'The patch',es:'El parche'})+'</h3>' +
+      '<div class="baixar-cab">' +
+        L({pt:'<b>Aplique sobre a ROM japonesa original.</b> Nenhuma ROM é distribuída aqui — só a diferença.',
+           en:'<b>Apply over the original Japanese ROM.</b> No ROM is distributed here — only the difference.',
+           es:'<b>Aplícalo sobre la ROM japonesa original.</b> Aquí no se distribuye ninguna ROM — solo la diferencia.'}) +
+        (g.versao ? '<br>'+L({pt:'Versão do patch',en:'Patch version',es:'Versión del parche'})+': <b>'+e(g.versao)+'</b>' : '') +
+        '<br>ROM: <b>'+e(g.patch.rom)+'</b><br>MD5: <b>'+e(g.patch.rom_md5)+'</b></div>' +
+      gradeIdiomas(g.patch.versoes, 'patches', 'IPS') +
+      '<h3 style="margin:44px 0 14px">'+L({pt:'O manual',en:'The manual',es:'El manual'})+'</h3>' +
+      '<div class="baixar-cab">' +
+        L({pt:'O mesmo manual que está no site, em PDF — escrito sobre o jogo traduzido, com os comandos exatos da tela.',
+           en:'The same manual that is on the site, as a PDF — written over the translated game, with the exact on-screen commands.',
+           es:'El mismo manual que está en el sitio, en PDF — escrito sobre el juego traducido, con los comandos exactos de la pantalla.'}) +
+        ' <a href="#/manual/'+e(g.slug)+'">'+L({pt:'Ler no site →',en:'Read on the site →',es:'Leer en el sitio →'})+'</a></div>' +
+      gradeIdiomas(g.manual_pdf, 'manuais', 'PDF');
+    out += '</div></section>';
+    out += '<a class="voltar" href="#/projetos">'+L({pt:'← Todos os projetos',en:'← All projects',es:'← Todos los proyectos'})+'</a>';
+    return out;
+  }
+
+  /* ---------------- MANUAL ---------------- */
+  function paginaManual(slug){
+    var g = jogo(slug); if(!g) return paginaProjetos();
+    var m = (D.manuais||{})[slug];
+    if(!m){
+      return '<section><p class="label">'+L({pt:'Manual',en:'Manual',es:'Manual'})+'</p><div class="col">' +
+        '<h2>'+e(g.nome)+'</h2><p>'+L({pt:'O manual em inglês deste jogo está em preparação.',en:'The English manual for this game is being prepared.',es:'El manual en inglés de este juego está en preparación.'})+'</p></div>' +
+        '<a class="voltar" href="#/jogo/'+e(g.slug)+'">←&nbsp;'+e(g.nome)+'</a></section>';
+    }
+    var out = '<div id="capa-pdf">' +
+      '<p class="marca">Patch Clan</p>' +
+      '<p class="kicker">'+L(m.titulo)+'</p>' +
+      '<h1>'+e(g.nome)+'</h1>' +
+      '<p class="sub" style="font-family:var(--sans);font-weight:600;font-size:15pt;color:var(--accent);margin:2mm 0 6mm">' +
+        e(g.subtitulo)+(g.traducao_titulo?' · '+e(g.traducao_titulo):'')+'</p>' +
+      '<p class="lede">'+L(m.intro)+'</p>' +
+      '<p class="rodape">'+e(g.publisher)+' · '+e(g.data)+' · '+e(g.sistema)+'<br>' +
+        L({pt:'Tradução e romhacking: Sonix · patchclan.com',en:'Translation and romhacking: Sonix · patchclan.com',es:'Traducción y romhacking: Sonix · patchclan.com'})+'<br>' +
+        L({pt:'Patch de fã, sem fins lucrativos. Não afiliado a nenhuma das empresas originais.',
+           en:'A non-profit fan patch. Not affiliated with any of the original companies.',
+           es:'Parche de fan, sin ánimo de lucro. No afiliado a ninguna de las empresas originales.'})+'</p>' +
+      '</div>' +
+      '<section style="border-bottom:0;padding-bottom:22px"><p class="label">'+L(m.titulo)+' · '+e(g.nome)+'</p>' +
+      '<div class="col"><h1 style="font-size:clamp(30px,4.4vw,46px);margin-bottom:18px">'+e(g.nome)+'</h1>' +
+      '<p class="lede">'+L(m.intro)+'</p></div>' +
+      '<nav class="man-idx" aria-label="'+txt(m.titulo,'en')+'">' + m.secoes.map(function(sec,i){
+        return '<a href="#/manual/'+e(slug)+'" data-ir="sec-'+e(sec.id)+'"><span class="n">'+(i+1)+'</span>'+L(sec.titulo)+'</a>';
+      }).join('') + '</nav></section>';
+    out += m.secoes.map(function(sec,i){
+      var corpo = '<div class="man-txt">' +
+        (sec.paras ? (sec.paras.en||sec.paras.pt||[]).map(function(_,k){
+          return '<p>'+L({pt:(sec.paras.pt||[])[k], en:(sec.paras.en||[])[k], es:(sec.paras.es||[])[k]})+'</p>'; }).join('') : '') +
+        (sec.lista ? '<dl class="man-lista">' + sec.lista.map(function(it){
+          var chave = (typeof it.k === 'string') ? '<code>'+e(it.k)+'</code>' : L(it.k);
+          return '<div><dt>'+chave+'</dt><dd>'+L(it.v)+'</dd></div>';
+        }).join('') + '</dl>' : '') + '</div>';
+      return '<section class="man-sec" id="sec-'+e(sec.id)+'">' +
+        '<p class="label"><span style="color:var(--accent)">'+(i+1)+'</span> '+L(sec.titulo)+'</p>' +
+        '<div class="man-corpo'+(sec.foto?'':' solo')+'">' + corpo +
+        (sec.foto ? '<div>'+crt(sec.foto,'')+'</div>' : '') + '</div></section>';
+    }).join('');
+    out += '<section id="baixar-manual"><p class="label">'+L({pt:'Baixar o manual',en:'Download the manual',es:'Descargar el manual'})+'</p>' +
+      gradeIdiomas(g.manual_pdf, 'manuais', 'PDF') + '</section>';
+    return out + '<a class="voltar" href="#/jogo/'+e(g.slug)+'">←&nbsp;'+e(g.nome)+'</a>';
+  }
+
+  /* ---------------- PATREON ---------------- */
+  function patreonResumo(){
+    var p = D.content.patreon; if(!p) return '';
+    var hs = p.horas || {};
+    return '<section><p class="label">'+L({pt:'Apoie o clã',en:'Support the clan',es:'Apoya al clan'})+'</p>' +
+      '<div class="horas"><div>' +
+        '<h2>'+L({pt:'O que você compra são horas.',en:'What you buy is hours.',es:'Lo que compras son horas.'})+'</h2>' +
+        '<p style="color:var(--ink-2);max-width:32em">'+L(p.chamada)+'</p>' +
+        '<div class="hero-ctas"><a class="bt" href="#/apoie">♥ '+L({pt:'Ver os níveis',en:'See the tiers',es:'Ver los niveles'})+'</a></div>' +
+      '</div><div>' +
+        '<div class="big">'+e(hs.numero)+'</div>' +
+        '<div class="rot">'+L(hs.rotulo)+'</div>' +
+        '<div class="passos">'+(hs.passos||[]).map(function(x){ return '<span>'+L(x)+'</span>'; }).join('')+'</div>' +
+      '</div></div></section>';
+  }
+  function paginaApoie(){
+    var p = D.content.patreon; if(!p) return home();
+    var hs = p.horas || {};
+    var out = '<section style="border-bottom:0"><p class="label">'+L({pt:'Apoie o clã',en:'Support the clan',es:'Apoya al clan'})+'</p>' +
+      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,50px)">'+L({pt:'O que você compra são horas.',en:'What you buy is hours.',es:'Lo que compras son horas.'})+'</h1></div>' +
+      '<div class="horas"><div><p style="color:var(--ink-2);max-width:32em">'+L(p.chamada)+'</p>' +
+        '<p style="color:var(--ink-2);max-width:32em">'+L(p.promessa)+'</p></div>' +
+      '<div><div class="big">'+e(hs.numero)+'</div><div class="rot">'+L(hs.rotulo)+'</div>' +
+        '<div class="passos">'+(hs.passos||[]).map(function(x){ return '<span>'+L(x)+'</span>'; }).join('')+'</div></div></div>' +
+      '<div class="tiers">' + (p.tiers||[]).map(function(t){
+        return '<div class="tier'+(t.recomendado?' destaque':'')+'">' +
+          (t.recomendado?'<span class="fita">'+L({pt:'Recomendado',en:'Recommended',es:'Recomendado'})+'</span>':'') +
+          '<div class="topo"><h3>'+e(t.nome)+'</h3>' +
+          '<div class="preco">'+e(t.preco)+'<small>'+L(t.periodo)+'</small></div></div>' +
+          '<p class="nota">'+L(t.nota)+'</p>' +
+          '<ul>'+(t.itens||[]).map(function(i){ return '<li>'+L(i)+'</li>'; }).join('')+'</ul></div>';
+      }).join('') + '</div>' +
+      '<div class="hero-ctas" style="margin-top:34px">' +
+        '<a class="bt" href="'+e(p.url)+'" target="_blank" rel="noopener">♥ '+L({pt:'Apoiar no Patreon',en:'Support on Patreon',es:'Apoyar en Patreon'})+'</a>' +
+        '<p style="margin:0;font-size:15.5px;color:var(--ink-2);max-width:30em">'+L(p.rodape)+'</p></div></section>';
+    return out + secaoPromessas();
+  }
+
+  /* ---------------- ATUALIZAÇÕES / SOBRE ---------------- */
+  function paginaAtualizacoes(){
+    return '<section><p class="label">'+L({pt:'Atualizações',en:'Updates',es:'Novedades'})+'</p>' +
+      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px)">'+L({pt:'Atualizações',en:'Updates',es:'Novedades'})+'</h1></div>' +
+      '<div class="posts" style="margin-top:40px">' + (D.posts||[]).map(function(o){
+        var pts=(o.body_pt&&o.body_pt.length?o.body_pt:o.body_en)||[];
+        var ens=(o.body_en&&o.body_en.length?o.body_en:o.body_pt)||[];
+        var ess=(o.body_es&&o.body_es.length?o.body_es:ens)||[];
+        var corpo='';
+        for(var i=0;i<Math.max(pts.length,ens.length);i++)
+          corpo += '<p>'+L({pt:pts[i]||ens[i],en:ens[i]||pts[i],es:ess[i]||ens[i]})+'</p>';
+        return '<article class="post"><div class="post-meta">'+L(data(o.date)) +
+          (o.build?'<span class="post-build">'+e(o.build)+'</span>':'') +
+          (o.tag?'<span style="font-size:11.5px;letter-spacing:.1em;text-transform:uppercase">'+e(o.tag)+'</span>':'') +
+          '</div><div><h3>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h3>' +
+          '<div class="post-body">'+corpo+'</div></div></article>';
+      }).join('') + '</div></section>';
+  }
+  function paginaSobre(){
+    var c = D.content, w = c.who||{};
+    return '<section><p class="label">'+L({pt:'Sobre',en:'About',es:'Sobre'})+'</p>' +
+      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px);margin-bottom:26px">'+L({pt:'Um clã de um só.',en:'A clan of one.',es:'Un clan de uno solo.'})+'</h1>' +
+      (w.paras||[]).map(function(x){ return '<p>'+L(x)+'</p>'; }).join('') +
+      '<p class="sign"><b>Sonix</b> · '+L(w.sign)+'</p></div></section>' +
+      '<section><p class="label">'+L({pt:'Regras da casa',en:'House rules',es:'Reglas de la casa'})+'</p><dl class="rules">' +
+      ((c.rules||{}).items||[]).map(function(r){
+        return '<div class="rule"><dt>'+L(r.title)+'</dt><dd>'+L(r.text)+'</dd></div>'; }).join('') +
+      '</dl></section>' + secaoPromessas();
+  }
+
+  /* ---------------- ROTEADOR ---------------- */
+  function rota(){
+    var h = (location.hash || '#/').replace(/^#/, '');
+    var p = h.split('/').filter(Boolean);
+    if (p[0] === 'jogo' && p[1]) return { tipo:'jogo', slug:p[1] };
+    if (p[0] === 'manual' && p[1]) return { tipo:'manual', slug:p[1] };
+    if (p[0] === 'projetos') return { tipo:'projetos' };
+    if (p[0] === 'atualizacoes') return { tipo:'atualizacoes' };
+    if (p[0] === 'sobre') return { tipo:'sobre' };
+    if (p[0] === 'apoie') return { tipo:'apoie' };
+    return { tipo:'home' };
+  }
+  var TITULOS = {
+    home:'Patch Clan', projetos:'Projects · Patch Clan', atualizacoes:'Updates · Patch Clan',
+    sobre:'About · Patch Clan', apoie:'Support · Patch Clan'
+  };
+  function desenha(){
+    var r = rota(), app = document.getElementById('conteudo');
+    if (r.tipo === 'jogo') app.innerHTML = paginaJogo(r.slug);
+    else if (r.tipo === 'manual') app.innerHTML = paginaManual(r.slug);
+    else if (r.tipo === 'projetos') app.innerHTML = paginaProjetos();
+    else if (r.tipo === 'atualizacoes') app.innerHTML = paginaAtualizacoes();
+    else if (r.tipo === 'sobre') app.innerHTML = paginaSobre();
+    else if (r.tipo === 'apoie') app.innerHTML = paginaApoie();
+    else app.innerHTML = home();
+    var g = (r.slug && jogo(r.slug));
+    document.title = g ? g.nome + ' · Patch Clan' : (TITULOS[r.tipo] || 'Patch Clan');
+    document.getElementById('mark').innerHTML = pix(T_MARK);
+    document.getElementById('selo-marca').innerHTML = L((D.content.marca||{}).selo);
+    document.getElementById('tagline').innerHTML = L((D.content.footer||{}).tagline);
+    menu(r);
+    document.body.classList.remove('menu-aberto');
+    document.getElementById('burger').setAttribute('aria-expanded','false');
+    window.scrollTo(0, 0);
+  }
+  function menu(r){
+    var itens = [
+      ['#/projetos', {pt:'Projetos',en:'Projects',es:'Proyectos'}, ['projetos','jogo','manual']],
+      ['#/atualizacoes', {pt:'Atualizações',en:'Updates',es:'Novedades'}, ['atualizacoes']],
+      ['#/sobre', {pt:'Sobre',en:'About',es:'Sobre'}, ['sobre']]
+    ];
+    var out = itens.map(function(i){
+      var aqui = i[2].indexOf(r.tipo) >= 0;
+      return '<a href="'+i[0]+'"'+(aqui?' aria-current="page"':'')+'>'+L(i[1])+'</a>';
+    }).join('');
+    out += '<a class="apoie" href="#/apoie"'+(r.tipo==='apoie'?' aria-current="page"':'')+'>♥ '+L({pt:'Apoie',en:'Support',es:'Apoya'})+'</a>';
+    document.getElementById('nav').innerHTML = out;
+  }
+  window.addEventListener('hashchange', desenha);
+
+  /* rolagem interna sem trocar de rota */
+  document.addEventListener('click', function(ev){
+    var a = ev.target.closest && ev.target.closest('[data-ir]');
+    if(!a) return;
+    var alvo = document.getElementById(a.getAttribute('data-ir'));
+    if(alvo){
+      ev.preventDefault();
+      alvo.scrollIntoView({behavior:'smooth', block:'start'});
+      if (a.parentNode && a.parentNode.classList.contains('abas')) {
+        Array.prototype.forEach.call(a.parentNode.children, function(x){ x.classList.remove('on'); });
+        a.classList.add('on');
+      }
+    }
+  });
+
+  /* ---------------- idioma ---------------- */
+  var IDIOMAS = [['en','🇺🇸','English'],['pt','🇧🇷','Português'],['es','🇪🇸','Español']];
+  var langsw = document.getElementById('langsw');
+  function pintaSeletor(l){
+    var atual = IDIOMAS.filter(function(x){ return x[0]===l; })[0] || IDIOMAS[0];
+    langsw.innerHTML = '<summary aria-label="'+atual[2]+'"><span aria-hidden="true">'+atual[1]+'</span>' +
+      atual[0].toUpperCase()+' ▾</summary><ul>' + IDIOMAS.map(function(x){
+        return '<li><button type="button" data-lang="'+x[0]+'" lang="'+LANG_ATTR[x[0]]+'" ' +
+          'aria-current="'+(x[0]===l)+'"><span aria-hidden="true">'+x[1]+'</span>'+x[2]+'</button></li>';
+      }).join('') + '</ul>';
+  }
+  function idioma(l, salvar){
+    if (['en','pt','es'].indexOf(l) < 0) l = 'en';
+    document.body.setAttribute('data-lang', l);
+    document.documentElement.lang = LANG_ATTR[l];
+    pintaSeletor(l);
+    if (salvar) { try { localStorage.setItem('pc-lang', l); } catch(x){} }
+  }
+  langsw.addEventListener('click', function(ev){
+    var b = ev.target.closest('button[data-lang]');
+    if (b) { idioma(b.getAttribute('data-lang'), true); langsw.removeAttribute('open'); }
+  });
+  document.addEventListener('click', function(ev){
+    if (langsw.hasAttribute('open') && !langsw.contains(ev.target)) langsw.removeAttribute('open');
+  });
+  var salvo = null; try { salvo = localStorage.getItem('pc-lang'); } catch(x){}
+  if (!salvo) {
+    var nav = (navigator.language || '').toLowerCase();
+    salvo = nav.indexOf('pt') === 0 ? 'pt' : nav.indexOf('es') === 0 ? 'es' : 'en';
+  }
+  idioma(salvo, false);
+
+  desenha();
+
+  /* menu no celular */
+  var burger = document.getElementById('burger');
+  burger.addEventListener('click', function(){
+    var aberto = document.body.classList.toggle('menu-aberto');
+    burger.setAttribute('aria-expanded', String(aberto));
+  });
+  document.addEventListener('keydown', function(ev){
+    if (ev.key === 'Escape') langsw.removeAttribute('open');
+    if (ev.key === 'Escape' && document.body.classList.contains('menu-aberto')) {
+      document.body.classList.remove('menu-aberto');
+      burger.setAttribute('aria-expanded','false'); burger.focus();
+    }
+  });
+
+
+  /* ---------------- conteúdo ao vivo ---------------- */
+  if (CFG && CFG.url && CFG.anon) {
+    var H = { apikey: CFG.anon, Authorization: 'Bearer ' + CFG.anon };
+    Promise.all([
+      fetch(CFG.url+'/rest/v1/content?select=key,value',{headers:H}).then(function(r){return r.json();}),
+      fetch(CFG.url+'/rest/v1/posts?select=*&published=is.true&order=date.desc',{headers:H}).then(function(r){return r.json();}),
+      fetch(CFG.url+'/rest/v1/games?select=slug,data&order=ord.asc',{headers:H}).then(function(r){return r.json();})
+    ]).then(function(res){
+      var conteudo=res[0], posts=res[1], games=res[2];
+      if(!Array.isArray(conteudo)||!conteudo.length) return;
+      var novo={}; conteudo.forEach(function(l){ novo[l.key]=l.value; });
+      Object.keys(novo).forEach(function(k){ D.content[k]=novo[k]; });
+      if(Array.isArray(posts)) D.posts=posts;
+      if(Array.isArray(games) && games.length){
+        games.forEach(function(linha){
+          var alvo = jogo(linha.slug); if(!alvo || !linha.data) return;
+          ['status','linha','resumo','nome','subtitulo','categoria'].forEach(function(k){
+            if(linha.data[k] != null) alvo[k] = linha.data[k];
+          });
+        });
+      }
+      desenha();
+      document.documentElement.setAttribute('data-fonte','supabase');
+    }).catch(function(){});
+  }
+})();
+</script>
