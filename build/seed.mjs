@@ -175,9 +175,6 @@ SEED.patreon.tiers = [
       { pt: '<b>Só quero ajudar.</b> É exatamente isto: nenhuma contrapartida, nenhuma fila, nada exclusivo.',
         en: '<b>I just want to help.</b> That is exactly it: no perks, no queue, nothing exclusive.',
         es: '<b>Solo quiero ayudar.</b> Es exactamente eso: ninguna contrapartida, ninguna fila, nada exclusivo.' },
-      { pt: 'Cerca de uma hora de trabalho por mês — e é de hora em hora que estes projetos andam.',
-        en: 'About one hour of work a month — and it is one hour at a time that these projects move.',
-        es: 'Cerca de una hora de trabajo al mes — y es hora a hora como avanzan estos proyectos.' },
       { pt: 'Todo patch continua <b>gratuito para todo mundo</b>, apoiador ou não.',
         en: 'Every patch stays <b>free for everyone</b>, patron or not.',
         es: 'Todo parche sigue siendo <b>gratis para todo el mundo</b>, mecenas o no.' }
