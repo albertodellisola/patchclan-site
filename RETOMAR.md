@@ -262,3 +262,58 @@ patch obriga a trocar no manual.
 
 Sobem: `index.html`, `painel.html`, `config.js`, `patches/`, `shots/`.
 Não sobe: `build/`, `supabase/`.
+
+---
+
+# NO AR — 07/09/2026
+
+## Onde tudo mora
+
+| | |
+|---|---|
+| **Site** | https://www.patchclan.com |
+| **Painel** | https://www.patchclan.com/painel.html |
+| **Repositório** | https://github.com/albertodellisola/patchclan-site |
+| **Supabase** | projeto `patchclan`, ref `zmmxzjmhpxyqwvhqdfyw`, conta `albertorezende6@gmail.com`, região São Paulo |
+| **Domínio** | GoDaddy, conta `albertodellisola@gmail.com` |
+
+**As credenciais estão em `~/patchclan-site/.env.local`** — token do Supabase, senha do
+banco, chaves da API, e o e-mail e a senha do painel. O arquivo é `600` e está no
+`.gitignore`. **Ele nunca foi para o GitHub** — confira com `git log --all -- .env.local`
+antes de acreditar no contrário.
+
+## Como publicar uma mudança
+
+```bash
+node build/gerar.mjs      # regera o index.html
+git add -A && git commit -m "..." && git push
+```
+
+O GitHub Pages republica sozinho em um ou dois minutos. **Não editar `index.html` à mão:**
+ele é gerado, e o próximo `gerar.mjs` apaga a edição.
+
+## O que passa pelo painel e o que não passa
+
+Pelo **painel**, sem tocar em arquivo: abertura, regras, quem, rodapé, níveis do Patreon,
+blog, e de cada jogo o selo e a frase de chamada. Vai ao ar na hora.
+
+Pelo **repositório**: features, fotos, ficha técnica, manuais, a fila e a régua dos níveis.
+Exige `gerar.mjs` + push.
+
+## DNS, como ficou
+
+| tipo | nome | valor |
+|---|---|---|
+| A | @ | 185.199.108.153 · .109 · .110 · .111 (GitHub Pages) |
+| CNAME | www | albertodellisola.github.io. |
+
+O A de "Parked" da GoDaddy e o CNAME `www → patchclan.com` foram apagados. O
+`_domainconnect` e o `_dmarc` continuam lá, sem conflito.
+
+**O certificado HTTPS é emitido pelo GitHub depois que o DNS assenta** — leva de minutos
+a algumas horas na primeira vez. Enquanto não sai, o domínio responde vazio. Para forçar
+HTTPS depois que ele existir:
+
+```bash
+gh api -X PUT repos/albertodellisola/patchclan-site/pages -F https_enforced=true
+```
