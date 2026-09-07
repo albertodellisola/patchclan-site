@@ -34,7 +34,7 @@ export const ES_FJ2 = {
     { t: 'Pantalla de título', c: 'El logo redibujado píxel a píxel, y el sello <code>DEFINITIVE EDITION</code>, que no costó bytes de más.' },
     { t: 'Créditos del parche', c: 'Una pantalla nueva antes del título, en 355 bytes de espacio muerto.' },
     { t: 'Prólogo nuevo', c: 'Cinco páginas escritas de cero que recapitulan el primer juego de 1989.' },
-    { t: 'El espíritu del Jump World', c: 'La apertura, ahora en inglés.' },
+    { t: 'El espíritu del Jump World', c: 'La apertura, ahora en español.' },
     { t: 'La lista de los siete', c: 'La pantalla del error: seis nombres que, hasta esta corrección, eran siempre los mismos seis.' },
     { t: '"Y tú también, Goku."', c: 'La frase que nadie había visto en treinta y cinco años.' },
     { t: 'Menús', c: 'Estado, tienda, almacén y entrenamiento — 77 textos.' },

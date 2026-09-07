@@ -78,8 +78,36 @@ ES_FJ2.manual.secoes.forEach((sec, i) => {
 const head  = fs.readFileSync(path.join(RAIZ, 'build/head.html'), 'utf8');
 const corpo = fs.readFileSync(path.join(RAIZ, 'build/corpo.html'), 'utf8');
 
-function montar(seed, extraHead = '') {
-  const c = corpo.replace('__SEED__', JSON.stringify(seed));
+/* prints por idioma: shots/<jogo>/<idi>/<arquivo> e a variante de shots/<jogo>/<arquivo>.
+   A lista sai do disco, nao de cadastro: print que nao existe nunca vira link quebrado. */
+const IDIOMAS_PRINT = ['pt', 'es'];
+function variantes() {
+  const m = {};
+  IDIOMAS_PRINT.forEach(l => (m[l] = {}));
+  const raiz = path.join(RAIZ, 'shots');
+  for (const jogo of fs.readdirSync(raiz)) {
+    if (!fs.statSync(path.join(raiz, jogo)).isDirectory()) continue;
+    for (const l of IDIOMAS_PRINT) {
+      const dir = path.join(raiz, jogo, l);
+      if (!fs.existsSync(dir)) continue;
+      for (const f of fs.readdirSync(dir)) {
+        if (!/\.(png|gif|jpe?g)$/i.test(f)) continue;
+        const base = `${jogo}/${f}`;
+        if (!fs.existsSync(path.join(raiz, base))) {
+          console.warn(`aviso: ${jogo}/${l}/${f} nao tem print base ${base} — ignorado`);
+          continue;
+        }
+        m[l][base] = `${jogo}/${l}/${f}`;
+      }
+    }
+  }
+  return m;
+}
+const VARIANTES = variantes();
+
+function montar(seed, extraHead = '', shots = VARIANTES) {
+  const c = corpo.replace('__SEED__', JSON.stringify(seed))
+                 .replace('__SHOTS_IDI__', JSON.stringify(shots));
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -121,7 +149,16 @@ Object.values(clone.manuais || {}).forEach(m => {
 });
 // no artifact o prefixo 'shots/' atrapalha: neutraliza-o com uma <base> inofensiva
 // o Artifact envolve o conteudo sozinho: entrega so <head> util + corpo, sem wrappers
-const corpoArt = corpo.replace('__SEED__', JSON.stringify(clone));
+const shotsArt = {};
+for (const l of IDIOMAS_PRINT) {
+  shotsArt[l] = {};
+  for (const [base, alt] of Object.entries(VARIANTES[l])) {
+    if (!b64.has(base)) continue;              /* print que o site nao usa nao pesa no artifact */
+    shotsArt[l][b64.get(base)] = embutir(alt);
+  }
+}
+const corpoArt = corpo.replace('__SEED__', JSON.stringify(clone))
+                      .replace('__SHOTS_IDI__', JSON.stringify(shotsArt));
 const art = head + '\n' + corpoArt.trim() + '\n';
 fs.writeFileSync(path.join(RAIZ, 'build/artifact.html'), art);
 
@@ -129,3 +166,4 @@ const kb = n => Math.round(n / 1024);
 console.log(`index.html: ${kb(fs.statSync(path.join(RAIZ,'index.html')).size)} KB (imagens em shots/)`);
 console.log(`artifact  : ${kb(art.length)} KB (imagens embutidas)`);
 console.log(`jogos: ${JOGOS.map(g => g.slug).join(', ')} · posts: ${POSTS.length}`);
+console.log(`prints por idioma: ${IDIOMAS_PRINT.map(l => `${l} ${Object.keys(VARIANTES[l]).length}`).join(' · ')}`);

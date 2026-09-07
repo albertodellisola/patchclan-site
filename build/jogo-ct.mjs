@@ -64,11 +64,11 @@ export const CT = {
   fotos: [
     { f: 'ct/01-titulo.png', t: { pt: 'Tela de título', en: 'Title screen' }, c: { pt: 'O logo redesenhado em 122 tiles, com a bola nova e o avião no canto.', en: 'The logo redrawn in 122 tiles, with the new ball and the aeroplane in the corner.' } },
     { f: 'ct/03-narrador.png', t: { pt: 'Narração', en: 'Commentary' }, c: { pt: 'Quatro linhas onde cabiam duas: o código de controle novo dobra a largura útil.', en: 'Four lines where two used to fit: the new control code doubles the usable width.' } },
-    { f: 'ct/02-sala.png', t: { pt: 'Sala de aula', en: 'Classroom' }, c: { pt: 'O menu do técnico — <code>SCOUT</code>, <code>MEMO</code>, <code>PLAY</code> — e a segunda fonte do jogo.', en: 'The coach’s menu — <code>SCOUT</code>, <code>MEMO</code>, <code>PLAY</code> — and the game’s second font.' } },
+    { f: 'ct/02-sala.png', t: { pt: 'Sala de aula', en: 'Classroom' }, c: { pt: 'O menu do técnico — <code>Info</code>, <code>Senha</code>, <code>Jogar</code> — e a segunda fonte do jogo.', en: 'The coach’s menu — <code>SCOUT</code>, <code>MEMO</code>, <code>PLAY</code> — and the game’s second font.' } },
     { f: 'ct/04-ficha.png', t: { pt: 'Ficha do jogador', en: 'Player card' }, c: { pt: 'Level, Max Guts e os seis atributos, com a lista do elenco ao lado.', en: 'Level, Max Guts and the six stats, with the squad list beside it.' } },
     { f: 'ct/05-jogo.png', t: { pt: 'Em jogo', en: 'In play' }, c: { pt: 'O menu de ação durante a partida, com o Guts descendo a cada jogada.', en: 'The action menu during a match, with Guts draining on every play.' } },
     { f: 'ct/06-senha.png', t: { pt: 'Senha', en: 'Password' }, c: { pt: 'A grade latinizada — e a senha gerada passa na validação original do jogo.', en: 'The latinised grid — and a generated password passes the game’s own validation.' } },
     { f: 'ct/07-memo.png', t: { pt: 'Score Memo', en: 'Score Memo' }, c: { pt: 'O instante em que o jogo grava: a Sanae dá a senha, e o save vai junto.', en: 'The moment the game saves: Sanae reads out the password, and the save goes with it.' } },
-    { f: 'ct/08-save.png', t: { pt: 'Carregado da bateria', en: 'Loaded from battery' }, c: { pt: 'Depois de desligar e ligar de verdade — <code>16th All-Japan Jr. Cup</code>, exatamente onde parou.', en: 'After a real power cycle — <code>16th All-Japan Jr. Cup</code>, exactly where it stopped.' } }
+    { f: 'ct/08-save.png', t: { pt: 'Carregado da bateria', en: 'Loaded from battery' }, c: { pt: 'Depois de desligar e ligar de verdade — <code>16a Copa Nacional Juvenil</code>, exatamente onde parou.', en: 'After a real power cycle — <code>16th All-Japan Jr. Cup</code>, exactly where it stopped.' } }
   ]
 };

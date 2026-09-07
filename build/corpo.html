@@ -52,8 +52,28 @@
   function pix(l){ return l.join('').split('').map(function(c){ return c==='#'?'<i class="on"></i>':'<i></i>'; }).join(''); }
   var T_MARK=['...##...','..#..#..','.#....#.','##....##','##....##','.#....#.','..#..#..','...##...'];
   function jogo(slug){ return (D.games||[]).filter(function(g){ return g.slug===slug; })[0]; }
-  function img(f){ return (f && f.slice(0,5) === 'data:') ? f : 'shots/' + e(f); }
-  function crt(src, alt){ return '<div class="crt"><img src="'+img(src)+'" alt="'+e(alt)+'" loading="lazy"></div>'; }
+  /* prints por idioma: quem le em portugues ve a tela em portugues.
+     SHOTS_IDI mapeia o print base -> a variante daquele idioma; sem variante, cai no base. */
+  var SHOTS_IDI = __SHOTS_IDI__;
+  var LANG_ATUAL = 'en';
+  function img(f, l){
+    if (!f) return '';
+    var m = SHOTS_IDI[l || LANG_ATUAL];
+    if (m && m[f]) f = m[f];
+    return (f.slice(0,5) === 'data:') ? f : 'shots/' + e(f);
+  }
+  /* data-shot guarda o print base: a troca de idioma e so CSS, entao o src se repinta a mao */
+  function foto(f, alt, carga){
+    return '<img src="'+img(f)+'" data-shot="'+e(f)+'" alt="'+e(alt)+'" loading="'+(carga||'lazy')+'">';
+  }
+  function repintaFotos(){
+    var ns = document.querySelectorAll('img[data-shot]');
+    for (var i = 0; i < ns.length; i++) {
+      var s = img(ns[i].getAttribute('data-shot'));
+      if (ns[i].getAttribute('src') !== s) ns[i].setAttribute('src', s);
+    }
+  }
+  function crt(src, alt){ return '<div class="crt">'+foto(src, alt)+'</div>'; }
   function data(iso){
     var d = String(iso).split('-'), n = +d[2], m = +d[1]-1;
     return { pt: d[2]+' '+MESES[m]+' '+d[0], en: n+' '+MONTHS[m]+' '+d[0], es: d[2]+' '+MESES_ES[m]+' '+d[0] };
@@ -122,7 +142,7 @@
     /* o showcase: o visitante vê um jogo antes de rolar */
     if (d) {
       out += '<a class="vitrine" href="#/jogo/'+e(d.slug)+'">' +
-        '<div class="tela"><img src="'+img(d.capa)+'" alt="'+e(d.nome)+' — '+txt(d.linha,'en')+'" loading="eager"></div>' +
+        '<div class="tela">'+foto(d.capa, d.nome+' — '+txt(d.linha,'en'), 'eager')+'</div>' +
         '<div class="corpo">' +
           '<div class="topo">'+selo(d)+'</div>' +
           '<h2>'+e(d.nome)+'</h2>' +
@@ -170,7 +190,7 @@
 
   function cardProjeto(g){
     return '<article class="proj">' +
-      '<a class="tela" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true"><img src="'+img(g.capa)+'" alt="" loading="lazy"></a>' +
+      '<a class="tela" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true">'+foto(g.capa, '')+'</a>' +
       '<div class="corpo">' +
         '<div>'+selo(g)+'</div>' +
         '<h3><a href="#/jogo/'+e(g.slug)+'">'+e(g.nome)+'</a></h3>' +
@@ -530,7 +550,9 @@
   }
   function idioma(l, salvar){
     if (['en','pt','es'].indexOf(l) < 0) l = 'en';
+    LANG_ATUAL = l;
     document.body.setAttribute('data-lang', l);
+    repintaFotos();
     document.documentElement.lang = LANG_ATTR[l];
     pintaSeletor(l);
     if (salvar) { try { localStorage.setItem('pc-lang', l); } catch(x){} }
