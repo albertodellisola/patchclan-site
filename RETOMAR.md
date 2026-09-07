@@ -317,3 +317,72 @@ HTTPS depois que ele existir:
 ```bash
 gh api -X PUT repos/albertodellisola/patchclan-site/pages -F https_enforced=true
 ```
+
+---
+
+# Prints por idioma — 07/09/2026
+
+O leitor em português vê a tela **em português**, quando aquele jogo tem patch naquele idioma.
+
+## A convenção
+
+Uma variante mora em `shots/<jogo>/<idi>/<arquivo>.png`, com o **mesmo nome de arquivo**
+do print base em `shots/<jogo>/`. Nada se cadastra à mão:
+
+- `build/gerar.mjs` tem `variantes()`, que **varre o disco** e monta o mapa base → variante.
+  Variante sem print base correspondente é ignorada com aviso no console.
+- O mapa entra no `corpo.html` por `__SHOTS_IDI__`; `img(f, l)` resolve e **cai no print base**
+  quando aquele idioma não tem captura. É isso que faz o Score Memo do Tsubasa continuar em
+  inglês sem virar link quebrado.
+- No `artifact.html` os prints são `data:` URI, então lá o mapa é chaveado pelo data: URI do
+  base, não pelo caminho.
+
+**A armadilha do renderizador:** a troca de idioma é só CSS (`body[data-lang]` esconde os
+`<span>`), então imagem nenhuma se re-renderiza sozinha. Cada `<img>` leva `data-shot` com o
+caminho base, e `idioma()` chama `repintaFotos()`. **Emitir `<img>` sempre por `foto()`** —
+`<img>` escrito à mão no HTML não troca de idioma.
+
+## O que existe hoje
+
+| | pt | es |
+|---|---|---|
+| Famicom Jump II | 6 telas | 6 telas |
+| Captain Tsubasa | 7 telas | — (não há patch em espanhol) |
+
+FJ2: menu, prólogo, espírito, lista dos sete, "E você também, Goku", SoulRing. Título e
+créditos **não têm variante de propósito** — as builds pt/es mostram as mesmas telas.
+CT: título (*SUPER CAMPEÕES · RUMO AO SONHO*), sala de aula, narração, ficha, em jogo, senha
+e o carregado-da-bateria. Falta só o **Score Memo**: só se chega a ele terminando uma partida.
+
+## Como acrescentar variantes de um jogo
+
+1. Capturar no emulador do hack. **O roteiro Lua calibrado num idioma não serve noutro** — o
+   texto traduzido tem outro comprimento e o percurso desliza uma tela inteira. Varrer denso
+   (uma foto a cada 30 quadros), montar folha de contato e escolher **por conteúdo**.
+   O Captain Tsubasa tem `~/ct-hack/mesen/site_pt.lua` pronto para as duas telas difíceis.
+2. Copiar para `shots/<jogo>/<idi>/` com o mesmo nome do print base.
+3. **Reler a legenda daquele idioma.** O print traduzido denuncia legenda escrita só para o
+   inglês: três contradiziam o próprio print ao lado ("a abertura, agora em inglês" com tela
+   em português; `SCOUT/MEMO/PLAY` e `16th All-Japan Jr. Cup` no Tsubasa, que em PT são
+   `Info/Senha/Jogar` e `16a Copa Nacional Juvenil`).
+4. `node build/gerar.mjs` e push. **Legenda não precisa re-semear** — a hidratação do Supabase
+   só sobrescreve status/linha/resumo/nome/subtitulo/categoria; `fotos[].c` vem só do build.
+
+## Dois defeitos de ROM que apareceram na captura
+
+- **A tela de senha do patch inglês publicado do Captain Tsubasa ainda está em japonês**
+  (`-スコアメモ シュート!-`). Medido aplicando o `patches/captain-tsubasa-en.ips` do site sobre a
+  ROM original. A build portuguesa traduziu ("…CHUTE A SUA SENHA!…"). O Tsubasa está
+  classificado **RELEASE**, e release é o único nível em que o site publica a lista fechada.
+- **A tela de créditos das builds pt/es do FJ2 está em inglês** — `TRANSLATED, FIXED,
+  IMPROVED`, igual à inglesa. O Dragon Ball 3 já faz diferente (queima `PORTUGUES V1.0`).
+
+Nenhum dos dois foi corrigido.
+
+## O que mais mudou no mesmo dia
+
+- O print de créditos do FJ2 no site era de um build antigo; trocado pelo do build 13.3, que
+  é o que o patch publicado entrega.
+- Tirada do tier **Two Bytes**, nos três idiomas, a linha "Cerca de uma hora de trabalho por
+  mês…". **Foram dois lugares:** `build/seed.mjs` **e** a linha `patreon` da tabela `content`
+  no Supabase — só o build não bastaria, a hidratação traria o texto de volta.
