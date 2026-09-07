@@ -65,7 +65,7 @@ export const FJ2 = {
   patch: {
     versoes: { en: { arquivo: 'famicom-jump-2-en.ips' },
                pt: { arquivo: 'famicom-jump-2-pt.ips' },
-               es: null },
+               es: { arquivo: 'famicom-jump-2-es.ips' } },
     rom: 'Famicom Jump II - Saikyou no 7 Nin (Japan).nes',
     rom_md5: '47910069aa92dcac1b0fa4929cc7ceff'
   },
