@@ -18,38 +18,72 @@ export const ULTRAMAN2 = {
             'El RPG donde los Ultraman se vuelven figuras chibi y enfrentan a los monstruos de la serie.'),
   resumo: {
     pt: ['Um RPG da Tsuburaya em que os Ultraman viram bonecos de cabeça grande e enfrentam os monstros da série. Nunca saiu do Japão.',
-         'Sai da Tsuburaya com a Shinsei, em 1989, e nunca deixou o Japão.'],
+         'Sai da Tsuburaya com a Shinsei, em 1989, e nunca deixou o Japão. Esta é uma versão <b>alfa</b>: o texto está todo em inglês e verificado, mas o jogo ainda não foi percorrido do começo ao fim.'],
     en: ['A Tsuburaya RPG where the Ultramen become big-headed chibi figures and fight the monsters of the series. It never left Japan.',
-         'It comes from Tsuburaya with Shinsei, in 1989, and never left Japan.'],
+         'It comes from Tsuburaya with Shinsei, in 1989, and never left Japan. This is an <b>alpha</b>: the text is all in English and verified, but the game has not yet been played end to end.'],
     es: ['Un RPG de Tsuburaya donde los Ultraman se vuelven figuras chibi y enfrentan a los monstruos de la serie. Nunca salió de Japón.',
-         'Sale de Tsuburaya con Shinsei, en 1989, y nunca dejó Japón.']
+         'Sale de Tsuburaya con Shinsei, en 1989, y nunca dejó Japón. Esta es una versión <b>alfa</b>: el texto está todo en inglés y verificado, pero el juego aún no se ha recorrido de principio a fin.']
   },
   numeros: [
-    { v: '447', r: bi('mensagens traduzidas', 'messages translated', 'mensajes traducidos') },
-    { v: '56',  r: bi('menus, golpes, itens e monstros', 'menus, moves, items and monsters', 'menús, técnicas, objetos y monstruos') },
+    { v: '653', r: bi('entradas de texto traduzidas', 'text entries translated', 'entradas de texto traducidas') },
+    { v: '4', r: bi('blocos de texto na ROM', 'text blocks in the ROM', 'bloques de texto en la ROM') },
     { v: '128→256', r: bi('KB, a ROM expandida', 'KB, the ROM expanded', 'KB, la ROM ampliada') },
     { v: '22×4', r: bi('a caixa de fala, em colunas', 'the dialogue box, in columns', 'la caja de diálogo, en columnas') }
   ],
   grupos: [
     { titulo: bi('O que já entrou', 'What is already in', 'Lo que ya entró'), itens: [
-      { t: bi('<b>447 mensagens</b> em três grupos de texto — diálogo, batalha, descrições de itens, a sequência final e os créditos.',
-              '<b>447 messages</b> across three text groups — dialogue, battle, item descriptions, the ending sequence and the credits.',
-              '<b>447 mensajes</b> en tres grupos de texto — diálogo, combate, descripciones de objetos, la secuencia final y los créditos.'), foto: 'u2/01-titulo.png' },
-      { t: bi('<b>56 entradas</b> de menu, golpes, itens e nomes de monstro.',
-              '<b>56 entries</b> for menus, moves, items and monster names.',
-              '<b>56 entradas</b> de menú, técnicas, objetos y nombres de monstruo.') },
-      { t: bi('A ROM foi <b>expandida de 128 KB para 256 KB</b> — o inglês não cabia no lugar de origem.',
-              'The ROM was <b>expanded from 128 KB to 256 KB</b> — English did not fit where it was.',
-              'La ROM fue <b>ampliada de 128 KB a 256 KB</b> — el inglés no cabía donde estaba.') },
-      { t: bi('<b>Round-trip verificado:</b> o que está gravado na ROM é lido de volta e comparado, byte a byte, com o roteiro em inglês. E um verificador de caixa confere as 22 colunas por 4 linhas antes de qualquer coisa sair.',
-              '<b>Round-trip verified:</b> what is written in the ROM is read back and compared, byte for byte, against the English script. And a box checker confirms the 22 columns by 4 lines before anything ships.',
-              '<b>Round-trip verificado:</b> lo grabado en la ROM se lee de vuelta y se compara, byte a byte, con el guion en inglés. Y un verificador de caja confirma las 22 columnas por 4 líneas antes de que salga nada.') }
+      { t: bi('<b>447 mensagens</b> de diálogo, batalha, descrições de item, a sequência final e os créditos — em três grupos de texto.',
+              '<b>447 messages</b> of dialogue, battle, item descriptions, the ending sequence and the credits — across three text groups.',
+              '<b>447 mensajes</b> de diálogo, combate, descripciones de objetos, la secuencia final y los créditos — en tres grupos de texto.'), foto: 'u2/03-encontro.png' },
+      { t: bi('<b>146 entradas</b> de combate: as mensagens de ação, os gritos de golpe e o <b>bestiário inteiro</b> — cerca de 90 monstros. Este quarto bloco só apareceu ao varrer kana na ROM <i>montada</i>: os bytes de ponteiro dele caem na faixa do kana e a análise da ROM original o descartou como dado binário.',
+              '<b>146 battle entries</b>: action messages, attack shouts and the <b>whole bestiary</b> — about 90 monsters. This fourth block only surfaced when scanning kana in the <i>built</i> ROM: its pointer bytes fall in the kana range and the original-ROM analysis dismissed it as binary data.',
+              '<b>146 entradas</b> de combate: mensajes de acción, gritos de técnica y el <b>bestiario entero</b> — unos 90 monstruos. Este cuarto bloque solo apareció al barrer kana en la ROM <i>construida</i>.'), foto: 'u2/04-menu-batalha.png' },
+      { t: bi('<b>56 entradas</b> de menu, golpes, itens e nomes de monstro, e mais <b>4 partículas japonesas cravadas no código</b> — <code>は</code> e <code>に</code>, que nenhuma varredura de tabela acha porque estão escritas como <code>LDA #$AC</code> no meio da rotina de batalha.',
+              '<b>56 entries</b> for menus, moves, items and monster names, plus <b>4 Japanese particles hardcoded in the code</b> — <code>は</code> and <code>に</code>, which no table scan finds because they are written as <code>LDA #$AC</code> inside the battle routine.',
+              '<b>56 entradas</b> de menú, técnicas, objetos y nombres de monstruo, y <b>4 partículas japonesas grabadas en el código</b>.'), foto: 'u2/05-combate.png' },
+      { t: bi('A <b>tela de título</b> redesenhada em 120 tiles, a partir da arte em inglês — e a paleta 1 igualada à 0, porque a tabela de atributos ainda marcava branco na faixa onde ficava o texto japonês pequeno.',
+              'The <b>title screen</b> redrawn in 120 tiles from the English artwork — and palette 1 matched to palette 0, because the attribute table still marked white over the band where the small Japanese text used to be.',
+              'La <b>pantalla de título</b> redibujada en 120 tiles a partir del arte en inglés.'), foto: 'u2/01-titulo.png' },
+      { t: bi('A ROM foi <b>expandida de 128 KB para 256 KB</b>. Os bancos 14 e 15 são duplicados no fim: no MMC3 o banco fixo é sempre o <i>último</i> da ROM, e crescer sem copiá-los deixa o vetor de reset em área vazia — tela verde no boot.',
+              'The ROM was <b>expanded from 128 KB to 256 KB</b>. Banks 14 and 15 are duplicated at the end: on MMC3 the fixed bank is always the <i>last</i> one, and growing without copying them leaves the reset vector in empty space — green screen on boot.',
+              'La ROM fue <b>ampliada de 128 KB a 256 KB</b>.') },
+      { t: bi('<b>Round-trip verificado:</b> o que está gravado na ROM é lido de volta e comparado, byte a byte, com o roteiro em inglês — 653 entradas, zero divergências. E um verificador de caixa confere 22 colunas por 4 linhas no diálogo, e 22 colunas no combate, antes de qualquer coisa sair.',
+              '<b>Round-trip verified:</b> what is written in the ROM is read back and compared, byte for byte, against the English script — 653 entries, zero mismatches. And a box checker confirms 22 columns by 4 lines in dialogue, and 22 columns in battle, before anything ships.',
+              '<b>Round-trip verificado:</b> lo grabado en la ROM se lee de vuelta y se compara, byte a byte, con el guion en inglés — 653 entradas, cero divergencias.'), foto: 'u2/02-creditos.png' }
+    ]},
+    { titulo: bi('O que falta para sair do alfa', 'What is left before it leaves alpha', 'Lo que falta para salir del alfa'), itens: [
+      { t: bi('<b>Percorrer o jogo do começo ao fim.</b> A cobertura do texto foi medida por varredura, não por jogatina: a Terra dos Ultras, o cemitério de monstros e o final não foram vistos na tela.',
+              '<b>Playing the game end to end.</b> Text coverage was measured by scanning, not by playing: the Land of Ultra, the monster graveyard and the ending have not been seen on screen.',
+              '<b>Recorrer el juego de principio a fin.</b> La cobertura se midió por barrido, no jugando.') },
+      { t: bi('Conferir na tela as <b>146 linhas de combate</b> uma a uma. Elas cabem por medição — nome mais mensagem em 22 colunas — mas nem todas foram vistas renderizadas.',
+              'Checking the <b>146 battle lines</b> on screen, one by one. They fit by measurement — name plus message within 22 columns — but not all have been seen rendered.',
+              'Comprobar en pantalla las <b>146 líneas de combate</b>, una a una.') }
     ]}
   ],
-  patch: { versoes: { en: null, pt: null, es: null }, rom: 'Kaettekita Ultraman Club (Japan).nes', rom_md5: '—' },
+  patch: { versoes: { en: { arquivo: 'ultraman-club-2-en.ips' }, pt: null, es: null },
+           rom: 'Ultraman Club 2 - Kaettekita Ultraman Club (Japan).nes',
+           rom_md5: '1e479bfe8e4d3c36de37dfb96aa8e68c' },
   fotos: [
     { f: 'u2/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
-      c: bi('ROM original. Tsuburaya e Shinsei, 1989.', 'Original ROM. Tsuburaya and Shinsei, 1989.', 'ROM original. Tsuburaya y Shinsei, 1989.') }
+      c: bi('O logo redesenhado em 120 tiles. O limite não foi a CHR, foi o fluxo da nametable: 145 bytes fixos.',
+            'The logo redrawn in 120 tiles. The limit was not the CHR but the nametable stream: a fixed 145 bytes.',
+            'El logo redibujado en 120 tiles.') },
+    { f: 'u2/02-creditos.png', t: bi('Tela do patch', 'Patch screen', 'Pantalla del parche'),
+      c: bi('358 bytes no vão livre do banco fixo, com o vetor de RESET desviado. O © é o glifo do próprio jogo — a fonte não tem parênteses.',
+            '358 bytes in the free gap of the fixed bank, with the RESET vector diverted. The © is the game’s own glyph — the font has no parentheses.',
+            '358 bytes en el hueco libre del banco fijo, con el vector de RESET desviado.') },
+    { f: 'u2/03-encontro.png', t: bi('Encontro', 'Encounter', 'Encuentro'),
+      c: bi('O bestiário saiu do quarto bloco de texto — o que a análise da ROM original tinha descartado como dado binário.',
+            'The bestiary came from the fourth text block — the one the original-ROM analysis had dismissed as binary data.',
+            'El bestiario salió del cuarto bloque de texto.') },
+    { f: 'u2/04-menu-batalha.png', t: bi('Menu de batalha', 'Battle menu', 'Menú de combate'),
+      c: bi('Os comandos cabem porque a caixa foi medida na tela: interior nas colunas 5 a 27, texto começando na 6.',
+            'The commands fit because the box was measured on screen: interior from column 5 to 27, text starting at 6.',
+            'Los comandos caben porque la caja se midió en pantalla.') },
+    { f: 'u2/05-combate.png', t: bi('Em combate', 'In battle', 'En combate'),
+      c: bi('O jogo concatena nome e mensagem na mesma linha — o teto de 22 colunas vale para os dois somados.',
+            'The game concatenates name and message on the same line — the 22-column ceiling applies to both together.',
+            'El juego concatena nombre y mensaje en la misma línea.') }
   ]
 };
 
