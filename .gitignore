@@ -14,3 +14,5 @@ build/artifact.html
 
 # PDFs retidos até a revisão do texto
 manuais/_rascunho/
+__pycache__/
+*.pyc

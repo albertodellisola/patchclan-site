@@ -1,0 +1,186 @@
+[
+  {
+    "slug": "famicom-jump-2",
+    "linha": {
+      "pt": "Goku, JoJo e o policial do Kochikame no mesmo time: o crossover da Shōnen Jump que nunca saiu do Japão, agora em três idiomas.",
+      "en": "Goku, JoJo and Kochikame's beat cop on the same team: the Shōnen Jump crossover that never left Japan, now in three languages."
+    },
+    "resumo": {
+      "pt": [
+        "RPG tático de Bandai e Chunsoft em que Goku, JoJo, o Ryotsu do <i>Kochikame</i>, Taruruto-kun, Tar-chan, Momotaro e Taison dividem o mesmo campo de batalha. Três dos sete entram por vez, a vida se conta em corações, e até o alcance de caminhada é um atributo que sobe de nível — o manual batizou o sistema de <b>S·A·S, Simulation Action System</b>.",
+        "A tradução é o jogo inteiro: <b>1.838 mensagens</b>, mais o prólogo, <b>77 textos de menu</b>, <b>13 mensagens de batalha</b>, o final, os balões e <b>266 nomes</b> de item e inimigo. Nada resumido, nenhuma frase cortada pela metade.",
+        "Publicado em <b>inglês, português e espanhol</b> (v1.0). Para o espanhol foram desenhados <b>9 glifos novos</b>, e o <b>¿</b> e o <b>¡</b> saíram do próprio <code>?</code> e <code>!</code> da fonte, girados 180°. Foi a primeira tradução do Patch Clan, e continua sendo a única tradução inglesa deste jogo que encontramos."
+      ],
+      "en": [
+        "A tactical RPG by Bandai and Chunsoft in which Goku, JoJo, <i>Kochikame</i>'s Ryotsu, Taruruto-kun, Tar-chan, Momotaro and Taison share one battlefield. Three of the seven fight at a time, health is counted in hearts, and even walking range is a stat that levels up — the manual named the system <b>S·A·S, Simulation Action System</b>.",
+        "The translation covers the whole game: <b>1,838 messages</b>, plus the prologue, <b>77 menu strings</b>, <b>13 battle messages</b>, the ending, the speech balloons and <b>266 item and enemy names</b>. Nothing summarised, no sentence cut in half.",
+        "Released in <b>English, Portuguese and Spanish</b> (v1.0). Spanish needed <b>9 new glyphs</b> drawn, and the <b>¿</b> and <b>¡</b> came out of the font's own <code>?</code> and <code>!</code>, rotated 180°. This was Patch Clan's first translation, and it remains the only English translation of this game we have found."
+      ]
+    }
+  },
+  {
+    "slug": "dragon-ball-3",
+    "linha": {
+      "pt": "Dragon Ball em cartas, de 1989 — e em português com os nomes da dublagem: Kuririn, Mestre Kame, Sr. Popo, esferas do dragão.",
+      "en": "Dragon Ball as a 1989 card RPG. Two finished patches: English, and a Portuguese one that speaks the Brazilian dub's language."
+    },
+    "resumo": {
+      "pt": [
+        "RPG de cartas da Bandai que reconta a saga do Goku desde o começo: você avança pelo mapa, tira carta e luta com ela. É Dragon Ball do jeito que o Famicom sabia contar — sorte na mão, turno a turno, com o elenco que todo mundo já conhece de cor.",
+        "Duas versões estão publicadas: <b>inglês v1.0</b> e <b>português v1.0</b>. E o português não passa pela romanização japonesa — os nomes seguem a <b>dublagem brasileira</b>: Kuririn, Mestre Kame, Sr. Popo, Rei Cutelo, esferas do dragão. Quem aprendeu esses nomes na televisão vai lê-los na tela exatamente como os guardou.",
+        "A versão do patch vai <b>queimada na tela de créditos</b>, não só no nome do arquivo. Meses depois, quem estiver jogando ainda consegue dizer qual build tem em mãos sem depender de como o arquivo foi renomeado no caminho."
+      ],
+      "en": [
+        "Bandai's card RPG retelling Goku's saga from the start: you move across the map, draw a card and fight with it. It is Dragon Ball the way the Famicom knew how to tell it — luck in hand, turn by turn, with a cast everyone already knows by heart.",
+        "Two patches are out: <b>English v1.0</b> and <b>Portuguese v1.0</b>. The Portuguese one does not go through Japanese romanisation — the names follow the <b>Brazilian dub</b>: Kuririn, Mestre Kame, Sr. Popo, Rei Cutelo, esferas do dragão. A Brazilian player reads on screen exactly the names they grew up with.",
+        "The patch version is <b>burned into the credits screen</b>, not only into the file name. Months later, whoever is playing can still say which build they have, no matter how the file was renamed along the way."
+      ]
+    }
+  },
+  {
+    "slug": "captain-tsubasa",
+    "linha": {
+      "pt": "Super Campeões, o futebol por turnos que inventou o gênero. Inglês publicado, e o título brasileiro redesenhado pixel a pixel.",
+      "en": "The turn-based football game that invented the genre. English patch out, both logos redrawn, 289 names matched to the official ones."
+    },
+    "resumo": {
+      "pt": [
+        "Tecmo, 1988: o jogo que inventou o futebol por turnos. Nada de correr atrás da bola — cada lance é uma escolha, e o jogo narra o que aconteceu depois dela. No Brasil a série chegou como <b>Super Campeões</b>, e é por esse nome que a maior parte de quem vai jogar isto a conhece.",
+        "O patch em <b>inglês v1.0</b> está publicado: <b>1.026 blocos de texto</b> — a narração da partida, as cenas de Paris, a sala de aula, os menus e a tela de senha — e <b>289 nomes</b> seguindo o oficial da Viz e do anime. Para tudo isso caber, a ROM foi expandida para <b>256 KB</b>.",
+        "<b>Os dois logos foram redesenhados</b>: o da tela de título e o \"TSUBASA\" montado em sprites. O título em português, <b>SUPER CAMPEÕES / RUMO AO SONHO</b>, foi desenhado pixel a pixel — a versão em português está em andamento, e é a pendência que segura este projeto em beta."
+      ],
+      "en": [
+        "Tecmo, 1988: the game that invented turn-based football. You never chase the ball — every play is a decision, and the game narrates what came of it. In Brazil the series arrived as <b>Super Campeões</b>, and that is the name most of its players know it by.",
+        "The <b>English v1.0</b> patch is out: <b>1,026 text blocks</b> — match commentary, the Paris scenes, the classroom, the menus and the password screen — and <b>289 names</b> matched to the official Viz and anime spellings. To fit all of it, the ROM was expanded to <b>256 KB</b>.",
+        "<b>Both logos were redrawn</b>: the title screen one and the sprite-built \"TSUBASA\". The Portuguese title, <b>SUPER CAMPEÕES / RUMO AO SONHO</b>, was drawn pixel by pixel — the Portuguese version is still in progress, and that is the pending item keeping this project at beta."
+      ]
+    }
+  },
+  {
+    "slug": "nekketsu-kakutou-densetsu",
+    "linha": {
+      "pt": "A briga de rua dos criadores de River City Ransom. Texto e fonte prontos, inglês rodando — e a tela de senha em hiragana barrando tudo.",
+      "en": "Street brawling from the makers of River City Ransom. Text and font done, English running — and a hiragana password screen blocking it."
+    },
+    "resumo": {
+      "pt": [
+        "Technos, 1992: pancadaria de rua da linhagem Kunio-kun, a mesma família de <i>River City Ransom</i>, agora montando times e trocando golpes especiais. Bater é fácil; entender o que o jogo pede em japonês é que nunca foi.",
+        "O que já está feito: <b>266 strings</b> traduzidas e revisadas linha a linha, uma <b>fonte latina nova de 81 tiles</b>, a ROM expandida de <b>128 para 256 KB</b>, o logo do título redesenhado (NEKKETSU / FIGHTING LEGEND) e o inglês <b>confirmado rodando</b> dentro do jogo.",
+        "O que falta, dito sem rodeio, porque é o motivo de não haver patch: a <b>tela de senha</b> ainda é em hiragana e precisa virar alfabeto latino, os nomes e golpes mais largos não couberam, e as mensagens de luta continuam pendentes. O projeto está pausado e fica registrado aqui no estado exato em que parou."
+      ],
+      "en": [
+        "Technos, 1992: street fighting from the Kunio-kun line, the same family as <i>River City Ransom</i>, this time with teams and special moves. Throwing punches is the easy part; working out what the game is asking you in Japanese never was.",
+        "What is already done: <b>266 strings</b> translated and reviewed line by line, a new <b>81-tile Latin font</b>, the ROM expanded from <b>128 to 256 KB</b>, the title logo redrawn (NEKKETSU / FIGHTING LEGEND), and English <b>confirmed running</b> inside the game.",
+        "What is missing, stated plainly, because it is why there is no patch: the <b>password screen</b> is still in hiragana and has to become Latin letters, the wider names and move names did not fit, and the fight messages are still pending. The project is paused, and it is logged here exactly as it stopped."
+      ]
+    }
+  },
+  {
+    "slug": "gaia-saver",
+    "linha": {
+      "pt": "Ultraman, Kamen Rider e Gundam no mesmo grupo. Para o inglês caber na caixa, a fonte inteira foi refeita com metade da largura.",
+      "en": "Ultraman, Kamen Rider and Gundam in one party. To make English fit the text box, the whole font was rebuilt at half width."
+    },
+    "resumo": {
+      "pt": [
+        "Super Famicom, Banpresto, 1994: um RPG em que <b>Ultraman, Kamen Rider e Gundam</b> andam no mesmo grupo — o tipo de crossover que só a Banpresto tinha licença para juntar. É o único projeto de 16 bits da casa.",
+        "A <b>beta v0.9</b> traz o roteiro inteiro em inglês: <b>1.884 mensagens</b> e <b>420 nomes</b>, conferidos seguindo os <b>1.561 ponteiros vivos</b> da ROM. A fonte foi reduzida à <b>meia largura, 8 px</b>, e a caixa passou de cerca de 21 para <b>29 colunas</b> — é isso que permite escrever inglês sem picar frase. A <b>tela de título foi redesenhada</b> em inglês, e a interface está traduzida: 81 nomes de item, 22 de golpe, 39 descrições, tela de save e menus de configuração.",
+        "Pendência declarada: <b>cinco rótulos do menu de campo</b> continuam em japonês, porque vêm de um tilemap comprimido. É por isso que a versão está marcada como beta, e não como release."
+      ],
+      "en": [
+        "Super Famicom, Banpresto, 1994: an RPG where <b>Ultraman, Kamen Rider and Gundam</b> travel in the same party — the kind of crossover only Banpresto had the licences to assemble. It is the only 16-bit project in the house.",
+        "The <b>v0.9 beta</b> carries the full script in English: <b>1,884 messages</b> and <b>420 names</b>, checked against the <b>1,561 live pointers</b> in the ROM. The font was cut to <b>half width, 8 px</b>, taking the box from around 21 to <b>29 columns</b> — that is what lets English be written without chopping sentences. The <b>title screen was redrawn</b> in English, and the interface is translated: 81 item names, 22 move names, 39 descriptions, the save screen and the configuration menus.",
+        "One pending item is declared: <b>five field-menu labels</b> are still in Japanese, because they come from a compressed tilemap. That is why this is marked beta and not release."
+      ]
+    }
+  },
+  {
+    "slug": "ultraman-club-2",
+    "linha": {
+      "pt": "O RPG do Ultraman em inglês. A tradução já se dava por completa quando um quarto bloco de texto apareceu escondido na ROM.",
+      "en": "The Ultraman RPG in English. The translation was already being called finished when a fourth block of text turned up in the ROM."
+    },
+    "resumo": {
+      "pt": [
+        "RPG de Famicom da Bandai com o Ultraman: monstro por monstro, com o texto todo em japonês entre uma luta e outra. O patch em <b>inglês está publicado</b>.",
+        "Nem o inglês cabia no cartucho como ele veio de fábrica — a ROM foi <b>expandida de 128 para 256 KB</b>. O texto vive em <b>quatro blocos</b>, e o quarto deles, com as mensagens de combate, o bestiário e as falas de golpe, só apareceu <b>depois</b> que a tradução já se dava por completa. É o lembrete de que \"acabou\" só vale quando a ROM inteira foi varrida, não quando a lista de tabelas conhecidas terminou."
+      ],
+      "en": [
+        "Bandai's Famicom RPG with Ultraman: kaiju after kaiju, with everything between fights written in Japanese. The <b>English patch is published</b>.",
+        "Not even English fit the cartridge as it shipped — the ROM was <b>expanded from 128 to 256 KB</b>. The text lives in <b>four blocks</b>, and the fourth of them, holding the battle messages, the bestiary and the attack lines, only surfaced <b>after</b> the translation was already being called complete. It is the reminder that \"done\" counts when the whole ROM has been swept, not when the list of known tables runs out."
+      ]
+    }
+  },
+  {
+    "slug": "ultraman-club-3",
+    "linha": {
+      "pt": "A continuação direta veio com bugs de fábrica. Aqui a ordem se inverteu: primeiro consertar o jogo, depois traduzi-lo.",
+      "en": "The direct sequel shipped with bugs of its own. So the order got reversed here: fix the game first, translate it afterwards."
+    },
+    "resumo": {
+      "pt": [
+        "Continuação direta do Ultraman Club 2, no mesmo Famicom e pela mesma Bandai. A diferença é que <b>este jogo tem bugs de fábrica</b> — defeitos do original de 1992, não da tradução —, e a decisão foi <b>consertá-los antes de traduzir</b>. Um deles, a cápsula da página 8, já está corrigido.",
+        "O reconhecimento está mapeado: <b>338 mensagens</b>, <b>83 kaiju</b>, <b>11 Ultras</b> e <b>26 técnicas</b>. Ainda <b>não há patch público</b> — este é um projeto na fila, e a página cresce conforme o trabalho fecha, com número em vez de promessa."
+      ],
+      "en": [
+        "A direct sequel to Ultraman Club 2, same Famicom, same Bandai. The difference is that <b>this one shipped with bugs of its own</b> — defects of the original, not of the translation — and the decision was to <b>fix them before translating</b>. One of them, the page 8 capsule, is already repaired.",
+        "The survey is mapped: <b>338 messages</b>, <b>83 kaiju</b>, <b>11 Ultras</b> and <b>26 techniques</b>. There is <b>no public patch yet</b> — this is a project in the queue, and the page grows as the work closes, with numbers rather than promises."
+      ]
+    }
+  },
+  {
+    "slug": "tom-sawyer",
+    "linha": {
+      "pt": "A Square pegou Mark Twain e fez um RPG com Tom e Huck. As 576 mensagens já estão em inglês; a tela de título, ainda em japonês.",
+      "en": "Square turned Mark Twain into an RPG with Tom and Huck. All 576 messages are in English; the title screen is still Japanese."
+    },
+    "resumo": {
+      "pt": [
+        "Famicom, 1989: a Square pegou <i>As Aventuras de Tom Sawyer</i>, de Mark Twain, e fez um RPG com Tom e Huck. Ficou no Japão, e por isso quase ninguém que jogou os RPGs famosos da Square jogou este.",
+        "O texto está <b>100% traduzido</b>: <b>576 mensagens</b> e <b>70 nomes</b>, com a ROM expandida para <b>512 KB</b> para acomodar tudo.",
+        "Mesmo assim <b>não foi publicado</b>, por dois motivos que a casa prefere dizer em voz alta: a <b>tela de título continua em japonês</b>, e ninguém percorreu o jogo do começo ao fim em inglês. Enquanto essas duas coisas não acontecerem, ele fica aqui como beta interno — sem link para baixar."
+      ],
+      "en": [
+        "Famicom, 1989: Square took Mark Twain's <i>Adventures of Tom Sawyer</i> and made an RPG out of it, with Tom and Huck. It stayed in Japan, which is why almost nobody who played Square's famous RPGs ever played this one.",
+        "The text is <b>100% translated</b>: <b>576 messages</b> and <b>70 names</b>, with the ROM expanded to <b>512 KB</b> to hold it all.",
+        "Even so it is <b>not published</b>, for two reasons we would rather say out loud: the <b>title screen is still in Japanese</b>, and nobody has played the game from start to finish in English. Until both are done it stays here as an internal beta — with no download link."
+      ]
+    }
+  },
+  {
+    "slug": "hanjuku-hero",
+    "linha": {
+      "pt": "O \"herói meio cozido\": a estratégia cômica que a Square guardou só para o Japão. ROM mapeada, tradução ainda na fila.",
+      "en": "The \"half-boiled hero\": Square's comic strategy series, kept inside Japan. The ROM is mapped, the translation is still queued."
+    },
+    "resumo": {
+      "pt": [
+        "Famicom, 1988: estratégia cômica em tempo real, com o <b>herói meio cozido</b> no comando de um reino que não leva nada muito a sério. É uma das séries próprias da Square — não licenciada de ninguém — e nunca saiu do Japão.",
+        "O trabalho está no começo: a <b>ROM foi mapeada</b> — fonte, layout e bancos localizados —, e a <b>tradução ainda não começou</b>. Está listado aqui porque é o próximo tipo de alvo da casa, e porque o que já foi medido vale mais registrado do que esquecido."
+      ],
+      "en": [
+        "Famicom, 1988: real-time comic strategy, with the <b>half-boiled hero</b> running a kingdom that takes very little seriously. It is one of Square's own series — licensed from nobody — and it never left Japan.",
+        "The work is at its start: the <b>ROM has been mapped</b> — font, layout and banks located — and the <b>translation has not begun</b>. It is listed here because it is the next kind of target for us, and because what has already been measured is worth logging rather than forgetting."
+      ]
+    }
+  },
+  {
+    "slug": "monster-maker",
+    "linha": {
+      "pt": "RPG tirado de um jogo de cartas japonês. A fonte tem três letras latinas — H, M e P. O resto do alfabeto vai ter de ser desenhado.",
+      "en": "An RPG built from a Japanese card game. Its font holds three Latin letters — H, M and P. The rest has to be drawn from scratch."
+    },
+    "resumo": {
+      "pt": [
+        "Famicom: RPG baseado no <i>Monster Maker</i>, jogo de cartas japonês que virou franquia por lá e nunca chegou a lugar nenhum por aqui.",
+        "O <b>reconhecimento está concluído</b>: o motor de texto e o encoding foram <b>provados rodando</b>, e não deduzidos no papel. O obstáculo já tem nome — a fonte <b>não tem alfabeto latino</b>, só H, M e P. Traduzir este jogo começa por desenhar o alfabeto inteiro, letra por letra, antes de a primeira frase existir.",
+        "A <b>tradução ainda não começou</b>, e não há patch. Ele está na fila e aparece aqui com o que já foi medido, não com o que se pretende fazer."
+      ],
+      "en": [
+        "Famicom: an RPG based on <i>Monster Maker</i>, the Japanese card game that became a franchise there and reached nowhere else.",
+        "The <b>survey is complete</b>: the text engine and the encoding were <b>proven running</b>, not inferred on paper. The obstacle already has a name — the font <b>has no Latin alphabet</b>, only H, M and P. Translating this game starts by drawing the whole alphabet, letter by letter, before a single sentence can exist.",
+        "The <b>translation has not started</b>, and there is no patch. It sits in the queue and appears here with what has been measured, not with what is intended."
+      ]
+    }
+  }
+]

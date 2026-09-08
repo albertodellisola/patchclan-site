@@ -1,0 +1,361 @@
+[
+  {
+    "slug": "famicom-jump-2",
+    "linha": {
+      "pt": "Goku, JoJo e mais cinco da Shōnen Jump no mesmo campo. O B virou ação coringa, e dois bytes acordaram uma cena de 1991.",
+      "en": "Goku, JoJo and five more Shōnen Jump heroes on one battlefield. B became the do-what-fits button, and two bytes woke a 1991 scene."
+    },
+    "resumo": {
+      "pt": [
+        "A <i>Weekly Shōnen Jump</i> é a revista semanal em que o Dragon Ball saiu capítulo a capítulo, e em 1991 a Bandai e a Chunsoft puseram sete séries dela no mesmo campo de batalha: Goku, JoJo, o policial Ryotsu do <i>Kochikame</i>, Taruruto-kun, Tar-chan, Momotaro e Taison. Três dos sete entram por vez, a vida se conta em corações e até o alcance de caminhada é um atributo que sobe de nível — o manual chama o sistema de <b>S·A·S, Simulation Action System</b>.",
+        "Falar com alguém custava abrir o menu e escolher <code>はなす</code>; no campo, o <b>B</b> não fazia nada — a rotina existia e terminava em <code>RTS</code>. Agora o <b>B é ação coringa</b>: fala com quem está à frente e, não havendo ninguém, examina o chão sob os pés, que é a mesma divisão que o manual de 1991 faz entre os dois comandos. São <b>19 bytes</b> no trecho do kernel que fica sempre mapeado, mais 3 no banco 30, e o comando continua no menu para quem preferir. Junto vem um <b>prólogo de cinco páginas que não existe no original</b>: o menino levado para dentro da revista, o Rei Demônio Piccolo reunindo os vilões, os dezesseis heróis — porque seis dos sete nomes não dizem nada fora do Japão, e o jogo pressupõe que você leu a revista e jogou o <i>Famicom Jump</i> de 1989.",
+        "E uma cena voltou a funcionar. Na abertura, o espírito nomeia os seis campeões que faltavam encontrar, e o original mostrava <b>sempre os mesmos seis</b>, qualquer que fosse o herói inicial: quem começava como Taison ouvia o próprio nome na lista, e o Goku nunca era citado. O seletor de sete casos e as sete variantes de texto estavam gravados na ROM em 1991 e nunca disparavam, porque o roteiro punha o número num registrador e a rotina lia outro. <b>Dois bytes</b> depois, seis variantes que nunca haviam chegado a uma tela chegam. O roteiro inteiro está traduzido, num cartucho no teto do mapper 153 com <b>zero bytes livres</b>: em vez de cortar texto, a compressão foi trocada por um <b>Huffman de ordem 1</b> que leva o texto de 6,25 para <b>3,90 bits por caractere</b>, e a cada compilação as <b>1.903 posições de mensagem</b> da ROM são decodificadas de volta pelo decodificador 6502 real e comparadas com a fonte. Publicado em <b>inglês, português e espanhol</b>."
+      ],
+      "en": [
+        "<i>Weekly Shōnen Jump</i> is the magazine that serialised Dragon Ball chapter by chapter, and in 1991 Bandai and Chunsoft put seven of its series on one battlefield: Goku, JoJo, <i>Kochikame</i>'s beat cop Ryotsu, Taruruto-kun, Tar-chan, Momotaro and Taison. Three of the seven fight at a time, health is counted in hearts, and even walking range is a stat that levels up — the manual calls the system <b>S·A·S, Simulation Action System</b>.",
+        "Talking to someone cost a trip into the menu to pick <code>はなす</code>; out in the field, <b>B</b> did nothing — the routine existed and ended in <code>RTS</code>. Now <b>B is the do-what-fits button</b>: it talks to whoever stands in front of you and, with nobody there, examines the ground underfoot, which is exactly the split the 1991 manual draws between the two commands. That is <b>19 bytes</b> in the always-mapped kernel plus 3 in bank 30, and the menu command stays for anyone who prefers it. With it comes a <b>five-page prologue that does not exist in the original</b>: the boy pulled into the magazine, Demon King Piccolo gathering the villains, the sixteen heroes — because six of those seven names mean nothing outside Japan, and the game assumes you read the magazine and played the 1989 <i>Famicom Jump</i>.",
+        "And one scene started working again. In the opening, a spirit names the six champions still to be found, and the original always showed <b>the same six</b>, whichever hero you began with: a player starting as Taison heard his own name on the list, and Goku was never mentioned. The seven-case selector and all seven text variants were burned into the 1991 ROM and never fired, because the script put the number in one register while the routine read another. <b>Two bytes</b> later, six variants that had never reached a screen do. The whole script is translated, in a cartridge at the mapper 153 ceiling with <b>zero free bytes</b>: rather than trim text, the compression was swapped for an <b>order-1 Huffman</b> taking it from 6.25 to <b>3.90 bits per character</b>, and on every build the ROM's <b>1,903 message positions</b> are decoded back by the real 6502 decoder and compared against the source. Published in <b>English, Portuguese and Spanish</b>."
+      ]
+    },
+    "fontes": [
+      "~/fj2-hack/FEATURES.md:8 — Bandai/Chunsoft, Famicom, 2 de dezembro de 1991, crossover de sete séries da Weekly Shōnen Jump",
+      "~/patchclan-site/build/jogo-fj2.mjs:20 — S·A·S, três dos sete por vez, vida em corações, alcance de caminhada",
+      "~/fj2-hack/FEATURES.md:65-70 — botão B contextual: a rotina terminava em RTS; 19 bytes no kernel sempre mapeado + 3 no banco 30; o comando continua no menu",
+      "~/fj2-hack/FEATURES.md:36-38 — prólogo de cinco páginas contando o Famicom Jump: Eiyuu Retsuden de 1989: o menino levado para dentro da revista, o Rei Demônio Piccolo reunindo os vilões, os dezesseis heróis",
+      "~/fj2-hack/FEATURES.md:76-79 — o espírito mostra sempre os mesmos seis; quem começa como Taison ouve o próprio nome, e o Goku nunca é citado",
+      "~/fj2-hack/FEATURES.md:81-85 — o seletor de sete casos estava na ROM e nunca disparava: acumulador contra registrador X",
+      "~/fj2-hack/FEATURES.md:87-89 — a correção são dois bytes; seis das sete variantes nunca haviam aparecido na tela",
+      "~/fj2-hack/FEATURES.md:120 — mapper 153, 512 KB de PRG, no teto do mapper, zero bytes livres",
+      "~/fj2-hack/FEATURES.md:124-125 — Huffman de ordem 1, 26 grupos de contexto, de 6,25 para 3,90 bits por caractere",
+      "~/fj2-hack/FEATURES.md:144 — as 1.903 mensagens decodificadas de volta pelo decodificador 6502 real sobre a ROM final",
+      "~/fj2-hack/fonte/construir.py:334 e :318-331 — len(msgs) = 1.903: uma entrada por posição endereçada nos 61 blocos únicos (medido)",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:50 — famicom-jump-2: release, patch en · pt · es publicado"
+    ]
+  },
+  {
+    "slug": "dragon-ball-3",
+    "linha": {
+      "pt": "Dragon Ball em cartas, 1989. O número de defesa da carta era um kanji desenhado na arte; agora é algarismo, e o treino deixou de ser no chute.",
+      "en": "Dragon Ball as a 1989 card RPG. The defence number was a kanji drawn into the art; now it is a digit, and training is no longer guesswork."
+    },
+    "resumo": {
+      "pt": [
+        "Este é o Dragon Ball de tabuleiro: você anda pelo mapa, tira uma carta e luta com ela. O jogo reconta a saga do Goku desde o começo — a caça às esferas do dragão, o Torneio de Artes Marciais, o Rei Cutelo — e é a Bandai levando o mangá ao Famicom em 1989, com o baralho decidindo o turno anos antes de isso virar um gênero.",
+        "Cada carta traz uma bola com o <b>número de defesa</b> embaixo, e esse número era um <b>algarismo kanji</b> desenhado nos gráficos: 一二三四五六. Não é enfeite — o jogo manda compará-lo. O Karin só aceita carta com defesa igual ou maior que a dele, e o Mr. Popo aceita carta que bata em estrelas, técnica <i>ou</i> defesa. Quem não lê kanji jogava dois dos três treinos no chute. As seis bolas foram repintadas com <b>algarismo latino</b>, e a arte é tão parecida entre elas que só <b>53 pixels divergem</b> nos seis blocos de 16×16, todos no miolo onde morava o kanji. Os dez kanji das cartas — 拳 蹴 連 必 術 逃 ? 体 特 武 — também são tiles desenhados à mão, e viraram rótulos de três letras numa <b>mini-fonte de 5×7 px</b> feita para o caso: três letras de 5 px ocupam 15 dos 16 px do slot, sem espaço entre elas. O sentido de cada uma foi conferido contra o manual da Bandai de 1989, e foi ele que corrigiu a carta 体, que não é defesa: 体当り é investida corporal, um ataque.",
+        "O roteiro inteiro está em inglês — <b>1.305 de 1.305 mensagens</b>, mais as 40 de batalha e treino — dentro de uma caixa de <b>três linhas por vinte e quatro colunas</b> que o jogo não sabe continuar na tela seguinte. <b>164 mensagens</b> passavam de 45 glifos no japonês e foram reescritas para caber sem perder o sentido, e <b>254</b> das que ficaram fecham sem uma coluna sobrando. O título 悟空伝 foi refeito como <code>LEGEND OF GOKU</code> dentro dos mesmos 96×32 pixels, a ROM cresceu de <b>128 para 256 KB</b>, e a grade de senha virou letras latinas sem colisão entre símbolos: <b>quem tem uma senha anotada desde 1989 pode digitá-la aqui</b>."
+      ],
+      "en": [
+        "This is Dragon Ball as a board game: you move across the map, draw a card and fight with it. It retells Goku's saga from the beginning — the hunt for the dragon balls, the Martial Arts Tournament, King Piccolo — and it is Bandai bringing the manga to the Famicom in 1989, with the deck deciding the turn years before that became a genre.",
+        "Every card carries a ball with its <b>defence number</b> underneath, and that number was a <b>kanji numeral</b> drawn into the graphics: 一二三四五六. It is not decoration — the game tells you to compare it. Karin only accepts a card whose defence matches or beats his own, and Mr. Popo accepts a card that wins on stars, technique <i>or</i> defence. Anyone who cannot read kanji was guessing through two of the three trainings. The six balls were repainted with <b>Latin digits</b>, and the artwork is so nearly identical between them that only <b>53 pixels differ</b> across the six 16×16 blocks, all in the core where the kanji used to sit. The ten card kanji — 拳 蹴 連 必 術 逃 ? 体 特 武 — are hand-drawn tiles too, and became three-letter labels in a <b>5×7 px mini-font</b> built for the job: three 5 px letters fill 15 of the slot's 16 px, with no gap between them. Each meaning was checked against Bandai's 1989 manual, and it was the manual that corrected the 体 card, which is not defence: 体当り is a body slam, an attack.",
+        "The whole script is in English — <b>1,305 of 1,305 messages</b>, plus the 40 for battle and training — inside a box of <b>three lines by twenty-four columns</b> that the game cannot continue onto a following screen. <b>164 messages</b> ran past 45 glyphs in Japanese and were rewritten to fit without losing their sense, and <b>254</b> of those that stayed close with not a column to spare. The 悟空伝 title was remade as <code>LEGEND OF GOKU</code> inside the same 96×32 pixels, the ROM grew from <b>128 to 256 KB</b>, and the password grid became Latin letters with no symbol collisions: <b>a password written down in 1989 still types in</b>."
+      ]
+    },
+    "fontes": [
+      "~/db3-hack/README.md:3 — Famicom, 1989, Bandai, mapper 16 FCG-1/2",
+      "~/db3-hack/NOTAS.md:265-272 — o número de defesa era 一二三四五六 e o jogo manda compará-lo (manual pág. 23)",
+      "~/db3-hack/NOTAS.md:270 — Karin: carta com defesa igual ou maior; Mr. Popo: estrelas, técnica ou defesa",
+      "~/db3-hack/NOTAS.md:272 — sem ler kanji, os dois treinos viram adivinhação; fonte/defesa.py repinta com algarismo latino",
+      "~/db3-hack/NOTAS.md:277-279 — nos seis blocos de 16×16 só 53 pixels divergem, no miolo onde mora o kanji",
+      "~/db3-hack/NOTAS.md:169-171 — os 10 kanji (16×16) viraram abreviações de 3 letras numa mini-fonte 5×7 própria",
+      "~/db3-hack/NOTAS.md:176-177 — três letras de 5 px ocupam 15 dos 16 px: não há espaço entre elas",
+      "~/db3-hack/NOTAS.md:242-248 — revisão contra o manual: a carta 体 é 体当り, investida corporal, um ataque",
+      "~/db3-hack/fonte/cartas.py:14-22 — os rótulos finais: PCH KCK CMB FIN WPN BDY SPC MAG",
+      "~/db3-hack/README.md:9 — 1305 de 1305 mensagens em inglês",
+      "~/db3-hack/README.md:10 — 40 de 40 mensagens de batalha e treino",
+      "~/db3-hack/NOTAS.md:48 — a caixa: 3 linhas × 24 colunas, sem código de continuação",
+      "~/db3-hack/NOTAS.md:49 — 164 mensagens tinham 45+ glifos no japonês e foram reescritas",
+      "~/db3-hack/NOTAS.md:665 — 387 mensagens já usavam as 3 linhas em inglês e 254 estavam com zero coluna livre",
+      "~/patchclan-site/build/jogo-db3.mjs:43 — 悟空伝, doze tiles por quatro, 96×32 pixels, virou LEGEND OF GOKU",
+      "~/db3-hack/README.md:16 — ROM expandida de 128 KB para 256 KB",
+      "~/db3-hack/README.md:12 — grade de senha em letras latinas, sem colisão; senhas antigas continuam válidas",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:51 — dragon-ball-3: beta, patch en publicado"
+    ]
+  },
+  {
+    "slug": "captain-tsubasa",
+    "linha": {
+      "pt": "Super Campeões, o futebol por menu de 1988 — com Benji no gol, Neia na gerência e o Treinador Milani no banco, como na Manchete.",
+      "en": "The 1988 game that invented football by menu. Sixteen Latin letters existed in the whole cartridge, and it now saves to battery."
+    },
+    "resumo": {
+      "pt": [
+        "Você não chuta: você escolhe. Cada lance é um item de menu, a animação decide o resto, e o <b>Guts</b> de cada jogador desce a cada drible, passe e finalização. Tecmo, 1988 — é daqui que descende todo futebol por turnos que veio depois, e no Brasil a série chegou como <b>Super Campeões</b>.",
+        "O Brasil nunca dublou a série de 1983, que é o arco deste jogo. O que existe em português brasileiro é o elenco da <i>Captain Tsubasa J</i>, que a Manchete exibiu em 1997, e é ele que a versão em português usa: <b>BENJI</b> no gol, <b>NEIA</b> na gerência, o <b>Treinador MILANI</b> no banco — os três que cabem no campo de cinco colunas da tela. Na prosa entram também <b>Oliver</b>, <b>Carlos</b> e <b>Roberto Maravilha</b>, cujos nomes brasileiros não cabiam ali. Em inglês as grafias seguem a edição oficial da Viz e do anime — Ozora, Hyuga, Schneider, Elle Sid Pierre —, e <b>Guts continua Guts</b>, porque é marca da série.",
+        "Duas coisas mudaram no jeito de jogar. O original de 1988 devolvia uma <b>senha para anotar no papel</b>, e digitá-la de volta era o único caminho de continuar; agora o <code>SCORE MEMO</code> do técnico <b>grava no cartucho</b> e o <code>CONTINUE</code> carrega, com a tela de senha ainda ali para quem segurar <b>B</b>. Não há formato de save inventado: ficam gravados exatamente os <b>24 bytes</b> que a senha já descrevia, conferidos pela mesma rotina que valida senha digitada, em <b>97 bytes</b> de código novo. E a caixa de narração dobrou — um código de controle novo faz cada linha de roteiro ocupar duas fileiras, de <b>14 para 28 colunas</b> nas janelas da partida e de <b>18 para 36</b> nas maiores, sem tocar na moldura nem na contagem de linhas. A fonte teve de ser desenhada: no cartucho inteiro existiam <b>dezesseis letras latinas</b>, <code>ACDEFGHIKMRSUVWY</code>, e as outras nasceram do zero em 74 tiles. Que mover o texto não quebrou nada foi provado por igualdade: <b>225 dumps, 0 bytes diferentes</b> contra a ROM original."
+      ],
+      "en": [
+        "You never shoot: you choose. Every play is a menu item, the animation decides the rest, and each player's <b>Guts</b> drains on every dribble, pass and shot. Tecmo, 1988 — every turn-based football game since descends from this one, and in Brazil the series arrived as <b>Super Campeões</b>.",
+        "The English spellings follow the official editions — Viz, the anime, <i>Dream Team</i>: Ozora, Hyuga, Jito, Karl Heinz Schneider, Elle Sid Pierre. <b>Guts stays Guts</b>, because it is a mark of the series. The squad is all there, from Tsubasa to the keeper Wakabayashi, with Nankatsu, the Japanese national side and the foreigners of the international tournament. The Portuguese build goes somewhere else entirely: Brazil never dubbed the 1983 series that this game covers, so it uses the cast of <i>Captain Tsubasa J</i>, which Rede Manchete aired in 1997 — <b>BENJI</b>, <b>NEIA</b> and <b>Coach MILANI</b> on screen, with Oliver, Carlos and Roberto Maravilha in the prose.",
+        "Two things changed in how it plays. The 1988 original handed you a <b>password to copy onto paper</b>, and typing it back was the only way to continue; now the coach's <code>SCORE MEMO</code> <b>writes to the cartridge</b> and <code>CONTINUE</code> loads it, with the password screen still there for anyone holding <b>B</b>. No save format was invented: what gets stored is exactly the <b>24 bytes</b> the password already described, checked by the same routine that validates a typed password, in <b>97 bytes</b> of new code. And the commentary box doubled — a new control code makes each script line take two rows, from <b>14 to 28 columns</b> in the match windows and from <b>18 to 36</b> in the larger ones, without touching the frame or the line count. The font had to be drawn: exactly <b>sixteen Latin letters</b> existed in the whole cartridge, <code>ACDEFGHIKMRSUVWY</code>, and the rest were built from nothing across 74 tiles. That moving the text broke nothing was proved by equality: <b>225 dumps, 0 differing bytes</b> against the original ROM."
+      ]
+    },
+    "fontes": [
+      "~/patchclan-site/build/jogo-ct.mjs:6 — Tecmo, 1988, Famicom",
+      "~/patchclan-site/build/jogo-ct.mjs:5 — cada lance é uma escolha, com narração; Guts desce a cada jogada (jogo-ct.mjs:69)",
+      "~/ct-hack/notas/estilo_pt.md:36-38 — o Brasil nunca dublou a série de 1983; o que existe é o elenco da Captain Tsubasa J, Manchete, 1997",
+      "~/ct-hack/notas/estilo_pt.md:42-46 — na tela: BENJI (わかばやし), NEIA (さなえ), MILANI (みかみ), no campo de 5 colunas",
+      "~/ct-hack/notas/estilo_pt.md:48-59 — na prosa: Oliver, Carlos, Benji, Neia, Roberto Maravilha, Treinador Milani",
+      "~/ct-hack/notas/estilo_pt.md:30 — pessoa, time e país em CAIXA ALTA (OZORA, NANKA)",
+      "~/patchclan-site/build/jogo-ct.mjs:43 — o original guarda progresso só por senha; agora grava em bateria pelo SCORE MEMO e carrega no CONTINUE",
+      "~/ct-hack/NOTAS.md:449-455 — segurar B no CONTINUE abre a tela de senha; o KICK OFF começa jogo novo sem apagar o save",
+      "~/ct-hack/notas/save.md:26 — o save guarda os 24 bytes de $0620-$0637, a mesma forma que a senha empacota",
+      "~/ct-hack/notas/save.md:95 — a integridade é a do próprio jogo, a soma de 9 bits da senha",
+      "~/ct-hack/notas/save.md:168 — diff da ROM: 97 bytes em 6 lugares",
+      "~/ct-hack/NOTAS.md:190-191 — código de controle novo: 14→28 colunas nas janelas 0-9 e 18→36 nas 10-15",
+      "~/ct-hack/NOTAS.md:20 — só 16 letras latinas no cartucho: ACDEFGHIKMRSUVWY",
+      "~/patchclan-site/build/jogo-ct.mjs:34 — fonte inglesa nova de 74 tiles",
+      "~/patchclan-site/build/jogo-ct.mjs:52 — 225 dumps, 0 bytes diferentes, na build que só move o texto japonês",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:52 — captain-tsubasa: release, patch en · pt publicado"
+    ]
+  },
+  {
+    "slug": "nekketsu-kakutou-densetsu",
+    "linha": {
+      "pt": "A série de brigões de colégio que o Ocidente conheceu como River City Ransom. Este é o de luta: 19 combates em duplas, quatro jogadores na mesa.",
+      "en": "The school-brawler series the West met as River City Ransom. This one is the fighter: 19 tag bouts, four players on one Famicom."
+    },
+    "resumo": {
+      "pt": [
+        "No Japão o Kunio é uma instituição: o brigão de colégio que virou uma família inteira de jogos da Technos. O Ocidente conheceu um deles com outro nome e outro elenco, <i>River City Ransom</i>. Este, de 1992, é o de luta — o modo história são <b>19 combates em duplas</b>, com quinze vitórias até o chefe, o modo batalha aceita <b>até quatro jogadores</b> pelo adaptador do Famicom, e o lutador que você inventa guarda nome, aniversário e tipo sanguíneo dentro da senha.",
+        "O texto está inteiro em inglês: <b>266 strings</b>, traduzidas do zero e revisadas linha a linha, com o validador em zero erro. Para escrevê-las foi desenhada uma <b>fonte latina completa</b> — a-z e pontuação — em <b>81 tiles novos</b>, deixando <b>175 tiles do original intactos</b>, e o logo do título saiu refeito em latinas como <code>NEKKETSU / FIGHTING LEGEND</code>.",
+        "O texto deste jogo cabe em <b>6.120 bytes e não tem compressão nenhuma</b>: cada frase ocupa exatamente o que escreve, então não há dicionário de onde tirar folga — é a fonte e a expansão da ROM, de <b>128 para 256 KB</b>, que abrem lugar, e por isso vieram antes. A expansão foi provada pelo caminho mais duro que existe: uma build que só move o texto japonês, sem traduzir nada, sai <b>idêntica à original</b>. E o inglês está confirmado na ROM rodando, não em simulação — a build de teste abre no portão do colégio com a primeira fala na fonte nova: <i>The gates of Nekketsu High.</i> Não há patch para instalar; esta página é para acompanhar."
+      ],
+      "en": [
+        "In Japan, Kunio is an institution: the school brawler who grew into a whole family of Technos games. The West met one of them under another name and another cast, <i>River City Ransom</i>. This one, from 1992, is the fighter — story mode is <b>19 tag bouts</b>, fifteen wins to reach the boss, battle mode takes <b>up to four players</b> through the Famicom adapter, and the fighter you invent keeps his name, birthday and blood type inside the password.",
+        "The text is entirely in English: <b>266 strings</b>, translated from scratch and reviewed line by line, with the validator at zero errors. Writing them meant drawing a <b>complete Latin font</b> — a-z and punctuation — across <b>81 new tiles</b>, leaving <b>175 of the original tiles untouched</b>, and the title logo was remade in Latin letters as <code>NEKKETSU / FIGHTING LEGEND</code>.",
+        "This game's text fits in <b>6,120 bytes with no compression at all</b>: every line occupies exactly what it writes, so there is no dictionary to squeeze slack out of — the font and the ROM expansion, from <b>128 to 256 KB</b>, are what open room, which is why they came first. That expansion was proved the hardest way there is: a build that only moves the Japanese text, translating none of it, comes out <b>identical to the original</b>. And English is confirmed on the running ROM, not in simulation — the test build opens at the school gate with its first line in the new font: <i>The gates of Nekketsu High.</i> There is no patch to install; this page is here to follow along."
+      ]
+    },
+    "fontes": [
+      "~/patchclan-site/build/jogos-novos.mjs:95 — Technos Japan, 1992, Famicom",
+      "~/nekketsu-hack/NOTAS.md:35 — modo história (duplas, 19 lutas, 15 vitórias até o chefe) e modo batalha (até 4 jogadores)",
+      "~/nekketsu-hack/NOTAS.md:36 — personagem editável com nome, aniversário e tipo sanguíneo; a senha guarda os dados",
+      "~/nekketsu-hack/NOTAS.md:8 — byte 15 = 3: adaptador de 4 jogadores do Famicom",
+      "~/nekketsu-hack/RETOMAR.md:13 — tradução completa, 266 strings, revisada linha a linha, validador 0 erros",
+      "~/nekketsu-hack/RETOMAR.md:14 — fonte latina completa: a-z, pontuação, 81 tiles novos, 175 intactos",
+      "~/nekketsu-hack/RETOMAR.md:17 — logo do título redesenhado: NEKKETSU / FIGHTING LEGEND",
+      "~/nekketsu-hack/notas/motor_texto.md:194 — 266 strings, 6120 bytes, 7 grupos",
+      "~/nekketsu-hack/RETOMAR.md:10 — formato sem compressão",
+      "~/nekketsu-hack/RETOMAR.md:11 — expansão 128→256 KB provada",
+      "~/patchclan-site/build/jogos-novos.mjs:131 — guarda: build que só move o texto japonês sai idêntica à original",
+      "~/nekketsu-hack/RETOMAR.md:16 — inglês em jogo confirmado: 'The gates of Nekketsu High.'",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:54 — nekketsu-kakutou-densetsu: alfa, sem patch publicado"
+    ]
+  },
+  {
+    "slug": "gaia-saver",
+    "linha": {
+      "pt": "Ultraman, Kamen Rider e Gundam no mesmo grupo: o herói gigante, o justiceiro de moto e os robôs pilotados, num RPG de Super Famicom.",
+      "en": "Ultraman, Kamen Rider and Gundam in one party: the giant hero, the masked rider and the piloted robots, in a single Super Famicom RPG."
+    },
+    "resumo": {
+      "pt": [
+        "São três franquias que no Japão têm o tamanho que os super-heróis americanos têm aqui, e quase ninguém fora de lá sabe que elas dividem um RPG. <b>Ultraman</b> é o herói gigante da televisão japonesa que aparece na hora do monstro; <b>Kamen Rider</b> é o justiceiro mascarado de motocicleta; <b>Gundam</b> são os robôs pilotados. A Banpresto pôs os três no mesmo grupo, num RPG de <b>Super Famicom</b> — o crossover <i>Compati Hero</i>, a linha em que os heróis gigantes encolhem para duas cabeças de altura e brigam lado a lado, sem que ninguém pare para explicar como.",
+        "O jogo foi desenhado para kana de largura cheia, e é isso que decide a tradução: medido no roteiro original, <b>98% das linhas japonesas cabem em 15 caracteres</b>. O inglês não vive nisso. A fonte foi refeita à <b>meia largura, 8 pixels por caractere</b>, e a caixa passou a comportar <b>29 colunas</b> — número medido na tela, não estimado: com 30 a página embaralha, com 29 renderiza limpa. O limite de <b>29 colunas por 3 linhas</b> é imposto por código a cada compilação, e a <b>tela de título</b> já mostra <code>GAIA SAVER</code> em latinas.",
+        "É o único projeto de 16 bits da casa, e é outra classe de problema: <b>512 glifos de 16×16</b>, 497 entradas de tabela, ponteiros longos de 24 bits e uma ROM de 2 MB. O roteiro foi extraído inteiro — <b>1.884 mensagens</b>, 94,1 KB de texto — e o extrator faz o caminho de volta: <b>1.875 de 1.875 mensagens</b> voltam byte a byte iguais, que é como se prova que nenhuma fala ficou fora da tabela. Estão traduzidas <b>1.467 mensagens</b> e <b>420 nomes</b>, esses últimos cabendo em <b>5.375 dos 5.376 bytes</b> disponíveis, um byte de folga. A realocação segue <b>1.525 ponteiros confiáveis</b>, todos em tabelas de registros do banco <code>$06</code>; os 105 candidatos soltos foram deixados em paz depois de a análise mostrar que eram falsos positivos — um deles a própria instrução <code>LDA $218000,x</code>. Sem link para baixar: o projeto se acompanha por aqui."
+      ],
+      "en": [
+        "These are three franchises that in Japan carry the weight American superheroes carry here, and almost nobody outside knows they share an RPG. <b>Ultraman</b> is the giant hero of Japanese television who turns up when the monster does; <b>Kamen Rider</b> is the masked motorcycle vigilante; <b>Gundam</b> are the piloted robots. Banpresto put all three in one party, in a <b>Super Famicom</b> RPG — the <i>Compati Hero</i> crossover, the line where the giant heroes shrink to two heads tall and fight side by side, with nobody stopping to explain how.",
+        "The game was drawn for full-width kana, and that is what decides the translation: measured on the original script, <b>98% of the Japanese lines fit in 15 characters</b>. English does not live in that. The font was rebuilt at <b>half width, 8 pixels per character</b>, and the box came to hold <b>29 columns</b> — a number measured on screen rather than estimated: at 30 the page scrambles, at 29 it renders cleanly. The limit of <b>29 columns by 3 lines</b> is enforced in code on every build, and the <b>title screen</b> already reads <code>GAIA SAVER</code> in Latin letters.",
+        "It is the house's only 16-bit project, and a different class of problem: <b>512 glyphs at 16×16</b>, 497 table entries, 24-bit long pointers and a 2 MB ROM. The script was extracted whole — <b>1,884 messages</b>, 94.1 KB of text — and the extractor makes the return trip: <b>1,875 of 1,875 messages</b> come back byte for byte identical, which is how you prove no line was left out of the table. <b>1,467 messages</b> and <b>420 names</b> are translated, the names fitting <b>5,375 of the 5,376 bytes</b> available, one byte to spare. Relocation follows <b>1,525 trustworthy pointers</b>, all in record tables in bank <code>$06</code>; the 105 loose candidates were left alone once analysis showed them to be false positives — one of them the instruction <code>LDA $218000,x</code> itself. No download link: the project is followed from here."
+      ]
+    },
+    "fontes": [
+      "~/patchclan-site/build/jogos-novos.mjs:164 — Super Famicom, ROM de 2 MB, fonte de 512 glifos 16×16, ponteiros long de 24 bits",
+      "~/gaia-hack/README.md:3 — Banpresto, crossover Compati Hero: Ultraman, Kamen Rider e Gundam",
+      "~/gaia-hack/notas/analise.md:86 — medido no script: 98% das linhas cabem em 15 caracteres, máximo observado 21",
+      "~/gaia-hack/notas/analise.md:173 — 8 px por caractere com a fonte de meia largura",
+      "~/gaia-hack/notas/analise.md:421 — a caixa comporta 29 colunas, não 30",
+      "~/gaia-hack/notas/analise.md:425 — a mesma página com 29 colunas renderiza perfeita; com 30, embaralha",
+      "~/gaia-hack/README.md:26 — gate de 29 colunas × 3 linhas por página, imposto no build",
+      "~/gaia-hack/README.md:24 — tela de título traduzida: logo GAIA SAVER + subtítulo",
+      "~/gaia-hack/README.md:13 — tabela de caracteres de 497 entradas, resolvida e validada no emulador",
+      "~/gaia-hack/README.md:15 — script extraído: 1.884 mensagens / 94,1 KB",
+      "~/gaia-hack/README.md:20 — round-trip do extrator: 1875/1875 byte-idênticas",
+      "~/gaia-hack/README.md:22 — tradução do diálogo: 1.467 mensagens",
+      "~/gaia-hack/README.md:23 — tradução dos nomes: 420, cabendo em 5.375/5.376 B",
+      "~/gaia-hack/notas/analise.md:264 — 1.525 ponteiros confiáveis, em tabelas de registros no banco $06",
+      "~/gaia-hack/notas/analise.md:265-267 — os 105 soltos são falsos positivos, um deles a instrução LDA $218000,x",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:53 — gaia-saver: alfa, sem patch publicado"
+    ]
+  },
+  {
+    "slug": "ultraman-club-2",
+    "linha": {
+      "pt": "O RPG em que Zoffy, Ace, Taro e Seven viram bonecos de cabeça grande — e o bestiário inteiro, perto de noventa monstros, saiu em inglês.",
+      "en": "The RPG where Zoffy, Ace, Taro and Seven become big-headed figures — with the whole bestiary, close to ninety monsters, now in English."
+    },
+    "resumo": {
+      "pt": [
+        "A Tsuburaya deixou os Ultras virarem bonecos de cabeça grande e os pôs num RPG de Famicom, com a Shinsei, em 1989. O elenco é o panteão inteiro — Ultraman, <b>Zoffy</b>, Ace, Taro, Seven, Jack, a Mãe e o Pai de Ultra, o Rei de Ultra — e o mapa é feito dos lugares que a série construiu ao longo de vinte anos: a <b>Terra dos Ultras</b>, a Vila do Pigmon, o <b>Cemitério de Monstros</b>. Do outro lado, os alienígenas de sempre: Baltan, Metron, Guts.",
+        "O patch em <b>inglês está publicado</b>, com <b>653 entradas de texto</b>: 447 mensagens de diálogo, batalha, descrição de item, sequência final e créditos; 56 de menu, golpes e itens; e <b>146 entradas de combate</b> que carregam o bestiário inteiro, perto de noventa monstros. Cada nome de kaiju foi conferido contra o manual japonês e contra a nomenclatura consagrada da série — num patch de tradução, nome errado é o defeito que o fã enxerga primeiro. A fonte do jogo nem tinha <code>.</code> <code>,</code> <code>'</code> <code>-</code>: os quatro glifos foram desenhados sobre kanji que o texto traduzido não usa mais.",
+        "Aquele quarto bloco só apareceu porque a varredura foi refeita na ROM já <i>montada</i>. Na ROM original os bytes de ponteiro dele caem na faixa do kana, e a análise o havia descartado como dado binário — é o lembrete de que uma tradução termina quando a ROM inteira foi varrida, não quando a lista de tabelas conhecidas acabou. Até quatro partículas japonesas escaparam de qualquer varredura de tabela, porque estão escritas dentro do código como <code>LDA #$AC</code> no meio da rotina de batalha, colando kana no fim do nome do monstro na tela. Nem o inglês cabia no cartucho como ele saiu de fábrica: a ROM foi <b>expandida de 128 para 256 KB</b>, com os bancos 14 e 15 duplicados no fim, porque no MMC3 o banco fixo é sempre o último. O que ficou gravado é lido de volta e comparado byte a byte com o roteiro: <b>653 entradas, zero divergências</b>."
+      ],
+      "en": [
+        "Tsuburaya let the Ultras become big-headed chibi figures and put them in a Famicom RPG, with Shinsei, in 1989. The cast is the whole pantheon — Ultraman, <b>Zoffy</b>, Ace, Taro, Seven, Jack, the Mother and Father of Ultra, Ultraman King — and the map is built from places the series raised over twenty years: the <b>Land of Ultra</b>, Pigmon Village, the <b>Monster Graveyard</b>. On the other side, the usual aliens: Baltan, Metron, Guts.",
+        "The <b>English patch is published</b>, carrying <b>653 text entries</b>: 447 messages of dialogue, battle, item descriptions, the ending sequence and the credits; 56 for menus, moves and items; and <b>146 battle entries</b> holding the entire bestiary, close to ninety monsters. Every kaiju name was checked against the Japanese manual and against the series' settled nomenclature — in a translation patch, a wrong name is the defect a fan spots first. The game's font did not even have <code>.</code> <code>,</code> <code>'</code> <code>-</code>: those four glyphs were drawn over kanji the translated text no longer uses.",
+        "That fourth block only surfaced because the sweep was run again on the <i>built</i> ROM. In the original ROM its pointer bytes fall inside the kana range, and the analysis had dismissed it as binary data — a reminder that a translation ends when the whole ROM has been swept, not when the list of known tables runs out. Four Japanese particles escaped every table sweep as well, because they are written inside the program as <code>LDA #$AC</code> in the middle of the battle routine, gluing kana onto the end of the monster's name on screen. Not even English fit the cartridge as it shipped: the ROM was <b>expanded from 128 to 256 KB</b>, with banks 14 and 15 duplicated at the end, because on MMC3 the fixed bank is always the last one. What ends up written is read back and compared byte for byte against the script: <b>653 entries, zero mismatches</b>."
+      ]
+    },
+    "fontes": [
+      "~/patchclan-site/build/jogos-novos.mjs:11 — Shinsei, Tsuburaya Prod., 1989, Famicom",
+      "~/patchclan-site/build/jogos-novos.mjs:20 — os Ultraman viram bonecos de cabeça grande; nunca saiu do Japão",
+      "~/ultraman2-hack/roteiro/glossario.md:6-15 — Ultras: ULTRAMAN, ZOFFY, ACE, TARO, SEVEN, JACK, MOTHER OF ULTRA, FATHER OF ULTRA, ULTRAMAN KING",
+      "~/ultraman2-hack/roteiro/glossario.md:19-28 — lugares: LAND OF ULTRA, MONSTER GRAVEYARD, PIGMON VILLAGE",
+      "~/ultraman2-hack/roteiro/glossario.md:33-39 — alienígenas: ALIEN BALTAN, ALIEN METRON, ALIEN GUTS",
+      "~/ultraman2-hack/roteiro/glossario.md:2-3 — fonte: manual japonês + nomenclatura consagrada da série; nome errado é o defeito mais visível",
+      "~/patchclan-site/build/jogos-novos.mjs:63 — patch en publicado: ultraman-club-2-en.ips",
+      "~/patchclan-site/build/jogos-novos.mjs:28 — 653 entradas de texto traduzidas",
+      "~/patchclan-site/build/jogos-novos.mjs:35 — 447 mensagens: diálogo, batalha, descrições de item, sequência final e créditos",
+      "~/patchclan-site/build/jogos-novos.mjs:41 — 56 entradas de menu, golpes, itens e nomes de monstro",
+      "~/ultraman2-hack/notas/analise.md:227 — o quarto bloco: tabela própria em PRG 0x06F53, 146 entradas",
+      "~/ultraman2-hack/notas/analise.md:229 — bestiário inteiro, ~90 monstros, mais as falas de golpe",
+      "~/ultraman2-hack/notas/analise.md:143-146 — a fonte não tem . , ' - ; os quatro glifos foram desenhados em 0xD0-0xD3, sobre kanji sem uso",
+      "~/ultraman2-hack/notas/analise.md:224,232 — achado varrendo kana na ROM montada; os bytes de ponteiro caem na faixa do kana",
+      "~/ultraman2-hack/notas/analise.md:234-236 — a regra: terminada a tradução, varrer a ROM montada por texto do idioma de origem",
+      "~/ultraman2-hack/notas/analise.md:374-384 — as partículas は e に como LDA #$AC no código; a tela mostrava KING SAURUSに",
+      "~/patchclan-site/build/jogos-novos.mjs:47 — ROM expandida de 128 para 256 KB, bancos 14 e 15 duplicados no fim (MMC3)",
+      "~/patchclan-site/build/jogos-novos.mjs:50 — round-trip verificado: 653 entradas, zero divergências"
+    ]
+  },
+  {
+    "slug": "ultraman-club-3",
+    "linha": {
+      "pt": "A continuação em que os Ultras guardam kaiju em cápsulas — e onde a cápsula da página 8, que travava a batalha, caiu antes da tradução.",
+      "en": "The sequel where the Ultras store kaiju in capsules — and where the page-8 capsule, which hung the battle, fell before the translation did."
+    },
+    "resumo": {
+      "pt": [
+        "Tsuburaya de novo, agora com a Yutaka, em 1991, e continuação direta do <i>Ultraman Club 2</i>. Aqui os monstros vão para dentro de <b>cápsulas</b> — trinta lugares de inventário, um nibble por kaiju — e a viagem passa pela <b>Nebulosa M78</b>, o endereço de onde os Ultras vêm.",
+        "Este projeto começou de trás para frente, de propósito: <b>consertar os defeitos do jogo original vem antes de traduzir</b>, porque escrever inglês por cima de um defeito só produz uma tela quebrada noutro idioma. O primeiro já caiu. Em batalha, no menu de cápsulas, a página 8 desenha só duas entradas, mas o cursor anda por tabela fixa e chega às duas vagas vazias; confirmar ali fazia o jogo ler o atributo que sobrou da página anterior — <b>travava na maioria das vezes</b> e, de vez em quando, invocava um Pestar corrompido com efeito aleatório. <b>Vinte e dois bytes</b> no banco 29 fazem as duas linhas nascerem recusáveis: o cursor ainda entra e o A não faz nada, exatamente como o próprio jogo já se comporta com outras duas cápsulas.",
+        "Nada disso vale sem medição. O conserto foi verificado em <b>teste A/B contra a ROM original</b>, com um teste de regressão por cima, e o construtor <b>aborta se os bytes originais não baterem</b> — além de imprimir os <b>22 códigos de Game Genie</b> equivalentes, para quem preferir o mesmo efeito sem gerar ROM nenhuma. A engenharia reversa também entregou ferramenta: duas escritas na memória invocam qualquer um dos <b>80 encontros</b> do jogo, em qualquer ponto, o que torna reproduzível o que antes dependia de sorte. E o texto já está levantado: <b>338 mensagens</b>, com offset, tamanho e referências de cada uma. Não há patch para instalar; esta página acompanha o projeto."
+      ],
+      "en": [
+        "Tsuburaya again, now with Yutaka, in 1991, and a direct sequel to <i>Ultraman Club 2</i>. Here the monsters go into <b>capsules</b> — thirty inventory slots, one nibble per kaiju — and the journey passes through <b>Nebula M78</b>, the address the Ultras come from.",
+        "This project started backwards on purpose: <b>fixing the original game's defects comes before translating it</b>, because writing English over a defect only produces a broken screen in another language. The first one has fallen. In battle, in the capsule menu, page 8 draws only two entries, but the cursor walks a fixed table and reaches the two empty slots; confirming there made the game read the attribute left over from the previous page — it <b>hung most of the time</b> and, now and then, summoned a corrupted Pestar with a random effect. <b>Twenty-two bytes</b> in bank 29 make those two rows refusable from birth: the cursor still enters and A does nothing, exactly as the game already behaves with two other capsules.",
+        "None of that counts without measurement. The fix was verified in an <b>A/B test against the original ROM</b>, with a regression test on top, and the builder <b>aborts if the original bytes do not match</b> — besides printing the <b>22 equivalent Game Genie codes</b>, for anyone who would rather have the same effect without generating a ROM at all. The reverse engineering also produced a tool: two writes to memory summon any of the game's <b>80 encounters</b>, at any point, which makes reproducible what used to depend on luck. And the text is already surveyed: <b>338 messages</b>, each with its offset, size and references. There is no patch to install; this page follows the project."
+      ]
+    },
+    "fontes": [
+      "~/patchclan-site/build/jogos-novos.mjs:230 — Yutaka, Tsuburaya Prod., 1991, Famicom",
+      "~/ultraman3-hack/docs/capsula_pagina8_bug.md:20 — inventário: um nibble por kaiju em $03A0-$03AE, 30 kaiju capsuláveis",
+      "~/ultraman3-hack/notas/RETOMAR.md:21 — a Nebulosa M78 é lugar do jogo (save no início dela, com o Seven sozinho)",
+      "~/ultraman3-hack/notas/RETOMAR.md:3 — ordem decidida: corrigir os 3 bugs do jogo antes de traduzir",
+      "~/ultraman3-hack/docs/capsula_pagina8_bug.md:9-10 — escolher a vaga vazia do canto da página 8 trava na maioria das vezes; às vezes invoca um Pestar corrompido",
+      "~/ultraman3-hack/docs/capsula_pagina8_bug.md:28 — o cursor anda por tabela fixa e nunca consulta $4E: na página 8 chega às posições 2 e 3",
+      "~/ultraman3-hack/docs/capsula_pagina8_bug.md:29-30 — a confirmação lê $041C+pos, com lixo da página anterior",
+      "~/ultraman3-hack/docs/capsula_pagina8_bug.md:5 — só 22 bytes mudam, dentro de $B0EF-$B10C do banco 29",
+      "~/ultraman3-hack/notas/RETOMAR.md:10 — build_fix_capsula.py aborta se os bytes originais não baterem",
+      "~/ultraman3-hack/notas/RETOMAR.md:11 — imprime os 22 códigos Game Genie",
+      "~/ultraman3-hack/notas/RETOMAR.md:12 — testes A/B (mesen/caps_ab.lua) e de regressão, com logs",
+      "~/ultraman3-hack/notas/RETOMAR.md:96,104 — $045D = número do encontro (0 a 79); lista completa dos 80 encontros em docs/encontros.txt",
+      "~/ultraman3-hack/roteiro/script_jp.txt:2 — 338 mensagens extraídas, com offset, tamanho e refs",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:56 — ultraman-club-3: fila, sem patch publicado"
+    ]
+  },
+  {
+    "slug": "tom-sawyer",
+    "linha": {
+      "pt": "A Square pegou Mark Twain e fez um RPG com Tom e Huck. O livro é americano; o jogo ficou no Japão, e a ROM teve de dobrar para caber.",
+      "en": "Square took Mark Twain and made an RPG with Tom and Huck. The book is American; the game stayed in Japan, and the ROM had to double."
+    },
+    "resumo": {
+      "pt": [
+        "De todos os cartuchos deste catálogo, este é o único cuja história você provavelmente já leu. Em 1989 a Square — dois anos antes do <i>Final Fantasy IV</i> — pegou o romance do Mark Twain e fez um RPG de Famicom com Tom e Huck, no Mississippi de 1855. E o resultado tem cara de Square: retrato do personagem na caixa de fala, um menu de campo que diz <code>EXAMINE / TAKE  DIG / ITEM</code>, porque num jogo de Tom Sawyer cavar precisa ser comando, e um inventário onde cabem uma barraca e uma bola de gude.",
+        "Boa parte do que se ia acrescentar já vinha de fábrica: o cartucho <b>salva em bateria</b>, e o menu de abertura de 1989 já trazia <code>CONTINUE / START / SPEED 5</code> — ajuste de velocidade de texto, e já em inglês. O que faltava era o resto. As <b>576 mensagens</b> e os <b>70 nomes</b> estão traduzidos, escritos numa fonte latina de <b>61 tiles novos</b> desenhados sobre as casas de kana que o inglês não usa, mais os dez dígitos, sem tocar em nenhum gráfico de tela — e a tela de título saiu redesenhada como <code>SQUARE'S / TOM SAWYER</code>, provada em jogo.",
+        "O inglês custou espaço: medido neste cartucho, ele ocupa <b>1,63×</b> o japonês, e a ROM inteira tinha <b>6,2 KB livres</b>, fragmentados, com a maior região contígua em 1.168 bytes e o bloco de texto do banco 6 fechando com 9 bytes de sobra. A saída foi expandir para <b>512 KB</b> pelo caminho SUROM — como o jogo usa CHR-RAM, os registradores de banco de CHR estão ociosos e o bit 4 vira o A18 do PRG —, com uma cópia do banco fixo na metade nova, sem a qual o cartucho perde o kernel e trava no boot. Depois disso a varredura foi refeita e devolveu mais <b>2,1 KB de japonês vivo</b> que a extração do roteiro não pegava: nomes de item, dois menus de batalha, os créditos escondidos. E há um segredo: um <b>código de oito caracteres digitado no campo de nome</b>, que no original era <code>ホワイトラビット</code>, o coelho branco, e agora se digita <code>WHITERAB</code>. Não há patch para instalar; esta página acompanha o trabalho."
+      ],
+      "en": [
+        "Of every cartridge in this catalogue, this is the only one whose story you have probably already read. In 1989 Square — two years before <i>Final Fantasy IV</i> — took Mark Twain's novel and made a Famicom RPG with Tom and Huck, on the 1855 Mississippi. And the result looks like Square: a character portrait in the dialogue box, a field menu reading <code>EXAMINE / TAKE  DIG / ITEM</code>, because in a Tom Sawyer game digging has to be a command, and an inventory with room for a tent and a marble.",
+        "Much of what you would think to add was already there in 1989: the cartridge <b>saves to battery</b>, and the boot menu already offered <code>CONTINUE / START / SPEED 5</code> — a text-speed setting, already in English. What was left was everything else. The <b>576 messages</b> and <b>70 names</b> are translated, written in a Latin font of <b>61 new tiles</b> drawn over the kana slots English does not use, plus the ten digits, without touching a single screen graphic — and the title screen was redrawn as <code>SQUARE'S / TOM SAWYER</code>, proved in game.",
+        "English cost space: measured on this cartridge, it runs <b>1.63×</b> the Japanese, and the whole ROM had <b>6.2 KB free</b>, fragmented, the largest contiguous region at 1,168 bytes and the bank 6 text block closing with 9 bytes to spare. The way out was expanding to <b>512 KB</b> by the SUROM route — because the game uses CHR-RAM, the CHR bank registers sit idle and bit 4 becomes PRG A18 — with a copy of the fixed bank in the new half, without which the cartridge loses its kernel and hangs at boot. After that the sweep was run again and returned another <b>2.1 KB of live Japanese</b> the script extraction had not reached: item names, two battle menus, the hidden credits. And there is a secret: an <b>eight-character code typed into the name field</b>, which in the original was <code>ホワイトラビット</code>, the white rabbit, and is now typed <code>WHITERAB</code>. There is no patch to install; this page follows the work."
+      ]
+    },
+    "fontes": [
+      "~/patchclan-site/build/jogo-tom.mjs:6,18 — Square, 1989, Famicom, dois anos antes do Final Fantasy IV",
+      "~/patchclan-site/build/jogo-tom.mjs:12 — o RPG da Square sobre Tom Sawyer, no Mississippi de 1855",
+      "~/tom-hack/RETOMAR.md:118-119 — menu de campo EXAMINE / TAKE DIG / ITEM e inventário com TENT, MARBLE, TOM, vistos em jogo",
+      "~/tom-hack/RETOMAR.md:31-32 — o menu do boot já existe e já está em inglês: CONTINUE / START / SPEED 5",
+      "~/tom-hack/RETOMAR.md:89-90 — o jogo salva em bateria; a tela de senha do pedido não existe neste título",
+      "~/tom-hack/RETOMAR.md:55 — roteiro extraído: 576 mensagens e 70 nomes",
+      "~/tom-hack/RETOMAR.md:81-82 — 576/576 mensagens e os 70 nomes traduzidos, validador limpo",
+      "~/tom-hack/RETOMAR.md:50 — 61 tiles novos sobre o kana + 10 dígitos redesenhados no lugar",
+      "~/tom-hack/RETOMAR.md:26-27 — sem tocar em gráfico de tela; 113 tiles livres para ~61 necessários",
+      "~/tom-hack/RETOMAR.md:93 — tela de título pronta e provada em jogo: SQUARE'S / TOM SAWYER",
+      "~/tom-hack/RETOMAR.md:79 — lote-piloto e fator JP→EN: 1,63x medido neste jogo",
+      "~/tom-hack/RETOMAR.md:66-67 — 6,2 KB livres em toda a ROM, fragmentados; maior região contígua 1.168 B; banco 6 com 9 bytes de sobra",
+      "~/tom-hack/RETOMAR.md:68 — caminho SUROM: bit 4 do reg CHR vira PRG A18 → 512 KB, viável porque o CHR é RAM",
+      "~/tom-hack/RETOMAR.md:69,80 — o banco fixo se move: a metade nova precisa da cópia do banco 15 no 31",
+      "~/tom-hack/RETOMAR.md:97 — ~2,1 KB em japonês vivo achados depois: nomes de item, menu de batalha (2 cópias), créditos escondidos",
+      "~/tom-hack/RETOMAR.md:98 — código secreto de 8 caracteres no campo de NOME: ホワイトラビット virou WHITERAB",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:57 — tom-sawyer: fila, sem patch publicado"
+    ]
+  },
+  {
+    "slug": "hanjuku-hero",
+    "linha": {
+      "pt": "O herói é literalmente um ovo meio cozido. Estratégia da Square em 1988: você comanda um reino e solta monstros de dentro dos ovos.",
+      "en": "The hero is literally a soft-boiled egg. Square strategy, 1988: you command a kingdom and hatch your monsters out of the eggs."
+    },
+    "resumo": {
+      "pt": [
+        "<i>Hanjuku</i> quer dizer <b>meio cozido</b>, e o herói é um ovo — o nome é a piada. Antes de a Square ser sinônimo de Final Fantasy, ela tinha esta estratégia cômica em tempo real, de 1988, em que você comanda um reino e solta monstros de dentro dos ovos. É série própria dela, licenciada de ninguém, e continuou no Japão por décadas, em vários consoles, sem nunca sair de lá.",
+        "Num cartucho assim, o primeiro trabalho não é traduzir: é provar que você está lendo o texto certo. O encoding foi quebrado com <b>provas independentes</b> — o byte gravado <b>é o índice do tile na VRAM</b>, código igual a <code>0x74</code> mais o índice da fonte, e o mapeamento fecha por dois caminhos, com あ, ャ e o espaço batendo e o japonês decodificado saindo corrido e legível. A consequência é imediata: tudo abaixo de <code>0x74</code> é código de controle. Um encoding quase certo produz texto que parece japonês e não é, e a tradução inteira nasce torta por cima dele.",
+        "A fonte latina já está na build, com os três blocos de nomes em inglês — <b>112 das 399 strings</b> —, e o construtor aborta se um byte mudar fora das regiões declaradas. A armadilha do jogo apareceu cedo e já foi contornada: <b>a fonte tem duas cópias na ROM</b>, em <code>0x14000</code> e em <code>0x06784</code>, e patchear só uma <b>não muda um pixel na tela</b>, porque a tela de entrada de nome carrega a outra — e nela as casas de katakana guardam os cantos da janela. O aperto também não é onde parece: somando tudo há <b>10,8 KB livres</b> na ROM, mas o banco 2, de onde o texto de batalha é lido, tem <b>371 bytes de folga para 4,3 KB de texto</b>. Até o vazio engana — o enchimento é a palavra <code>OSMOT</code> repetida, e é ela que dá vetores falsos aos bancos 0 a 6. Não há patch para instalar; esta página acompanha o projeto."
+      ],
+      "en": [
+        "<i>Hanjuku</i> means <b>soft-boiled</b>, and the hero is an egg — the name is the joke. Before Square was a synonym for Final Fantasy, it had this 1988 real-time comic strategy game, where you command a kingdom and hatch monsters out of eggs. It is Square's own series, licensed from nobody, and it carried on in Japan for decades across several consoles without ever leaving.",
+        "In a cartridge like this, the first job is not translating: it is proving you are reading the right text. The encoding was broken with <b>independent proofs</b> — the stored byte <b>is the tile index in VRAM</b>, the code being <code>0x74</code> plus the font index, and the mapping closes by two routes, with あ, ャ and the space all matching and the decoded Japanese coming out as readable running text. The consequence is immediate: everything below <code>0x74</code> is a control code. An encoding that is nearly right produces text that looks Japanese and is not, and the whole translation grows crooked on top of it.",
+        "The Latin font is already in the build, with the three name blocks in English — <b>112 of the 399 strings</b> — and the builder aborts if a byte changes outside the declared regions. The game's trap showed up early and has been worked around: <b>the font has two copies in the ROM</b>, at <code>0x14000</code> and at <code>0x06784</code>, and patching only one <b>does not change a pixel on screen</b>, because the name-entry screen loads the other — and there the katakana slots hold the window corners. The squeeze is not where it looks, either: adding everything up there are <b>10.8 KB free</b> in the ROM, but bank 2, where the battle text is read from, has <b>371 bytes of slack for 4.3 KB of text</b>. Even the emptiness misleads — the filler is the word <code>OSMOT</code> repeated, and it is what gives banks 0 to 6 their fake vectors. There is no patch to install; this page follows the project."
+      ]
+    },
+    "fontes": [
+      "~/patchclan-site/build/jogos-novos.mjs:276 — Square, 1988, Famicom, MMC1 modo 3, 128 KB PRG, CHR-RAM, save com bateria",
+      "~/patchclan-site/build/jogos-novos.mjs:285-286 — comanda um reino e solta monstros de ovos; hanjuku é 'meio cozido' e o herói é um ovo; virou série no Japão",
+      "~/hanjuku-hack/NOTAS.md:35-38 — codigo_de_texto = 0x74 + indice_da_fonte; provas independentes あ=0x9A, ャ=0xFD, espaço=0xFF",
+      "~/hanjuku-hack/NOTAS.md:39 — o texto decodificado é japonês corrido legível",
+      "~/hanjuku-hack/NOTAS.md:41 — códigos < 0x74 são de CONTROLE",
+      "~/hanjuku-hack/NOTAS.md:62-63 — a fonte tem DUAS cópias na ROM (0x14000 e 0x06784) e patchear só uma não muda nada na tela",
+      "~/hanjuku-hack/NOTAS.md:64-65 — as duas compartilham 66 glifos; no bloco do banco 1 o katakana guarda os cantos da janela",
+      "~/hanjuku-hack/NOTAS.md:89-94 — a estrutura do texto, seis blocos: 206+70+11+31+40+41 = 399 strings",
+      "~/hanjuku-hack/NOTAS.md:124 — 112/399 strings traduzidas, os três blocos de nomes",
+      "~/hanjuku-hack/NOTAS.md:80-83 — o build aborta se um byte mudar fora das regiões declaradas",
+      "~/hanjuku-hack/NOTAS.md:115-116 — total 10,8 KB livres; o banco 2 tem só 371 B de folga para 4,3 KB de texto de batalha",
+      "~/hanjuku-hack/NOTAS.md:102 — o enchimento é 'OSMOT', período 5",
+      "~/hanjuku-hack/NOTAS.md:22 — o enchimento é o que faz os bancos 0-6 terem vetores falsos",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:58 — hanjuku-hero: fila, sem patch publicado"
+    ]
+  },
+  {
+    "slug": "monster-maker",
+    "linha": {
+      "pt": "Um jogo de cartas japonês virou RPG de Famicom. A fonte do cartucho tem três letras latinas: H, M e P. O resto será desenhado.",
+      "en": "A Japanese card game became a Famicom RPG. The cartridge font holds three Latin letters: H, M and P. The rest gets drawn."
+    },
+    "resumo": {
+      "pt": [
+        "<i>Monster Maker</i> nasceu como jogo de cartas japonês — monstro, tesouro e masmorra distribuídos carta a carta — e foi popular o bastante para virar RPG de Famicom em <i>7 Tsu no Hihou</i>, os sete tesouros. Fora do Japão o nome não diz nada a ninguém, e é exatamente esse o tipo de cartucho que some da história por não ter idioma, não por não prestar. Ele salva em bateria e abre com um prólogo que começa em <code>はるかなる むかし</code>, num tempo muito distante, antes de perguntar se você começa do zero ou retoma um dos dois livros do tempo.",
+        "O reconhecimento está fechado, e fechado <b>rodando a ROM intocada</b>, não deduzido no papel: o percurso foi feito no emulador até a primeira cena, e o encoding está provado por trace — o índice do tile <b>é</b> o código do caractere, o bit alto do byte acrescenta um espaço depois da letra, <code>$FF</code> encerra a mensagem, <code>$BB</code> troca de página, <code>$BC</code> quebra a linha e <code>$7F</code> seguido de dois bytes puxa uma palavra do dicionário. Foi esse bit alto que fazia a busca ingênua por uma frase falhar. Com o motor entendido, o roteiro saiu inteiro: <b>1.386 mensagens</b>, <b>33.564 bytes</b>, cerca de <b>44.750 caracteres</b>.",
+        "O obstáculo já tem nome e tamanho. A fonte tem <b>512 tiles</b> e exatamente <b>três letras latinas</b> — <b>H</b>, <b>M</b> e <b>P</b>, as de HP e MP —, de modo que traduzir este jogo começa por desenhar o alfabeto inteiro, letra por letra, sobre as <b>118 casas de kana livres</b>, antes de a primeira frase existir. E o espaço é duro: a ROM inteira guarda <b>512 bytes livres, 0,2% dela</b>, para um inglês que vai pedir de <b>85 a 100 KB</b>. Por isso a expansão para <b>512 KB</b> é a peça central, e ela já está <b>provada</b>: a ROM grande roda idêntica à original, e o A18 — o bit 4 do registrador de banco de CHR, ocioso porque o CHR é RAM — alcança o segundo bloco. Não há patch para instalar; esta página é o registro de onde o trabalho está."
+      ],
+      "en": [
+        "<i>Monster Maker</i> began as a Japanese card game — monster, treasure and dungeon dealt card by card — and was popular enough to become a Famicom RPG in <i>7 Tsu no Hihou</i>, the seven treasures. Outside Japan the name means nothing to anyone, and that is exactly the sort of cartridge that vanishes from history for having no language rather than for being no good. It saves to battery and opens on a prologue beginning <code>はるかなる むかし</code>, in a time long past, before asking whether you start from scratch or resume one of the two books of time.",
+        "The survey is closed, and closed <b>by running the untouched ROM</b>, not inferred on paper: the route was walked in the emulator up to the first scene, and the encoding is proved by trace — the tile index <b>is</b> the character code, the high bit of the byte adds a space after the letter, <code>$FF</code> ends the message, <code>$BB</code> turns the page, <code>$BC</code> breaks the line, and <code>$7F</code> followed by two bytes pulls a word from the dictionary. It was that high bit that made a naive search for a sentence fail. With the engine understood, the script came out whole: <b>1,386 messages</b>, <b>33,564 bytes</b>, roughly <b>44,750 characters</b>.",
+        "The obstacle already has a name and a size. The font holds <b>512 tiles</b> and exactly <b>three Latin letters</b> — <b>H</b>, <b>M</b> and <b>P</b>, the ones from HP and MP — so translating this game starts by drawing the whole alphabet, letter by letter, over the <b>118 free kana slots</b>, before a single sentence can exist. And space is unforgiving: the entire ROM holds <b>512 free bytes, 0.2% of it</b>, for an English that will ask for <b>85 to 100 KB</b>. That makes the expansion to <b>512 KB</b> the centrepiece, and it is already <b>proved</b>: the large ROM runs identically to the original, and A18 — bit 4 of the CHR bank register, idle because the CHR is RAM — reaches the second block. There is no patch to install; this page records where the work stands."
+      ]
+    },
+    "fontes": [
+      "~/mm-hack/RETOMAR.md:3-4 — ROM original: Japan, NES 2.0, MMC1, 256 KB PRG, CHR-RAM 8 KB, SRAM com bateria",
+      "~/mm-hack/RETOMAR.md:1 — Monster Maker: 7 Tsu no Hihou",
+      "~/mm-hack/RETOMAR.md:10-12 — a ROM roda; prólogo → menu de save (はじめから / ときのほん1・2) → intro → 1ª cena",
+      "~/mm-hack/RETOMAR.md:15-16 — encoding provado: índice do tile = código do caractere; b|$80 = b + espaço; $FF fim, $BB página, $BC nova linha, $7F lo hi dicionário",
+      "~/mm-hack/RETOMAR.md:17 — roteiro extraído: 1386 mensagens, 33.564 B, ≈44.750 caracteres",
+      "~/mm-hack/RETOMAR.md:13-14 — fonte: 512 tiles, sem alfabeto latino (só H, M e P)",
+      "~/mm-hack/RETOMAR.md:29 — desenhar A–Z/a–z sobre os tiles de kana ($0A–$7E, 118 livres)",
+      "~/mm-hack/RETOMAR.md:22 — só 512 bytes livres na ROM inteira (0,2%); o inglês precisa de ~85–100 KB",
+      "~/mm-hack/RETOMAR.md:23-24 — MMC1 usa o bit 4 do CHR-bank-0 como A18, livre porque o CHR é RAM",
+      "~/mm-hack/RETOMAR.md:28 — expansão viável, provada: a ROM de 512 KB roda idêntica e o A18 alcança o 2º bloco",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:59 — monster-maker: fila, sem patch publicado"
+    ]
+  }
+]
