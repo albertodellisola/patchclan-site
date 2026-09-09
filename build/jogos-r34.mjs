@@ -200,7 +200,7 @@ export const PMS64 = {
   publisher: 'Nintendo', dev: 'Creatures', ano: 1998, data: '1998',
   sistema: 'Nintendo 64', mapper: '16 MB · compressão Yay0 · Transfer Pak',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'beta',
+  nivel: 'alfa',
   capa: 'pms64/01-titulo.png',
   linha: bi('Houve um Stadium antes do Stadium: o japonês de 1998, que nunca saiu do Japão — e o Ocidente jogou outro jogo, não outra edição.',
             'There was a Stadium before the Stadium: the 1998 Japanese one, which never left Japan — and the West played a different game, not another edition.',

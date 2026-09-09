@@ -17,7 +17,7 @@ export const JOGOS = [
   /* release — jogo inteiro em inglês, cada linha lida, patch publicado */
   FJ2, CT, GUEVARA, DB3, MKR2,
   /* beta — texto acima de 90%, em ordem de apelo ao público */
-  PMS64, TOM, ULTRAMAN2,
+  TOM, ULTRAMAN2,
   /* alfa — o começo do caminho, em ordem de apelo ao público */
-  MANIAC, GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER
+  PMS64, MANIAC, GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER
 ];
