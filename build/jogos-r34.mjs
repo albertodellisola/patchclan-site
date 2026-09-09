@@ -277,7 +277,7 @@ export const BURAI = {
   sistema: 'Mega Drive', mapper: '68000 · 1 MB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'alfa',
-  capa: '',
+  capa: 'burai/01-titulo.png',
   linha: bi('RPG tático de ninjas no Mega Drive — e o herói é o menino europeu que sobreviveu ao naufrágio de uma nau nanban na costa do Tōhoku.',
             'A ninja tactics RPG on the Mega Drive — and the hero is the European boy who survived the wreck of a nanban ship on the Tōhoku coast.',
             'RPG táctico de ninjas en la Mega Drive — y el héroe es el niño europeo que sobrevivió al naufragio de una nao nanban en la costa de Tōhoku.'),
@@ -296,6 +296,7 @@ export const BURAI = {
   grupos: [],
   patch: { versoes: { en: null, pt: null, es: null }, rom: 'Ninja Burai Densetsu (Japan).md', rom_md5: 'd1263fb5efd1af669a0df2a45689c3f5' },
   fotos: [
-
+    { f: 'burai/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
+      c: bi('O título em inglês, com a versão do patch no rodapé.', 'The English title, with the patch version at the foot.', 'El título en inglés, con la versión del parche al pie.') }
   ]
 };
