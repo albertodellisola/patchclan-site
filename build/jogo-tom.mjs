@@ -6,7 +6,7 @@ export const TOM = {
   publisher: 'Square', dev: 'Square', ano: 1989, data: '1989',
   sistema: 'Famicom', mapper: 'MMC1 (SUROM viável) · 256 KB PRG · CHR-RAM de 8 KB · save com bateria',
   categoria: { pt: 'Tradução', en: 'Translation', es: 'Traducción' },
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'tom/01-titulo.png',
   linha: {
     pt: 'A Square pegou Mark Twain e fez um RPG com Tom e Huck. O livro é americano; o jogo ficou no Japão, e a ROM teve de dobrar para caber.',

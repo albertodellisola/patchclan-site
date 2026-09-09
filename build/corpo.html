@@ -84,7 +84,10 @@
              ['pt','🇧🇷',{en:'Portuguese',pt:'Português',es:'Portugués'}],
              ['es','🇪🇸',{en:'Spanish',pt:'Espanhol',es:'Español'}]];
   /* grade de download por idioma: o que não existe fica esmaecido */
-  function gradeIdiomas(versoes, pasta, tipo){
+  /* `destino`, quando vem preenchido, manda o botão para fora em vez de baixar o
+     arquivo: é o que faz beta e alfa saírem pelo Patreon. Release não recebe destino
+     e continua baixando de patches/. */
+  function gradeIdiomas(versoes, pasta, tipo, destino){
     return '<div class="patches">' + IDI.map(function(x){
       var v = (versoes||{})[x[0]];
       var cab = '<div class="idi"><span class="fl" aria-hidden="true">'+x[1]+'</span>'+L(x[2])+'</div>';
@@ -92,11 +95,23 @@
         return '<div class="pt-item vazio">'+cab+'<div class="aviso">' +
           L({pt:'ainda não existe',en:'does not exist yet',es:'todavía no existe'})+'</div></div>';
       }
+      if (destino) {
+        return '<div class="pt-item">'+cab +
+          '<div class="tam">'+tipo+' · '+e(v.tamanho)+'</div>' +
+          '<a class="bt patreon" href="'+e(destino)+'" target="_blank" rel="noopener">♥ ' +
+          L({pt:'No Patreon',en:'On Patreon',es:'En Patreon'})+'</a></div>';
+      }
       return '<div class="pt-item">'+cab +
         '<div class="tam">'+tipo+' · '+e(v.tamanho)+'</div>' +
         '<a class="bt" href="'+pasta+'/'+e(v.arquivo)+'" download>▶ ' +
         L({pt:'Baixar',en:'Download',es:'Descargar'})+'</a></div>';
     }).join('') + '</div>';
+  }
+  /* Onde o patch de um projeto inacabado vive: a postagem do Patreon daquele jogo,
+     e o Patreon da casa enquanto a postagem não tiver link próprio. */
+  function destinoPatch(g){
+    if (g.nivel === 'release') return '';
+    return g.patreon || ((D.content.patreon||{}).url) || 'https://www.patreon.com/patchclan';
   }
   /* Três níveis, e só três. O nível de um projeto é o mesmo que os apoiadores
      recebem: alfa no Seventh Hero, beta no Bank Switch, release para todo mundo. */
@@ -346,8 +361,12 @@
            en:'<b>Apply over the original Japanese ROM.</b> No ROM is distributed here — only the difference.',
            es:'<b>Aplícalo sobre la ROM japonesa original.</b> Aquí no se distribuye ninguna ROM — solo la diferencia.'}) +
         (g.versao ? '<br>'+L({pt:'Versão do patch',en:'Patch version',es:'Versión del parche'})+': <b>'+e(g.versao)+'</b>' : '') +
-        '<br>ROM: <b>'+e(g.patch.rom)+'</b><br>MD5: <b>'+e(g.patch.rom_md5)+'</b></div>' +
-      gradeIdiomas(g.patch.versoes, 'patches', 'IPS') +
+        '<br>ROM: <b>'+e(g.patch.rom)+'</b><br>MD5: <b>'+e(g.patch.rom_md5)+'</b>' +
+        (destinoPatch(g) ? '<br><b>'+L({pt:'Enquanto o projeto não fecha, o patch sai pelo Patreon.',
+                                        en:'While the project is open, the patch goes out through Patreon.',
+                                        es:'Mientras el proyecto sigue abierto, el parche sale por Patreon.'})+'</b>' : '') +
+        '</div>' +
+      gradeIdiomas(g.patch.versoes, 'patches', 'IPS', destinoPatch(g)) +
       '<h3 style="margin:44px 0 14px">'+L({pt:'O manual',en:'The manual',es:'El manual'})+'</h3>' +
       '<div class="baixar-cab">' +
         L({pt:'O mesmo manual que está no site, em PDF — escrito sobre o jogo traduzido, com os comandos exatos da tela.',

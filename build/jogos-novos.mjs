@@ -11,7 +11,7 @@ export const ULTRAMAN2 = {
   publisher: 'Shinsei', dev: 'Tsuburaya Prod.', ano: 1989, data: '1989',
   sistema: 'Famicom', mapper: 'MMC3 · 128 KB PRG expandido para 256 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'u2/01-titulo.png',
   linha: bi('O RPG em que Zoffy, Ace, Taro e Seven viram bonecos de cabeça grande — e o bestiário inteiro, perto de noventa monstros, saiu em inglês.',
             'The RPG where Zoffy, Ace, Taro and Seven become big-headed figures — with the whole bestiary, close to ninety monsters, now in English.',

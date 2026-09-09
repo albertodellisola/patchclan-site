@@ -316,3 +316,176 @@ contam**, que é exatamente a régua:
 `python3 copy/rodada2/valida.py copy/rodada2/consenso2.json` → 0 erros ·
 `python3 copy/rodada2/valida.py --r3 copy/rodada3/consenso3.json` → **0 erros**.
 — agente `anime_A`, 08/09/2026.
+
+---
+
+# ATUALIZAÇÃO — 09/09/2026: Guevara reescrito para a v2.0
+
+A ficha anterior descrevia a v1.0 — três ROMs de 128 KB, uma por idioma — e o projeto saltou
+para a **v2.0**. Reescrevi a entrada `guevara` inteira por cima, no `consenso3.json`. As fichas
+do Gozonji e do MKR2 não foram tocadas. Validação: `valida.py --r3` → **0 erros**, e o meu
+validador com a exigência de `arquivo:linha` por número, agora com `idioma único`,
+`single-language`, `release`, `beta` e `alfa` também na lista de barrados.
+
+Fonte: `~/guevara-hack/NOTAS.md`, seções «Expansão para 256 KB, menu de OPÇÕES e ROM de três
+idiomas» (`:1329`), «VIDAS vai só até 4 — e porquê» (`:1445`), «Vidas infinitas» (`:1781`),
+«Versão: v1.0 → v2.0» (`:1552`) e «Verificação final da v2.0» (`:1593`).
+
+## O que ENTROU
+
+| o quê | onde na ficha | fonte |
+|---|---|---|
+| **Menu de opções**, aberto com SELECT no título: idioma, vidas, dificuldade e sound test | P2, e passou a ser a `linha` | `NOTAS.md:1332-1334`, `:1406-1410`, `:1603` |
+| **Vidas configuráveis**, com teto **infinito** e o decremento desligado, conferido em **13.400 quadros** | P2 | `NOTAS.md:1781-1785`, `:1836` |
+| **A história das quatro cruzes** — o menu deixava escolher nove, a foto com seis mostrou quatro, e o teto virou o 4 de fábrica | P2 | `NOTAS.md:1445-1453` |
+| **Uma ROM com os três idiomas**: o texto localizado vive no banco 5, e trocar de idioma é trocar o banco mapeado, por uma variável em `$0400` | P3 | `NOTAS.md:1370-1373` |
+| **Expansão de 128 para 256 KB**, com o banco fixo saindo do 7 para o 15, e o 15 como cópia do 7 | P3 | `NOTAS.md:1336-1345` |
+| **A ordem do espelho**: 15 ← 7 depois de todos os patches, ou o jogo roda código antigo sem erro visível | P3 | `NOTAS.md:1356-1359` |
+| **Blocos mortos do banco fixo em uso, com cada gancho afirmando os bytes originais antes de escrever** | P3 | `NOTAS.md:1382-1400` |
+| **Canário: 14 quadros, 0 pixel de diferença**, incluindo gameplay | P3 | `NOTAS.md:1347-1348` |
+| **Verificação final da v2.0**: 0 pixel na cena noturna e no boot nos três idiomas, guarda limpa com 38 reservas | P3 (implícito no fecho) | `NOTAS.md:1596-1603` |
+| **O boot japonês já imprime `SNK WAR GAME PROJECT / GUERRILLA WAR` em letra latina** — pedido do coordenador, e faltava na ficha anterior | P1 | `NOTAS.md:19` |
+| **A dedicatória lida na tela**, `A CHE GUEVARA / HÉROE DE LA REVOLUCIÓN CUBANA` | P1 | `NOTAS.md:204-208` |
+| **Um patch, três idiomas**, com a versão queimada na tela de créditos | fecho do P3 | `NOTAS.md:1554-1557`, `fonte/multi.py:28` |
+
+## O que SAIU
+
+| o quê | por quê |
+|---|---|
+| «Publicado em **inglês, espanhol e português**», que sugeria três entregas | agora é **uma ROM, um patch, três idiomas** — a frase antiga descrevia a v1.0 |
+| Qualquer menção a versões por idioma | o dono tirou as ROMs de idioma único do site |
+| O **logo do título em 224×56 px, 179 tiles, 0 de 61.440 pixels** | verdadeiro e forte, mas o P3 passou a carregar a expansão, o mapa de bancos, os ganchos e o canário; era o candidato mais dispensável, porque o canário de 14 quadros já prova a mesma disciplina com material novo |
+| «cada tela lida letra por letra no emulador nos três» como frase própria | absorvido no fecho, para abrir espaço |
+
+## Fatos da v2.0 que decidi NÃO usar
+
+1. **O menu de opções existe só na ROM de três idiomas.** O `NOTAS.md:1613-1638` avisa: «ao
+   anunciar ou publicar, dizer qual ROM tem o quê», porque as de idioma único não têm o
+   gancho do SELECT. Como o dono tirou essas do site, **a ressalva deixou de existir para o
+   leitor** — há uma ROM só, e ela tem o menu. Deixar a distinção na ficha seria descrever
+   material que ninguém pode baixar.
+2. **A reversão da dificuldade** (`:1468-1474`): `EASY/NORMAL/HARD` foi traduzido para
+   `FACIL/NORMAL/DURO` e desfeito, porque essas três entradas partilham a tabela dos ordinais
+   `1ST`..`9TH`, num campo de menu de depuração que não se conseguiu fotografar. É uma boa
+   história de método — «sem foto não se dá por pronto» — mas contá-la obriga a explicar o
+   que não foi feito, e a regra da casa proíbe.
+3. **As armadilhas do menu** (`:1416-1436`): o estado 21 correndo o handler 21 vezes por
+   quadro, a DMA da OAM apanhando o menu a meio, o `INX` mexendo no flag Z. Detalhe de
+   implementação sem consequência para quem joga.
+4. **`$28 = 6` com `$08 = $10`** e a regra de ler variável de partida só com o estado
+   confirmado (`:1459-1466`). Excelente disciplina de medição, mas é prova de bastidor: o que
+   o leitor sente é o número de vidas que ele escolheu chegar ao jogo.
+5. **Os 38 registros da guarda de bytes** como número solto. Entrou como *guarda limpa*
+   dentro do fecho, sem o algarismo, porque o P3 já tem quatro números carregando peso.
+6. **O sound test tocando a rotina errada e mexendo no CHR** (`:1504-1541`) e a constante de
+   endereço copiada à mão (`:1486-1503`). São defeitos introduzidos e corrigidos durante o
+   trabalho; a ficha cita o sound test como recurso, que é o que ele é para quem joga.
+
+## Continua valendo, sem mudança
+
+Não se afirma o que a versão americana tirou — segue sem medição em nota nenhuma, e a ficha
+diz apenas o que o cartucho japonês **tem**. O `SEE YOU NEXT PLAY` → `SEE YOU NEXT TIME`
+continua fora, pela contradição interna do arquivo (`:826-831` × `:1135-1136`).
+
+---
+
+## Revisão e assinatura da v2.0 — 09/09/2026
+
+Revisado pelo agente de **universo e gancho** (`anime_A`), mesmo critério de sempre: **o
+leitor**, nunca a procedência. Li as **dezessete** `linha` em coluna e a ficha nova por dentro,
+nos dois idiomas. A reescrita está boa e ganhou duas coisas que faltavam: o boot japonês que já
+imprime `GUERRILLA WAR` em letra latina — que passa a fazer o trabalho de juxtaposição **dentro
+do P1**, sem afirmar nada sobre a versão americana — e a história das quatro cruzes, que é a
+melhor prova de método da ficha porque termina numa decisão de produto («prometer o que a tela
+não mostra seria mentir»). **Fiz quatro edições.** Nenhuma reabre o que o fusor cercou.
+
+### 1. A dedicatória em português estava em ESPANHOL — a correção mais importante
+
+O P1 em português dizia que a dedicatória «aqui se lê `A CHE GUEVARA / HÉROE DE LA REVOLUCIÓN
+CUBANA`». Essa é a **linha espanhola**. A `NOTAS.md:207-209` dá as três:
+
+```
+EN   TO CHE GUEVARA / HERO OF THE CUBAN REVOLUTION
+ES   A CHE GUEVARA / HÉROE DE LA REVOLUCIÓN CUBANA
+PT   A CHE GUEVARA / HERÓI DA REVOLUÇÃO CUBANA
+```
+
+O inglês estava certo; o português pegou a linha de baixo. Corrigido para
+`A CHE GUEVARA / HERÓI DA REVOLUÇÃO CUBANA`.
+
+**Argumento de leitor:** é a frase mais carregada da ficha inteira, é uma **citação do que vai
+queimado na tela**, e agora que a ROM tem os três idiomas dentro o leitor brasileiro pode ligar
+o jogo e comparar em dez segundos. Errar a citação justamente na língua de quem lê a página é o
+tipo de defeito que custa a confiança que os outros dezesseis parágrafos construíram. A tabela
+do próprio `FUSAO3.md` («A dedicatória lida na tela») também traz a linha espanhola — a origem
+do erro está ali, e fica registrada para não voltar.
+
+### 2. «Aos quatro segundos» voltou, e não está medido
+
+Eu já havia tirado esta frase na revisão de 08/09 (secção anterior deste arquivo), e a
+reescrita a reintroduziu nos dois idiomas. O motivo não mudou: a `NOTAS.md:20` dá o retrato no
+**quadro ~430** e nenhum arquivo dá segundos; a aritmética do próprio `:477` (162 quadros ≈
+2,7 s) põe o quadro 430 perto de **sete** segundos. De volta a «logo depois do logo da SNK» /
+«right after the SNK logo», que é o que a tabela de boot sustenta.
+
+**Fica o registro para a próxima reescrita:** este número já caiu duas vezes. Se voltar, é
+porque alguém está lendo a ficha antiga em vez da fonte.
+
+### 3. A `linha`, pt e en — a única das dezessete que abria por ficha técnica
+
+- antes: «Um run-and-gun de 1988 com menu de opções: idioma, vidas e dificuldade. E na ROM
+  japonesa os dois jogadores chamam-se GUEVARA e CASTRO.»
+- agora: «Neste run-and-gun de 1988 os dois jogadores chamam-se **GUEVARA e CASTRO** — e um
+  menu novo no título escolhe idioma, vidas e dificuldade.»
+
+**Argumento de leitor, e ele só aparece lendo as dezessete em coluna:** todas as outras
+dezesseis dão ao leitor **algo que ele reconhece nas primeiras quatro palavras** — Goku e JoJo,
+Dragon Ball, Super Campeões, River City Ransom, Ultraman/Kamen Rider/Gundam, Zoffy e Ace, os
+Ultras, Mark Twain, um ovo meio cozido, dois amigos de Edo, Hikaru/Umi/Fuu, ninjas no Mega
+Drive, o Dr. Fred, um Stadium antes do Stadium, monstros-robô da Hudson. A do Guevara passou a
+abrir com **gênero, ano e lista de recursos**, que é a abertura de uma ficha técnica, e empurrou
+para uma segunda frase — introduzida por «E», que a lê como apêndice — o **único par de nomes
+próprios que nenhum outro cartucho do catálogo tem**. Trocar a ordem devolve o soco ao começo,
+mantém gênero e ano, e faz o menu chegar como **entrega** em vez de como especificação. Os dois
+fatos continuam lá; mudou só quem entra primeiro.
+
+Registro que a troca anterior — sair da posição na prateleira («o único do catálogo que teve
+versão ocidental oficial») — **estava certa e não se desfaz**: era o mesmo defeito que me fez
+reescrever a `linha` do Maniac Mansion. A fila melhorou nesse eixo; o que abriu foi este outro,
+e está fechado.
+
+### 4. A âncora do menu — resposta à pergunta do coordenador
+
+**Sim, precisa de âncora, e ela é barata.** O P2 dizia «**O jogo** ganhou um menu de opções»:
+uma afirmação sobre o jogo em geral, que fica falsa no dia em que alguém republicar as ROMs de
+idioma único, porque essas não têm o gancho do SELECT. Passei para «**Esta ROM** ganhou um menu
+de opções» / «**This ROM** gained an options menu».
+
+Custa uma palavra e resolve por construção: a frase deixa de ser sobre o jogo e passa a ser
+**sobre o artefato que a página entrega**, que é o que o fusor já tinha concluído em prosa («há
+uma ROM só, e ela tem o menu») sem pôr no texto. Assim a ficha continua correta sem ressalva,
+sem descrever material que ninguém pode baixar, e **sem depender de o catálogo não mudar** — se
+as outras voltarem ao site, esta frase não vira dívida.
+
+### O que quis mudar e decidi não mudar
+
+- **O P3 tem 238 palavras** e emenda o prólogo e a fonte de meia largura no fim de um parágrafo
+  que já carrega a ROM única, o banco 5, a expansão, a armadilha do espelho, os ganchos e o
+  canário. Pensei em mover o prólogo para o P2, onde ele é experiência e não engenharia. **Não
+  mexi**, e a razão é medida: fui contar os parágrafos das dezessete fichas, e a rodada 4 tem
+  quatro em 211, 217, 217 e 243 palavras. 238 deixou de ser fora da curva — é a régua nova da
+  casa, e mudar a régua numa ficha só faria dela a estranha.
+- **A camada do universo sobreviveu** e não precisou de socorro: o P1 mantém os dois jogadores
+  com nome, o retrato, a dedicatória citada e o prólogo de 1956 com Batista, os impostos, a
+  polícia secreta e o desembarque — e ganhou o boot latino. Conferi que **nenhuma formulação
+  sugere três entregas** nos dois idiomas: «É uma ROM só, com os três idiomas dentro» e «Um
+  patch, três idiomas» no fecho, e nenhuma ocorrência de «publicado em», de versão por idioma
+  ou de nome de tier.
+- **Não reabri** nada sobre o que a versão americana tirou, o `SEE YOU NEXT PLAY`, nem o logo do
+  título — a escolha editorial de tirá-lo do P3 está declarada e é defensável.
+
+---
+
+**Assinado.** Revisão de universo e gancho — agente `anime_A`, 09/09/2026.
+Quatro edições na ficha do Guevara; `python3 copy/rodada2/valida.py --r3
+copy/rodada3/consenso3.json` em **0 erros** depois delas. Isto é consenso.
