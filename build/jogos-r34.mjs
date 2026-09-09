@@ -184,7 +184,9 @@ export const MANIAC = {
   patch: { versoes: { en: null, pt: null, es: null }, rom: 'Maniac Mansion (Japan).nes', rom_md5: '—' },
   fotos: [
     { f: 'maniac/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
-      c: bi('O logo da Lucasfilm no cartucho da Jaleco.', 'The Lucasfilm logo on the Jaleco cartridge.', 'El logo de Lucasfilm en el cartucho de Jaleco.') },
+      c: bi('O logo da Lucasfilm no cartucho da Jaleco, com o subtítulo em letra latina.', 'The Lucasfilm logo on the Jaleco cartridge, with the subtitle in Latin script.', 'El logo de Lucasfilm en el cartucho de Jaleco, con el subtítulo en letra latina.') },
+    { f: 'maniac/03-creditos.png', t: bi('Créditos do patch', 'Patch credits', 'Créditos del parche'),
+      c: bi('A tela de abertura da tradução, antes do título.', 'The translation opening screen, before the title.', 'La pantalla de apertura de la traducción, antes del título.') },
     { f: 'maniac/02-selecao.png', t: bi('Escolha de personagem', 'Character select', 'Selección de personaje'),
       c: bi('A fala em hiragana, que é como este cartucho escreve.', 'The line in hiragana, which is how this cartridge writes.', 'La línea en hiragana, que es como escribe este cartucho.') }
   ]
