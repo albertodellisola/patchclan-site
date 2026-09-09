@@ -31,7 +31,11 @@ export const GUEVARA = {
   },
   numeros: [],
   grupos: [],
-  patch: { versoes: { en: { arquivo: 'guevara-3idiomas.ips' }, pt: { arquivo: 'guevara-3idiomas.ips' }, es: { arquivo: 'guevara-3idiomas.ips' } }, rom: 'Guevara (Japan).nes', rom_md5: '—' },
+  patch: { versoes: { en: { arquivo: 'guevara-3idiomas.ips' }, pt: { arquivo: 'guevara-3idiomas.ips' }, es: { arquivo: 'guevara-3idiomas.ips' } },
+           nota: bi('Os três idiomas estão dentro da mesma ROM: aperte SELECT na tela de título e escolha no menu de opções.',
+                    'All three languages live inside the same ROM: press SELECT on the title screen and pick one in the options menu.',
+                    'Los tres idiomas están dentro de la misma ROM: pulsa SELECT en la pantalla de título y elige en el menú de opciones.'),
+           rom: 'Guevara (Japan).nes', rom_md5: 'cd4bc85243c73274d74efb2f61b5a9c1' },
   fotos: [
     { f: 'guevara/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('A tela de título do cartucho japonês.', 'The Japanese cartridge title screen.', 'La pantalla de título del cartucho japonés.') },

@@ -121,6 +121,17 @@ projeto mostra a bandeira dos idiomas em que o patch **existe como arquivo**. Um
 só acende quando o `.ips` dele está na pasta — não há como o site anunciar uma tradução
 que não se baixa. Alfa sem patch não mostra bandeira nenhuma.
 
+**Um arquivo para vários idiomas vira UM cartão, não três.** Quando todas as versões de
+`patch.versoes` apontam para o mesmo `arquivo`, o bloco de download deixa de ser a grade
+de três cards — que seriam três vezes o mesmo link — e vira o cartão `.patch-uno`: as
+bandeiras dos idiomas lado a lado numa faixa, o nome do arquivo, o tamanho e **um botão
+só**. Quem decide é o dado (`arquivoUnico()` em `corpo.html`), não uma flag por jogo. É o
+caso do **Guevara**, cuja ROM carrega os três idiomas dentro e troca por menu.
+
+O texto explicando COMO se escolhe o idioma é do jogo, não do renderizador: campo
+opcional `patch.nota`, um `bi()`, mostrado dentro do cartão. No Guevara: SELECT na tela
+de título.
+
 **A home mostra quatro projetos, não todos.** `jogos.slice(0, 4)`, com "ver todos os N"
 logo abaixo — o N se conta sozinho. Com nove projetos a home continua do mesmo tamanho.
 
