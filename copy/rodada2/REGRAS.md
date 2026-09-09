@@ -100,3 +100,128 @@ Um JSON, lista de 10 objetos, **nesta ordem exata de slug**:
 | o site | `~/patchclan-site/build/jogo-*.mjs` e `jogos-novos.mjs` (já publicado = já conferido) |
 | briefing da rodada 1 | `~/patchclan-site/copy/BRIEFING.md` |
 | copy da rodada 1 | `~/patchclan-site/copy/consenso.json` |
+
+---
+
+# RODADA 3 — os três projetos novos (08/09/2026)
+
+O dono decidiu acrescentá-los ao catálogo, **com os tiers já definidos por ele**:
+
+| slug | jogo | sistema | tier declarado |
+|---|---|---|---|
+| `guevara` | Guevara (SNK, 1988) — no Ocidente saiu como *Guerrilla War* | Famicom/NES | **release** |
+| `gozonji` | Gozonji: Yaji Kita Chin Douchuu (HAL Laboratory, 1991) | Famicom | **beta** |
+| `magic-knight-rayearth-2` | Magic Knight Rayearth 2 | **Game Gear** | **beta** |
+
+Fontes: `~/guevara-hack/NOTAS.md` · `~/gozonji-hack/` (`RETOMAR.md`, `ANALISE.md`,
+`RELATORIO.md`, `notas/`) · `~/mkr2-hack/` (`RETOMAR.md`, `NOTAS.md`, `docs/`).
+
+## A regra que só vale para esta rodada
+
+**As traduções fecham amanhã (09/09/2026).** Portanto:
+
+**NENHUM NÚMERO DE PROGRESSO NO TEXTO.** Proibido: percentual traduzido, "97%",
+"1.467 de 1.884", "capítulo piloto", "roteiro sendo extraído", "x de y mensagens".
+Esses números mudam nas próximas horas e ficariam errados na página no dia seguinte.
+
+O que **é** estável e deve ser usado:
+- o jogo e o universo
+- as melhorias e o que o patch mudou na experiência
+- os fatos de MOTOR medidos, que não mudam com o progresso: a caixa de 16 caracteres
+  por 4 linhas do Gozonji, os 83 glifos da fonte latina, os 96 px por linha da fonte de
+  largura variável do MKR2, o mapper e o tamanho da ROM, o dicionário de 128 entradas
+- totais do jogo (o tamanho do roteiro como **fato do cartucho**, não como medida de
+  quanto já foi feito)
+
+**Escreva no presente do que estará publicado**, sem prometer data e sem dizer que algo
+está em curso. Se um fato depender de a tradução ter terminado, ou ele é do tier declarado
+acima, ou fica de fora.
+
+## Os ângulos que estes três abrem, e que os dez não tinham
+
+- **Guevara é o único do catálogo que TEVE versão ocidental oficial.** Saiu como
+  *Guerrilla War*, mudado — o Che Guevara virou um comandante sem nome. Não é um jogo que
+  nunca saiu; é um jogo que saiu diferente. Esse é o ângulo, e é forte. Confira na
+  `~/guevara-hack/NOTAS.md` o que a versão japonesa tem (a dedicatória, o retrato, o
+  prólogo) antes de escrever.
+- **Magic Knight Rayearth 2 é o único Game Gear** — todo o resto é Famicom, com um Super
+  Famicom. E é o único projeto com **fonte de largura variável**, que é trabalho que
+  nenhum outro do catálogo tem: o orçamento ali é coluna e pixel, não byte.
+- **Gozonji é comédia de estrada** baseada no *Tōkaidōchū Hizakurige*, clássico da
+  literatura japonesa — e é kana puro, sem kanji. O roteiro é de longe o maior do
+  catálogo inteiro.
+
+Todo o resto do REGRAS.md continua valendo: não dizer o que falta, não explicar o tier,
+sem hype, sem exclamação, `linha` <= 150, `fontes` com `arquivo:linha`.
+
+## Entrega da rodada 3
+
+Três slugs, nesta ordem: `guevara`, `gozonji`, `magic-knight-rayearth-2`.
+Mesmo formato JSON da rodada 2.
+
+## Gozonji renomeado (08/09/2026, decisão do dono)
+
+O jogo passa a se chamar **The Misadventures of Yaji & Kita** no site, **com o nome
+original sempre visível** — nunca escondido, nunca substituído.
+
+| campo da ficha | valor |
+|---|---|
+| `nome` | The Misadventures of Yaji &amp; Kita |
+| `subtitulo` | Gozonji: Yaji Kita Chin Douchuu |
+| `jp` | ご存知 弥次喜多珍道中 |
+
+O **slug continua `gozonji`** — é o identificador da URL e do nome do arquivo `.ips`.
+
+Na copy: chame o jogo pelo título novo e **cite o original ao menos uma vez no `resumo`**,
+de forma natural. O título novo é desta tradução; **não é o nome oficial** e a HAL nunca o
+usou — não afirme o contrário.
+
+Em HTML, o `&` vai como `&amp;`. Em linha de comando, o nome de arquivo precisa de aspas.
+
+---
+
+# RODADA 4 — os quatro projetos restantes (09/09/2026)
+
+Fecham o catálogo: são todos os projetos de romhack da casa que ainda não têm copy.
+
+| slug | jogo | sistema | pasta |
+|---|---|---|---|
+| `ninja-burai-densetsu` | Ninja Burai Densetsu (忍者武雷伝説), Sega, 1991 | **Mega Drive** | `~/burai-hack` |
+| `maniac-mansion` | Maniac Mansion (versão japonesa) | Famicom | `~/maniac-hack` |
+| `pocket-monsters-stadium` | Pocket Monsters Stadium, 1998 | **Nintendo 64** | `~/pms64-hack` |
+| `robot-poncots-64` | Robot Poncots 64, Hudson Soft | **Nintendo 64** | `~/robopon64-hack` |
+
+## O que estes quatro trazem de novo ao catálogo
+
+Até aqui o site é quase todo Famicom, com um Super Famicom e um Game Gear. Estes quatro
+abrem **três plataformas novas** e mudam a escala do trabalho:
+
+- **Ninja Burai Densetsu é o primeiro 16 bits de Mega Drive da casa** — e o primeiro
+  **68000**, não 6502 nem 65816. Isso é outra arquitetura de processador, não uma variação.
+- **Dois Nintendo 64**, que é a primeira vez que a casa mexe em 3D e em ROM de 32 MB.
+  O Robot Poncots 64 tem uma propriedade rara: **os 95 primeiros glifos do charset são o
+  ASCII inteiro**, em SJIS fullwidth — a tradução não precisa de hack de código, basta
+  reescrever as strings. Confirme e explore, é um contraste forte com os cartuchos de 8 bits,
+  em que desenhar o alfabeto foi metade do trabalho.
+- **Maniac Mansion** é o caso invertido do catálogo inteiro: um jogo **ocidental** que foi
+  para o Japão. Todos os outros são japoneses que nunca saíram. Verifique nas notas o que a
+  versão japonesa tem de diferente antes de escrever — é aí que está o ângulo.
+
+## A REGRA QUE MAIS IMPORTA NESTA RODADA
+
+**NENHUM NÚMERO DE PROGRESSO.** Ela já valeu na rodada 3 e aqui é ainda mais crítica: o
+**Pocket Monsters Stadium começou em 09/09/2026**, ou seja, hoje. Qualquer percentual,
+contagem de "x de y traduzidas", "alfa v0.1" ou "capítulo N" estará errado amanhã.
+
+Vale, como sempre: o jogo e o universo · as melhorias · os fatos de **motor e de cartucho**
+medidos (compressão, mapper, tamanho de ROM, formato de fonte, tabelas encontradas).
+
+Se um fato depender de a tradução ter avançado, fica de fora.
+
+## Ordem de entrega
+
+`ninja-burai-densetsu`, `maniac-mansion`, `pocket-monsters-stadium`, `robot-poncots-64`.
+
+Todo o resto do REGRAS.md continua valendo: não dizer o que falta, não explicar o tier
+(que o dono ainda vai declarar), sem hype, sem exclamação, `linha` <= 150, `fontes` com
+`arquivo:linha`, pt e en. O espanhol sai depois, em rodada própria.

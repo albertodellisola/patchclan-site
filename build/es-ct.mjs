@@ -11,7 +11,7 @@ export const ES_CT = {
       '<b>Contraseña latinizada y aceptada.</b> La rejilla pasó a letras latinas mayúsculas, minúsculas y cifras, y la contraseña generada pasa por la rutina de validación original del juego.'
     ]},
     { titulo: 'Un guardado que el juego no tenía', itens: [
-      'El original de 1988 guarda el progreso <b>solo por contraseña</b>. Ahora el juego <b>graba con pila</b>: guarda al abrir el <code>SCORE MEMO</code> del entrenador y carga en el <code>CONTINUE</code> de la pantalla de título.',
+      'El original de 1988 guarda el progreso <b>solo por contraseña</b>. Ahora el juego <b>graba con pila</b>: guarda al elegir <code>GRABAR</code> en el menú del entrenador y carga en el <code>CONTINUE</code> de la pantalla de título.',
       '<b>Sin inventar serialización.</b> El estado guardado es exactamente lo que la contraseña ya llevaba — los mismos 24 bytes — probado contra dos rutinas independientes del propio juego. La integridad usa <b>la misma rutina que valida una contraseña escrita</b>.',
       'Son <b>97 bytes</b> de código nuevo en seis sitios. Probado apagando y encendiendo de verdad, con dos procesos de emulador y un <code>.sav</code> real de por medio: <b>0 de 4.096 bytes</b> de nametable distintos tras el ciclo. Negativos cubiertos: sin guardado, guardado corrupto en 1 bit, pila gastada, y empezar partida nueva sin borrar lo guardado.'
     ]},
@@ -27,7 +27,7 @@ export const ES_CT = {
   fotos: [
     { t: 'Pantalla de título', c: 'El logo redibujado en 122 tiles, con el balón nuevo y el avión en la esquina.' },
     { t: 'Narración', c: 'Cuatro líneas donde cabían dos: el código de control nuevo dobla el ancho útil.' },
-    { t: 'Aula', c: 'El menú del entrenador — <code>SCOUT</code>, <code>MEMO</code>, <code>PLAY</code> — y la segunda fuente del juego.' },
+    { t: 'Aula', c: 'El menú del entrenador — <code>DATOS</code>, <code>GRABAR</code>, <code>JUGAR</code> — y la segunda fuente del juego.' },
     { t: 'Ficha del jugador', c: 'Level, Max Guts y los seis atributos, con la lista de la plantilla al lado.' },
     { t: 'En juego', c: 'El menú de acción durante el partido, con el Guts bajando en cada jugada.' },
     { t: 'Contraseña', c: 'La rejilla latinizada — y la contraseña generada pasa la validación original del juego.' },

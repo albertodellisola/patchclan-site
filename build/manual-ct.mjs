@@ -23,13 +23,13 @@ export const MANUAL_CT = {
       paras: {
         pt: ['<b>Fora de campo</b> o jogo é uma aventura: você anda por cenários, conversa e procura gente. É assim que Misaki é encontrado em Paris, com os comandos <code>Move</code>, <code>Ask</code>, <code>Look</code> e <code>Quit</code>.',
              '<b>Em campo</b> o jogo vira outra coisa. Você não controla o chute: escolhe a ação e vê a animação decidir. É futebol por menu, e foi este jogo que o inventou.',
-             'Na sala do técnico você escolhe <code>SCOUT</code> para saber do adversário, <code>MEMO</code> para anotar a senha e <code>PLAY</code> para começar a partida.'],
+             'Na sala do técnico você escolhe <code>Info</code> para saber do adversário, <code>Salvar</code> para gravar o progresso e receber a senha, e <code>Jogar</code> para começar a partida.'],
         en: ['<b>Off the pitch</b> the game is an adventure: you walk around locations, talk and look for people. That is how Misaki is found in Paris, with the commands <code>Move</code>, <code>Ask</code>, <code>Look</code> and <code>Quit</code>.',
              '<b>On the pitch</b> the game becomes something else. You do not control the shot: you pick the action and watch the animation decide. This is menu football, and this is the game that invented it.',
-             'In the coach’s room you pick <code>SCOUT</code> to hear about the opponent, <code>MEMO</code> to write down your password, and <code>PLAY</code> to start the match.'],
+             'In the coach’s room you pick <code>SCOUT</code> to hear about the opponent, <code>SAVE</code> to store your progress and read your password, and <code>PLAY</code> to start the match.'],
         es: ['<b>Fuera del campo</b> el juego es una aventura: recorres escenarios, hablas y buscas gente. Así se encuentra a Misaki en París, con los comandos <code>Move</code>, <code>Ask</code>, <code>Look</code> y <code>Quit</code>.',
              '<b>En el campo</b> el juego se convierte en otra cosa. No controlas el disparo: eliges la acción y ves cómo la animación decide. Es fútbol por menú, y fue este juego quien lo inventó.',
-             'En la sala del entrenador eliges <code>SCOUT</code> para saber del rival, <code>MEMO</code> para anotar la contraseña y <code>PLAY</code> para empezar el partido.']
+             'En la sala del entrenador eliges <code>DATOS</code> para saber del rival, <code>GRABAR</code> para guardar el progreso y recibir la contraseña, y <code>JUGAR</code> para empezar el partido.']
       }},
     { id: 'match', titulo: { pt: 'Durante a partida', en: 'During a match', es: 'Durante el partido' }, foto: 'ct/05-jogo.png',
       paras: {
@@ -88,13 +88,13 @@ export const MANUAL_CT = {
       ]},
     { id: 'save', titulo: { pt: 'Guardar o progresso', en: 'Keeping your progress', es: 'Guardar el progreso' }, foto: 'ct/07-memo.png',
       paras: {
-        pt: ['O jogo de 1988 guarda progresso por <b>senha</b>. Abra o <code>SCORE MEMO</code> na sala do técnico e a Sanae dita a sua — a grade agora é de letras latinas, maiúsculas, minúsculas e algarismos, e a senha gerada passa pela rotina de validação original do jogo.',
+        pt: ['O jogo de 1988 guarda progresso por <b>senha</b>. Abra <code>Salvar</code> na sala do técnico e a Sanae dita a sua — a grade agora é de letras latinas, maiúsculas, minúsculas e algarismos, e a senha gerada passa pela rotina de validação original do jogo.',
              '<b>Neste patch o jogo também grava em bateria.</b> Ele salva no mesmo instante em que mostra a senha, e carrega no <code>CONTINUE</code> da tela de título. Não é um save novo: é exatamente o que a senha já guardava, escrito na memória do cartucho.',
              'Com um save presente, <b>segurar B no <code>CONTINUE</code></b> abre a tela de senha mesmo assim. <code>KICK OFF</code> começa jogo novo e <b>não apaga</b> o que estava salvo.']
-      , en: ['The 1988 game keeps progress by <b>password</b>. Open <code>SCORE MEMO</code> in the coach’s room and Sanae reads yours out — the grid is now Latin capitals, lower case and digits, and the generated password passes the game’s own validation routine.',
+      , en: ['The 1988 game keeps progress by <b>password</b>. Open <code>SAVE</code> in the coach’s room and Sanae reads yours out — the grid is now Latin capitals, lower case and digits, and the generated password passes the game’s own validation routine.',
              '<b>In this patch the game also writes to battery.</b> It saves at the very moment it shows you the password, and loads on <code>CONTINUE</code> at the title screen. This is not a new save: it is exactly what the password already carried, written into the cartridge’s memory.',
              'With a save present, <b>holding B on <code>CONTINUE</code></b> opens the password screen anyway. <code>KICK OFF</code> starts a new game and <b>does not erase</b> what was saved.']
-      , es: ['El juego de 1988 guarda el progreso por <b>contraseña</b>. Abre <code>SCORE MEMO</code> en la sala del entrenador y Sanae te dicta la tuya — la rejilla ahora es de letras latinas, mayúsculas, minúsculas y cifras, y la contraseña generada pasa por la rutina de validación original del juego.',
+      , es: ['El juego de 1988 guarda el progreso por <b>contraseña</b>. Abre <code>GRABAR</code> en la sala del entrenador y Sanae te dicta la tuya — la rejilla ahora es de letras latinas, mayúsculas, minúsculas y cifras, y la contraseña generada pasa por la rutina de validación original del juego.',
              '<b>En este parche el juego también graba con pila.</b> Guarda en el mismo instante en que muestra la contraseña, y carga en el <code>CONTINUE</code> de la pantalla de título. No es un guardado nuevo: es exactamente lo que la contraseña ya llevaba, escrito en la memoria del cartucho.',
              'Con una partida guardada, <b>mantener B en <code>CONTINUE</code></b> abre la pantalla de contraseña igualmente. <code>KICK OFF</code> empieza partida nueva y <b>no borra</b> lo guardado.'] }},
     { id: 'options', titulo: { pt: 'Opções', en: 'Options', es: 'Opciones' },

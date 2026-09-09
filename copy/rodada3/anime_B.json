@@ -1,0 +1,105 @@
+[
+  {
+    "slug": "guevara",
+    "linha": {
+      "pt": "Você talvez já tenha jogado este: no Ocidente ele saiu como <i>Guerrilla War</i>. O que não saiu junto foi o Che Guevara.",
+      "en": "You may have played this one already: in the West it shipped as <i>Guerrilla War</i>. What did not ship with it was Che Guevara."
+    },
+    "resumo": {
+      "pt": [
+        "Este é o único cartucho do catálogo que teve versão ocidental oficial. A SNK lançou-o em 1988, e lá fora ele virou <i>Guerrilla War</i>: dois soldados, uma ilha genérica, um ditador sem nome. A ROM japonesa é outro jogo. Ela abre com o <b>retrato do Che</b> e a dedicatória <i>dedicado a Che Guevara, herói da revolução cubana</i>, segue para um prólogo sobre 1956 e chama os dois jogadores pelo nome: <b>GUEVARA</b> e <b>CASTRO</b>. Quem jogou a versão americana jogou isto com o assunto raspado.",
+        "Traduzir o prólogo obrigou a mexer no motor. Cada caractere japonês ocupava um bloco de 2×2 tiles, doze por linha, e a tela tem <b>9 linhas</b>; em largura cheia o texto pedia vinte e uma. A rotina passou a desenhar <b>um tile por caractere</b>, com uma fonte latina de <b>8×16 de meia largura</b>, e a caixa foi alargada para <b>28 colunas</b> — que é o que preserva a altura de 16 px, o que dá impacto à tela, sem cortar sessenta por cento do texto. O logo do título foi redesenhado em <b>224×56</b>, mantendo a proporção da arte de origem.",
+        "Duas decisões editoriais valem por si. O original situa Cuba na <b>América do Sul</b>, e a tradução corrige para a América Central. E o japonês trata o Che por <i>shōsa</i>, literalmente <i>major</i>; a patente que Castro lhe deu em 1957 foi <b>comandante</b>, que é como o mundo o conhece, e é o que a narração do final usa. A conferência foi feita tela a tela, lidas letra por letra no emulador e comparadas pixel a pixel com a ROM original — o logo da SNK sai com <b>0 pixel de diferença</b>."
+      ],
+      "en": [
+        "This is the only cartridge in the catalogue that got an official Western release. SNK put it out in 1988, and abroad it became <i>Guerrilla War</i>: two soldiers, a generic island, a nameless dictator. The Japanese ROM is a different game. It opens on a <b>portrait of Che</b> and the dedication <i>to Che Guevara, hero of the Cuban revolution</i>, moves into a prologue about 1956, and calls its two players by name: <b>GUEVARA</b> and <b>CASTRO</b>. Anyone who played the American version played this with the subject scraped off.",
+        "Translating that prologue meant going into the engine. Each Japanese character took a 2×2 block of tiles, twelve to a line, and the screen holds <b>9 lines</b>; at full width the English text wanted twenty-one. The routine now draws <b>one tile per character</b>, with a <b>half-width 8×16</b> Latin font, and the box was widened to <b>28 columns</b> — which keeps the 16 px height that gives the screen its weight, instead of cutting sixty per cent of the text. The title logo was redrawn at <b>224×56</b>, holding the proportions of the source art.",
+        "Two editorial calls stand on their own. The original places Cuba in <b>South America</b>, and the translation moves it to Central America. And the Japanese calls Che <i>shōsa</i>, literally <i>major</i>; the rank Castro gave him in 1957 was <b>comandante</b>, which is how the world knows him, and that is what the closing narration uses. Verification went screen by screen, read letter by letter on the emulator and compared pixel by pixel against the original ROM — the SNK logo comes out at <b>0 pixels of difference</b>."
+      ]
+    },
+    "fontes": [
+      "~/guevara-hack/NOTAS.md:3-4 — SNK 1988, MMC1, PRG 128 KB, CHR 128 KB; no Ocidente saiu como Guerrilla War",
+      "~/guevara-hack/NOTAS.md:20-21 — retrato do Che + dedicatória (~q430); prólogo de 9 linhas (~q700)",
+      "~/guevara-hack/NOTAS.md:155 — キューバ革命の英雄 / チェ・ゲバラに捧ぐ; :204-206 — 'dedicado a Che Guevara, herói da revolução cubana'",
+      "~/guevara-hack/NOTAS.md:172 — os dois jogadores: GUEVARA / CASTRO (nomes, não traduzir)",
+      "~/guevara-hack/NOTAS.md:156 — prólogo de 1956, 9 linhas",
+      "~/guevara-hack/NOTAS.md:70-79 — a fonte empacota 2 glifos por tile; caractere = grupo de 2×2 tiles",
+      "~/guevara-hack/NOTAS.md:80-93 — orçamento medido: 16×16 pediria 20-21 linhas numa tela de 9; 8×16 em 28 colunas cabe",
+      "~/guevara-hack/NOTAS.md:194 — decisão: caixa do prólogo em 28 colunas, fonte 8×16 de meia largura",
+      "~/guevara-hack/NOTAS.md:123 — a rotina do prólogo mudada de 2 tiles/caractere para 1",
+      "~/guevara-hack/NOTAS.md:73-77 e :193 — logo do título redesenhado em 224×56, proporção mantida",
+      "~/guevara-hack/NOTAS.md:195 — geografia: Cuba na América Central (o original diz América do Sul, que é erro)",
+      "~/guevara-hack/NOTAS.md:962-964 — 少佐/shōsa é 'major'; a patente de 1957 foi comandante, e é o que a narração usa",
+      "~/guevara-hack/NOTAS.md:996-1005 — 11 telas fotografadas e lidas letra por letra; logo da SNK com 0 pixel de diferença",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:110 — tier declarado: release"
+    ]
+  },
+  {
+    "slug": "gozonji",
+    "linha": {
+      "pt": "<i>The Misadventures of Yaji &amp; Kita</i>: dois amigos caem na estrada rumo a Ise e não chega uma parada sem confusão.",
+      "en": "<i>The Misadventures of Yaji &amp; Kita</i>: two friends hit the road for Ise, and not one stop along it goes to plan."
+    },
+    "resumo": {
+      "pt": [
+        "<i>The Misadventures of Yaji &amp; Kita</i> — no Japão, <i>Gozonji: Yaji Kita Chin Douchuu</i> — é uma comédia de estrada da HAL Laboratory, de 1991. Yaji e Kita são dupla clássica da literatura japonesa, do <i>Tōkaidōchū Hizakurige</i>, e por lá todo mundo os conhece desde a escola; aqui ninguém precisa ser apresentado a eles, porque o formato se entende sozinho. Dois amigos, uma peregrinação até o santuário de Ise, e as <b>53 estações do Tōkaidō</b> entre eles e o destino. Não há capítulos: há a estrada, e o que dá errado em cada parada dela.",
+        "Para o leitor que chega sem conhecer ninguém, esta versão abre com um <b>prólogo de telas que não existem no original</b>, apresentando Yaji, Kita e Oharu — três delas com o retrato do personagem, montado com tiles de fundo e feições em sprite, sem gastar um tile novo. A comédia é em dialeto de Edo, e é onde a tradução literal mataria a graça: <code>NEW TRIP</code> abre o menu, e o texto foi escrito para soar como piada, não como legenda.",
+        "O trabalho de motor foi grande porque o roteiro é <b>o maior de todo o catálogo</b>: <b>3.581 falas</b> e <b>93.640 bytes</b> de texto, tudo em kana puro, sem um kanji. O inglês não caberia na ROM como ela veio, e o caminho de expansão usual estava fechado — o bit que serviria de endereço já é linha da CHR-ROM, e as 32 páginas gráficas são todas distintas. A saída foi converter o cartucho de <b>MMC1 para MMC3, em 512 KB</b>, o que só foi viável porque o jogo escreve em <b>exatamente cinco endereços de registrador</b> na partida inteira. A conversão é conferida por comportamento: <b>19 de 19 quadros idênticos</b> à ROM japonesa original."
+      ],
+      "en": [
+        "<i>The Misadventures of Yaji &amp; Kita</i> — known in Japan as <i>Gozonji: Yaji Kita Chin Douchuu</i> — is a 1991 road comedy from HAL Laboratory. Yaji and Kita are a classic double act of Japanese literature, out of the <i>Tōkaidōchū Hizakurige</i>, and every Japanese reader has known them since school; here they need no introduction, because the format explains itself. Two friends, a pilgrimage to the shrine at Ise, and the <b>53 stations of the Tōkaidō</b> between them and the end of it. There are no chapters: there is the road, and whatever goes wrong at each stop on it.",
+        "For the reader arriving without knowing anyone, this version opens on a <b>prologue of screens that do not exist in the original</b>, introducing Yaji, Kita and Oharu — three of them carrying the character's portrait, built from background tiles with the features as sprites, without using up a single new tile. The comedy runs in Edo dialect, which is exactly where a literal translation would kill the joke: <code>NEW TRIP</code> opens the menu, and the text was written to land as a joke rather than as a subtitle.",
+        "The engine work was heavy because this script is <b>the largest in the whole catalogue</b>: <b>3,581 lines</b> and <b>93,640 bytes</b> of text, all in pure kana, without a single kanji. English would not fit the ROM as it shipped, and the usual expansion route was closed — the bit that would carry the address is already a line of the CHR-ROM, and all 32 graphics pages are distinct. The way through was converting the cartridge from <b>MMC1 to MMC3, at 512 KB</b>, which was only viable because the game writes to <b>exactly five register addresses</b> across an entire session. The conversion is checked by behaviour: <b>19 of 19 frames identical</b> to the original Japanese ROM."
+      ]
+    },
+    "fontes": [
+      "~/gozonji-hack/RETOMAR.md:3-5 — MMC1, PRG 256 KB, CHR-ROM 128 KB; HAL Laboratory / HYPERWARE, 1991; comédia de estrada baseada no Tōkaidōchū Hizakurige",
+      "~/gozonji-hack/ANALISE.md:64 — o enredo: Yaji e Kita na peregrinação a Ise",
+      "~/gozonji-hack/RETOMAR.md:32-33 — o jogo não tem capítulos: é a jornada pelas 53 estações do Tōkaidō",
+      "~/gozonji-hack/RETOMAR.md:150-155 — prólogo com retratos de Yaji, Kita e Oharu: forma em tiles de fundo, feições em sprite, sem tile novo",
+      "~/gozonji-hack/ANALISE.md:70 — comédia em dialeto de Edo; tradução literal mata a graça",
+      "~/gozonji-hack/RELATORIO.md:11 — menu inicial em inglês: NEW TRIP / CONTINUE",
+      "~/gozonji-hack/RETOMAR.md:127 e ~/gozonji-hack/RELATORIO.md:68 — roteiro do jogo: 3.581 falas, 93.640 B (total do cartucho)",
+      "~/gozonji-hack/RETOMAR.md:12 — kana puro, sem kanji (varridas as 32 páginas: só existe uma fonte)",
+      "~/gozonji-hack/RELATORIO.md:28-30 — SUROM impossível: o bit 4 do reg de CHR já é a linha A16 da CHR-ROM, e as 32 páginas são distintas",
+      "~/gozonji-hack/RELATORIO.md:3 e :32-35 — MMC1 → MMC3, 512 KB; viável porque o jogo escreve em exatamente 5 endereços de registrador",
+      "~/gozonji-hack/RELATORIO.md:38-40 — prova: 19 de 19 quadros idênticos entre a conversão e a ROM original",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:111 — tier declarado: beta",
+      "coordenação, 08/09/2026 — nome no site: The Misadventures of Yaji & Kita; subtítulo com o original romanizado"
+    ]
+  },
+  {
+    "slug": "magic-knight-rayearth-2",
+    "linha": {
+      "pt": "Do CLAMP, e o único Game Gear da casa: três colegiais viram cavaleiras mágicas, e este é o jogo de treiná-las até lá.",
+      "en": "From CLAMP, and the only Game Gear title in the house: three schoolgirls become Magic Knights, and this is the game of training them."
+    },
+    "resumo": {
+      "pt": [
+        "<i>Magic Knight Rayearth</i> saiu do <b>CLAMP</b>, o grupo de autoras de mangá, e a história é a de três colegiais chamadas a outro mundo — Cefiro — para salvá-lo. Este segundo jogo, de Game Gear, é o <i>Making of Magic Knight</i>: em vez de percorrer a aventura, você <b>forma as três</b>, atributo por atributo, até o dia em que cada uma se torna cavaleira mágica — e o final que cada uma alcança depende de como foi criada. É um jogo shoujo, escrito para criança japonesa ler: <b>não tem um único kanji</b>, é kana do começo ao fim.",
+        "É também o único cartucho de <b>Game Gear</b> do catálogo, e o único com <b>fonte de largura variável</b> — ali o orçamento não se conta em bytes, conta-se em coluna e em pixel. A caixa de diálogo tem <b>12 caracteres</b>, o que é apertado a ponto de decidir a tradução inteira: com fonte de largura fixa, <code>MAGIC KNIGHTS</code> não cabe e vira <code>MG KNIGHTS</code>. A largura variável desfaz isso — uma fonte latina de <b>5×7</b> desenhada para o jogo, avanço médio de 6 pixels contra 8, e <b>96 pixels por linha</b> medidos em pixel e não em casa de caractere.",
+        "A rotina saiu barata por um detalhe do hardware que só se enxerga medindo: a fonte não é 4bpp de verdade — o fundo é uma cor, a tinta é outra, e os outros dois planos são sempre zero. Logo <b>o plano 0 é a própria máscara da tinta</b>, oito bytes por glifo, e compor um glifo deslocado vira um deslocamento de um bit por linha em vez de uma operação de quatro planos. São <b>411 bytes</b> de Z80 no banco que fica fixo enquanto o texto roda, escritos com um montador feito para este projeto."
+      ],
+      "en": [
+        "<i>Magic Knight Rayearth</i> came from <b>CLAMP</b>, the manga authors' collective, and the story is three schoolgirls summoned to another world — Cefiro — to save it. This second game, on Game Gear, is the <i>Making of Magic Knight</i>: instead of playing through the adventure, you <b>raise the three of them</b>, stat by stat, up to the day each becomes a Magic Knight — and the ending each one reaches depends on how she was brought up. It is a shoujo game, written for Japanese children to read: it <b>holds not a single kanji</b>, only kana from beginning to end.",
+        "It is also the only <b>Game Gear</b> cartridge in the catalogue, and the only one with a <b>variable-width font</b> — there the budget is not counted in bytes, it is counted in columns and pixels. The dialogue box holds <b>12 characters</b>, tight enough to decide the whole translation: with a fixed-width font, <code>MAGIC KNIGHTS</code> does not fit and becomes <code>MG KNIGHTS</code>. Variable width undoes that — a <b>5×7</b> Latin font drawn for the game, averaging 6 pixels of advance against 8, and <b>96 pixels per line</b> measured in pixels rather than in character cells.",
+        "The routine came cheap because of a hardware detail you only see by measuring: the font is not truly 4bpp — background is one colour, ink is another, and the other two planes are always zero. So <b>plane 0 is the ink mask itself</b>, eight bytes per glyph, and composing a shifted glyph becomes a one-bit shift per row instead of a four-plane operation. It is <b>411 bytes</b> of Z80 in the bank that stays fixed while text runs, written with an assembler built for this project."
+      ]
+    },
+    "fontes": [
+      "~/mkr2-hack/NOTAS.md:1 — Magic Knight Rayearth 2 — Making of Magic Knight (Game Gear, SEGA 1995)",
+      "~/mkr2-hack/NOTAS.md:234 — crédito na tela de título: (C) CLAMP / KODANSHA",
+      "~/mkr2-hack/roteiro/en/0130.py:34-38 e 0290.py — Hikaru, Umi, Fuu; Cefiro; 'RAISE THEIR SKILLS'; finais distintos por personagem",
+      "~/mkr2-hack/roteiro/en/0290.py:45 — 'NO STAT CAN GO ABOVE 80' / 'BECOMING A MAGIC KNIGHT IS HARD LIKE THAT'",
+      "~/mkr2-hack/NOTAS.md:67 — o jogo não tem um único kanji; 100% kana, jogo shoujo",
+      "~/mkr2-hack/NOTAS.md:161 — caixa de diálogo: 12 caracteres (colunas de tile 6-17)",
+      "~/mkr2-hack/NOTAS.md:165-166 e :470 — MG KNIGHTS por MAGIC KNIGHTS não caber em 12 colunas, desfeito pela VWF",
+      "~/mkr2-hack/NOTAS.md:454 — fonte latina 5×7, 59 glifos, avanço médio 6 px contra 8",
+      "~/mkr2-hack/RETOMAR.md:26 — o orçamento é coluna/pixel, não byte; com a VWF, 96 px por linha",
+      "~/mkr2-hack/NOTAS.md:447-449 — a fonte não é 4bpp de verdade; o plano 0 é a máscara da tinta, 8 bytes por glifo",
+      "~/mkr2-hack/NOTAS.md:455 — rotina VWF de 411 bytes em $BD52, banco 12 (fixo no slot 2 durante o texto)",
+      "~/mkr2-hack/RETOMAR.md:12 — scripts/asm.py, montador Z80 escrito para este projeto",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:112 — tier declarado: beta"
+    ]
+  }
+]

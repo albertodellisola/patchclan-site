@@ -1,0 +1,106 @@
+[
+  {
+    "slug": "guevara",
+    "linha": {
+      "pt": "A revolução cubana como run-and-gun da SNK. O retrato do Che, a dedicatória e o prólogo, em inglês, espanhol e português.",
+      "en": "The Cuban revolution as an SNK run-and-gun. The Che portrait, the dedication and the prologue, in English, Spanish and Portuguese."
+    },
+    "resumo": {
+      "pt": [
+        "SNK, 1988: guerrilha em Cuba, dois jogadores ao mesmo tempo, um dedo no gatilho e outro na granada. No Ocidente ele saiu com outro nome — <i>Guerrilla War</i> — e é o único do catálogo que teve versão ocidental oficial. O que nunca atravessou foi a versão japonesa, e é dela que este patch trata.",
+        "Ela abre com o <b>retrato do Che Guevara</b> e uma dedicatória: <i>キューバ革命の英雄 / チェ・ゲバラに捧ぐ</i> — “ao herói da revolução cubana”. Depois vem o prólogo, que conta o Batista de 1956, os impostos, a polícia secreta, o desembarque com o Castro e o exército já à espera. Tudo isso, mais as <b>nove aberturas de fase</b>, a tela de CONGRATULATION e as cinco linhas de narração do final sobre o Che e o Castro, agora se lê em <b>inglês, espanhol e português</b>, e cada tela foi fotografada no emulador e lida letra por letra nos três.",
+        "O prólogo é onde estava o atrito. A fonte japonesa <b>empacota dois glifos por tile</b>, e a tela tem nove linhas de texto: em letra latina de largura cheia o mesmo prólogo pediria <b>vinte e uma</b>, e mais da metade do que está escrito ficaria de fora. A saída foi desenhar uma <b>fonte latina de meia largura, 8×16</b>, e alargar a caixa de 24 para <b>28 colunas</b> — os três idiomas fecham em oito linhas, com o texto inteiro. E um erro do original ficou para trás: o japonês põe Cuba na América do Sul, e a tradução diz <b>América Central</b>."
+      ],
+      "en": [
+        "SNK, 1988: guerrilla warfare in Cuba, two players at once, one finger on the trigger and one on the grenade. In the West it shipped under another name — <i>Guerrilla War</i> — and it is the only game in this catalogue that got an official Western release. What never crossed over was the Japanese version, and that is the one this patch is about.",
+        "It opens on a <b>portrait of Che Guevara</b> and a dedication: <i>キューバ革命の英雄 / チェ・ゲバラに捧ぐ</i> — “to the hero of the Cuban revolution”. Then comes the prologue: Batista in 1956, the taxes, the secret police, the landing with Castro, and the army already waiting. All of that, plus the <b>nine stage openings</b>, the CONGRATULATION screen and the five lines of closing narration about Che and Castro, now reads in <b>English, Spanish and Portuguese</b>, and every screen was photographed in the emulator and read letter by letter in all three.",
+        "The prologue is where the friction sat. The Japanese font <b>packs two glyphs into one tile</b>, and the screen holds nine lines of text: in full-width Latin the same prologue would ask for <b>twenty-one</b>, and more than half of what is written would be left out. The answer was drawing a <b>half-width 8×16 Latin font</b> and widening the box from 24 to <b>28 columns</b> — all three languages close in eight lines, with the text intact. And one error of the original stayed behind: the Japanese puts Cuba in South America, and the translation says <b>Central America</b>."
+      ]
+    },
+    "fontes": [
+      "~/guevara-hack/NOTAS.md:3-4 — SNK 1988, mapper 1 (MMC1), PRG 128 KB; no Ocidente saiu como Guerrilla War",
+      "~/guevara-hack/NOTAS.md:20 — no quadro ~430 a ROM japonesa mostra o retrato do Che + dedicatória em japonês",
+      "~/guevara-hack/NOTAS.md:155 — dedicatória japonesa: キューバ革命の英雄 / チェ・ゲバラに捧ぐ",
+      "~/guevara-hack/fonte/textos.py:8-17 — o prólogo nos três idiomas: Batista 1956, impostos, polícia secreta, o desembarque com Castro, o exército à espera",
+      "~/guevara-hack/NOTAS.md:859-864 — as 9 aberturas de fase, a tela CONGRATULATION e a narração do final traduzidas",
+      "~/guevara-hack/NOTAS.md:881-882 — a narração do final são 5 linhas sobre o Che e o Castro",
+      "~/guevara-hack/NOTAS.md:1113-1120 — verificação dos três idiomas: cada tela fotografada e lida letra por letra; 0 pixel de diferença contra a ROM original no logo da SNK e na cena noturna",
+      "~/guevara-hack/NOTAS.md:62-72 — a fonte empacota dois glifos por tile; área de texto de 9 linhas",
+      "~/guevara-hack/NOTAS.md:80-92 — largura cheia pediria 20-21 linhas numa tela de 9 e cortaria ~60% do texto; 8×16 de meia largura em 28 colunas fecha em 8 nos três idiomas",
+      "~/guevara-hack/NOTAS.md:194 — caixa do prólogo alargada de 24 para 28 colunas (cols 2-29), fonte 8×16 de meia largura",
+      "~/guevara-hack/NOTAS.md:195 — geografia: Cuba na América Central; o original diz América do Sul, que é erro",
+      "~/guevara-hack/fonte/textos.py:4-5 — o mesmo, no cabeçalho do arquivo de textos: CENTRAL AMERICA nos três idiomas",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:113 — tier declarado pelo dono: release"
+    ]
+  },
+  {
+    "slug": "gozonji",
+    "linha": {
+      "pt": "Comédia de estrada da HAL pelas 53 estações do Tōkaidō. Kana puro, sem um kanji — e o dicionário do motor refeito em inglês.",
+      "en": "HAL's road comedy along the 53 stations of the Tōkaidō. Pure kana, not one kanji — and the engine's dictionary rebuilt in English."
+    },
+    "resumo": {
+      "pt": [
+        "<b>The Misadventures of Yaji &amp; Kita</b> — no cartucho, <i>Gozonji: Yaji Kita Chin Douchuu</i> — é a comédia de estrada da HAL Laboratory, 1991, tirada do <i>Tōkaidōchū Hizakurige</i>, o clássico cômico de Jippensha Ikku. Dois vadios de Edo descem a estrada do Tōkaidō e arrumam confusão nas 53 estações. O nome em inglês é a escolha desta tradução: o jogo nunca teve um. Na tela de título, redesenhada, o subtítulo agora diz <i>THE UNRULY TOWNSMAN SLASHES HIS WAY THROUGH TOKAIDO'S 53 STATIONS</i>.",
+        "O motor é de kana puro — varridas as 32 páginas de gráfico, existe <b>uma única fonte, e nenhum kanji</b>. A caixa mede <b>16 caracteres por 4 linhas</b>, e cada linha de texto ocupa duas fileiras de tiles, porque as marcas ゛ e ゜ moram na fileira de cima. A fonte latina são <b>83 glifos</b> (maiúsculas, minúsculas, dígitos e pontuação) gravados sobre os slots de kana, com os descendentes de <code>p g q y j</code> redesenhados na oitava linha do tile, que estava livre o tempo todo. E o motor tem um <b>dicionário de 128 entradas</b>: todo código de <code>$80</code> para cima é uma palavra inteira. Essas 128 casas guardavam palavras japonesas; foram refeitas a partir do próprio corpus inglês, então a mesma compressão que servia ao japonês agora serve ao inglês.",
+        "O cartucho não comportava o roteiro traduzido — é o maior do catálogo —, e a ROM original tinha pouco mais de <b>dois mil bytes</b> livres. Em vez de espremer o texto, o cartucho foi <b>refeito: de MMC1 para MMC3, de 256 para 512 KB</b>. Foi viável por um motivo medido: o jogo escreve em <b>exatamente cinco endereços de registrador</b> na partida inteira, e as cinco rotinas de troca de banco couberam reescritas no próprio espaço. A prova são <b>19 de 19 quadros idênticos</b> à ROM japonesa original. Sobre esse espaço entrou conteúdo novo: um <b>prólogo de oito telas</b>, três delas com o retrato de Yaji, Kita e Oharu montado com os tiles e sprites do próprio jogo — e cada tela espera o botão, em vez de virar sozinha no relógio."
+      ],
+      "en": [
+        "<b>The Misadventures of Yaji &amp; Kita</b> — on the cartridge, <i>Gozonji: Yaji Kita Chin Douchuu</i> — is HAL Laboratory's 1991 road comedy, drawn from <i>Tōkaidōchū Hizakurige</i>, Jippensha Ikku's comic classic. Two Edo layabouts head down the Tōkaidō road and cause trouble at its 53 stations. The English name is this translation's choice: the game never had one. On the redrawn title screen the subtitle now reads <i>THE UNRULY TOWNSMAN SLASHES HIS WAY THROUGH TOKAIDO'S 53 STATIONS</i>.",
+        "The engine runs on pure kana — sweep all 32 graphics pages and there is <b>one font, and no kanji at all</b>. The box measures <b>16 characters by 4 lines</b>, and every line of text occupies two rows of tiles, because the ゛ and ゜ marks live in the row above. The Latin font is <b>83 glyphs</b> — capitals, lower case, digits and punctuation — engraved over the kana slots, with the descenders of <code>p g q y j</code> redrawn into the tile's eighth row, which had been free all along. And the engine carries a <b>128-entry dictionary</b>: every code from <code>$80</code> up is a whole word. Those 128 slots held Japanese words; they were rebuilt from the English corpus itself, so the same compression that served Japanese now serves English.",
+        "The cartridge could not hold the translated script — the largest in this catalogue — and the original ROM had a little over <b>two thousand bytes</b> free. Rather than squeeze the text, the cartridge itself was rebuilt: <b>from MMC1 to MMC3, from 256 to 512 KB</b>. That was viable for one measured reason: the game writes to <b>exactly five register addresses</b> across a whole session, and all five bank-switching routines fit rewritten in their own space. The proof is <b>19 of 19 frames identical</b> to the original Japanese ROM. New content moved into that room: an <b>eight-screen prologue</b>, three of them carrying the portraits of Yaji, Kita and Oharu, built from the game's own tiles and sprites — and each screen waits for the button instead of turning itself on a timer."
+      ]
+    },
+    "fontes": [
+      "~/gozonji-hack/RETOMAR.md:4-5 — HAL Laboratory / HYPERWARE, 1991; MMC1, PRG 256 KB, CHR-ROM 128 KB; comédia de estrada baseada no Tōkaidōchū Hizakurige",
+      "~/gozonji-hack/graficos/conv_subtitulo.py:28 — subtítulo da tela de título em inglês: THE UNRULY TOWNSMAN / SLASHES HIS WAY THROUGH / TOKAIDO'S 53 STATIONS",
+      "~/gozonji-hack/graficos/patch_titulo.py:79-87 — a arte do letreiro e o subtítulo novos são gravados na tela de título; ~/gozonji-hack/RELATORIO.md:10 registra a tela de título em inglês na build",
+      "~/gozonji-hack/notas/motor.md:10-12 — código do caractere = índice de tile; jogo é kana puro, não existe alfabeto latino na ROM; RETOMAR.md:12 varridas as 32 páginas, só uma fonte",
+      "~/gozonji-hack/notas/motor.md:45-49 — caixa medida na nametable: colunas 8-23 = 16 caracteres, 4 linhas; as linhas intercaladas são exclusivas do dakuten",
+      "~/gozonji-hack/RETOMAR.md:24-26 — fonte latina de 83 glifos (A-Z, a-z, 0-9, pontuação) gravada sobre os slots de kana, funcionando na tela",
+      "~/gozonji-hack/RETOMAR.md:139-142 — descendentes p g q y j redesenhados usando a linha 7 do tile, que estava livre; vale para o jogo inteiro",
+      "~/gozonji-hack/notas/motor.md:35-43 — dicionário de 128 entradas, ponteiros em $B97F do banco 6; códigos >= $80 indexam palavra",
+      "~/gozonji-hack/RETOMAR.md:37 — dicionário EN gerado do próprio corpus, 128 entradas",
+      "~/gozonji-hack/RELATORIO.md:25-38 — troca de MMC1 para MMC3 e 512 KB; o jogo escreve em exatamente 5 endereços de registrador; 19 de 19 quadros idênticos ao original",
+      "~/gozonji-hack/RETOMAR.md:53-54 — a ROM original tinha 2.211 B livres (0,8%) e o inglês pede ~145 KB",
+      "~/gozonji-hack/RETOMAR.md:148-151 — o prólogo tem 8 telas, três com o retrato de Yaji, Kita e Oharu; formato da cabeça em tiles da página 31, feições em sprites da página 30",
+      "~/gozonji-hack/RETOMAR.md:145-147 — cada tela do prólogo só passa no botão; o avanço automático de 256 quadros saiu",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:114 — tier declarado pelo dono: beta · REGRAS.md:151-153 — o roteiro é de longe o maior do catálogo"
+    ]
+  },
+  {
+    "slug": "magic-knight-rayearth-2",
+    "linha": {
+      "pt": "O único Game Gear da casa, e o único com fonte de largura variável: a caixa de 12 caracteres deixou de mandar na frase.",
+      "en": "The only Game Gear game here, and the only one with a variable-width font: a 12-character box no longer decides the sentence."
+    },
+    "resumo": {
+      "pt": [
+        "Game Gear, SEGA, 1995: <i>Magic Knight Rayearth 2 — Making of Magic Knight</i>, a continuação portátil da série da CLAMP. É o único cartucho de Game Gear do catálogo, e a única máquina de 8 bits da casa que não é um Famicom — 512 KB, mapper Sega, e uma tela pequena que manda em tudo o que se escreve nela.",
+        "O aperto ali não é de byte: <b>o roteiro inteiro cabe na ROM sem expandir nada</b>. O aperto é de coluna. A caixa de diálogo tem <b>12 caracteres</b> de largura, o motor desenha <b>um tile por caractere</b>, e todo caractere gasta os mesmos 8 px, seja um <code>W</code> ou um <code>I</code>. Doze caracteres é pouco para quase qualquer frase: <code>MAGIC KNIGHTS</code> tem catorze, não entra, e vira <code>MG KNIGHTS</code>. É o tipo de corte que se lê na tela o jogo inteiro.",
+        "Este é o único projeto da casa com <b>fonte de largura variável</b>. Foi desenhada uma fonte latina de <b>5×7</b>, com avanço médio de <b>6 px em vez de 8</b>, e escrita uma rotina de <b>411 bytes</b> que compõe cada glifo na posição de pixel em que ele cai — o orçamento passou a ser coluna e pixel, com <b>96 px por linha</b>. Saiu barata por um detalhe do cartucho: a fonte não usa os quatro planos de bits, e o plano 0 é a máscara da tinta, de modo que deslocar um glifo é um deslocamento de um bit por linha. Há até um <b>espaço fino de 1 px</b>, num código que o jogo nunca usa, para fechar a linha exatamente na borda. Na caixa de diálogo, <code>MG KNIGHTS</code> voltou a ser <code>MAGIC KNIGHTS</code>."
+      ],
+      "en": [
+        "Game Gear, SEGA, 1995: <i>Magic Knight Rayearth 2 — Making of Magic Knight</i>, the handheld sequel to CLAMP's series. It is the catalogue's only Game Gear cartridge, and the only 8-bit machine in the house that is not a Famicom — 512 KB, Sega mapper, and a small screen that rules everything written on it.",
+        "The squeeze here is not bytes: <b>the whole script fits the ROM with no expansion at all</b>. The squeeze is columns. The dialogue box is <b>12 characters</b> wide, the engine draws <b>one tile per character</b>, and every character spends the same 8 px, whether it is a <code>W</code> or an <code>I</code>. Twelve characters is thin for almost any line: <code>MAGIC KNIGHTS</code> is fourteen, does not fit, and becomes <code>MG KNIGHTS</code>. That is the kind of cut you read on screen for a whole game.",
+        "This is the only project in the house with a <b>variable-width font</b>. A <b>5×7</b> Latin font was drawn, with an average advance of <b>6 px instead of 8</b>, and a <b>411-byte</b> routine written to compose each glyph at the exact pixel it lands on — the budget became column and pixel, with <b>96 px per line</b>. It came cheap thanks to one detail of the cartridge: the font does not use all four bit planes, and plane 0 is the ink mask, so shifting a glyph is one bit-shift per row. There is even a <b>1 px thin space</b>, on a code the game never uses, to close a line exactly at the border. In the dialogue box, <code>MG KNIGHTS</code> is <code>MAGIC KNIGHTS</code> again."
+      ]
+    },
+    "fontes": [
+      "~/mkr2-hack/NOTAS.md:1 — Magic Knight Rayearth 2 — Making of Magic Knight (Game Gear, SEGA 1995)",
+      "~/mkr2-hack/NOTAS.md:11 — 512 KB, header TMR SEGA em $7FF0, região Game Gear Japão",
+      "~/mkr2-hack/NOTAS.md:13-16 — mapper Sega padrão; o registrador de banco é um byte inteiro; não há mapper a trocar",
+      "~/mkr2-hack/NOTAS.md:100,140 — o script NÃO precisa de expansão: script japonês de 31,7 KB contra 77,2 KB livres hoje",
+      "~/mkr2-hack/NOTAS.md:159-161 — caixa de diálogo: 12 caracteres (colunas de tile 6-17); narração de abertura: 14",
+      "~/mkr2-hack/NOTAS.md:153-157 — o motor desenha um tile por caractere; a folga entre linhas não é utilizável pelo glifo",
+      "~/mkr2-hack/NOTAS.md:165-166 — MAGIC KNIGHTS tem 14 caracteres e a caixa só tem 12, por isso sai MG KNIGHTS",
+      "~/mkr2-hack/NOTAS.md:444-446 — VWF IMPLEMENTADA E FUNCIONANDO: build/vwf_en.gg",
+      "~/mkr2-hack/NOTAS.md:448-451 — por que foi barata: a fonte não é 4bpp de verdade, o plano 0 é a máscara da tinta, compor glifo deslocado é um shift de 1 bit por linha",
+      "~/mkr2-hack/NOTAS.md:454-456 — fonte latina 5×7 (59 glifos), avanço médio 6 px contra 8; rotina VWF de 411 bytes em $BD52, banco 12",
+      "~/mkr2-hack/NOTAS.md:474 — MG KNIGHTS virou MAGIC KNIGHTS",
+      "~/mkr2-hack/NOTAS.md:477-481 — espaço FINO de 1 px criado no código $95, nunca usado pelo jogo, para fechar a borda exatamente",
+      "~/mkr2-hack/RETOMAR.md:26 — o orçamento é COLUNA/PIXEL, não byte; com a VWF, 96 px por linha",
+      "~/patchclan-site/copy/rodada2/REGRAS.md:115 — tier declarado pelo dono: beta"
+    ]
+  }
+]

@@ -64,6 +64,8 @@
   }
   /* data-shot guarda o print base: a troca de idioma e so CSS, entao o src se repinta a mao */
   function foto(f, alt, carga){
+    /* Sem captura ainda (projeto que nao rodou em emulador): bloco neutro, nunca img quebrada. */
+    if (!f) return '<span class="sem-tela" aria-hidden="true"></span>';
     return '<img src="'+img(f)+'" data-shot="'+e(f)+'" alt="'+e(alt)+'" loading="'+(carga||'lazy')+'">';
   }
   function repintaFotos(){
@@ -167,9 +169,9 @@
 
     /* projetos */
     out += '<section><p class="label">'+L({pt:'Projetos',en:'Projects',es:'Proyectos'})+'</p><div class="projetos">' +
-      jogos.slice(0, 4).map(cardProjeto).join('') + '</div>' +
+      jogos.map(cardProjeto).join('') + '</div>' +
       '<p class="ver-todas"><a href="#/projetos">' +
-        L({pt:'Ver todos os '+jogos.length+' projetos →', en:'View all '+jogos.length+' projects →', es:'Ver los '+jogos.length+' proyectos →'}) +
+        L({pt:'Ver os projetos por estado →', en:'See the projects by stage →', es:'Ver los proyectos por estado →'}) +
       '</a></p></section>';
 
     /* nao e so traducao */

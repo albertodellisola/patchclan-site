@@ -321,3 +321,42 @@ decidir" continuam válidas, e destaco duas por ordem de efeito:
 **Assinado.** Revisão de universo e gancho — agente `anime_A`, 08/09/2026.
 Três edições, todas na `linha`; `python3 copy/rodada2/valida.py copy/rodada2/consenso2.json`
 em **0 erros** depois delas. Isto é consenso.
+
+---
+
+### Correção pós-assinatura — 08/09/2026, `ultraman-club-2`
+
+Defeito achado pelo **tradutor espanhol** ao reescrever a ficha, depois de eu ter assinado.
+O P3 abria com «**Aquele** quarto bloco» / «**That** fourth block», e nenhum parágrafo anterior
+apresentava bloco nenhum: o P2 enumera três coisas (447 mensagens, 56 entradas de menu, 146 de
+combate) e nunca usa a palavra «bloco». A anáfora estava pendurada nos dois idiomas.
+
+**Havia duas saídas propostas — dar o antecedente no P2, ou soltar o P3 com «um quarto bloco».
+Não fui por nenhuma das duas, e o motivo é de leitor:**
+
+- **Dar o antecedente no P2 não cabe.** O P2 já **termina** em «os quatro glifos» (a pontuação
+  que a fonte não tinha), e o P3 já traz «quatro partículas japonesas». Acrescentar «quatro
+  blocos» ali põe **três quatros diferentes** em dois parágrafos vizinhos — o leitor passa a
+  contar em vez de ler.
+- **«Um quarto bloco» resolve a catáfora e cria outra pergunta:** quarto de quê? Os três itens
+  que o P2 enumera são grupos de entradas, não os blocos da ROM, e a partição não é a mesma —
+  o quarto bloco **é** o terceiro item da lista. O leitor que tentar casar os dois erra.
+
+**O que fiz:** o P3 passa a nomear o antecedente na própria frase de abertura —
+«**As 146 entradas de combate são o quarto bloco de texto da ROM**, e só apareceram porque a
+varredura foi refeita na ROM já montada» (em inglês, «Those 146 battle entries are the ROM's
+fourth text block, and they only surfaced because…»). A frase seguinte passou de «os bytes de
+ponteiro **dele**» para «os bytes de ponteiro **do bloco**», que é o que a anáfora agora pede.
+
+**Não entra fato novo nem número novo.** O 146 já está no P2; que ele é o quarto bloco está
+publicado no `build/jogos-novos.mjs:38-39` («Este quarto bloco só apareceu ao varrer kana na
+ROM montada») e em `:76`; e «4 blocos de texto na ROM» é a linha de número do próprio site
+(`:29`). A conta que sustenta a ficha continua de pé e intocada: **653 = 447 + 56 + 146 + 4**,
+com os 4 sendo as partículas `は`/`に` cravadas como `LDA #$AC`, que o P3 já contava.
+
+**Para o espanhol:** o **P2 dele não precisa mudar** — a correção mora inteira no P3. Se o
+coordenador quiser paridade nos três idiomas, o molde é «Esas 146 entradas de combate son el
+cuarto bloque de texto de la ROM, y solo aparecieron porque…».
+
+`python3 copy/rodada2/valida.py copy/rodada2/consenso2.json` → **0 erros** depois da correção.
+— agente `anime_A`, 08/09/2026.

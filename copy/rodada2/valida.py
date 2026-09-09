@@ -82,9 +82,16 @@ def valida(caminho):
 
     return erros, avisos
 
+ORDEM_R3 = ['guevara','gozonji','magic-knight-rayearth-2']
+
 if __name__ == '__main__':
+    args = sys.argv[1:]
+    # --r3 valida contra os tres slugs da rodada 3, em vez dos dez da rodada 2
+    if '--r3' in args:
+        args.remove('--r3')
+        ORDEM[:] = ORDEM_R3
     total = 0
-    for caminho in sys.argv[1:]:
+    for caminho in args:
         erros, avisos = valida(caminho)
         marca = 'OK' if not erros else f'{len(erros)} ERRO(S)'
         print(f'\n=== {caminho.split("/")[-1]} — {marca}')

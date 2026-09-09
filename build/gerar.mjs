@@ -132,6 +132,8 @@ fs.writeFileSync(path.join(RAIZ, 'index.html'), montar(seedArquivos));
 // 2) artifact: as mesmas imagens embutidas, porque a previa nao serve arquivos relativos
 const b64 = new Map();
 function embutir(rel) {
+  // Projeto ainda sem captura entra com capa vazia; o corpo.html desenha um bloco neutro.
+  if (!rel) return '';
   if (!b64.has(rel)) {
     const p = path.join(RAIZ, 'shots', rel);
     b64.set(rel, 'data:image/png;base64,' + fs.readFileSync(p).toString('base64'));

@@ -291,9 +291,9 @@ SEED.niveis = {
 SEED.fila = {
   titulo: { pt: 'Na fila', en: 'Next in line', es: 'En la cola' },
   intro: {
-    pt: 'O que vem depois. Alguns destes cartuchos já foram abertos e medidos; outros ainda não. Todos passaram pela mesma pergunta, feita <b>antes</b> de qualquer entusiasmo: “este jogo já tem patch em inglês?” — e em todos a resposta foi não.',
-    en: 'What comes next. Some of these cartridges have already been opened and measured; others have not. All of them went through the same question, asked <b>before</b> any enthusiasm: “does this game already have an English patch?” — and for all of them the answer was no.',
-    es: 'Lo que viene después. Algunos de estos cartuchos ya fueron abiertos y medidos; otros no. Todos pasaron por la misma pregunta, hecha <b>antes</b> que cualquier entusiasmo: “¿este juego ya tiene parche en inglés?” — y en todos la respuesta fue no.'
+    pt: 'O que vem depois. Nenhum destes cartuchos foi aberto ainda — quando um deles for, ganha página própria e sai desta lista. Todos passaram pela mesma pergunta, feita <b>antes</b> de qualquer entusiasmo: “este jogo já tem patch em inglês?” — e em todos a resposta foi não.',
+    en: 'What comes next. None of these cartridges has been opened yet — the day one is, it gets its own page and leaves this list. All of them went through the same question, asked <b>before</b> any enthusiasm: “does this game already have an English patch?” — and for all of them the answer was no.',
+    es: 'Lo que viene después. Ninguno de estos cartuchos se ha abierto todavía — el día que uno se abra, tendrá página propia y saldrá de esta lista. Todos pasaron por la misma pregunta, hecha <b>antes</b> que cualquier entusiasmo: “¿este juego ya tiene parche en inglés?” — y en todos la respuesta fue no.'
   },
   criterio: {
     pt: 'O padrão que organiza a lista é o <b>órfão de série</b>: a comunidade traduz o primeiro jogo e para. Foi o caso do Famicom Jump, e é o caso de quase tudo aqui.',
@@ -301,26 +301,6 @@ SEED.fila = {
     es: 'El patrón que organiza esta lista es el <b>huérfano de serie</b>: la comunidad traduce el primer juego y se detiene. Fue el caso de Famicom Jump, y es el caso de casi todo lo que hay aquí.'
   },
   itens: [
-    { nome: 'Ultraman Club 2: Kaettekita Ultraman Club', sistema: 'Famicom', ano: 1989,
-      porque: { pt: 'O RPG em que os Ultraman viram bonecos de cabeça grande e enfrentam os monstros da série, da Tsuburaya com a Shinsei.',
-                en: 'The RPG where the Ultramen become big-headed chibi figures and fight the monsters of the series, from Tsuburaya with Shinsei.',
-                es: 'El RPG donde los Ultraman se vuelven figuras chibi y enfrentan a los monstruos de la serie, de Tsuburaya con Shinsei.' } },
-    { nome: 'Ultraman Club 3', sistema: 'Famicom', ano: 1991,
-      porque: { pt: 'A continuação, agora com a Yutaka — e com defeitos de fábrica que qualquer tradução honesta tem de tratar antes de traduzir.',
-                en: 'The sequel, now with Yutaka — and with factory defects any honest translation has to deal with before translating.',
-                es: 'La secuela, ahora con Yutaka — y con defectos de fábrica que cualquier traducción honesta debe tratar antes de traducir.' } },
-    { nome: "Square's Tom Sawyer", sistema: 'Famicom', ano: 1989,
-      porque: { pt: 'A Square adaptando Mark Twain num RPG de Famicom, dois anos antes do Final Fantasy IV. <b>CHR-RAM:</b> não existe bloco de gráficos no arquivo, os tiles moram no código.',
-                en: 'Square adapting Mark Twain into a Famicom RPG, two years before Final Fantasy IV. <b>CHR-RAM:</b> there is no graphics block in the file, the tiles live in the program.',
-                es: 'Square adaptando a Mark Twain en un RPG de Famicom, dos años antes de Final Fantasy IV. <b>CHR-RAM:</b> no hay bloque de gráficos en el archivo, los tiles viven en el código.' } },
-    { nome: 'Hanjuku Hero', sistema: 'Famicom', ano: 1988,
-      porque: { pt: 'O outro Square de 1988: estratégia em tempo real, um reino para comandar e monstros que saem de dentro de ovos. Virou série no Japão e nunca saiu de lá.',
-                en: 'The other Square of 1988: real-time strategy, a kingdom to command, and monsters that hatch out of eggs. It became a series in Japan and never left.',
-                es: 'El otro Square de 1988: estrategia en tiempo real, un reino que comandar y monstruos que salen de huevos. Se volvió serie en Japón y nunca salió de allí.' } },
-    { nome: 'Monster Maker: 7 Tsu no Hihou', sistema: 'Famicom', ano: 1990,
-      porque: { pt: 'O RPG tirado do jogo de cartas japonês — sete tesouros, uma masmorra e um baralho. A ROM já está na mesa: <b>MMC1, 256 KB, CHR-RAM e save com bateria</b>, a mesma família de problema do Tom Sawyer e do Hanjuku Hero, em que os gráficos moram no código.',
-                en: 'The RPG taken from the Japanese card game — seven treasures, a dungeon and a deck. The ROM is already on the table: <b>MMC1, 256 KB, CHR-RAM and a battery save</b>, the same family of problem as Tom Sawyer and Hanjuku Hero, where the graphics live inside the program.',
-                es: 'El RPG sacado del juego de cartas japonés — siete tesoros, una mazmorra y una baraja. La ROM ya está sobre la mesa: <b>MMC1, 256 KB, CHR-RAM y guardado con pila</b>, la misma familia de problema que Tom Sawyer y Hanjuku Hero, donde los gráficos viven dentro del código.' } },
     { nome: 'SD Gundam Gaiden: Knight Gundam Monogatari 2', sistema: 'Famicom', ano: 1991,
       porque: { pt: 'O primeiro foi traduzido e a série parou aí. RPG, IP de primeira linha, nenhum projeto público em andamento.',
                 en: 'The first was translated and the series stopped there. An RPG, a first-rank IP, and no public project under way.',
