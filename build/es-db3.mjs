@@ -18,10 +18,6 @@ export const ES_DB3 = {
     { titulo: 'La ROM creció, y la original nunca se tocó', itens: [
       'El texto inglés no cabía donde estaba, así que la ROM se <b>amplió de 128 KB a 256 KB</b> de código. El constructor monta la ROM entera desde cero, <b>nunca escribe en la original</b> (es de solo lectura, y el MD5 se comprueba al abrir) y <b>aborta si cambia cualquier byte fuera de las regiones declaradas</b>.',
       'Un verificador comprueba <b>los 1.305 mensajes y los 112 nombres</b> en la ROM montada antes de que salga nada.'
-    ]},
-    { titulo: 'Lo que sigue abierto', itens: [
-      'Cinco mensajes de combate siguen en japonés <b>a propósito</b>. Llevan <b>campos numéricos disfrazados de espacio</b> (<code>ゴクウの レベルが ␣␣␣␣ になった!</code>), y todavía no está medido si el juego encuentra la posición del número por desplazamiento fijo o buscando el blanco. Si es fijo, acortar el prefijo en inglés pone el número en mitad de una palabra — cambiaría un defecto legible por uno ilegible.',
-      'Cinco frases de entrenamiento comparten sufijos — tres punteros caen en la misma dirección — y reempaquetarlas exige reescribir la tabla de punteros con ellas. Por eso la etiqueta es <b>beta</b>.'
     ]}
   ],
   fotos: [

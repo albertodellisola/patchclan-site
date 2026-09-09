@@ -51,7 +51,7 @@ export const ES = {
       numeros: ['elementos de texto insertados','punteros corregidos','letras latinas existían','bytes distintos en 225 volcados']
     },
     'dragon-ball-3': {
-      status: 'Beta',
+      status: 'Release',
       linha: 'El RPG de tablero y cartas de Dragon Ball. Lo difícil aquí no fue el texto — fue el <b>kanji dibujado</b>, que no es texto y no se traduce solo.',
       resumo: [
         'Avanzas por un tablero, robas cartas y luchas con ellas. Cada carta lleva un <b>kanji</b> que dice lo que hace — y ese kanji es <b>ilustración</b>, dibujada en los gráficos, no un carácter de fuente. Traducir el juego exigía redibujar diez de ellos, uno a uno.',
