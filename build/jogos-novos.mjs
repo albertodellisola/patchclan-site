@@ -395,6 +395,6 @@ export const MONSTERMAKER = {
   patch: { versoes: { en: null, pt: null, es: null }, rom: 'Monster Maker - 7 Tsu no Hihou (Japan).nes', rom_md5: 'b10e90e81f3bdbe5a232ee34d746327e' },
   fotos: [
     { f: 'mm/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
-      c: bi('ROM original, sem tradução.', 'The original ROM, untranslated.', 'La ROM original, sin traducir.') }
+      c: bi('O subtítulo já em inglês: <code>THE SEVEN TREASURES</code>.', 'The subtitle already in English: <code>THE SEVEN TREASURES</code>.', 'El subtítulo ya en inglés: <code>THE SEVEN TREASURES</code>.') }
   ]
 };
