@@ -197,7 +197,7 @@ export const MKR2 = {
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'release',
-  versao: 'English v1.1',
+  versao: 'English v1.2',
   capa: 'mkr2/01-titulo.png',
   linha: bi('Hikaru, Umi e Fuu voltam a Cefiro depois de Emeraude, no Game Gear. A caixa tem 12 caracteres, e MAGIC KNIGHTS tem catorze.',
             'Hikaru, Umi and Fuu return to Cefiro after Emeraude, on the Game Gear. The box holds 12 characters, and MAGIC KNIGHTS has fourteen.',
@@ -218,7 +218,8 @@ export const MKR2 = {
     { v: '59',    r: bi('glifos da fonte 5×7 desenhados', 'glyphs drawn for the 5×7 font', 'glifos dibujados de la fuente 5×7') },
     { v: '418',   r: bi('bytes da rotina de largura variável', 'bytes of the variable-width routine', 'bytes de la rutina de ancho variable') },
     { v: '4',     r: bi('erros na tabela de opcodes que destruíam código', 'opcode-table errors that were destroying code', 'errores en la tabla de opcodes que destruían código') },
-    { v: '285',   r: bi('falas reescritas para caber na linha (v1.1)', 'lines rewritten to fit the line (v1.1)', 'frases reescritas para caber en la línea (v1.1)') }
+    { v: '285',   r: bi('falas reescritas para caber na linha (v1.1)', 'lines rewritten to fit the line (v1.1)', 'frases reescritas para caber en la línea (v1.1)') },
+    { v: '54',    r: bi('palavras cortadas no meio, consertadas (v1.2)', 'words cut in half, fixed (v1.2)', 'palabras cortadas por la mitad, corregidas (v1.2)') }
   ],
 
   grupos: [
@@ -229,6 +230,9 @@ export const MKR2 = {
       { t: bi('<b>Fonte de largura variável</b>, a única do catálogo. Uma latina de 5×7 desenhada do zero, avanço médio de 6 px em vez de 8, e uma rotina de 418 bytes no banco que fica fixo durante o diálogo. Sem ela, <code>MAGIC KNIGHTS</code> não cabe nos 12 caracteres da caixa e sai <code>MG KNIGHTS</code>.',
               '<b>Variable-width font</b>, the only one in the catalogue. A 5×7 Latin face drawn from scratch, 6 px average advance instead of 8, and a 418-byte routine in the bank that stays mapped during dialogue. Without it, <code>MAGIC KNIGHTS</code> does not fit the box\'s 12 characters and comes out <code>MG KNIGHTS</code>.',
               '<b>Fuente de ancho variable</b>, la única del catálogo. Una latina de 5×7 dibujada desde cero, avance medio de 6 px en vez de 8, y una rutina de 418 bytes en el banco que queda fijo durante el diálogo. Sin ella, <code>MAGIC KNIGHTS</code> no cabe en los 12 caracteres de la caja y sale <code>MG KNIGHTS</code>.') },
+      { t: bi('<b>54 palavras cortadas no meio</b>, consertadas na versão <b>1.2</b>. A tela mostrava <code>HIKAR</code>, <code>COME ON DANC</code>, <code>I AM SORR</code>, <code>THE SPELLBOO</code> e <code>ICE ARO</code> — falas truncadas à mão, numa passagem antiga, para caber nos poucos bytes do vão. Foram achadas varrendo o roteiro inteiro contra um dicionário e procurando <b>palavra que é prefixo de outra</b>, que é a assinatura de um corte.',
+              '<b>54 words cut in half</b>, fixed in version <b>1.2</b>. The screen was showing <code>HIKAR</code>, <code>COME ON DANC</code>, <code>I AM SORR</code>, <code>THE SPELLBOO</code> and <code>ICE ARO</code> — lines hand-truncated, in an earlier pass, to fit the gap\'s few bytes. They were found by sweeping the whole script against a dictionary looking for <b>a word that is a prefix of another</b>, which is the signature of a cut.',
+              '<b>54 palabras cortadas por la mitad</b>, corregidas en la versión <b>1.2</b>. La pantalla mostraba <code>HIKAR</code>, <code>COME ON DANC</code>, <code>I AM SORR</code>, <code>THE SPELLBOO</code> e <code>ICE ARO</code> — frases truncadas a mano, en una pasada anterior, para caber en los pocos bytes del hueco. Se encontraron barriendo el guion entero contra un diccionario y buscando <b>una palabra que es prefijo de otra</b>, que es la firma de un corte.') },
       { t: bi('<b>285 falas reescritas mais curtas</b>, na versão <b>1.1</b>. Cabiam na caixa em byte, mas não na linha, e o inseridor cortava cada uma na última palavra que coubesse: a tela mostrava <code>THANK YOU,</code> onde a fala é <code>THANK YOU, CALDINA!</code> e <code>FAREWELL!</code> onde é <code>FAREWELL! OHOHOHO!</code>. Eram <b>286 falas estourando a linha e 294 vãos cortados</b>; agora são <b>zero</b>, e em nenhum vão o patch antigo do Pearse aparece mais.',
               '<b>285 lines rewritten shorter</b>, in version <b>1.1</b>. They fitted the box in bytes but not on the line, and the inserter cut each one at the last word that fitted: the screen showed <code>THANK YOU,</code> where the line is <code>THANK YOU, CALDINA!</code> and <code>FAREWELL!</code> where it is <code>FAREWELL! OHOHOHO!</code>. There were <b>286 lines overflowing and 294 gaps cut short</b>; now there are <b>none</b>, and no gap falls back to the old Pearse patch any more.',
               '<b>285 frases reescritas más cortas</b>, en la versión <b>1.1</b>. Cabían en la caja en bytes, pero no en la línea, y el insertador cortaba cada una en la última palabra que entrara: la pantalla mostraba <code>THANK YOU,</code> donde la frase es <code>THANK YOU, CALDINA!</code> y <code>FAREWELL!</code> donde es <code>FAREWELL! OHOHOHO!</code>. Eran <b>286 frases desbordando la línea y 294 huecos cortados</b>; ahora son <b>cero</b>, y en ningún hueco aparece ya el parche antiguo de Pearse.') },
