@@ -197,7 +197,7 @@ export const MKR2 = {
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'release',
-  versao: 'English v1.0',
+  versao: 'English v1.1',
   capa: 'mkr2/01-titulo.png',
   linha: bi('Hikaru, Umi e Fuu voltam a Cefiro depois de Emeraude, no Game Gear. A caixa tem 12 caracteres, e MAGIC KNIGHTS tem catorze.',
             'Hikaru, Umi and Fuu return to Cefiro after Emeraude, on the Game Gear. The box holds 12 characters, and MAGIC KNIGHTS has fourteen.',
@@ -217,7 +217,8 @@ export const MKR2 = {
     { v: '2.581', r: bi('linhas de texto na tela', 'lines of on-screen text', 'líneas de texto en pantalla') },
     { v: '59',    r: bi('glifos da fonte 5×7 desenhados', 'glyphs drawn for the 5×7 font', 'glifos dibujados de la fuente 5×7') },
     { v: '418',   r: bi('bytes da rotina de largura variável', 'bytes of the variable-width routine', 'bytes de la rutina de ancho variable') },
-    { v: '4',     r: bi('erros na tabela de opcodes que destruíam código', 'opcode-table errors that were destroying code', 'errores en la tabla de opcodes que destruían código') }
+    { v: '4',     r: bi('erros na tabela de opcodes que destruíam código', 'opcode-table errors that were destroying code', 'errores en la tabla de opcodes que destruían código') },
+    { v: '285',   r: bi('falas reescritas para caber na linha (v1.1)', 'lines rewritten to fit the line (v1.1)', 'frases reescritas para caber en la línea (v1.1)') }
   ],
 
   grupos: [
@@ -228,6 +229,9 @@ export const MKR2 = {
       { t: bi('<b>Fonte de largura variável</b>, a única do catálogo. Uma latina de 5×7 desenhada do zero, avanço médio de 6 px em vez de 8, e uma rotina de 418 bytes no banco que fica fixo durante o diálogo. Sem ela, <code>MAGIC KNIGHTS</code> não cabe nos 12 caracteres da caixa e sai <code>MG KNIGHTS</code>.',
               '<b>Variable-width font</b>, the only one in the catalogue. A 5×7 Latin face drawn from scratch, 6 px average advance instead of 8, and a 418-byte routine in the bank that stays mapped during dialogue. Without it, <code>MAGIC KNIGHTS</code> does not fit the box\'s 12 characters and comes out <code>MG KNIGHTS</code>.',
               '<b>Fuente de ancho variable</b>, la única del catálogo. Una latina de 5×7 dibujada desde cero, avance medio de 6 px en vez de 8, y una rutina de 418 bytes en el banco que queda fijo durante el diálogo. Sin ella, <code>MAGIC KNIGHTS</code> no cabe en los 12 caracteres de la caja y sale <code>MG KNIGHTS</code>.') },
+      { t: bi('<b>285 falas reescritas mais curtas</b>, na versão <b>1.1</b>. Cabiam na caixa em byte, mas não na linha, e o inseridor cortava cada uma na última palavra que coubesse: a tela mostrava <code>THANK YOU,</code> onde a fala é <code>THANK YOU, CALDINA!</code> e <code>FAREWELL!</code> onde é <code>FAREWELL! OHOHOHO!</code>. Eram <b>286 falas estourando a linha e 294 vãos cortados</b>; agora são <b>zero</b>, e em nenhum vão o patch antigo do Pearse aparece mais.',
+              '<b>285 lines rewritten shorter</b>, in version <b>1.1</b>. They fitted the box in bytes but not on the line, and the inserter cut each one at the last word that fitted: the screen showed <code>THANK YOU,</code> where the line is <code>THANK YOU, CALDINA!</code> and <code>FAREWELL!</code> where it is <code>FAREWELL! OHOHOHO!</code>. There were <b>286 lines overflowing and 294 gaps cut short</b>; now there are <b>none</b>, and no gap falls back to the old Pearse patch any more.',
+              '<b>285 frases reescritas más cortas</b>, en la versión <b>1.1</b>. Cabían en la caja en bytes, pero no en la línea, y el insertador cortaba cada una en la última palabra que entrara: la pantalla mostraba <code>THANK YOU,</code> donde la frase es <code>THANK YOU, CALDINA!</code> y <code>FAREWELL!</code> donde es <code>FAREWELL! OHOHOHO!</code>. Eran <b>286 frases desbordando la línea y 294 huecos cortados</b>; ahora son <b>cero</b>, y en ningún hueco aparece ya el parche antiguo de Pearse.') },
       { t: bi('<b>As telas, não só o roteiro</b>: título, entrada de nome (agora A-Z e <b>seis letras</b> em vez de quatro), parâmetros, contador de dias, nomes de lugar, o painel de humor das três guerreiras e a tela de status.',
               '<b>The screens, not just the script</b>: title, name entry (now A-Z and <b>six letters</b> instead of four), parameters, day counter, place names, the three Knights\' mood panel and the status screen.',
               '<b>Las pantallas, no solo el guion</b>: título, entrada de nombre (ahora A-Z y <b>seis letras</b> en vez de cuatro), parámetros, contador de días, nombres de lugar, el panel de humor de las tres Guerreras y la pantalla de estado.') }
