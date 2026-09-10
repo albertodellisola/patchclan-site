@@ -16,3 +16,7 @@ build/artifact.html
 manuais/_rascunho/
 __pycache__/
 *.pyc
+
+# patches de beta/alfa: saem pelo Patreon, nao pelo site
+patches-privados/
+.links-patreon.json

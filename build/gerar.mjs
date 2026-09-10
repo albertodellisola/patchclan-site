@@ -25,11 +25,27 @@ for (const g of JOGOS) {
   }
 }
 
-// o tamanho de cada patch vem do arquivo, nunca digitado a mao
+/* O tamanho de cada patch vem do arquivo, nunca digitado a mao.
+
+   E a PASTA sai do `nivel`, porque as duas pastas nao servem para a mesma coisa:
+     release  -> patches/            vai para o GitHub, o site serve o arquivo
+     beta/alfa-> patches-privados/   fica FORA do repositorio (gitignored)
+
+   Decisao do dono em 10/09/2026: so release baixa de graca. O beta e o alfa moram
+   no Storage do Supabase, com nome-token, e quem entrega o link e a pagina do
+   Patreon daquele jogo. O arquivo local so continua aqui para MEDIR o tamanho que
+   o cartao mostra e para acender a bandeira do idioma — o site nunca o serve.
+   Subir/atualizar no Storage: `python3 build/patreon_patches.py subir`. */
+const PASTA_PATCH = g => (g.nivel === 'release' ? 'patches' : 'patches-privados');
 for (const g of JOGOS) {
   for (const [idi, v] of Object.entries(g.patch.versoes)) {
     if (!v) continue;
-    const f = path.join(RAIZ, 'patches', v.arquivo);
+    /* Guarda: patch de projeto inacabado dentro de patches/ vaza para o repositorio
+       publico e o gate do Patreon vira enfeite. Falhar alto e melhor que vazar. */
+    if (g.nivel !== 'release' && fs.existsSync(path.join(RAIZ, 'patches', v.arquivo))) {
+      throw new Error(`${g.slug} e "${g.nivel}", mas patches/${v.arquivo} existe — mova para patches-privados/`);
+    }
+    const f = path.join(RAIZ, PASTA_PATCH(g), v.arquivo);
     if (!fs.existsSync(f)) { g.patch.versoes[idi] = null; continue; }
     v.tamanho = Math.round(fs.statSync(f).size / 1024) + ' KB';
   }

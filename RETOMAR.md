@@ -397,3 +397,60 @@ Nenhum dos dois foi corrigido.
 - Tirada do tier **Two Bytes**, nos três idiomas, a linha "Cerca de uma hora de trabalho por
   mês…". **Foram dois lugares:** `build/seed.mjs` **e** a linha `patreon` da tabela `content`
   no Supabase — só o build não bastaria, a hidratação traria o texto de volta.
+
+# Beta e alfa saem pelo Patreon — 10/09/2026
+
+**Só `release` baixa de graça pelo site.** Todo patch beta ou alfa é entregue pela
+página do Patreon daquele jogo. Como o Patreon não hospeda arquivo, o arquivo mora no
+**Storage do Supabase**, e o que se cola lá é o link direto dele.
+
+## As duas pastas não servem à mesma coisa
+
+| pasta | quem | vai pro git? | quem serve |
+|---|---|---|---|
+| `patches/` | release | **sim** | o próprio site, `patchclan.com/patches/<arquivo>` |
+| `patches-privados/` | beta e alfa | **não** (gitignored) | ninguém — o site só MEDE o tamanho aqui |
+
+O arquivo de beta/alfa continua existindo localmente porque o `gerar.mjs` precisa dele
+para duas coisas visíveis: o **tamanho** que o cartão mostra e a **bandeira** do idioma
+no selo. O site nunca o serve.
+
+`gerar.mjs` **aborta** se um jogo não-release tiver o arquivo dentro de `patches/`.
+Falhar alto é melhor do que vazar: até 09/09/2026 os quatro patches de beta/alfa
+estavam no repositório público, e o botão "No Patreon" do site era enfeite — bastava
+abrir `github.com/albertodellisola/patchclan-site/tree/main/patches` para baixar tudo.
+
+## O token no nome é o porteiro
+
+```bash
+python3 build/patreon_patches.py subir     # sobe/atualiza as duas pastas
+python3 build/patreon_patches.py link gaia # o link direto de um jogo
+python3 build/patreon_patches.py link      # a tabela inteira
+```
+
+Bucket público `patches` no projeto `zmmxzjmhpxyqwvhqdfyw`. O nome carrega um token
+sorteado — `gaia-saver-en-86b726c3.ips`. Medido em 10/09/2026, sem o token não se
+chega ao arquivo: a listagem do bucket devolve `[]` para a chave anônima, listar sem
+chave nenhuma dá 400, e o nome sem token dá 400.
+
+**O token é sorteado UMA vez e guardado em `.links-patreon.json`, fora do git.**
+Reconstruir o patch mantém a URL — se ela mudasse, toda página do Patreon envelheceria
+a cada build. O manifesto é o registro, não um cache: apagá-lo sorteia tudo de novo e
+quebra os links já publicados no Patreon.
+
+## O link do Patreon de cada jogo
+
+O `corpo.html` já sabia disso desde sempre: `destinoPatch(g)` devolve `g.patreon`
+quando o jogo não é release, e cai no Patreon da casa quando a ficha não tem o campo.
+Para apontar um jogo à sua própria página, é uma linha na ficha:
+
+```js
+// build/jogo-<slug>.mjs, ou o bloco do jogo em jogos-novos.mjs / jogos-r34.mjs
+patreon: 'https://www.patreon.com/posts/...',
+```
+
+**O histórico do git ainda tem os quatro arquivos** que já haviam sido publicados
+(`gaia-saver-en`, `ultraman-club-2-en`, `pocket-monsters-stadium-en`, `robopon-64-en`).
+Tirá-los da árvore não os tira dos commits antigos. Para os próximos, o caminho já
+nasce certo; para estes, só `git filter-repo` — e não vale o estrago de reescrever a
+história por patch de alfa que já circulou.
