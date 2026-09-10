@@ -271,7 +271,7 @@ export const ULTRAMAN3 = {
   publisher: 'Yutaka', dev: 'Tsuburaya Prod.', ano: 1991, data: '1991',
   sistema: 'Famicom', mapper: 'Famicom',
   categoria: bi('Correção de bugs + tradução', 'Bug fixes + translation', 'Corrección de bugs + traducción'),
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'u3/01-titulo.png',
   linha: bi('A continuação em que os Ultras guardam kaiju em cápsulas — e onde a cápsula da página 8, que travava a batalha, caiu antes da tradução.',
             'The sequel where the Ultras store kaiju in capsules — and where the page-8 capsule, which hung the battle, fell before the translation did.',
@@ -311,7 +311,7 @@ export const ULTRAMAN3 = {
               '<b>El Seven volando — NO INVESTIGADO.</b> Depende de una partida guardada en el propio juego, no de un savestate.') }
     ]}
   ],
-  patch: { versoes: { en: null, pt: null, es: null }, rom: 'Ultraman Club 3 (Japan).nes', rom_md5: '—' },
+  patch: { versoes: { en: { arquivo: 'ultraman-club-3-en.ips' }, pt: null, es: null }, rom: 'Ultraman Club 3 (Japan).nes', rom_md5: '25cd707a6cf845bb4d2df34b2cca6254' },
   fotos: [
     { f: 'u3/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('ROM original. Tsuburaya e Yutaka, 1991.', 'Original ROM. Tsuburaya and Yutaka, 1991.', 'ROM original. Tsuburaya y Yutaka, 1991.') }
