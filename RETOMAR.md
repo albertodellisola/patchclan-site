@@ -471,3 +471,23 @@ media tamanho**. Agora aplica o próprio patch de volta e aborta sem gravar.
 ROM original e comparado byte a byte com a traduzida.** O `build/gerar_ips.py` daqui já
 faz isso, e tem o laço escrito certo (`while j < n and iguais < 8`, com o `j += 1` antes
 do teste) — use-o como referência quando um projeto tiver gerador próprio.
+
+## A lista de links para o Patreon
+
+```bash
+python3 build/patreon_patches.py subir      # sobe/atualiza os arquivos
+python3 build/gerar_lista_links.py          # monta a lista, no Desktop
+```
+
+Sai `~/Desktop/patchclan-links-patreon.html` (botão de copiar por link, marcação de
+progresso guardada no navegador, ficha com ROM base e md5 de cada jogo) e o mesmo em
+`.txt`. Roda sempre DEPOIS do `subir`, porque lê o manifesto.
+
+**A saída nunca pode ficar dentro deste repositório.** Ela carrega os tokens de todos
+os patches de beta e alfa, que são o porteiro do Patreon, e o repositório é público.
+Em 10/09/2026 a página foi gerada por engano em `build/` — pega antes do commit, mas o
+gerador passou a escrever no Desktop justamente para o engano não se repetir. O script
+em si não tem segredo nenhum: ele lê o `.links-patreon.json`, que é gitignored.
+
+Publicar a lista como página hospedada foi barrado pelo classificador, e com razão —
+seria pôr numa URL pública a lista inteira de links que existem para não ser públicos.
