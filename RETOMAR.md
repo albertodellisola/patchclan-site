@@ -454,3 +454,20 @@ patreon: 'https://www.patreon.com/posts/...',
 Tirá-los da árvore não os tira dos commits antigos. Para os próximos, o caminho já
 nasce certo; para estes, só `git filter-repo` — e não vale o estrago de reescrever a
 história por patch de alfa que já circulou.
+
+## Tom Sawyer, Gozonji e Hanjuku entram — e um gerador de IPS estava quebrado
+
+Em 10/09/2026 os três ganharam patch pelo Patreon. Nenhum tinha IPS no ar, e os três
+arquivos que existiam nas pastas dos projetos eram **mais velhos que a ROM construída**
+— foram regerados do build atual.
+
+**O `faz_ips.py` do tom-hack entregava patch quebrado.** O `break` do laço pulava o
+`j += 1`, então cada registro saía sem o último byte e trecho de 1 byte sumia inteiro —
+inclusive o byte 4 do cabeçalho iNES, o que declara 512 KB. 129 bytes errados; o patch
+aplicava e devolvia uma ROM que não era a traduzida. Ele não se denunciava porque **só
+media tamanho**. Agora aplica o próprio patch de volta e aborta sem gravar.
+
+**Regra: nenhum IPS entra em `patches/` ou `patches-privados/` sem ter sido aplicado na
+ROM original e comparado byte a byte com a traduzida.** O `build/gerar_ips.py` daqui já
+faz isso, e tem o laço escrito certo (`while j < n and iguais < 8`, com o `j += 1` antes
+do teste) — use-o como referência quando um projeto tiver gerador próprio.
