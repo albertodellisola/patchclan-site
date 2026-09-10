@@ -159,7 +159,7 @@ export const NEKKETSU = {
               'Gráficos que siguen en japonés: la carta de desafío, las cuatro bandas de estilo, los nombres de los dieciséis luchadores en la selección y el encabezado de la elección de escenario.') }
     ]}
   ],
-  patch: { versoes: { en: null, pt: null, es: null }, rom: 'Nekketsu Kakutou Densetsu (Japan).nes', rom_md5: '—' },
+  patch: { versoes: { en: { arquivo: 'nekketsu-kakutou-densetsu-en.ips' }, pt: null, es: null }, rom: 'Nekketsu Kakutou Densetsu (Japan).nes', rom_md5: 'c56d957bbe700b422f97cd8fe4515c54' },
   fotos: [
     { f: 'nk/01-titulo.png', t: bi('Título redesenhado', 'Redrawn title', 'Título redibujado'),
       c: bi('<code>NEKKETSU / FIGHTING LEGEND</code> — o logo japonês refeito em latinas.',
