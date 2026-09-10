@@ -173,7 +173,7 @@ export const GOZONJI = {
   },
   numeros: [],
   grupos: [],
-  patch: { versoes: { en: null, pt: null, es: null }, rom: 'Gozonji - Yaji Kita Chin Douchuu (Japan).nes', rom_md5: 'bdd15fac92d789d8ec59a6484e90db5b' },
+  patch: { versoes: { en: { arquivo: 'gozonji-en.ips' }, pt: null, es: null }, rom: 'Gozonji - Yaji Kita Chin Douchuu (Japan).nes', rom_md5: 'bdd15fac92d789d8ec59a6484e90db5b' },
   fotos: [
     { f: 'gozonji/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O Fuji, o letreiro e o subtítulo em inglês.', 'The Fuji, the logo and the English subtitle.', 'El Fuji, el rótulo y el subtítulo en inglés.') },

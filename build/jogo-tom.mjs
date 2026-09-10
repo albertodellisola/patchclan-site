@@ -75,7 +75,7 @@ export const TOM = {
     ]}
   ],
   patch: {
-    versoes: { en: null, pt: null, es: null },
+    versoes: { en: { arquivo: 'tom-sawyer-en.ips' }, pt: null, es: null },
     rom: 'Square no Tom Sawyer (Japan).nes',
     rom_md5: 'b7e85ec90d071443ea69614c02a7a0a0'
   },

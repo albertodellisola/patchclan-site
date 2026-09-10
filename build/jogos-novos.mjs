@@ -366,7 +366,7 @@ export const HANJUKU = {
               '<b>112 de 399 strings</b> traducidas — los tres bloques de nombres. El resto del guion es el siguiente paso.') }
     ]}
   ],
-  patch: { versoes: { en: null, pt: null, es: null }, rom: 'Hanjuku Hero (Japan).nes', rom_md5: '60e08c13d85400b77b90b9d581f26fce' },
+  patch: { versoes: { en: { arquivo: 'hanjuku-hero-en.ips' }, pt: null, es: null }, rom: 'Hanjuku Hero (Japan).nes', rom_md5: '60e08c13d85400b77b90b9d581f26fce' },
   fotos: [
     { f: 'hj/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('ROM original — o subtítulo <code>HANJUKU HERO</code> já vem em latinas de fábrica.',
