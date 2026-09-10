@@ -1,0 +1,142 @@
+{
+  "famicom-jump-2-en": {
+    "projeto": "fj2-hack",
+    "original": "Downloads/Famicom Jump II - Saikyou no 7 Nin (Japan).nes",
+    "formato": "ips",
+    "md5_original": "47910069aa92dcac1b0fa4929cc7ceff",
+    "traduzida": "fj2-hack/build/fj2-en-build13.2.nes"
+  },
+  "famicom-jump-2-pt": {
+    "projeto": "fj2-hack",
+    "original": "Downloads/Famicom Jump II - Saikyou no 7 Nin (Japan).nes",
+    "formato": "ips",
+    "md5_original": "47910069aa92dcac1b0fa4929cc7ceff",
+    "traduzida": "fj2-hack/build/fj2-pt-build1.nes"
+  },
+  "famicom-jump-2-es": {
+    "projeto": "fj2-hack",
+    "original": "Downloads/Famicom Jump II - Saikyou no 7 Nin (Japan).nes",
+    "formato": "ips",
+    "md5_original": "47910069aa92dcac1b0fa4929cc7ceff",
+    "traduzida": "fj2-hack/build/fj2-es-build1.nes"
+  },
+  "captain-tsubasa-en": {
+    "projeto": "ct-hack",
+    "original": "ct-hack/original/ct_orig.nes",
+    "formato": "ips",
+    "md5_original": "eeb77e6e0e0b5695f9a35f47979c4722",
+    "traduzida": "ct-hack/build/ct_en.nes"
+  },
+  "captain-tsubasa-pt": {
+    "projeto": "ct-hack",
+    "original": "ct-hack/original/ct_orig.nes",
+    "formato": "ips",
+    "md5_original": "eeb77e6e0e0b5695f9a35f47979c4722",
+    "traduzida": "ct-hack/build/ct_pt.nes"
+  },
+  "captain-tsubasa-es": {
+    "projeto": "ct-hack",
+    "original": "ct-hack/original/ct_orig.nes",
+    "formato": "ips",
+    "md5_original": "eeb77e6e0e0b5695f9a35f47979c4722",
+    "traduzida": "ct-hack/build/ct_es.nes"
+  },
+  "dragon-ball-3-en": {
+    "projeto": "db3-hack",
+    "original": "db3-hack/original/db3_orig.nes",
+    "formato": "ips",
+    "md5_original": "0bc3d5d7d1e7f2206ce1c157402ff944",
+    "traduzida": "db3-hack/build/db3_en.nes"
+  },
+  "dragon-ball-3-pt": {
+    "projeto": "db3-hack",
+    "original": "db3-hack/original/db3_orig.nes",
+    "formato": "ips",
+    "md5_original": "0bc3d5d7d1e7f2206ce1c157402ff944",
+    "traduzida": "db3-hack/build/db3_pt.nes"
+  },
+  "guevara-3idiomas": {
+    "projeto": "guevara-hack",
+    "original": "guevara-hack/original/guevara_orig.nes",
+    "formato": "ips",
+    "md5_original": "cd4bc85243c73274d74efb2f61b5a9c1",
+    "traduzida": "guevara-hack/build/Guevara - Definitive Edition (3 languages v2.0).nes"
+  },
+  "magic-knight-rayearth-2-en": {
+    "projeto": "mkr2-hack",
+    "original": "mkr2-hack/rom/original.gg",
+    "formato": "ips",
+    "md5_original": "b19256c6716147a9744f5bd528f14450",
+    "traduzida": "mkr2-hack/build/final_en.gg"
+  },
+  "tom-sawyer-en": {
+    "projeto": "tom-hack",
+    "original": "tom-hack/original/tom_orig.nes",
+    "formato": "ips",
+    "md5_original": "b7e85ec90d071443ea69614c02a7a0a0",
+    "traduzida": "tom-hack/build/tom_en.nes"
+  },
+  "ultraman-club-2-en": {
+    "projeto": "ultraman2-hack",
+    "original": "ultraman2-hack/original/ultraman2_orig.nes",
+    "formato": "ips",
+    "md5_original": "1e479bfe8e4d3c36de37dfb96aa8e68c",
+    "traduzida": "ultraman2-hack/build/ultraman2-en-build36.nes"
+  },
+  "gaia-saver-en": {
+    "projeto": "gaia-hack",
+    "original": "gaia-hack/original/gaia_orig.sfc",
+    "formato": "ips",
+    "md5_original": "0ab069047f1b03983241c014f8378555",
+    "traduzida": "gaia-hack/build/gaia-en.sfc"
+  },
+  "nekketsu-kakutou-densetsu-en": {
+    "projeto": "nekketsu-hack",
+    "original": "nekketsu-hack/original.nes",
+    "formato": "ips",
+    "md5_original": "c56d957bbe700b422f97cd8fe4515c54",
+    "traduzida": "nekketsu-hack/build/nekketsu-en.nes"
+  },
+  "gozonji-en": {
+    "projeto": "gozonji-hack",
+    "original": "gozonji-hack/original/gozonji.nes",
+    "formato": "ips",
+    "md5_original": "bdd15fac92d789d8ec59a6484e90db5b",
+    "traduzida": "gozonji-hack/build/gozonji-en.nes"
+  },
+  "monster-maker-en": {
+    "projeto": "mm-hack",
+    "original": "mm-hack/original/mm.nes",
+    "formato": "ips",
+    "md5_original": "b10e90e81f3bdbe5a232ee34d746327e",
+    "traduzida": "mm-hack/build/mm_en.nes"
+  },
+  "hanjuku-hero-en": {
+    "projeto": "hanjuku-hack",
+    "original": "hanjuku-hack/original/hanjuku_orig.nes",
+    "formato": "ips",
+    "md5_original": "60e08c13d85400b77b90b9d581f26fce",
+    "traduzida": "hanjuku-hack/build/hanjuku_en.nes"
+  },
+  "robopon-64-en": {
+    "projeto": "robopon64-hack",
+    "original": "robopon64-hack/rom/base.z64",
+    "formato": "bps",
+    "md5_original": "444f70a655ac89ca900f6fafaf926b16",
+    "traduzida": "robopon64-hack/rom/robopon64_en.z64"
+  },
+  "ultraman-club-3-en": {
+    "projeto": "ultraman3-hack",
+    "original": "ultraman3-hack/original/uc3_orig.nes",
+    "formato": "ips",
+    "md5_original": "25cd707a6cf845bb4d2df34b2cca6254",
+    "pendente": "Qual build e a canonica: ha 8 (uc3_en, _fix, _intro, _kai, _logo, _sobra, _tab, _tel), todas de 10/09 13:22, e o patch publicado nao casa com nenhuma. Declarar a traduzida antes de atualizar."
+  },
+  "pocket-monsters-stadium-en": {
+    "projeto": "pms64-hack",
+    "original": "pms64-hack/rom/base.z64",
+    "formato": "ips",
+    "md5_original": "c46e087d966a35095df96799b0b4ffae",
+    "pendente": "A traducao esta sendo reescrita em ASCII de 1 byte (pms64_ascii.z64, 10/09 16:18) depois do conserto da largura da caixa. Declarar a traduzida quando a reescrita fechar."
+  }
+}
