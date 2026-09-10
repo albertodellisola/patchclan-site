@@ -412,3 +412,10 @@ enabled = true
 # declarative_schema_path = "./database"
 # JSON string passed through to pg-delta SQL formatting.
 # format_options = "{\"keywordCase\":\"upper\",\"indent\":2,\"maxWidth\":80,\"commaStyle\":\"trailing\"}"
+
+# A funcao `baixar` entrega o patch de beta/alfa contando o download. E ABERTA de
+# proposito: o link e clicado de dentro do Patreon, que nao manda header de auth.
+# Declarar aqui e o que garante — passar --no-verify-jwt na linha de comando fica
+# gravado no projeto, mas redeployar sem a flag NAO desfaz e ninguem percebe.
+[functions.baixar]
+verify_jwt = false

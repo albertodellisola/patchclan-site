@@ -11,6 +11,12 @@ arquivo — então o arquivo mora aqui, no bucket público `patches`, com um TOK
 nome. Sem o token não há como chegar nele: a listagem do bucket devolve vazio para a
 chave anônima, e o nome sem token dá 400.
 
+O LINK QUE VAI NO PATREON NÃO É O DO ARQUIVO (desde 10/09/2026): é o da edge
+function `baixar`, que registra o download em `patch_download` e só então redireciona
+para o Storage. O Storage entrega e não conta — não há contador por objeto, e o log
+do plano gratuito dura um dia. De quebra o token some da URL pública. Ler a contagem:
+`python3 build/contagem_downloads.py`.
+
 O TOKEN é sorteado UMA vez por arquivo e guardado em `.links-patreon.json` (fora do
 git). Reconstruir o patch NÃO muda a URL — se mudasse, toda página do Patreon
 envelheceria a cada build. Apagar o manifesto é que sorteia tudo de novo e quebra os
@@ -66,6 +72,30 @@ def subir():
             print(f'{st}  {pasta}/{p.name:32s} -> {nome}  ({len(dados)//1024} KB)')
     MANIFESTO.write_text(json.dumps(man, indent=2, ensure_ascii=False) + '\n')
     print(f'\nmanifesto: {MANIFESTO.name} · {len(man)} patches')
+    sincronizar(man, sb_url, chave)
+
+
+def sincronizar(man, sb_url, chave):
+    """Espelha o mapa base -> arquivo na tabela `patch_arquivo`.
+
+    A funcao `baixar` roda no servidor e nao enxerga o manifesto, que e local e fora
+    do git. Sem este espelho ela nao sabe qual objeto do Storage serve cada patch —
+    e o link do Patreon devolve 404 sem dizer por que.
+    """
+    linhas = [{'base': k, 'arquivo': v['arquivo'],
+               'nivel': 'release' if v.get('pasta') == 'patches' else 'privado',
+               'atualizado': 'now()'}
+              for k, v in sorted(man.items()) if v.get('arquivo')]
+    for x in linhas:
+        x.pop('atualizado')
+    req = urllib.request.Request(
+        f'{sb_url}/rest/v1/patch_arquivo?on_conflict=base',
+        data=json.dumps(linhas).encode(), method='POST',
+        headers={'Authorization': f'Bearer {chave}', 'apikey': chave,
+                 'Content-Type': 'application/json',
+                 'Prefer': 'resolution=merge-duplicates,return=minimal'})
+    with urllib.request.urlopen(req) as r:
+        print(f'mapa no banco: {r.status} · {len(linhas)} patches — a funcao `baixar` ja acha todos')
 
 
 def link(busca=None):
@@ -74,8 +104,12 @@ def link(busca=None):
     if not achados:
         print(f'nada casa com "{busca}". Há: ' + ', '.join(sorted(man)))
         sys.exit(1)
+    sb_url, _ = ambiente()
     for k in sorted(achados):
-        print(f'{k}\n  {achados[k]["url"]}\n')
+        onde = 'release' if achados[k].get('pasta') == 'patches' else 'beta/alfa'
+        print(f'{k}  ({onde})\n  {sb_url}/functions/v1/baixar?p={k}\n')
+    print('Estes links CONTAM o download. O link direto do Storage continua existindo\n'
+          'no manifesto, mas nao conta nada — nao e ele que vai no Patreon.')
 
 
 if __name__ == '__main__':
