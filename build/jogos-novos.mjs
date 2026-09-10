@@ -314,7 +314,9 @@ export const ULTRAMAN3 = {
   patch: { versoes: { en: { arquivo: 'ultraman-club-3-en.ips' }, pt: null, es: null }, rom: 'Ultraman Club 3 (Japan).nes', rom_md5: '25cd707a6cf845bb4d2df34b2cca6254' },
   fotos: [
     { f: 'u3/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
-      c: bi('ROM original. Tsuburaya e Yutaka, 1991.', 'Original ROM. Tsuburaya and Yutaka, 1991.', 'ROM original. Tsuburaya y Yutaka, 1991.') }
+      c: bi('Build em inglês. A logo japonesa deu lugar à inglesa, redesenhada pixel a pixel nas quatro cores da paleta original; o crédito de 1991 à Tsuburaya e à Yutaka continua onde estava.',
+            'English build. The Japanese logo gave way to the English one, redrawn pixel by pixel in the original palette\'s four colours; the 1991 credit to Tsuburaya and Yutaka stays where it was.',
+            'Build en inglés. El logo japonés dio paso al inglés, redibujado píxel a píxel con los cuatro colores de la paleta original; el crédito de 1991 a Tsuburaya y a Yutaka sigue donde estaba.') }
   ]
 };
 
