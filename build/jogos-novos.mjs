@@ -104,7 +104,7 @@ export const NEKKETSU = {
   publisher: 'Technos Japan', dev: 'Technos Japan', ano: 1992, data: '1992',
   sistema: 'Famicom', mapper: 'MMC3 · expansão 128→256 KB provada',
   categoria: bi('Tradução + arte', 'Translation + artwork', 'Traducción + arte'),
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'nk/01-titulo.png',
   linha: bi('A série de brigões de colégio que o Ocidente conheceu como River City Ransom. Este é o de luta: 19 combates em duplas, quatro jogadores na mesa.',
             'The school-brawler series the West met as River City Ransom. This one is the fighter: 19 tag bouts, four players on one Famicom.',
