@@ -3,9 +3,16 @@
    A ORDEM É A QUE APARECE, e a home mostra TODOS. Ela é agrupada por estado e,
    dentro de cada estado, por apelo ao público — decisão do dono em 09/09/2026:
      1) os release   2) os beta    3) os alfa
-   Promover ou rebaixar um projeto é mover a linha daqui e trocar o `nivel` no
-   arquivo do jogo. O placar do herói e os grupos da página de projetos se
-   recalculam sozinhos. */
+
+   O AGRUPAMENTO É AUTOMÁTICO, e é de propósito. A lista abaixo guarda só a ordem
+   de APELO; quem separa release de beta de alfa é o `nivel` do próprio jogo.
+   Promover um projeto passou a ser trocar UMA palavra no arquivo dele — o ícone
+   sobe sozinho.
+
+   Antes isto era ordem manual, e derivou em silêncio: em 09/09/2026 o Gaia Saver
+   estava `nivel: 'beta'` sentado no meio dos alfa, e o Monster Maker acabara de
+   virar beta e continuava na última posição da página. Duas fontes de verdade
+   para a mesma coisa sempre acabam assim. */
 import { FJ2 } from './jogo-fj2.mjs';
 import { DB3 } from './jogo-db3.mjs';
 import { CT }  from './jogo-ct.mjs';
@@ -13,11 +20,20 @@ import { TOM } from './jogo-tom.mjs';
 import { GAIA, NEKKETSU, ULTRAMAN2, ULTRAMAN3, HANJUKU, MONSTERMAKER } from './jogos-novos.mjs';
 import { GUEVARA, GOZONJI, MKR2, MANIAC, PMS64, ROBOPON, BURAI } from './jogos-r34.mjs';
 
-export const JOGOS = [
-  /* release — jogo inteiro em inglês, cada linha lida, patch publicado */
+/* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
+const APELO = [
   FJ2, CT, GUEVARA, DB3, MKR2,
-  /* beta — texto acima de 90%, em ordem de apelo ao público */
   TOM, ULTRAMAN2,
-  /* alfa — o começo do caminho, em ordem de apelo ao público */
   PMS64, MANIAC, GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER
 ];
+
+const POSTO = { release: 0, beta: 1, alfa: 2 };
+
+for (const g of APELO) {
+  if (!(g.nivel in POSTO)) {
+    throw new Error(`jogos.mjs: "${g.slug}" tem nivel "${g.nivel}", que não existe em POSTO`);
+  }
+}
+
+/* sort estável: preserva a ordem de apelo dentro de cada grupo */
+export const JOGOS = [...APELO].sort((a, b) => POSTO[a.nivel] - POSTO[b.nivel]);
