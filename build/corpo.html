@@ -134,12 +134,72 @@
         L({pt:'Baixar',en:'Download',es:'Descargar'})+'</a></div>';
     }).join('') + '</div>';
   }
+  /* De ONDE o botão baixa, e por que isso não é detalhe: o GitHub Pages serve
+     patches/ sem contar nada — não há log nem contador por arquivo. O GitHub
+     Releases conta cada download do asset (campo `download_count` na API), venha
+     do botão, de link direto ou de espelho em fórum. Jogo que declara
+     `patch.release` baixa de lá; sem isso, continua saindo de patches/.
+     A tag carrega a VERSÃO de propósito: versão nova é release nova, para que a
+     contagem da anterior não seja zerada nem o arquivo trocado em silêncio.
+     Ler a contagem: `python3 build/contagem_downloads.py`. */
+  var REPO_RELEASES = 'https://github.com/albertodellisola/patchclan-site/releases/download/';
+  function pastaPatch(g){
+    return (g.patch && g.patch.release) ? REPO_RELEASES + g.patch.release : 'patches';
+  }
   /* Onde o patch de um projeto inacabado vive: a postagem do Patreon daquele jogo,
      e o Patreon da casa enquanto a postagem não tiver link próprio. */
   function destinoPatch(g){
     if (g.nivel === 'release') return '';
     return g.patreon || ((D.content.patreon||{}).url) || 'https://www.patreon.com/patchclan';
   }
+  /* Manual e GUIA são o mesmo mecanismo: texto escrito em build/, lido no site, nos três
+     idiomas, e que entra em toda versão do jogo. Nenhum dos dois se baixa — o PDF saiu do
+     ar em 10/09/2026; o que fica é o link ao lado do download do patch. Um link só existe
+     quando o documento existe, pela mesma regra da bandeira: nada se anuncia sem lastro. */
+  var DOCS = {
+    manual: { colecao:'manuais', rota:'manual',
+      ler:  {pt:'Leia o manual',en:'Read the manual',es:'Lee el manual'},
+      rot:  {pt:'Manual',en:'Manual',es:'Manual'},
+      sub:  {pt:'Os comandos do jogo, escritos sobre o patch — cada palavra citada é a que está na tela.',
+             en:'The game’s commands, written over the patch — every word quoted is the one on screen.',
+             es:'Los comandos del juego, escritos sobre el parche — cada palabra citada es la que está en pantalla.'},
+      espera:{pt:'O manual deste jogo está em preparação.',
+              en:'The manual for this game is being prepared.',
+              es:'El manual de este juego está en preparación.'} },
+    guia: { colecao:'guias', rota:'guia',
+      ler:  {pt:'Leia o guia',en:'Read the guide',es:'Lee la guía'},
+      rot:  {pt:'Guia',en:'Guide',es:'Guía'},
+      sub:  {pt:'Como jogar bem: o que priorizar, o que evitar e as armadilhas do cartucho.',
+             en:'How to play it well: what to prioritise, what to avoid, and the cartridge’s traps.',
+             es:'Cómo jugarlo bien: qué priorizar, qué evitar y las trampas del cartucho.'},
+      espera:{pt:'O guia deste jogo está em preparação.',
+              en:'The guide for this game is being prepared.',
+              es:'La guía de este juego está en preparación.'} }
+  };
+  function doc(tipo, slug){ return (D[DOCS[tipo].colecao] || {})[slug]; }
+  /* O cartão de um documento. Um só desenho, usado nos dois lugares onde se convida a ler:
+     abaixo do patch, na ficha do jogo, e no fim do outro documento. */
+  function cartaoDoc(slug, tipo){
+    return '<a class="leitura" href="#/'+DOCS[tipo].rota+'/'+e(slug)+'">' +
+      '<span class="idi">'+L(DOCS[tipo].rot)+'</span>' +
+      '<b>'+L(doc(tipo, slug).titulo)+'</b>' +
+      '<span class="sub">'+L(DOCS[tipo].sub)+'</span>' +
+      '<span class="cta">'+L(DOCS[tipo].ler)+' →</span></a>';
+  }
+  /* A faixa de leitura, logo abaixo do patch: o manual ensina a jogar, o guia ensina a
+     jogar bem. Os dois moram no site — não há arquivo, e por isso não há idioma faltando:
+     quem trocar a bandeira do topo troca o texto inteiro junto. */
+  function leituras(g){
+    var ls = ['manual','guia'].filter(function(t){ return doc(t, g.slug); });
+    if (!ls.length) return '';
+    return '<h3 style="margin:44px 0 14px">'+L({pt:'Para jogar',en:'To play it',es:'Para jugarlo'})+'</h3>' +
+      '<div class="leituras">' + ls.map(function(t){ return cartaoDoc(g.slug, t); }).join('') + '</div>';
+  }
+  function linkDoc(g, tipo, cls){
+    if (!doc(tipo, g.slug)) return '';
+    return '<a class="'+cls+'" href="#/'+DOCS[tipo].rota+'/'+e(g.slug)+'">'+L(DOCS[tipo].ler)+'</a>';
+  }
+
   /* Três níveis, e só três. O nível de um projeto é o mesmo que os apoiadores
      recebem: alfa no Seventh Hero, beta no Bank Switch, release para todo mundo. */
   var NIVEIS = {
@@ -338,7 +398,7 @@
         (g.versao ? '<br><span class="versao">'+L({pt:'Patch',en:'Patch',es:'Parche'})+' <b>'+e(g.versao)+'</b></span>' : '')+'</p>' +
       '<div class="acoes-jogo">' +
         '<a class="bt" href="#/jogo/'+e(g.slug)+'" data-ir="baixar">▶ '+L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>' +
-        '<a class="bt fora" href="#/manual/'+e(g.slug)+'">'+L({pt:'Ler o manual',en:'Read the manual',es:'Leer el manual'})+'</a>' +
+        linkDoc(g, 'manual', 'bt fora') + linkDoc(g, 'guia', 'bt fora') +
       '</div></div><div>'+crt(g.capa, txt(g.linha,'en'))+'</div></div>';
 
     out += '<nav class="abas" aria-label="'+e(g.nome)+'">' +
@@ -346,7 +406,8 @@
       (g.nivel === 'release' ? '<a href="#/jogo/'+e(g.slug)+'" data-ir="tudo">'+L({pt:'O que mudou',en:'What changed',es:'Qué cambió'})+'</a>' : '') +
       '<a href="#/jogo/'+e(g.slug)+'" data-ir="telas">'+L({pt:'Telas',en:'Screens',es:'Pantallas'})+'</a>' +
       '<a href="#/jogo/'+e(g.slug)+'" data-ir="baixar">'+L({pt:'Baixar',en:'Download',es:'Descargar'})+'</a>' +
-      ((D.manuais||{})[g.slug] ? '<a href="#/manual/'+e(g.slug)+'">'+L({pt:'Manual',en:'Manual',es:'Manual'})+'</a>' : '') +
+      ['manual','guia'].map(function(t){
+        return doc(t, g.slug) ? '<a href="#/'+DOCS[t].rota+'/'+e(g.slug)+'">'+L(DOCS[t].rot)+'</a>' : ''; }).join('') +
       '</nav>';
 
     var completa = g.nivel === 'release';   /* só release documenta o trabalho inteiro */
@@ -393,26 +454,23 @@
                                         en:'While the project is open, the patch goes out through Patreon.',
                                         es:'Mientras el proyecto sigue abierto, el parche sale por Patreon.'})+'</b>' : '') +
         '</div>' +
-      gradeIdiomas(g.patch.versoes, 'patches', 'IPS', destinoPatch(g), (g.patch||{}).nota) +
-      '<h3 style="margin:44px 0 14px">'+L({pt:'O manual',en:'The manual',es:'El manual'})+'</h3>' +
-      '<div class="baixar-cab">' +
-        L({pt:'O mesmo manual que está no site, em PDF — escrito sobre o jogo traduzido, com os comandos exatos da tela.',
-           en:'The same manual that is on the site, as a PDF — written over the translated game, with the exact on-screen commands.',
-           es:'El mismo manual que está en el sitio, en PDF — escrito sobre el juego traducido, con los comandos exactos de la pantalla.'}) +
-        ' <a href="#/manual/'+e(g.slug)+'">'+L({pt:'Ler no site →',en:'Read on the site →',es:'Leer en el sitio →'})+'</a></div>' +
-      gradeIdiomas(g.manual_pdf, 'manuais', 'PDF');
+      gradeIdiomas(g.patch.versoes, pastaPatch(g), 'IPS', destinoPatch(g), (g.patch||{}).nota) +
+      leituras(g);
     out += '</div></section>';
     out += '<a class="voltar" href="#/projetos">'+L({pt:'← Todos os projetos',en:'← All projects',es:'← Todos los proyectos'})+'</a>';
     return out;
   }
 
-  /* ---------------- MANUAL ---------------- */
-  function paginaManual(slug){
+  /* ---------------- MANUAL E GUIA ---------------- */
+  /* Um renderizador só para os dois: mesma estrutura de dados (titulo, intro, secoes com
+     paras/lista/foto), mesma folha de estilo, mesma impressão. O que muda é a coleção de
+     onde o documento vem e o rótulo — nunca o desenho. */
+  function paginaDoc(slug, tipo){
     var g = jogo(slug); if(!g) return paginaProjetos();
-    var m = (D.manuais||{})[slug];
+    var cfg = DOCS[tipo], m = doc(tipo, slug);
     if(!m){
-      return '<section><p class="label">'+L({pt:'Manual',en:'Manual',es:'Manual'})+'</p><div class="col">' +
-        '<h2>'+e(g.nome)+'</h2><p>'+L({pt:'O manual em inglês deste jogo está em preparação.',en:'The English manual for this game is being prepared.',es:'El manual en inglés de este juego está en preparación.'})+'</p></div>' +
+      return '<section><p class="label">'+L(cfg.rot)+'</p><div class="col">' +
+        '<h2>'+e(g.nome)+'</h2><p>'+L(cfg.espera)+'</p></div>' +
         '<a class="voltar" href="#/jogo/'+e(g.slug)+'">←&nbsp;'+e(g.nome)+'</a></section>';
     }
     var out = '<div id="capa-pdf">' +
@@ -432,7 +490,7 @@
       '<div class="col"><h1 style="font-size:clamp(30px,4.4vw,46px);margin-bottom:18px">'+e(g.nome)+'</h1>' +
       '<p class="lede">'+L(m.intro)+'</p></div>' +
       '<nav class="man-idx" aria-label="'+txt(m.titulo,'en')+'">' + m.secoes.map(function(sec,i){
-        return '<a href="#/manual/'+e(slug)+'" data-ir="sec-'+e(sec.id)+'"><span class="n">'+(i+1)+'</span>'+L(sec.titulo)+'</a>';
+        return '<a href="#/'+cfg.rota+'/'+e(slug)+'" data-ir="sec-'+e(sec.id)+'"><span class="n">'+(i+1)+'</span>'+L(sec.titulo)+'</a>';
       }).join('') + '</nav></section>';
     out += m.secoes.map(function(sec,i){
       var corpo = '<div class="man-txt">' +
@@ -447,8 +505,13 @@
         '<div class="man-corpo'+(sec.foto?'':' solo')+'">' + corpo +
         (sec.foto ? '<div>'+crt(sec.foto,'')+'</div>' : '') + '</div></section>';
     }).join('');
-    out += '<section id="baixar-manual"><p class="label">'+L({pt:'Baixar o manual',en:'Download the manual',es:'Descargar el manual'})+'</p>' +
-      gradeIdiomas(g.manual_pdf, 'manuais', 'PDF') + '</section>';
+    /* O outro documento do mesmo jogo fecha a página: quem terminou o manual encontra o
+       guia sem voltar para a ficha. Nada para baixar — o texto é o produto. */
+    var outro = (tipo === 'manual') ? 'guia' : 'manual';
+    if (doc(outro, slug)) {
+      out += '<section class="so-tela"><p class="label">'+L(DOCS[outro].rot)+'</p>' +
+        '<div class="leituras">' + cartaoDoc(slug, outro) + '</div></section>';
+    }
     return out + '<a class="voltar" href="#/jogo/'+e(g.slug)+'">←&nbsp;'+e(g.nome)+'</a>';
   }
 
@@ -526,6 +589,7 @@
     var p = h.split('/').filter(Boolean);
     if (p[0] === 'jogo' && p[1]) return { tipo:'jogo', slug:p[1] };
     if (p[0] === 'manual' && p[1]) return { tipo:'manual', slug:p[1] };
+    if (p[0] === 'guia' && p[1]) return { tipo:'guia', slug:p[1] };
     if (p[0] === 'projetos') return { tipo:'projetos' };
     if (p[0] === 'atualizacoes') return { tipo:'atualizacoes' };
     if (p[0] === 'sobre') return { tipo:'sobre' };
@@ -539,7 +603,7 @@
   function desenha(){
     var r = rota(), app = document.getElementById('conteudo');
     if (r.tipo === 'jogo') app.innerHTML = paginaJogo(r.slug);
-    else if (r.tipo === 'manual') app.innerHTML = paginaManual(r.slug);
+    else if (r.tipo === 'manual' || r.tipo === 'guia') app.innerHTML = paginaDoc(r.slug, r.tipo);
     else if (r.tipo === 'projetos') app.innerHTML = paginaProjetos();
     else if (r.tipo === 'atualizacoes') app.innerHTML = paginaAtualizacoes();
     else if (r.tipo === 'sobre') app.innerHTML = paginaSobre();
@@ -557,7 +621,7 @@
   }
   function menu(r){
     var itens = [
-      ['#/projetos', {pt:'Projetos',en:'Projects',es:'Proyectos'}, ['projetos','jogo','manual']],
+      ['#/projetos', {pt:'Projetos',en:'Projects',es:'Proyectos'}, ['projetos','jogo','manual','guia']],
       ['#/atualizacoes', {pt:'Atualizações',en:'Updates',es:'Novedades'}, ['atualizacoes']],
       ['#/sobre', {pt:'Sobre',en:'About',es:'Sobre'}, ['sobre']]
     ];

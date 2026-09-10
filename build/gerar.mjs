@@ -4,6 +4,7 @@ import { POSTS } from './posts.mjs';
 import { MANUAL_FJ2 } from './manual-fj2.mjs';
 import { MANUAL_DB3 } from './manual-db3.mjs';
 import { MANUAL_CT } from './manual-ct.mjs';
+import { GUIAS } from './guias.mjs';
 import { ES } from './es.mjs';
 import { ES_FJ2 } from './es-fj2.mjs';
 import { ES_CT } from './es-ct.mjs';
@@ -12,18 +13,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const RAIZ = path.resolve(import.meta.dirname, '..');
-
-// o manual em PDF: existe se o arquivo existe. Idioma sem arquivo fica esmaecido no site.
-for (const g of JOGOS) {
-  g.manual_pdf = {};
-  for (const idi of ['en', 'pt', 'es']) {
-    const nome = `${g.slug}-${idi}.pdf`;
-    const f = path.join(RAIZ, 'manuais', nome);
-    g.manual_pdf[idi] = fs.existsSync(f)
-      ? { arquivo: nome, tamanho: Math.round(fs.statSync(f).size / 1024) + ' KB' }
-      : null;
-  }
-}
 
 /* O tamanho de cada patch vem do arquivo, nunca digitado a mao.
 
@@ -48,6 +37,32 @@ for (const g of JOGOS) {
     const f = path.join(RAIZ, PASTA_PATCH(g), v.arquivo);
     if (!fs.existsSync(f)) { g.patch.versoes[idi] = null; continue; }
     v.tamanho = Math.round(fs.statSync(f).size / 1024) + ' KB';
+  }
+}
+
+/* Guarda da contagem de downloads. Um jogo que declara `patch.release` faz o botao
+   baixar do GitHub Releases, que e o unico lugar que CONTA download por arquivo.
+   Duas coisas so podem dar errado ai, e as duas dao errado em silencio:
+
+     1. subir versao nova reusando a tag antiga -> o GitHub SUBSTITUI o asset e a
+        contagem volta a zero, sem erro nenhum. Por isso a tag carrega a versao, e
+        aqui se exige que ela bata com o campo `versao` da ficha.
+     2. declarar release num projeto que nao e release -> patch de beta/alfa
+        publicado de graca, furando o gate do Patreon.
+
+   Falhar alto e melhor que publicar numero errado ou patch que nao devia sair. */
+for (const g of JOGOS) {
+  const tag = (g.patch || {}).release;
+  if (!tag) continue;
+  if (g.nivel !== 'release') {
+    throw new Error(`${g.slug}: declara patch.release "${tag}" mas nivel e "${g.nivel}" — beta/alfa sai pelo Patreon, nao por release publica.`);
+  }
+  const n = String(g.versao || '').match(/v\d+(?:\.\d+)*/i);
+  if (!n) {
+    throw new Error(`${g.slug}: declara patch.release mas o campo versao ("${g.versao}") nao tem numero de versao para conferir contra a tag.`);
+  }
+  if (!tag.includes(n[0])) {
+    throw new Error(`${g.slug}: versao e "${g.versao}" mas a tag da release e "${tag}" — suba a release da versao nova (a contagem da anterior fica preservada) e atualize patch.release.`);
   }
 }
 
@@ -142,7 +157,10 @@ ${c.trim()}
 }
 
 // 1) index.html do site: imagens como arquivos em shots/
-const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT } };
+/* Manual e guia entram do mesmo jeito: um objeto por slug, lido no site nos tres idiomas.
+   Documento que nao existe simplesmente nao gera link — nada fica esmaecido, nada some. */
+const MANUAIS = { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT };
+const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS };
 fs.writeFileSync(path.join(RAIZ, 'index.html'), montar(seedArquivos));
 
 // 2) artifact: as mesmas imagens embutidas, porque a previa nao serve arquivos relativos
@@ -162,9 +180,9 @@ clone.games.forEach(g => {
   (g.fotos || []).forEach(f => { f.f = embutir(f.f); });
   (g.grupos || []).forEach(gr => (gr.itens || []).forEach(i => { if (i.foto) i.foto = embutir(i.foto); }));
 });
-Object.values(clone.manuais || {}).forEach(m => {
+[clone.manuais, clone.guias].forEach(col => Object.values(col || {}).forEach(m => {
   (m.secoes || []).forEach(sec => { if (sec.foto) sec.foto = embutir(sec.foto); });
-});
+}));
 // no artifact o prefixo 'shots/' atrapalha: neutraliza-o com uma <base> inofensiva
 // o Artifact envolve o conteudo sozinho: entrega so <head> util + corpo, sem wrappers
 const shotsArt = {};
@@ -184,4 +202,5 @@ const kb = n => Math.round(n / 1024);
 console.log(`index.html: ${kb(fs.statSync(path.join(RAIZ,'index.html')).size)} KB (imagens em shots/)`);
 console.log(`artifact  : ${kb(art.length)} KB (imagens embutidas)`);
 console.log(`jogos: ${JOGOS.map(g => g.slug).join(', ')} · posts: ${POSTS.length}`);
+console.log(`manuais: ${Object.keys(MANUAIS).join(', ') || '—'} · guias: ${Object.keys(GUIAS).join(', ') || '—'}`);
 console.log(`prints por idioma: ${IDIOMAS_PRINT.map(l => `${l} ${Object.keys(VARIANTES[l]).length}`).join(' · ')}`);

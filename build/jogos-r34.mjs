@@ -252,7 +252,8 @@ export const MKR2 = {
               '<b>Ninguna persona lo ha jugado de principio a fin.</b> Cada línea fue leída antes de salir, y una <b>partida automática de 50 días</b> llegó al final y a los créditos con el parche en inglés — fue ella la que encontró el japonés que sobraba. Pero una partida jugada por una persona, del primer día al final, todavía no ha ocurrido.') }
     ] }
   ],
-  patch: { versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
+  patch: { release: 'magic-knight-rayearth-2-v1.2',
+           versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
   fotos: [
     { f: 'mkr2/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O título redesenhado, com a versão no canto.', 'The redrawn title, with the version in the corner.', 'El título redibujado, con la versión en la esquina.') },
