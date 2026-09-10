@@ -155,7 +155,7 @@ export const GOZONJI = {
   publisher: 'HAL Laboratory', dev: 'HYPERWARE', ano: 1991, data: '1991',
   sistema: 'Famicom', mapper: 'MMC1 convertido para MMC3 · 256 KB expandido para 512 KB · 128 KB CHR-ROM',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'gozonji/01-titulo.png',
   linha: bi('Dois amigos de Edo caem na estrada rumo a Ise, e não há parada sem confusão: a comédia da HAL pelas 53 estações do Tōkaidō.',
             'Two friends from Edo take the road to Ise, and no stop passes without trouble: HAL\'s comedy along the 53 stations of the Tōkaidō.',
