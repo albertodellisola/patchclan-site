@@ -406,7 +406,7 @@ export const MONSTERMAKER = {
     { v: '128 KB', r: bi('de texto alcançável, contra 48 do motor original', 'of reachable text, against the engine\'s original 48', 'de texto alcanzable, frente a los 48 del motor original') }
   ],
   grupos: [],
-  patch: { versoes: { en: null, pt: null, es: null }, rom: 'Monster Maker - 7 Tsu no Hihou (Japan).nes', rom_md5: 'b10e90e81f3bdbe5a232ee34d746327e' },
+  patch: { versoes: { en: { arquivo: 'monster-maker-en.ips' }, pt: null, es: null }, rom: 'Monster Maker - 7 Tsu no Hihou (Japan).nes', rom_md5: 'b10e90e81f3bdbe5a232ee34d746327e' },
   fotos: [
     { f: 'mm/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O subtítulo já em inglês: <code>THE SEVEN TREASURES</code>.', 'The subtitle already in English: <code>THE SEVEN TREASURES</code>.', 'El subtítulo ya en inglés: <code>THE SEVEN TREASURES</code>.') },
