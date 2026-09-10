@@ -384,7 +384,7 @@ export const MONSTERMAKER = {
   publisher: 'Sofel', dev: 'U-Kikaku · Show-Kikaku', ano: 1991, data: '1991',
   sistema: 'Famicom', mapper: 'MMC1 · 256 KB PRG expandido para 512 KB · CHR-RAM de 8 KB · save com bateria',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'mm/01-titulo.png',
   linha: bi('A fonte do cartucho tinha três letras latinas. O motor de texto alcançava 48 KB. O inglês pedia 49,6.',
             'The cartridge font held three Latin letters. The text engine reached 48 KB. The English asked for 49.6.',
