@@ -11,7 +11,7 @@ NUNCA gravar a saída dentro de ~/patchclan-site: o repositório é PÚBLICO e a
 carrega os tokens de todos os patches de beta e alfa, que são o porteiro do Patreon.
 Este script não tem segredo nenhum; o que não pode subir é o que ele produz.
 """
-import json, html, re, pathlib
+import datetime, json, html, re, pathlib
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 SAIDA = pathlib.Path.home() / 'Desktop'
@@ -241,6 +241,24 @@ linhas_pend = ''.join(
   '<em>' + e(j['sistema']) + ' · ' + ROTULO[j['nivel']][0].lower() + '</em></span></div>'
   for j in pend)
 
+NUMERO = {0:'Nenhum jogo', 1:'Um jogo', 2:'Dois jogos', 3:'Três jogos'}
+
+# Jogo sem patch pode nem estar no site: em 10/09/2026 o dono tirou Maniac Mansion e
+# Ninja Burai da lista ATÉ EXISTIR PATCH, e eles somem do seed. Sem pendente, a seção
+# inteira sai — cabeçalho com lista vazia é pior do que seção nenhuma.
+if pend:
+    quantos = NUMERO.get(len(pend), str(len(pend)) + ' jogos')
+    verbo = 'está' if len(pend) == 1 else 'estão'
+    SECAO_PENDENTES = (
+      '<section class="pendentes">'
+      '<h2>Ainda sem patch</h2>'
+      '<p class="intro">' + quantos + ' ' + verbo + ' no site mas não ' +
+      ('tem' if len(pend) == 1 else 'têm') + ' arquivo para entregar. '
+      'A ROM traduzida existe — o que falta é gerar e conferir o patch.</p>'
+      + linhas_pend + '</section>')
+else:
+    SECAO_PENDENTES = ''
+
 CORPO = (
  '<div class="folha">'
  '<header>'
@@ -259,13 +277,8 @@ CORPO = (
    '<button class="bt" type="button" id="limpar">Zerar as marcas</button>'
  '</div>'
  + ''.join(partes) +
- '<section class="pendentes">'
-   '<h2>Ainda sem patch</h2>'
-   '<p class="intro">Três jogos estão no site mas não têm arquivo para entregar. '
-   'A ROM traduzida existe nos três — o que falta é gerar e conferir o patch.</p>'
-   + linhas_pend +
- '</section>'
- '<footer><span>patchclan.com</span><span>' + str(total) + ' arquivos · levantado em 10/09/2026</span></footer>'
+ SECAO_PENDENTES +
+ '<footer><span>patchclan.com</span><span>' + str(total) + ' arquivos · levantado em ' + datetime.date.today().strftime('%d/%m/%Y') + '</span></footer>'
  '</div>')
 
 # lista em texto puro, para o botao "copiar a lista inteira"
