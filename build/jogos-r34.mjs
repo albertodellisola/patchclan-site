@@ -352,7 +352,7 @@ export const ROBOPON = {
   sistema: 'Nintendo 64', mapper: '32 MB · fonte de 12×12 a 4bpp · 64GB Pak',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'alfa',
-  capa: 'robopon/01-batalha.png',
+  capa: 'robopon/00-titulo.png',
   linha: bi('Monstros-robô da Hudson no Nintendo 64, em que o bicho tem ATK, DEF e RAM, e um estado de batalha desliga todo o software dele.',
             'Hudson\'s robot monsters on the Nintendo 64, where the creature has ATK, DEF and RAM, and a battle status shuts down all its software.',
             'Monstruos robot de Hudson en la Nintendo 64, donde el bicho tiene ATK, DEF y RAM, y un estado de batalla le apaga todo el software.'),
@@ -371,6 +371,8 @@ export const ROBOPON = {
   grupos: [],
   patch: { versoes: { en: { arquivo: 'robopon-64-en.bps' }, pt: null, es: null }, rom: 'Robot Poncots 64 (Japan).z64', rom_md5: '444f70a655ac89ca900f6fafaf926b16' },
   fotos: [
+    { f: 'robopon/00-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
+      c: bi('O logo novo em inglês, por cima da cena 3D do jogo.', 'The new English logo, over the game\'s 3D scene.', 'El logo nuevo en inglés, sobre la escena 3D del juego.') },
     { f: 'robopon/01-batalha.png', t: bi('Batalha', 'Battle', 'Combate'),
       c: bi('O HUD do combate, com os medidores e o comando.', 'The battle HUD, with the meters and the command.', 'El HUD del combate, con los medidores y el comando.') },
     { f: 'robopon/02-combate.png', t: bi('Ataque', 'Attack', 'Ataque'),
