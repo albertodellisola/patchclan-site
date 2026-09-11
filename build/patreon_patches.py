@@ -47,15 +47,25 @@ def ler():
     return json.loads(MANIFESTO.read_text()) if MANIFESTO.exists() else {}
 
 
-def subir():
+def subir(filtro=None):
+    """Sobe os patches para o Storage, no MESMO objeto de sempre (token do manifesto,
+    x-upsert): o link publicado nao muda.
+
+    Com `filtro`, sobe SO os arquivos cujo nome contem o filtro. Sem ele, sobe TODOS os
+    de patches/ e patches-privados/ — e um patch regerado e nao aprovado que outra sessao
+    tenha deixado na pasta vai ao ar de carona, no link dele, sem aviso."""
     sb_url, chave = ambiente()
     man = ler()
+    subidos = 0
     for pasta in PASTAS:
         d = RAIZ / pasta
         if not d.exists():
             continue
         for p in sorted(x for x in d.iterdir() if x.suffix in ('.ips', '.bps')):
             base = p.stem
+            if filtro and filtro.lower() not in base.lower():
+                continue
+            subidos += 1
             man.setdefault(base, {'token': secrets.token_hex(4)})
             nome = f"{base}-{man[base]['token']}{p.suffix}"
             dados = p.read_bytes()
@@ -70,8 +80,10 @@ def subir():
                               'bytes': len(dados),
                               'url': f'{sb_url}/storage/v1/object/public/{BUCKET}/{nome}'})
             print(f'{st}  {pasta}/{p.name:32s} -> {nome}  ({len(dados)//1024} KB)')
+    if filtro and not subidos:
+        raise SystemExit(f'nenhum patch com {filtro!r} no nome — nada subiu')
     MANIFESTO.write_text(json.dumps(man, indent=2, ensure_ascii=False) + '\n')
-    print(f'\nmanifesto: {MANIFESTO.name} · {len(man)} patches')
+    print(f'\nmanifesto: {MANIFESTO.name} · {len(man)} patches ({subidos} subidos agora)')
     sincronizar(man, sb_url, chave)
 
 
@@ -115,7 +127,7 @@ def link(busca=None):
 if __name__ == '__main__':
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'link'
     if cmd == 'subir':
-        subir()
+        subir(sys.argv[2] if len(sys.argv) > 2 else None)
     elif cmd == 'link':
         link(sys.argv[2] if len(sys.argv) > 2 else None)
     else:
