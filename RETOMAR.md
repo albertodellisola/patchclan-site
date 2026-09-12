@@ -58,6 +58,14 @@ mesmo token de sempre (`.links-patreon.json` não foi tocado), então os links d
 já publicados seguem valendo. O **destaque da home** passou do Famicom Jump II para o
 Magic Knight Rayearth 2 — a home destaca um release, e o FJ2 deixou de ser um.
 
+**No mesmo dia, o Rayearth 2 destravou a geração.** A ficha dizia `English v1.3.5` e o
+`patch.release` continuava na tag `magic-knight-rayearth-2-v1.2` — quem clicasse baixava a
+v1.2 achando que era a 1.3.5, e o site estava assim no ar. A guarda de `gerar.mjs` (escrita
+depois daquele push, e por isso ainda não publicada) barrou a geração até a tag bater.
+Consertado subindo a release **`magic-knight-rayearth-2-v1.3.5`** com o IPS que já estava em
+`patches/` (md5 `7f60b280…`) e apontando a ficha para ela. A contagem da v1.2 fica preservada,
+que é justamente por que a tag carrega a versão.
+
 **Quatro projetos foram rebaixados para a fila em 07/09/2026** — Ultraman Club 2 e 3,
 Square's Tom Sawyer e Hanjuku Hero. Os dados deles **continuam** em `jogo-tom.mjs` e
 `jogos-novos.mjs`, fora do array `JOGOS`: voltam trocando uma linha em `gerar.mjs`.
