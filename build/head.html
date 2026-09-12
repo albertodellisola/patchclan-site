@@ -376,6 +376,20 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
   .patch-uno .bt{width:100%}
 }
 
+/* ---- leituras: manual e guia, ao lado do patch. Nao se baixam, entao nao ha grade de
+   idioma nem tamanho de arquivo -- o cartao anuncia texto, nao download. ---- */
+.leituras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:720px){ .leituras{grid-template-columns:minmax(0,1fr)} }
+.leitura{display:flex;flex-direction:column;gap:9px;padding:20px;border-radius:4px;
+  border:1px solid var(--rule);background:var(--ground-2);text-decoration:none;color:inherit;
+  transition:border-color .16s,background .16s}
+.leitura:hover{border-color:var(--accent);background:var(--ground-3)}
+.leitura .idi{font-family:var(--mono);font-size:12px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--accent)}
+.leitura b{font-family:var(--sans);font-size:16px;font-weight:700;color:var(--ink)}
+.leitura .sub{font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.leitura .cta{font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:2px}
+
 /* ---- manual ---- */
 .man-idx{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;
   margin-top:36px;border-top:1px solid var(--rule)}
@@ -479,7 +493,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
   :root{ --ground:#fff; --ground-2:#faf7ef; --ground-3:#fff; --ink:#12100e; --ink-2:#4a4238;
          --rule:#b9b09a; --rule-soft:#d6cfbe; --accent:#8e2318; --chip:#efe9da; }
   html,body{background:#fff!important}
-  .faixa,.masthead,footer,.voltar,.skip,.man-idx,.langsw,.burger{display:none!important}
+  .faixa,.masthead,footer,.voltar,.skip,.man-idx,.langsw,.burger,.leituras,.so-tela{display:none!important}
   .page{max-width:none;padding:0}
   section{padding:0;border:0;break-inside:auto}
   .man-sec{padding:0 0 8mm;break-inside:avoid-page}

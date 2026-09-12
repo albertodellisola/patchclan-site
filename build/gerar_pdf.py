@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """Gera o PDF de cada manual, um por idioma, a partir da própria página do site.
 
+FORA DO FLUXO DO SITE desde 10/09/2026: o manual deixou de se baixar. A página do
+projeto e o fim do manual não mostram mais grade de PDF — o que existe é o link de
+leitura ao lado do download do patch. Este script continua aqui para gerar um PDF
+avulso quando alguém pedir; o site não o oferece, e `gerar.mjs` não mede mais os
+arquivos de `manuais/`.
+
 O PDF não é um documento à parte: é o mesmo manual, impresso pela folha de estilo
 de impressão. Trocar o texto no site troca o PDF na próxima geração — não há
 duas fontes de verdade.
