@@ -144,7 +144,7 @@ function montar(seed, extraHead = '', shots = VARIANTES) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Patch Clan — a one-person rom hacking workshop. English patches for Famicom and Super Famicom games that never left Japan.">
+<meta name="description" content="Patch Clan — a rom hacking workshop. English patches for Famicom and Super Famicom games that never left Japan.">
 <meta name="color-scheme" content="light dark">
 ${head}${extraHead}
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>

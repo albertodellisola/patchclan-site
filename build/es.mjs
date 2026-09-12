@@ -4,30 +4,30 @@
 export const ES = {
   seed: {
     hero: {
-      kicker: 'Brasil · desde 2026 · un clan de uno solo',
+      kicker: 'Brasil · desde 2026 · taller de rom hacking',
       title:  'Algunos juegos nunca aprendieron inglés.',
       accent: 'Eso fue solo el principio.',
-      lede: 'Patch Clan es un grupo de rom hacking de una sola persona. Traducimos juegos que nunca tuvieron lanzamiento en inglés — punteros, fuente, saltos de línea y todo lo demás — y no paramos ahí: pantallas que el original no tenía, errores de treinta y cinco años corregidos, y todo lo que quepa en un cartucho que siempre tuvo sitio.',
+      lede: 'Patch Clan es un grupo de rom hacking. Traducimos juegos que nunca tuvieron lanzamiento en inglés — punteros, fuente, saltos de línea y todo lo demás — y no paramos ahí: pantallas que el original no tenía, errores de treinta y cinco años corregidos, y todo lo que quepa en un cartucho que siempre tuvo sitio.',
       note: 'Solo parches, nunca ROMs. Gratis, y va a seguir así. El primero fue <b>Famicom Jump II</b>, y sigue siendo el buque insignia.'
     },
     patreon: {
       chamada: 'Lo que compra una suscripción son <b>horas</b>. En un juego así pasan unas doscientas antes de que una sola palabra en inglés llegue a la pantalla: desensamblar el motor, encontrar el texto, entender el empaquetado, y entonces escribir las herramientas que leen y reescriben.',
-      promessa: 'Tres cosas que no cambian: <b>no se distribuye ninguna ROM</b>, solo parches. <b>Todo parche terminado es gratis</b> para todo el mundo, mecenas o no. Y <b>no se promete ninguna fecha</b>, porque nunca he acertado una.',
+      promessa: 'Tres cosas que no cambian: <b>no se distribuye ninguna ROM</b>, solo parches. <b>Todo parche terminado es gratis</b> para todo el mundo, mecenas o no. Y <b>no se promete ninguna fecha</b>, porque una fecha prometida se convierte en prisa, y la prisa se nota en el texto.',
       tiers: []
     },
     rules: [
       { title: 'Parches, nunca ROMs', text: 'Tú traes tu propio volcado. Aquí no se aloja nada con derechos de autor, nunca.' },
       null,
       { title: 'Ninguna fecha prometida', text: 'Ni en publicaciones ni en respuestas. Sale cuando se lee bien.' },
-      { title: 'Una persona, lenta a propósito', text: 'Y cada línea se lee en voz alta antes de salir — en hardware, a tamaño real.' }
+      { title: 'Lento a propósito', text: 'Y cada línea se lee en voz alta antes de salir — en hardware, a tamaño real.' }
     ],
     who: {
       paras: [
         'Patch Clan es <b>Sonix</b> — ex-<b>Central Brasileira de Traduções</b>, la CBT, uno de los grupos que construyeron la escena de traducción brasileña cuando un parche viajaba por mensaje de foro y todo el mundo aprendía hex editing en un archivo de texto que otro escribió a las dos de la mañana.',
-        'Escribo mis propias herramientas para cada juego, porque las de uso general se detienen en la parte interesante: un desensamblador 6502 con mapa de bancos por mapper, desempaquetadores de texto a nivel de bit, un ensamblador 6502 en Python, y un emulador sin ventana dirigido por Lua que arranca la ROM y fotografía la pantalla sin abrir nada.',
-        'Un clan de uno solo, lo que es un chiste hasta que notas que también es el cronograma, el control de calidad y el responsable de lanzamiento.'
+        'Escribimos nuestras propias herramientas para cada juego, porque las de uso general se detienen en la parte interesante: un desensamblador 6502 con mapa de bancos por mapper, desempaquetadores de texto a nivel de bit, un ensamblador 6502 en Python, y un emulador sin ventana dirigido por Lua que arranca la ROM y fotografía la pantalla sin abrir nada.',
+        'El cronograma, el control de calidad y el lanzamiento son parte del mismo trabajo que el parche: nada sale por plazo, sale cuando se lee bien.'
       ],
-      sign: 'traductor, hacker, revisor, clan'
+      sign: 'traducción, hacking, revisión, clan'
     },
     footer: { tagline: 'Parches para juegos que nunca hablaron inglés' }
   },

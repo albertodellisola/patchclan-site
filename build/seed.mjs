@@ -1,11 +1,11 @@
 export const SEED = {
   hero: {
-    kicker: { pt: 'Brasil · desde 2026 · um clã de um só', en: 'Brazil · est. 2026 · a clan of one' },
+    kicker: { pt: 'Brasil · desde 2026 · oficina de rom hacking', en: 'Brazil · est. 2026 · a rom hacking workshop' },
     title:  { pt: 'Alguns jogos nunca aprenderam inglês.', en: 'Some games never learned English.' },
     accent: { pt: 'Isso foi só o começo.', en: 'That was only the start.' },
     lede: {
-      pt: 'O Patch Clan é um grupo de rom hacking de uma pessoa só. A gente traduz jogos que nunca tiveram lançamento em inglês — ponteiros, fonte, quebra de linha e tudo — e não para aí: telas que o original não tinha, bugs de trinta e cinco anos consertados, e o que mais couber num cartucho que sempre teve espaço.',
-      en: 'Patch Clan is a one-person rom hacking group. We translate games that never had an English release — pointers, font, line breaks and all — and then keep going: screens the original never had, thirty-five-year-old bugs fixed, and whatever else the cartridge always had room for.'
+      pt: 'O Patch Clan é um grupo de rom hacking. A gente traduz jogos que nunca tiveram lançamento em inglês — ponteiros, fonte, quebra de linha e tudo — e não para aí: telas que o original não tinha, bugs de trinta e cinco anos consertados, e o que mais couber num cartucho que sempre teve espaço.',
+      en: 'Patch Clan is a rom hacking group. We translate games that never had an English release — pointers, font, line breaks and all — and then keep going: screens the original never had, thirty-five-year-old bugs fixed, and whatever else the cartridge always had room for.'
     },
     note: {
       pt: 'Só patches, nunca ROMs. De graça, e vai continuar. O primeiro foi o <b>Famicom Jump II</b>, e ele continua sendo o carro-chefe.',
@@ -20,8 +20,8 @@ export const SEED = {
       en: 'What a pledge buys is <b>hours</b>. On a game like these, roughly two hundred of them pass before one English word reaches the screen: disassembling the engine, locating the text, working out the packing scheme, then writing the tools that read and rewrite it.'
     },
     promessa: {
-      pt: 'Três coisas que não mudam: <b>nenhuma ROM é distribuída</b>, só patches. <b>Todo patch pronto é de graça</b> para todo mundo, apoiador ou não. E <b>nenhuma data é prometida</b>, porque eu nunca acertei uma.',
-      en: 'Three things that never change: <b>no ROMs are distributed</b>, only patches. <b>Every finished patch is free</b> for everyone, patron or not. And <b>no dates are promised</b>, because I have never once been right about one.'
+      pt: 'Três coisas que não mudam: <b>nenhuma ROM é distribuída</b>, só patches. <b>Todo patch pronto é de graça</b> para todo mundo, apoiador ou não. E <b>nenhuma data é prometida</b>, porque data prometida vira pressa, e pressa aparece no texto.',
+      en: 'Three things that never change: <b>no ROMs are distributed</b>, only patches. <b>Every finished patch is free</b> for everyone, patron or not. And <b>no dates are promised</b>, because a promised date turns into a rush, and the rush shows up in the text.'
     },
     rodape: {
       pt: 'Apoiar não dá acesso antecipado exclusivo a tradução nenhuma — dá o patch mais cedo e o relato de como ele foi feito. Ninguém paga para poder jogar.',
@@ -62,19 +62,19 @@ export const SEED = {
       text: { pt: 'Sem página de doação obrigatória, sem acesso antecipado exclusivo, sem build que só apoiador joga.', en: 'No mandatory donation, no exclusive early access, no build only patrons get to play.' } },
     { title: { pt: 'Nenhuma data prometida', en: 'No dates promised' },
       text: { pt: 'Nem em post, nem em resposta. Sai quando estiver lendo certo.', en: 'Not in posts, not in replies. It ships when it reads right.' } },
-    { title: { pt: 'Uma pessoa, devagar de propósito', en: 'One person, slow on purpose' },
+    { title: { pt: 'Devagar de propósito', en: 'Slow on purpose' },
       text: { pt: 'E cada linha é lida em voz alta antes de sair — no hardware, no tamanho real.', en: 'And every line gets read out loud before it ships — on hardware, at size.' } }
   ]},
   who: {
     paras: [
       { pt: 'O Patch Clan é o <b>Sonix</b> — ex-<b>Central Brasileira de Traduções</b>, a CBT, um dos grupos que construíram a cena de tradução brasileira quando patch andava por post de fórum e todo mundo aprendia hex editing num arquivo de texto que outro alguém escreveu às duas da manhã.',
         en: 'Patch Clan is <b>Sonix</b> — formerly of <b>Central Brasileira de Traduções</b>, the CBT, one of the groups that built the Brazilian translation scene back when a patch travelled by forum post and everyone learned hex editing from a text file somebody else wrote at two in the morning.' },
-      { pt: 'Escrevo minhas próprias ferramentas para cada jogo, porque as de uso geral param na parte interessante: um desmontador 6502 com mapa de bancos por mapper, desempacotadores de texto a nível de bit, um montador 6502 em Python, e um emulador sem janela dirigido por Lua que dá boot na ROM e fotografa a tela sem abrir nada.',
-        en: 'I write my own tools for every game, because the general-purpose ones stop at the interesting part: a 6502 disassembler with a per-mapper bank map, bit-level text unpackers, a 6502 assembler in Python, and a headless emulator driven by Lua that boots the ROM and screenshots it with no window open.' },
-      { pt: 'Um clã de um só, o que é piada até você reparar que é também o cronograma, o controle de qualidade e o gerente de lançamento.',
-        en: 'A clan of one, which is a joke until you notice it is also the schedule, the QA department and the release manager.' }
+      { pt: 'A gente escreve as próprias ferramentas para cada jogo, porque as de uso geral param na parte interessante: um desmontador 6502 com mapa de bancos por mapper, desempacotadores de texto a nível de bit, um montador 6502 em Python, e um emulador sem janela dirigido por Lua que dá boot na ROM e fotografa a tela sem abrir nada.',
+        en: 'We write our own tools for every game, because the general-purpose ones stop at the interesting part: a 6502 disassembler with a per-mapper bank map, bit-level text unpackers, a 6502 assembler in Python, and a headless emulator driven by Lua that boots the ROM and screenshots it with no window open.' },
+      { pt: 'O cronograma, o controle de qualidade e o lançamento fazem parte do mesmo trabalho que o patch: nada sai por prazo, sai quando está lendo certo.',
+        en: 'The schedule, the QA and the release are part of the same job as the patch itself: nothing ships to a deadline, it ships when it reads right.' }
     ],
-    sign: { pt: 'tradutor, hacker, revisor, clã', en: 'translator, hacker, proofreader, clan' }
+    sign: { pt: 'tradução, hacking, revisão, clã', en: 'translation, hacking, proofreading, clan' }
   },
   footer: {
     tagline: { pt: 'Patches para jogos que nunca falaram inglês', en: 'Patches for games that never spoke English' }
@@ -140,7 +140,7 @@ SEED.hero.ctas.apoiarNota = {
   es: 'financia el desarrollo, las pruebas y la preservación'
 };
 SEED.hero.ativo = { pt: 'Ativo', en: 'Active', es: 'Activo' };
-SEED.marca = { selo: { pt: 'Um clã de um só', en: 'A clan of one', es: 'Un clan de uno solo' } };
+SEED.marca = { selo: { pt: 'Rom hacking artesanal', en: 'Handmade rom hacking', es: 'Rom hacking artesanal' } };
 /* o parágrafo longo continua existindo — mudou de lugar, para a página Sobre */
 SEED.who.abertura = SEED.hero.lede;
 
@@ -219,8 +219,8 @@ SEED.patreon.rodape = {
   es: 'El parche terminado siempre es gratis para todo el mundo. Lo que la suscripción adelanta es la build <b>inacabada</b> — la beta con sus defectos conocidos, la alfa con pantallas aún medio japonesas — y el relato de cómo se está haciendo. Nadie paga por jugar la versión final.'
 };
 SEED.patreon.promessa = {
-  pt: 'Três coisas que não mudam: <b>nenhuma ROM é distribuída</b>, só patches. <b>Todo patch pronto é de graça</b> para todo mundo, apoiador ou não. E <b>nenhuma data é prometida</b>, porque eu nunca acertei uma.',
-  en: 'Three things that never change: <b>no ROMs are distributed</b>, only patches. <b>Every finished patch is free</b> for everyone, patron or not. And <b>no dates are promised</b>, because I have never once been right about one.',
+  pt: 'Três coisas que não mudam: <b>nenhuma ROM é distribuída</b>, só patches. <b>Todo patch pronto é de graça</b> para todo mundo, apoiador ou não. E <b>nenhuma data é prometida</b>, porque data prometida vira pressa, e pressa aparece no texto.',
+  en: 'Three things that never change: <b>no ROMs are distributed</b>, only patches. <b>Every finished patch is free</b> for everyone, patron or not. And <b>no dates are promised</b>, because a promised date turns into a rush, and the rush shows up in the text.',
   es: 'Tres cosas que no cambian: <b>no se distribuye ninguna ROM</b>, solo parches. <b>Todo parche terminado es gratis</b> para todo el mundo, mecenas o no. Y <b>no se promete ninguna fecha</b>, porque nunca he acertado una.'
 };
 SEED.rules.items[1] = {
