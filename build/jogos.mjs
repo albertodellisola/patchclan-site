@@ -19,6 +19,7 @@ import { CT }  from './jogo-ct.mjs';
 import { TOM } from './jogo-tom.mjs';
 import { GAIA, NEKKETSU, ULTRAMAN2, ULTRAMAN3, HANJUKU, MONSTERMAKER } from './jogos-novos.mjs';
 import { GUEVARA, GOZONJI, MKR2, MANIAC, PMS64, ROBOPON, BURAI } from './jogos-r34.mjs';
+import { YYHG } from './jogo-yyhg.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
@@ -32,7 +33,8 @@ import { GUEVARA, GOZONJI, MKR2, MANIAC, PMS64, ROBOPON, BURAI } from './jogos-r
 const APELO = [
   FJ2, CT, GUEVARA, DB3, MKR2,
   TOM, ULTRAMAN2,
-  PMS64, /* MANIAC, */ GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER
+  PMS64, /* MANIAC, */ GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER,
+  YYHG   /* entrou em 12/09/2026, beta: cai no fim do grupo dos beta */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
