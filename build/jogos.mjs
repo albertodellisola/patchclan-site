@@ -23,17 +23,14 @@ import { YYHG } from './jogo-yyhg.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
-/* FORA DA LISTA TEMPORARIAMENTE — 10/09/2026, pedido do dono: MANIAC (Maniac
-   Mansion) sai do site ATÉ EXISTIR PATCH dele. Os dados NÃO foram apagados:
-   continuam inteiros em `jogos-r34.mjs`, com fotos, resumo e ficha. Para trazer
-   de volta, basta devolvê-lo ao array abaixo — na posição marcada — e rodar
-   `node build/gerar.mjs`. Enquanto estiver fora, a rota `#/jogo/maniac-mansion`
-   cai na página de projetos e ele não entra no placar do herói.
-   O BURAI saiu junto e VOLTOU em 10/09/2026 (noite), com o patch alfa build 14. */
+/* Saíram do site em 10/09/2026, a pedido do dono, ATÉ EXISTIR PATCH de cada um: o
+   BURAI, que voltou na mesma noite com o patch alfa build 14, e o MANIAC (Maniac
+   Mansion), que voltou em 12/09/2026 com o patch alfa v0.6. Enquanto estiveram fora
+   nada foi apagado: ficha, fotos e resumo continuaram inteiros em `jogos-r34.mjs`. */
 const APELO = [
   FJ2, CT, GUEVARA, DB3, MKR2,
   TOM, ULTRAMAN2,
-  PMS64, /* MANIAC, */ GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER,
+  PMS64, MANIAC, GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER,
   YYHG   /* entrou em 12/09/2026, beta: cai no fim do grupo dos beta */
 ];
 
