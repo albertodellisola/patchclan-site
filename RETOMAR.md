@@ -13,27 +13,50 @@ Uma página só (`index.html`) com navegação por hash:
 | `#/projetos` | todos os projetos, agrupados por estado |
 | `#/jogo/<slug>` | ficha, abas, números, o que mudou, telas, download |
 | `#/manual/<slug>` | o manual do jogador, escrito sobre o jogo TRADUZIDO |
+| `#/guia/<slug>` | o guia do jogador: como jogar bem, não como operar o menu |
 | `#/atualizacoes` | o blog inteiro |
 | `#/sobre` | quem, regras da casa, promessas |
 | `#/apoie` | os níveis do Patreon |
 
 **O menu tem quatro itens e não cresce com o catálogo:** Projetos · Atualizações ·
-Sobre · ♥ Apoie. Jogos e manuais **não** entram no menu — um jogo se acha por
-Projetos, e um manual pertence ao seu projeto. Isso é o que faz o site aguentar
+Sobre · ♥ Apoie. Jogos, manuais e guias **não** entram no menu — um jogo se acha por
+Projetos, e o manual e o guia pertencem ao seu projeto. Isso é o que faz o site aguentar
 30 projetos com o mesmo cabeçalho.
 
 **A home encolhe sozinha.** Só as três últimas atualizações aparecem, em resumo;
 o resto vive em `#/atualizacoes`. A home terá o mesmo tamanho em 2030.
 
-Cinco projetos na lista; o resto está na fila. Um arquivo de dados cada em `build/`:
+Quinze projetos na lista; o resto está na fila. Os cinco primeiros têm um arquivo de
+dados cada em `build/jogo-*.mjs`; os demais vivem em `jogos-novos.mjs` e `jogos-r34.mjs`.
+**Estado em 12/09/2026** (a ordem é a que o site mostra — release, beta, alfa):
 
 | slug | jogo | nível |
 |---|---|---|
-| `famicom-jump-2` | Famicom Jump II | release |
-| `dragon-ball-3` | Dragon Ball 3 | release, English v1.0 |
+| `guevara` | Guevara | release · v2.0 — uma ROM, três idiomas |
+| `magic-knight-rayearth-2` | Magic Knight Rayearth 2 | release · English v1.2 |
 | `captain-tsubasa` | Captain Tsubasa | beta |
-| `nekketsu-kakutou-densetsu` | Nekketsu Kakutou Densetsu | alfa |
-| `gaia-saver` | Gaia Saver (**Super Famicom**) | alfa |
+| `tom-sawyer` | Square's Tom Sawyer | beta |
+| `ultraman-club-2` | Ultraman Club 2 | beta |
+| `gaia-saver` | Gaia Saver | beta |
+| `nekketsu-kakutou-densetsu` | Nekketsu Kakutou Densetsu | beta |
+| `gozonji` | The Misadventures of Yaji & Kita | beta |
+| `ultraman-club-3` | Ultraman Club 3 | beta |
+| `monster-maker` | Monster Maker | beta |
+| `famicom-jump-2` | Famicom Jump II | alfa |
+| `dragon-ball-3` | Dragon Ball 3 | alfa · English v1.0 · Português v1.0 |
+| `pocket-monsters-stadium` | Pocket Monsters Stadium | alfa |
+| `hanjuku-hero` | Hanjuku Hero | alfa |
+| `robot-poncots-64` | Robot Poncots 64 | alfa |
+
+**Downgrade de 12/09/2026, decisão do dono:** Famicom Jump II e Dragon Ball 3 desceram
+de release para **alfa**, e Captain Tsubasa de release para **beta**. Isso não é só o
+selo: pela regra de 10/09, beta e alfa **não baixam de graça** — os oito patches saíram
+de `patches/` para `patches-privados/`, o botão passou a apontar para o Patreon e os
+links `patchclan.com/patches/famicom-jump-2-*.ips`, `dragon-ball-3-*.ips` e
+`captain-tsubasa-*.ips` **deixaram de existir**. Os arquivos continuam no Storage, com o
+mesmo token de sempre (`.links-patreon.json` não foi tocado), então os links do Patreon
+já publicados seguem valendo. O **destaque da home** passou do Famicom Jump II para o
+Magic Knight Rayearth 2 — a home destaca um release, e o FJ2 deixou de ser um.
 
 **Quatro projetos foram rebaixados para a fila em 07/09/2026** — Ultraman Club 2 e 3,
 Square's Tom Sawyer e Hanjuku Hero. Os dados deles **continuam** em `jogo-tom.mjs` e
@@ -151,7 +174,7 @@ pelo navegador na primeira visita e guardado depois.
 | `painel.html` | o painel, com login |
 | `config.js` | URL e chave anon do Supabase. **O único arquivo que muda entre local e nuvem** |
 | `patches/*.ips` | os patches de distribuição |
-| `manuais/*.pdf` | os manuais em PDF, um por jogo e por idioma |
+| `manuais/_rascunho/*.pdf` | os manuais em PDF — **fora do ar** desde 10/09/2026, o site não os serve |
 | `shots/` | as capturas de tela, por jogo |
 | `build/` | a fonte de tudo. É aqui que se edita |
 | `supabase/migrations/` | o esquema do banco |
@@ -165,6 +188,7 @@ pelo navegador na primeira visita e guardado depois.
 | `seed.mjs` | abertura, Patreon, regras, quem, rodapé |
 | `jogo-*.mjs` | um por jogo: ficha, números, features, fotos, patch |
 | `manual-*.mjs` | um manual por jogo (o Tom Sawyer ainda não tem) |
+| `guia-*.mjs` + `guias.mjs` | um guia por jogo, e o registro que os reúne por slug |
 | `es*.mjs` | as traduções para o espanhol, que se fundem por caminho |
 | `posts.mjs` | o blog |
 | `gerar.mjs` | monta `index.html` e `build/artifact.html` |
@@ -203,25 +227,40 @@ Para acender o bloco de download de um idioma novo, preencha a entrada em
 `build/jogo-*.mjs` → `patch.versoes.<idioma>` com o nome do arquivo. O tamanho o
 gerador lê do próprio arquivo. Idioma sem entrada aparece **esmaecido** no site.
 
-## Gerar os manuais em PDF
+## Manual e guia: dois documentos, um mecanismo
 
-```bash
-python3 -m http.server 8899 &        # o gerador imprime a página de verdade
-python3 build/gerar_pdf.py
-```
+Cada jogo pode ter **dois** textos, e os dois moram no site — não há nada para baixar:
 
-**O PDF não é um documento separado.** É o mesmo manual do site, impresso pela
-folha de estilo `@media print` — capa própria, sem menu, sem rodapé, prints em
-tamanho de papel. Trocar o texto em `build/manual-*.mjs` e regerar troca o PDF;
-não há duas fontes de verdade para corrigir.
+| | o que responde | arquivo |
+|---|---|---|
+| **Manual** | o que cada comando faz, com a palavra exata que está na tela do patch | `build/manual-*.mjs` |
+| **Guia** | como jogar bem: o que priorizar, o que evitar, as armadilhas do cartucho | `build/guia-*.mjs` |
 
-O gerador **não inventa arquivo**: se o PDF de um idioma não existir em `manuais/`,
-o bloco daquele idioma aparece **esmaecido** no site, igual aos patches. O botão
-"Baixar em PDF" do topo do manual some quando não há nenhum.
+Um ensina a **operar**, o outro ensina a **decidir**. O mesmo renderizador desenha os dois
+(`paginaDoc` em `corpo.html`), a mesma folha de estilo os imprime, e a estrutura de dados é
+idêntica — `{ slug, titulo, intro, secoes:[{ id, titulo, foto?, paras?, lista? }] }`, cada
+campo um `{pt, en, es}`. **O guia entra em toda versão do jogo**, como o manual: quem troca a
+bandeira do topo troca o texto inteiro junto, e o que não tiver espanhol cai no inglês.
 
-**Estado em 07/09/2026:** os nove PDFs estão em `manuais/_rascunho/`, fora do ar, à
-espera de revisão do texto. Para publicá-los, mover de volta para `manuais/` (ou
-rodar `gerar_pdf.py`, que grava lá) e regerar o site.
+Os links ficam **ao lado do download do patch** — no topo da ficha, nas abas e na faixa
+*Para jogar* logo abaixo dos cartões de patch. **Documento que não existe não vira link:**
+nada aparece esmaecido, nada aparece vazio. Um jogo com manual e sem guia mostra um cartão
+só, e a grade tem duas colunas fixas justamente para ele não esticar pela página inteira.
+
+Acrescentar um guia: escrever `build/guia-<jogo>.mjs`, importar em `build/guias.mjs`, pôr no
+objeto `GUIAS` sob o slug do jogo e rodar `node build/gerar.mjs`.
+
+### O manual em PDF saiu do ar — 10/09/2026
+
+Até aqui o manual também se baixava: `manuais/<slug>-<idi>.pdf`, uma grade de três idiomas na
+página do projeto e outra no fim do manual. **Isso acabou por decisão do dono.** O que ficou no
+lugar é o link de leitura ao lado do patch, que é como era no começo.
+
+O `gerar.mjs` não mede mais os PDFs, e `g.manual_pdf` não existe. Os nove arquivos continuam em
+`manuais/_rascunho/`, fora do ar, e `build/gerar_pdf.py` continua funcionando — ele imprime a
+página do site pela folha `@media print`, e serve para gerar um PDF avulso quando alguém pedir.
+**O site não o oferece.** A faixa *Para jogar* e o cartão do outro documento são `display:none`
+na impressão, para o PDF não sair com link de navegação dentro.
 
 ## Ligar num projeto Supabase de verdade
 

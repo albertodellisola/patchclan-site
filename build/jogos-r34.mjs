@@ -196,6 +196,7 @@ export const MKR2 = {
   publisher: 'SEGA', dev: 'SEGA', ano: 1995, data: '1995',
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
+  destaque: true,
   nivel: 'release',
   versao: 'English v1.3.5',
   capa: 'mkr2/01-titulo.png',
