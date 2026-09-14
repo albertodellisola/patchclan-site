@@ -198,7 +198,7 @@ export const MKR2 = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   destaque: true,
   nivel: 'release',
-  versao: 'English v1.3.6',
+  versao: 'English v1.4',
   capa: 'mkr2/01-titulo.png',
   linha: bi('Hikaru, Umi e Fuu voltam a Cefiro depois de Emeraude, no Game Gear. A caixa tem 12 caracteres, e MAGIC KNIGHTS tem catorze.',
             'Hikaru, Umi and Fuu return to Cefiro after Emeraude, on the Game Gear. The box holds 12 characters, and MAGIC KNIGHTS has fourteen.',
@@ -245,15 +245,12 @@ export const MKR2 = {
               '<b>Las pantallas, no solo el guion</b>: título, entrada de nombre (ahora A-Z y <b>seis letras</b> en vez de cuatro), parámetros, contador de días, nombres de lugar, el panel de humor de las tres Guerreras y la pantalla de estado.') }
     ] },
     { titulo: bi('O que ficou de fora', 'What did not make it', 'Lo que quedó fuera'), itens: [
-      { t: bi('<b>Um cabeçalho.</b> A barra no topo da tela de status mostra o nome do lugar em kanji — <code>村</code>, <code>岩山</code>, <code>精霊の森</code>. Cinco tentativas, três causas reais achadas e consertadas, e a quarta não fechou: a tela desenha o texto com a borda da barra cruzando as letras, embora os tiles e a nametable na memória de vídeo confiram byte a byte com o que o patch grava, e um render feito desses mesmos bytes saia limpo. Foram descartados, com medição, scroll, sprite e defasagem de quadro. <b>Não atrapalha:</b> esses mesmos três nomes já aparecem em inglês — <i>TOWN</i>, <i>MOUNTAIN</i>, <i>SPIRIT FOREST</i> — na barra do mapa, que é onde se olha o tempo todo.',
-              '<b>One header.</b> The bar at the top of the status screen shows the place name in kanji — <code>村</code>, <code>岩山</code>, <code>精霊の森</code>. Five attempts, three real causes found and fixed, and the fourth did not close: the screen draws the text with the bar\'s border crossing the letters, even though the tiles and the nametable in video memory match byte for byte what the patch writes, and a render made from those same bytes comes out clean. Scroll, sprites and frame lag were ruled out by measurement. <b>It does not get in the way:</b> those same three names already appear in English — <i>TOWN</i>, <i>MOUNTAIN</i>, <i>SPIRIT FOREST</i> — on the map bar, which is what you look at all the time.',
-              '<b>Un encabezado.</b> La barra en lo alto de la pantalla de estado muestra el nombre del lugar en kanji — <code>村</code>, <code>岩山</code>, <code>精霊の森</code>. Cinco intentos, tres causas reales encontradas y corregidas, y la cuarta no cerró: la pantalla dibuja el texto con el borde de la barra cruzando las letras, aunque los tiles y la nametable en la memoria de vídeo coinciden byte a byte con lo que el parche escribe, y un render hecho de esos mismos bytes sale limpio. Se descartaron, con medición, el scroll, los sprites y el desfase de fotograma. <b>No estorba:</b> esos mismos tres nombres ya aparecen en inglés — <i>TOWN</i>, <i>MOUNTAIN</i>, <i>SPIRIT FOREST</i> — en la barra del mapa, que es lo que se mira todo el rato.') },
       { t: bi('<b>O jogo ainda não foi jogado do começo ao fim.</b> Cada uma das linhas foi lida antes de sair, e o final e os créditos foram conferidos no patch em inglês — foi aí que apareceu o japonês que sobrava. Mas uma partida inteira, do primeiro dia ao final, ainda não aconteceu.',
               '<b>It has not been played start to finish yet.</b> Every line was read before shipping, and the ending and the credits were checked on the English patch — that is where the leftover Japanese turned up. But a full run, from day one to the ending, has not happened yet.',
               '<b>Todavía no se ha jugado de principio a fin.</b> Cada línea fue leída antes de salir, y el final y los créditos se comprobaron con el parche en inglés — ahí apareció el japonés que sobraba. Pero una partida completa, del primer día al final, todavía no ha ocurrido.') }
     ] }
   ],
-  patch: { release: 'magic-knight-rayearth-2-v1.3.6',
+  patch: { release: 'magic-knight-rayearth-2-v1.4',
            versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
   fotos: [
     { f: 'mkr2/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
