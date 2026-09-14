@@ -20,6 +20,8 @@ import { TOM } from './jogo-tom.mjs';
 import { GAIA, NEKKETSU, ULTRAMAN2, ULTRAMAN3, HANJUKU, MONSTERMAKER } from './jogos-novos.mjs';
 import { GUEVARA, GOZONJI, MKR2, MANIAC, PMS64, ROBOPON, BURAI } from './jogos-r34.mjs';
 import { YYHG } from './jogo-yyhg.mjs';
+import { SFG } from './jogo-sfg.mjs';
+import { PSG } from './jogo-psg.mjs';
 import { GORILLA } from './jogo-gorilla.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
@@ -33,7 +35,9 @@ const APELO = [
   TOM, ULTRAMAN2,
   PMS64, MANIAC, GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER,
   YYHG,  /* entrou em 12/09/2026, beta: cai no fim do grupo dos beta */
-  GORILLA /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */
+  GORILLA /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */,
+  SFG    /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */,
+  PSG    /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
