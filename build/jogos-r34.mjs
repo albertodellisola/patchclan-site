@@ -198,7 +198,7 @@ export const MKR2 = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   destaque: true,
   nivel: 'release',
-  versao: 'English v1.4.1',
+  versao: 'English v1.4.2',
   capa: 'mkr2/00-capa-patreon.jpg',
   linha: bi('Hikaru, Umi e Fuu voltam a Cefiro depois de Emeraude, no Game Gear. A caixa tem 12 caracteres, e MAGIC KNIGHTS tem catorze.',
             'Hikaru, Umi and Fuu return to Cefiro after Emeraude, on the Game Gear. The box holds 12 characters, and MAGIC KNIGHTS has fourteen.',
@@ -250,7 +250,7 @@ export const MKR2 = {
               '<b>Todavía no se ha jugado de principio a fin.</b> Cada línea fue leída antes de salir, y el final y los créditos se comprobaron con el parche en inglés — ahí apareció el japonés que sobraba. Pero una partida completa, del primer día al final, todavía no ha ocurrido.') }
     ] }
   ],
-  patch: { release: 'magic-knight-rayearth-2-v1.4.1',
+  patch: { release: 'magic-knight-rayearth-2-v1.4.2',
            versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
   fotos: [
     { f: 'mkr2/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
