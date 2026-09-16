@@ -9,7 +9,7 @@ export const DB3 = {
   categoria: { pt:'Tradução + arte', en:'Translation + artwork', es:'Traducción + arte' },
   nivel: 'alfa',
   versao: 'English v1.0 · Português v1.0',
-  capa: 'db3/01-titulo.png',
+  capa: 'db3/00-capa-patreon.jpg',
   linha: {
     pt: 'Dragon Ball em cartas, 1989. O número de defesa da carta era um kanji desenhado na arte; agora é algarismo, e o treino deixou de ser no chute.',
     en: 'Dragon Ball as a 1989 card RPG. The defence number was a kanji drawn into the art; now it is a digit, and training is no longer guesswork.'

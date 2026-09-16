@@ -170,7 +170,7 @@ function embutir(rel) {
   if (!rel) return '';
   if (!b64.has(rel)) {
     const p = path.join(RAIZ, 'shots', rel);
-    b64.set(rel, 'data:image/png;base64,' + fs.readFileSync(p).toString('base64'));
+    b64.set(rel, 'data:image/' + (/\.jpe?g$/i.test(rel) ? 'jpeg' : 'png') + ';base64,' + fs.readFileSync(p).toString('base64'));
   }
   return b64.get(rel);
 }

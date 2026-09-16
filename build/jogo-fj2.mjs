@@ -9,7 +9,7 @@ export const FJ2 = {
   primeiro: true,
   categoria: { pt:'Tradução + melhorias', en:'Translation + improvement', es:'Traducción + mejoras' },
   nivel: 'alfa',
-  capa: 'fj2/01-tela-titulo.png',
+  capa: 'fj2/00-capa-patreon.jpg',
   linha: {
     pt: 'Goku, JoJo e mais cinco da Shōnen Jump no mesmo campo. O B virou ação coringa, e dois bytes acordaram uma cena de 1991.',
     en: 'Goku, JoJo and five more Shōnen Jump heroes on one battlefield. B became the do-what-fits button, and two bytes woke a 1991 scene.'

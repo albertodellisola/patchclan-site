@@ -7,7 +7,7 @@ export const TOM = {
   sistema: 'Famicom', mapper: 'MMC1 (SUROM viável) · 256 KB PRG · CHR-RAM de 8 KB · save com bateria',
   categoria: { pt: 'Tradução', en: 'Translation', es: 'Traducción' },
   nivel: 'beta',
-  capa: 'tom/01-titulo.png',
+  capa: 'tom/00-capa-patreon.jpg',
   linha: {
     pt: 'A Square pegou Mark Twain e fez um RPG com Tom e Huck. O livro é americano; o jogo ficou no Japão, e a ROM teve de dobrar para caber.',
     en: 'Square took Mark Twain and made an RPG with Tom and Huck. The book is American; the game stayed in Japan, and the ROM had to double.',

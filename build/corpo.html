@@ -68,6 +68,8 @@
     if (!f) return '<span class="sem-tela" aria-hidden="true"></span>';
     return '<img src="'+img(f)+'" data-shot="'+e(f)+'" alt="'+e(alt)+'" loading="'+(carga||'lazy')+'">';
   }
+  /* Capa = banner do Patreon (arte larga, nao pixel art): classe propria para o CSS nao ampliar em blocos. */
+  function capa(f, alt, carga){ return foto(f, alt, carga).replace('<img ', '<img class="capa" '); }
   function repintaFotos(){
     var ns = document.querySelectorAll('img[data-shot]');
     for (var i = 0; i < ns.length; i++) {
@@ -246,7 +248,7 @@
     /* o showcase: o visitante vê um jogo antes de rolar */
     if (d) {
       out += '<a class="vitrine" href="#/jogo/'+e(d.slug)+'">' +
-        '<div class="tela">'+foto(d.capa, d.nome+' — '+txt(d.linha,'en'), 'eager')+'</div>' +
+        '<div class="tela">'+capa(d.capa, d.nome+' — '+txt(d.linha,'en'), 'eager')+'</div>' +
         '<div class="corpo">' +
           '<div class="topo">'+selo(d)+'</div>' +
           '<h2>'+e(d.nome)+'</h2>' +
@@ -294,7 +296,7 @@
 
   function cardProjeto(g){
     return '<article class="proj">' +
-      '<a class="tela" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true">'+foto(g.capa, '')+'</a>' +
+      '<a class="tela" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true">'+capa(g.capa, '')+'</a>' +
       '<div class="corpo">' +
         '<div>'+selo(g)+'</div>' +
         '<h3><a href="#/jogo/'+e(g.slug)+'">'+e(g.nome)+'</a></h3>' +
@@ -399,7 +401,7 @@
       '<div class="acoes-jogo">' +
         '<a class="bt" href="#/jogo/'+e(g.slug)+'" data-ir="baixar">▶ '+L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>' +
         linkDoc(g, 'manual', 'bt fora') + linkDoc(g, 'guia', 'bt fora') +
-      '</div></div><div>'+crt(g.capa, txt(g.linha,'en'))+'</div></div>';
+      '</div></div><div>'+'<div class="crt">'+capa(g.capa, txt(g.linha,'en'))+'</div>'+'</div></div>';
 
     out += '<nav class="abas" aria-label="'+e(g.nome)+'">' +
       '<a class="on" href="#/jogo/'+e(g.slug)+'" data-ir="sobre">'+L({pt:'Visão geral',en:'Overview',es:'Vista general'})+'</a>' +

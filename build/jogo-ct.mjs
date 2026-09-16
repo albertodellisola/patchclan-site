@@ -7,7 +7,7 @@ export const CT = {
   sistema: 'Famicom', mapper: 'MMC1 · 128 KB PRG expanded to 256 KB · 128 KB CHR-ROM',
   categoria: { pt:'Tradução + melhorias', en:'Translation + improvement', es:'Traducción + mejoras' },
   nivel: 'beta',
-  capa: 'ct/01-titulo.png',
+  capa: 'ct/00-capa-patreon.jpg',
   linha: {
     pt: 'Super Campeões, o futebol por menu de 1988 — com Benji no gol, Neia na gerência e o Treinador Milani no banco, como na Manchete.',
     en: 'The 1988 game that invented football by menu. Sixteen Latin letters existed in the whole cartridge, and it now saves to battery.'

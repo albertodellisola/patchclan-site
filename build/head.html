@@ -336,6 +336,8 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
 .galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .galeria figure{margin:0;display:flex;flex-direction:column;gap:11px}
 .galeria .crt img{aspect-ratio:256/240;object-fit:contain;background:var(--crt)}
+/* capa: banner do Patreon, em moldura larga; os de 16:9 ficam inteiros, com faixa escura dos lados */
+img.capa,.vitrine .tela img.capa,.proj .tela img.capa{image-rendering:auto;aspect-ratio:1902/827;object-fit:contain;background:#000}
 .galeria figcaption{font-family:var(--mono);font-size:12.5px;line-height:1.55;color:var(--ink-2)}
 .galeria figcaption b{display:block;color:var(--ink);font-weight:500;
   letter-spacing:.09em;text-transform:uppercase;font-size:11.5px;margin-bottom:5px}
