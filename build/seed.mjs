@@ -255,33 +255,34 @@ SEED.niveis = {
   ]
 };
 
-/* A régua, escrita por extenso. Ela explica o CRITÉRIO e nunca o caso concreto:
-   o site não conta o que falta num projeto inacabado. */
+/* A régua, escrita pelas etapas (17/09/2026). O gerador confere que o nível de cada
+   jogo bate com a linha dele em etapas.mjs: release = as seis; beta = hacking e
+   tradução feitos; alfa = o resto. A mesma versão foi gravada no Supabase. */
 SEED.niveis = {
   titulo: { pt: 'Release, beta e alfa', en: 'Release, beta and alpha', es: 'Release, beta y alfa' },
   intro: {
-    pt: 'Três níveis, e só três. O nível não mede <b>quanto trabalho já foi feito</b> — mede <b>o que já foi provado na tela</b>. São coisas diferentes, e confundir as duas é como quase toda tradução amadora se anuncia pronta antes de estar.',
-    en: 'Three levels, and only three. The level does not measure <b>how much work is done</b> — it measures <b>what has been proved on screen</b>. They are different things, and confusing them is how almost every amateur translation announces itself finished before it is.',
-    es: 'Tres niveles, y solo tres. El nivel no mide <b>cuánto trabajo se ha hecho</b> — mide <b>qué se ha probado en pantalla</b>. Son cosas distintas, y confundirlas es como casi toda traducción amateur se anuncia terminada antes de estarlo.'
+    pt: 'Três níveis, e só três. Cada um é definido pelas <b>seis etapas</b> que a ficha do projeto mostra (hacking, tradução, revisão, arte, testes e longplay), e não por otimismo.',
+    en: 'Three levels, and only three. Each one is defined by the <b>six stages</b> shown on the project page (hacking, translation, editing, art, testing and longplay), not by optimism.',
+    es: 'Tres niveles, y solo tres. Cada uno se define por las <b>seis etapas</b> que muestra la ficha del proyecto (hacking, traducción, revisión, arte, pruebas y longplay), y no por optimismo.'
   },
   itens: [
     { chave: 'release', marca: '✓',
-      texto: { pt: 'O jogo inteiro em inglês, <b>jogado do começo ao fim</b> e lido linha a linha antes de sair. É o único nível em que o site publica a lista completa do que entrou — porque é o único em que essa lista está fechada. Gratuito para todo mundo, sempre.',
-               en: 'The whole game in English, <b>played start to finish</b> and read line by line before shipping. It is the only level where the site publishes the full list of what went in — because it is the only one where that list is closed. Free for everyone, always.',
-               es: 'El juego entero en inglés, <b>jugado de principio a fin</b> y leído línea por línea antes de salir. Es el único nivel en el que el sitio publica la lista completa de lo que entró — porque es el único en el que esa lista está cerrada. Gratis para todo el mundo, siempre.' } },
+      texto: { pt: 'As <b>seis etapas feitas</b>: o jogo inteiro em inglês, revisado com o manual original, sem japonês em imagem, <b>jogado até todos os finais</b> e com cada final gravado em vídeo. É o único nível em que o site publica a lista completa do que entrou. <b>De graça para todo mundo.</b>',
+               en: '<b>All six stages done</b>: the whole game in English, edited against the original manual, no Japanese left in images, <b>played through to every ending</b>, and every ending recorded on video. It is the only level where the site publishes the full list of what went in. <b>Free for everyone.</b>',
+               es: '<b>Las seis etapas hechas</b>: el juego entero en inglés, revisado con el manual original, sin japonés en imágenes, <b>jugado hasta todos los finales</b> y con cada final grabado en video. Es el único nivel en el que el sitio publica la lista completa de lo que entró. <b>Gratis para todo el mundo.</b>' } },
     { chave: 'beta', marca: '●',
-      texto: { pt: 'Alguém já <b>atravessou o jogo inteiro em inglês</b>: ele funciona do início ao fim. O que ainda não aconteceu é a leitura final — aquela em que cada linha é lida procurando o erro que medição nenhuma pega, porque o som está certo e só a grafia está errada. Vai antes para quem apoia no <b>Bank Switch</b>.',
-               en: 'Someone has already <b>crossed the whole game in English</b>: it works start to finish. What has not happened is the final read-through — the one where every line is read hunting the error no measurement catches, because the sound is right and only the spelling is wrong. It goes first to <b>Bank Switch</b> patrons.',
-               es: 'Alguien ya <b>atravesó el juego entero en inglés</b>: funciona de principio a fin. Lo que aún no ha ocurrido es la lectura final — esa en la que cada línea se lee buscando el error que ninguna medición atrapa, porque el sonido está bien y solo la ortografía está mal. Va antes a quien apoya en <b>Bank Switch</b>.' } },
+      texto: { pt: '<b>Hacking e tradução feitos</b>: o roteiro inteiro já está em inglês dentro do jogo. Ainda há etapa aberta (revisão, arte, testes ou longplay), e a ficha mostra qual. Vai antes para quem apoia no <b>Bank Switch</b>.',
+               en: '<b>Hacking and translation done</b>: the whole script is already in English inside the game. Some stage is still open (editing, art, testing or longplay), and the project page shows which. It goes first to <b>Bank Switch</b> patrons.',
+               es: '<b>Hacking y traducción hechos</b>: el guion entero ya está en inglés dentro del juego. Todavía hay alguna etapa abierta (revisión, arte, pruebas o longplay), y la ficha muestra cuál. Va antes a quien apoya en <b>Bank Switch</b>.' } },
     { chave: 'alfa', marca: '○',
-      texto: { pt: '<b>Ainda não se sabe se o jogo atravessa em inglês.</b> Pode ser texto incompleto, telas ainda em japonês, ou uma build montada que ninguém jogou até o fim. <b>Medição não é travessia:</b> provar que os bytes certos estão na ROM é diferente de provar que o jogo se joga — e um projeto pode ter o roteiro inteiro traduzido e continuar aqui. Vai antes para quem apoia no <b>The Seventh Hero</b>.',
-               en: '<b>It is not yet known whether the game can be crossed in English.</b> It may be incomplete text, screens still in Japanese, or an assembled build nobody has played to the end. <b>Measurement is not a crossing:</b> proving the right bytes are in the ROM is not proving the game plays — and a project can have its entire script translated and still sit here. It goes first to <b>The Seventh Hero</b> patrons.',
-               es: '<b>Todavía no se sabe si el juego se atraviesa en inglés.</b> Puede ser texto incompleto, pantallas aún en japonés, o una build montada que nadie ha jugado hasta el final. <b>Medir no es atravesar:</b> probar que los bytes correctos están en la ROM no es probar que el juego se juega — y un proyecto puede tener el guion entero traducido y seguir aquí. Va antes a quien apoya en <b>The Seventh Hero</b>.' } }
+      texto: { pt: '<b>Ainda falta inserir ou traduzir parte do jogo</b>, então pode haver menus, telas ou falas em japonês. É o trabalho acontecendo. Vai antes para quem apoia no <b>The Seventh Hero</b>.',
+               en: '<b>Part of the game still has to be inserted or translated</b>, so some menus, screens or lines may still be in Japanese. This is the work happening. It goes first to <b>The Seventh Hero</b> patrons.',
+               es: '<b>Todavía falta insertar o traducir parte del juego</b>, así que puede haber menús, pantallas o diálogos en japonés. Es el trabajo ocurriendo. Va antes a quien apoya en <b>The Seventh Hero</b>.' } }
   ],
   fecho: {
-    pt: 'O nível de um projeto sobe quando alguma coisa foi <b>provada</b>, não quando parece estar quase. É por isso que o site não lista o que falta num alfa ou num beta: enquanto o trabalho não fechou, a lista mudaria toda semana e não ajudaria ninguém a decidir se vale baixar.',
-    en: 'A project’s level goes up when something has been <b>proved</b>, not when it looks nearly there. That is why the site does not list what is missing from an alpha or a beta: while the work is open, the list would change every week and would help nobody decide whether it is worth downloading.',
-    es: 'El nivel de un proyecto sube cuando algo se ha <b>probado</b>, no cuando parece que casi. Por eso el sitio no lista lo que falta en un alfa o un beta: mientras el trabajo esté abierto, la lista cambiaría cada semana y no ayudaría a nadie a decidir si vale la pena descargarlo.'
+    pt: 'O nível sobe quando a etapa foi <b>provada</b>, não quando parece estar quase. A ficha mostra em que etapa cada projeto está; o detalhe do que falta dentro de cada uma fica fora do site, porque mudaria toda semana.',
+    en: 'A level goes up when a stage has been <b>proved</b>, not when it looks nearly there. The project page shows which stage each project has reached; the detail of what is missing inside each stage stays off the site, because it would change every week.',
+    es: 'El nivel sube cuando la etapa se ha <b>probado</b>, no cuando parece que casi. La ficha muestra en qué etapa está cada proyecto; el detalle de lo que falta dentro de cada una queda fuera del sitio, porque cambiaría cada semana.'
   }
 };
 

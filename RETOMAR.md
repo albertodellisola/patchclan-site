@@ -109,6 +109,15 @@ continua fora do site.
 `EXIGE_RELEASE` — **as seis**, decisão do dono em 17/09/2026 (o texto da Sobre diz o mesmo;
 mudou um, muda o outro).
 
+**A régua sai das etapas (17/09/2026, dono):** release = as seis feitas; **beta = hacking e
+tradução feitos**; alfa = o resto. O `gerar.mjs` barra jogo cujo `nivel` não bate com a linha
+dele em `etapas.mjs` — mudou uma etapa, confira se o nível muda junto (e ele muda também quem
+recebe primeiro no Patreon: beta = Bank Switch, alfa = The Seventh Hero). Na virada, desceram
+para alfa Captain Tsubasa, Gozonji, Ultraman Club 3, Monster Maker e YYH Gaiden; subiram para
+beta Famicom Jump II, Dragon Ball 3 e Gorilla Man. Ficou 0 release, 9 beta, 12 alfa. A régua e
+a chamada da home foram regravadas também no Supabase (`content.niveis`, `content.hero`).
+**A tabela de estado lá em cima está velha: o nível de cada jogo é o do arquivo dele.**
+
 **Rebaixamento de 17/09/2026:** por essa regra, **Guevara e Magic Knight Rayearth 2 desceram de
 release para beta** — nenhum dos dois tinha testes completos nem longplay. O site ficou sem
 release. Os dois IPS saíram de `patches/` para `patches-privados/`; o Storage já tinha os mesmos

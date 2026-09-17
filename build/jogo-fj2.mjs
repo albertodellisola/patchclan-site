@@ -8,7 +8,7 @@ export const FJ2 = {
   sistema: 'Famicom', mapper: 'Mapper 153 (Bandai FCG) · 512 KB PRG · CHR-RAM · battery SRAM',
   primeiro: true,
   categoria: { pt:'Tradução + melhorias', en:'Translation + improvement', es:'Traducción + mejoras' },
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'fj2/00-capa-patreon.jpg',
   linha: {
     pt: 'Goku, JoJo e mais cinco da Shōnen Jump no mesmo campo. O B virou ação coringa, e dois bytes acordaram uma cena de 1991.',

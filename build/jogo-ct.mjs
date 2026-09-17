@@ -6,7 +6,7 @@ export const CT = {
   publisher: 'Tecmo', dev: 'Tecmo', ano: 1988, data: '1988',
   sistema: 'Famicom', mapper: 'MMC1 · 128 KB PRG expanded to 256 KB · 128 KB CHR-ROM',
   categoria: { pt:'Tradução + melhorias', en:'Translation + improvement', es:'Traducción + mejoras' },
-  nivel: 'beta',
+  nivel: 'alfa',
   capa: 'ct/00-capa-patreon.jpg',
   linha: {
     pt: 'Super Campeões, o futebol por menu de 1988 — com Benji no gol, Neia na gerência e o Treinador Milani no banco, como na Manchete.',

@@ -35,8 +35,11 @@ for (const g of JOGOS) {
   for (const k of ETAPAS_ORDEM) {
     if (!['feito', 'andamento', 'nao'].includes(et[k])) throw new Error(`${g.slug}: etapa "${k}" inválida (${et[k]})`);
   }
-  if (g.nivel === 'release' && EXIGE_RELEASE.some(k => et[k] !== 'feito')) {
-    throw new Error(`${g.slug} é release, mas etapas.mjs tem etapa não feita: ${EXIGE_RELEASE.filter(k => et[k] !== 'feito').join(', ')}`);
+  /* o nível sai das etapas (régua de 17/09/2026) — mudar um exige mudar o outro */
+  const devido = EXIGE_RELEASE.every(k => et[k] === 'feito') ? 'release'
+               : (et.direcao === 'feito' && et.traducao === 'feito') ? 'beta' : 'alfa';
+  if (g.nivel !== devido) {
+    throw new Error(`${g.slug} está "${g.nivel}", mas as etapas dizem "${devido}" (release = as seis; beta = hacking e tradução feitos)`);
   }
   g.etapas = et;
   if (g.tipo != null && g.tipo !== 'hack') throw new Error(`${g.slug}: tipo "${g.tipo}" inválido — omita (tradução) ou use 'hack'`);
