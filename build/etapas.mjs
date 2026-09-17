@@ -17,9 +17,10 @@
    precisa de uma linha aqui. Mudou o estado de um projeto? Atualize a linha. */
 export const ETAPAS_ORDEM = ['direcao', 'traducao', 'revisao', 'arte', 'testes', 'longplay'];
 
-/* O que release exige. A página Sobre diz o mesmo (SEED.equipe.intro): mudou
-   aqui, muda lá. PROVISÓRIO em 16/09/2026 — o dono ainda vai decidir. */
-export const EXIGE_RELEASE = ['direcao', 'traducao', 'revisao', 'arte'];
+/* O que release exige: as SEIS. Decisão do dono em 17/09/2026, que rebaixou
+   Guevara e Rayearth 2 para beta por isso. A página Sobre diz o mesmo
+   (SEED.equipe.intro): mudou aqui, muda lá. */
+export const EXIGE_RELEASE = ETAPAS_ORDEM;
 
 const F = 'feito', A = 'andamento', N = 'nao';
 const l = (direcao, traducao, revisao, arte, testes, longplay = N) =>

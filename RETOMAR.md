@@ -106,8 +106,15 @@ que um projeto é alfa ou beta": a faixa diz EM QUE ETAPA ele está — o detalh
 continua fora do site.
 
 **Guarda em `gerar.mjs`:** todo jogo da lista precisa da linha, e release exige as etapas de
-`EXIGE_RELEASE` (hoje as quatro primeiras — o texto da Sobre diz o mesmo; mudou um, muda o
-outro). Mudou o estado de um projeto? Atualize a linha em `etapas.mjs` e regere.
+`EXIGE_RELEASE` — **as seis**, decisão do dono em 17/09/2026 (o texto da Sobre diz o mesmo;
+mudou um, muda o outro).
+
+**Rebaixamento de 17/09/2026:** por essa regra, **Guevara e Magic Knight Rayearth 2 desceram de
+release para beta** — nenhum dos dois tinha testes completos nem longplay. O site ficou sem
+release. Os dois IPS saíram de `patches/` para `patches-privados/`; o Storage já tinha os mesmos
+arquivos (md5 conferido) nos tokens de `.links-patreon.json`, então os links do Patreon seguem
+valendo. O `patch.release` do Rayearth saiu da ficha; as releases v1.2 a v1.4.3 continuam no
+GitHub, públicas, com a contagem — não foram apagadas. Mudou o estado de um projeto? Atualize a linha em `etapas.mjs` e regere.
 
 ## A fila NÃO é um quarto nível
 

@@ -332,9 +332,9 @@ SEED.fila = {
 /* A equipe: cinco cargos, sem nomes. Cada cargo é uma etapa por onde todo patch
    passa — a mesma lista que a faixa da ficha de cada jogo mostra (etapas.mjs). */
 SEED.equipe = {
-  intro: { pt: 'Cinco cargos e seis etapas. A ficha de cada projeto mostra em que etapa ele está. Release é quando as quatro primeiras estão feitas; testes e longplay continuam depois, e cada correção sai como versão nova.',
-           en: 'Five roles and six stages. Each project page shows which stage it has reached. A release means the first four are done; testing and the longplay continue afterwards, and every fix ships as a new version.',
-           es: 'Cinco cargos y seis etapas. La ficha de cada proyecto muestra en qué etapa está. Release significa que las cuatro primeras están hechas; las pruebas y el longplay siguen después, y cada corrección sale como versión nueva.' },
+  intro: { pt: 'Cinco cargos e seis etapas. A ficha de cada projeto mostra em que etapa ele está. Só vira release o patch que passou pelas seis.',
+           en: 'Five roles and six stages. Each project page shows which stage it has reached. Only a patch that has cleared all six becomes a release.',
+           es: 'Cinco cargos y seis etapas. La ficha de cada proyecto muestra en qué etapa está. Solo es release el parche que pasó por las seis.' },
   cargos: [
     { nome: { pt: 'Direção e hacking', en: 'Direction and hacking', es: 'Dirección y hacking' },
       texto: { pt: 'Escolhe o jogo e abre o cartucho: ponteiros, fonte, expansão e as ferramentas de cada projeto.',

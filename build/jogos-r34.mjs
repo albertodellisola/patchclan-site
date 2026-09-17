@@ -12,7 +12,7 @@ export const GUEVARA = {
   publisher: 'SNK', dev: 'SNK', ano: 1988, data: '1988',
   sistema: 'Famicom', mapper: 'MMC1 · 128 KB PRG expandido para 256 KB · 128 KB CHR',
   categoria: bi('Tradução + melhorias', 'Translation + improvement', 'Traducción + mejoras'),
-  nivel: 'release',
+  nivel: 'beta',
   versao: 'v2.0 — uma ROM, três idiomas',
   capa: 'guevara/00-capa-patreon.jpg',
   linha: bi('Neste run-and-gun de 1988 os dois jogadores chamam-se GUEVARA e CASTRO — e um menu novo escolhe idioma, vidas e dificuldade.',
@@ -197,7 +197,7 @@ export const MKR2 = {
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   destaque: true,
-  nivel: 'release',
+  nivel: 'beta',
   versao: 'English v1.4.3',
   capa: 'mkr2/00-capa-patreon.jpg',
   linha: bi('Hikaru, Umi e Fuu voltam a Cefiro depois de Emeraude, no Game Gear. A caixa tem 12 caracteres, e MAGIC KNIGHTS tem catorze.',
@@ -250,8 +250,7 @@ export const MKR2 = {
               '<b>Todavía no se ha jugado de principio a fin.</b> Cada línea fue leída antes de salir, y el final y los créditos se comprobaron con el parche en inglés — ahí apareció el japonés que sobraba. Pero una partida completa, del primer día al final, todavía no ha ocurrido.') }
     ] }
   ],
-  patch: { release: 'magic-knight-rayearth-2-v1.4.3',
-           versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
+  patch: { versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
   fotos: [
     { f: 'mkr2/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O título redesenhado, com a versão no canto.', 'The redrawn title, with the version in the corner.', 'El título redibujado, con la versión en la esquina.') },
