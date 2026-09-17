@@ -390,3 +390,23 @@ SEED.equipe = {
     nao:       { pt: 'não começou', en: 'not started', es: 'sin empezar' }
   }
 };
+
+/* Chamada reescrita em 17/09/2026, quando o site ficou sem release: nada de
+   "traduções completas" nem "sempre de graça" — de graça é o release; beta e
+   alfa saem antes para quem apoia. A mesma versão foi gravada no Supabase. */
+SEED.hero.curta = {
+  pt: 'Traduções de jogos que o Japão guardou para si, <b>bugs de trinta e cinco anos consertados</b> e melhorias que respeitam o hardware original.',
+  en: 'Translations of games Japan kept to itself, <b>35-year-old bugs fixed</b>, and improvements that respect the original hardware.',
+  es: 'Traducciones de juegos que Japón se guardó, <b>bugs de treinta y cinco años corregidos</b> y mejoras que respetan el hardware original.'
+};
+SEED.hero.ctas.projetos = { pt: 'Ver as traduções', en: 'See the translations', es: 'Ver las traducciones' };
+SEED.hero.ctas.regra = {
+  pt: 'Só patches. Nunca ROMs. Todo release, de graça.',
+  en: 'Patches only. Never ROMs. Every release, free.',
+  es: 'Solo parches. Nunca ROMs. Todo release, gratis.'
+};
+SEED.hero.note = {
+  pt: 'Só patches, nunca ROMs. Todo release sai de graça, para todo mundo; beta e alfa saem antes para quem apoia.',
+  en: 'Patches only, never ROMs. Every release is free for everyone; betas and alphas go first to patrons.',
+  es: 'Solo parches, nunca ROMs. Todo release sale gratis para todo el mundo; beta y alfa salen antes para quien apoya.'
+};
