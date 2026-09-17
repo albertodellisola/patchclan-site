@@ -23,7 +23,7 @@ export const ES = {
     ],
     who: {
       paras: [
-        'Patch Clan es <b>Sonix</b> — ex-<b>Central Brasileira de Traduções</b>, la CBT, uno de los grupos que construyeron la escena de traducción brasileña cuando un parche viajaba por mensaje de foro y todo el mundo aprendía hex editing en un archivo de texto que otro escribió a las dos de la mañana.',
+        'Patch Clan tiene su raíz en la <b>Central Brasileira de Traduções</b>, la CBT, uno de los grupos que construyeron la escena de traducción brasileña cuando un parche viajaba por mensaje de foro y todo el mundo aprendía hex editing en un archivo de texto que otro escribió a las dos de la mañana.',
         'Escribimos nuestras propias herramientas para cada juego, porque las de uso general se detienen en la parte interesante: un desensamblador 6502 con mapa de bancos por mapper, desempaquetadores de texto a nivel de bit, un ensamblador 6502 en Python, y un emulador sin ventana dirigido por Lua que arranca la ROM y fotografía la pantalla sin abrir nada.',
         'El cronograma, el control de calidad y el lanzamiento son parte del mismo trabajo que el parche: nada sale por plazo, sale cuando se lee bien.'
       ],

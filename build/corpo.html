@@ -237,7 +237,7 @@
       '<h1>'+L(h.title)+'<em>'+L(h.accent)+'</em></h1>' +
       '<p class="lede">'+L(h.curta)+'</p>' +
       '<div class="hero-ctas">' +
-        '<a class="bt" href="#/projetos">'+L((h.ctas||{}).projetos)+'</a>' +
+        '<a class="bt" href="#/traducoes">'+L((h.ctas||{}).projetos)+'</a>' +
         '<div class="cta-apoio">' +
           '<a class="bt fora" href="#/apoie">♥ '+L((h.ctas||{}).apoiar)+'</a>' +
           '<span class="nota">'+L((h.ctas||{}).apoiarNota)+'</span>' +
@@ -272,10 +272,10 @@
     '</div>';
 
     /* projetos */
-    out += '<section><p class="label">'+L({pt:'Projetos',en:'Projects',es:'Proyectos'})+'</p><div class="projetos">' +
-      jogos.map(cardProjeto).join('') + '</div>' +
-      '<p class="ver-todas"><a href="#/projetos">' +
-        L({pt:'Ver os projetos por estado →', en:'See the projects by stage →', es:'Ver los proyectos por estado →'}) +
+    out += '<section><p class="label">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</p><div class="projetos">' +
+      jogos.filter(function(g){ return secao(g) === 'traducoes'; }).map(cardProjeto).join('') + '</div>' +
+      '<p class="ver-todas"><a href="#/traducoes">' +
+        L({pt:'Ver as traduções por estado →', en:'See the translations by stage →', es:'Ver las traducciones por estado →'}) +
       '</a></p></section>';
 
     /* nao e so traducao */
@@ -335,6 +335,35 @@
           '</div>';
       }).join('') + '</div></section>';
   }
+  /* A equipe: cinco cargos sem nome e as seis etapas com o critério de cada uma
+     (o estado por jogo mora em build/etapas.mjs). */
+  function secaoEquipe(){
+    var q = D.content.equipe; if (!q || !(q.cargos||[]).length) return '';
+    var marca = {feito:'✓', andamento:'◐', nao:'○'};
+    return '<section><p class="label">'+L({pt:'A equipe',en:'The team',es:'El equipo'})+'</p>' +
+      '<div class="col"><p>'+L(q.intro)+'</p></div><dl class="rules">' +
+      q.cargos.map(function(c){
+        return '<div class="rule"><dt>'+L(c.nome)+'</dt><dd>'+L(c.texto)+'</dd></div>'; }).join('') +
+      '</dl></section>' +
+      '<section><p class="label">'+L({pt:'As etapas',en:'The stages',es:'Las etapas'})+'</p>' +
+      '<p class="legenda-etapas">' + ['feito','andamento','nao'].map(function(s){
+        return '<span><span aria-hidden="true">'+marca[s]+'</span> '+L(q.estados[s])+'</span>'; }).join('') + '</p>' +
+      '<dl class="rules">' + (q.etapas||[]).map(function(x, i){
+        return '<div class="rule"><dt>'+(i+1)+'. '+L(x.curto)+'</dt><dd>'+L(x.criterio)+'</dd></div>'; }).join('') +
+      '</dl></section>';
+  }
+  function faixaEtapas(g){
+    var q = D.content.equipe, et = g.etapas;
+    if (!q || !et) return '';
+    var marca = {feito:'✓', andamento:'◐', nao:'○'};
+    return '<ol class="etapas">' +
+      (q.etapas||[]).map(function(x){
+        var s = et[x.id] || 'nao';
+        return '<li class="etapa '+s+'">' +
+          '<span aria-hidden="true">'+marca[s]+'</span> '+L(x.curto) +
+          '<span class="vh"> — '+L(q.estados[s])+'</span></li>'; }).join('') +
+      '<li class="etapa-mais"><a href="#/sobre">'+L({pt:'o que cada etapa exige',en:'what each stage requires',es:'qué exige cada etapa'})+' →</a></li></ol>';
+  }
   function secaoPromessas(){
     var p = (D.content.promessas||{}).itens||[];
     if (!p.length) return '';
@@ -343,14 +372,37 @@
     }).join('') + '</div></section>';
   }
 
-  /* ---------------- PROJETOS ---------------- */
+  /* ---------------- TRADUÇÕES e HACKS/FIXES ---------------- */
+  /* Dois menus, a mesma página. `tipo: 'hack'` no arquivo do jogo põe o projeto em
+     Hacks/Fixes: versão sem tradução, só com correções (ex.: o cartucho japonês sem
+     os bugs). Sem o campo, é tradução. */
+  function secao(g){ return g && g.tipo === 'hack' ? 'hacks' : 'traducoes'; }
+  function paginaHacks(){
+    var lista = (D.games||[]).filter(function(g){ return secao(g) === 'hacks'; });
+    var out = '<section><p class="label">Hacks/Fixes</p>' +
+      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px)">Hacks/Fixes</h1>' +
+      '<p class="lede">'+L({pt:'O jogo no idioma original, sem os bugs de fábrica. Nada é traduzido aqui: o que muda é o cartucho que trava, congela ou perde o save.',
+                            en:'The game in its original language, minus the factory bugs. Nothing is translated here: what changes is the cartridge that crashes, freezes or loses its save.',
+                            es:'El juego en su idioma original, sin los bugs de fábrica. Aquí no se traduce nada: lo que cambia es el cartucho que se cuelga, se congela o pierde la partida.'})+'</p></div>';
+    if (!lista.length) {
+      return out + '<p class="intro" style="margin-top:34px">'+L({pt:'Nenhum ainda. O primeiro está a caminho.',
+        en:'None yet. The first one is on its way.', es:'Ninguno todavía. El primero está en camino.'})+'</p></section>';
+    }
+    ['release','beta','alfa'].forEach(function(n){
+      var gr = lista.filter(function(g){ return g.nivel === n; });
+      if (!gr.length) return;
+      out += '<div class="grupo-status" style="margin-top:44px"><h3>'+L(NIVEIS[n].rot)+' <span style="color:var(--accent)">'+gr.length+'</span></h3>' +
+        '<div class="projetos">' + gr.map(cardProjeto).join('') + '</div></div>';
+    });
+    return out + '</section>';
+  }
   function paginaProjetos(){
-    var jogos = D.games||[];
+    var jogos = (D.games||[]).filter(function(g){ return secao(g) === 'traducoes'; });
     var grupos = ['release','beta','alfa'].map(function(n){
       return { n:n, t:NIVEIS[n].rot, f:function(g){ return g.nivel === n; } };
     });
-    var out = '<section><p class="label">'+L({pt:'Projetos',en:'Projects',es:'Proyectos'})+'</p>' +
-      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px)">'+L({pt:'Projetos',en:'Projects',es:'Proyectos'})+'</h1>' +
+    var out = '<section><p class="label">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</p>' +
+      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px)">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</h1>' +
       '<p class="lede">'+L({pt:'O Patch Clan não é um site sobre alguns jogos: é uma oficina de projetos, e estes são os que existem hoje.',
                             en:'Patch Clan is not a site about a few games: it is a workshop of projects, and these are the ones that exist today.',
                             es:'Patch Clan no es un sitio sobre unos juegos: es un taller de proyectos, y estos son los que existen hoy.'})+'</p></div>';
@@ -412,6 +464,8 @@
         return doc(t, g.slug) ? '<a href="#/'+DOCS[t].rota+'/'+e(g.slug)+'">'+L(DOCS[t].rot)+'</a>' : ''; }).join('') +
       '</nav>';
 
+    out += faixaEtapas(g);
+
     var completa = g.nivel === 'release';   /* só release documenta o trabalho inteiro */
     if (completa) {
       out += '<div class="numeros">' + (g.numeros||[]).map(function(n){
@@ -435,7 +489,7 @@
         '<p>'+L({pt:'Este projeto ainda está em andamento. <b>A lista completa do que entrou é publicada quando ele vira release</b> — até lá, o que está aqui é o jogo, não o relatório do trabalho.',
                  en:'This project is still under way. <b>The full list of what went in is published when it becomes a release</b> — until then, what is here is the game, not the report on the work.',
                  es:'Este proyecto sigue en marcha. <b>La lista completa de lo que entró se publica cuando pasa a release</b> — hasta entonces, lo que hay aquí es el juego, no el informe del trabajo.'})+'</p>' +
-        '<p class="onde"><a href="#/projetos">'+L({pt:'Como as traduções são classificadas →',en:'How the translations are classified →',es:'Cómo se clasifican las traducciones →'})+'</a></p>' +
+        '<p class="onde"><a href="#/traducoes">'+L({pt:'Como as traduções são classificadas →',en:'How the translations are classified →',es:'Cómo se clasifican las traducciones →'})+'</a></p>' +
         '</div></section>';
     }
 
@@ -459,7 +513,9 @@
       gradeIdiomas(g.patch.versoes, pastaPatch(g), 'IPS', destinoPatch(g), (g.patch||{}).nota) +
       leituras(g);
     out += '</div></section>';
-    out += '<a class="voltar" href="#/projetos">'+L({pt:'← Todos os projetos',en:'← All projects',es:'← Todos los proyectos'})+'</a>';
+    out += secao(g) === 'hacks'
+      ? '<a class="voltar" href="#/hacks">← Hacks/Fixes</a>'
+      : '<a class="voltar" href="#/traducoes">'+L({pt:'← Todas as traduções',en:'← All translations',es:'← Todas las traducciones'})+'</a>';
     return out;
   }
 
@@ -483,7 +539,7 @@
         e(g.subtitulo)+(g.traducao_titulo?' · '+e(g.traducao_titulo):'')+'</p>' +
       '<p class="lede">'+L(m.intro)+'</p>' +
       '<p class="rodape">'+e(g.publisher)+' · '+e(g.data)+' · '+e(g.sistema)+'<br>' +
-        L({pt:'Tradução e romhacking: Sonix · patchclan.com',en:'Translation and romhacking: Sonix · patchclan.com',es:'Traducción y romhacking: Sonix · patchclan.com'})+'<br>' +
+        L({pt:'Tradução e romhacking: Patch Clan · patchclan.com',en:'Translation and romhacking: Patch Clan · patchclan.com',es:'Traducción y romhacking: Patch Clan · patchclan.com'})+'<br>' +
         L({pt:'Patch de fã, sem fins lucrativos. Não afiliado a nenhuma das empresas originais.',
            en:'A non-profit fan patch. Not affiliated with any of the original companies.',
            es:'Parche de fan, sin ánimo de lucro. No afiliado a ninguna de las empresas originales.'})+'</p>' +
@@ -578,7 +634,8 @@
     return '<section><p class="label">'+L({pt:'Sobre',en:'About',es:'Sobre'})+'</p>' +
       '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px);margin-bottom:26px">'+L({pt:'O Patch Clan.',en:'Patch Clan.',es:'Patch Clan.'})+'</h1>' +
       (w.paras||[]).map(function(x){ return '<p>'+L(x)+'</p>'; }).join('') +
-      '<p class="sign"><b>Sonix</b> · '+L(w.sign)+'</p></div></section>' +
+      '<p class="sign"><b>Patch Clan</b> · '+L(w.sign)+'</p></div></section>' +
+      secaoEquipe() +
       '<section><p class="label">'+L({pt:'Regras da casa',en:'House rules',es:'Reglas de la casa'})+'</p><dl class="rules">' +
       ((c.rules||{}).items||[]).map(function(r){
         return '<div class="rule"><dt>'+L(r.title)+'</dt><dd>'+L(r.text)+'</dd></div>'; }).join('') +
@@ -592,14 +649,15 @@
     if (p[0] === 'jogo' && p[1]) return { tipo:'jogo', slug:p[1] };
     if (p[0] === 'manual' && p[1]) return { tipo:'manual', slug:p[1] };
     if (p[0] === 'guia' && p[1]) return { tipo:'guia', slug:p[1] };
-    if (p[0] === 'projetos') return { tipo:'projetos' };
+    if (p[0] === 'traducoes' || p[0] === 'projetos') return { tipo:'projetos' };   /* #/projetos: links antigos */
+    if (p[0] === 'hacks') return { tipo:'hacks' };
     if (p[0] === 'atualizacoes') return { tipo:'atualizacoes' };
     if (p[0] === 'sobre') return { tipo:'sobre' };
     if (p[0] === 'apoie') return { tipo:'apoie' };
     return { tipo:'home' };
   }
   var TITULOS = {
-    home:'Patch Clan', projetos:'Projects · Patch Clan', atualizacoes:'Updates · Patch Clan',
+    home:'Patch Clan', projetos:'Translations · Patch Clan', hacks:'Hacks/Fixes · Patch Clan', atualizacoes:'Updates · Patch Clan',
     sobre:'About · Patch Clan', apoie:'Support · Patch Clan'
   };
   function desenha(){
@@ -607,6 +665,7 @@
     if (r.tipo === 'jogo') app.innerHTML = paginaJogo(r.slug);
     else if (r.tipo === 'manual' || r.tipo === 'guia') app.innerHTML = paginaDoc(r.slug, r.tipo);
     else if (r.tipo === 'projetos') app.innerHTML = paginaProjetos();
+    else if (r.tipo === 'hacks') app.innerHTML = paginaHacks();
     else if (r.tipo === 'atualizacoes') app.innerHTML = paginaAtualizacoes();
     else if (r.tipo === 'sobre') app.innerHTML = paginaSobre();
     else if (r.tipo === 'apoie') app.innerHTML = paginaApoie();
@@ -622,8 +681,12 @@
     window.scrollTo(0, 0);
   }
   function menu(r){
+    /* a ficha, o manual e o guia acendem o menu da seção do jogo */
+    var dele = r.slug ? secao(jogo(r.slug)) : '';
+    var t = dele === 'hacks' ? [] : ['jogo','manual','guia'], hk = dele === 'hacks' ? ['jogo','manual','guia'] : [];
     var itens = [
-      ['#/projetos', {pt:'Projetos',en:'Projects',es:'Proyectos'}, ['projetos','jogo','manual','guia']],
+      ['#/traducoes', {pt:'Traduções',en:'Translations',es:'Traducciones'}, ['projetos'].concat(t)],
+      ['#/hacks', {pt:'Hacks/Fixes',en:'Hacks/Fixes',es:'Hacks/Fixes'}, ['hacks'].concat(hk)],
       ['#/atualizacoes', {pt:'Atualizações',en:'Updates',es:'Novedades'}, ['atualizacoes']],
       ['#/sobre', {pt:'Sobre',en:'About',es:'Sobre'}, ['sobre']]
     ];

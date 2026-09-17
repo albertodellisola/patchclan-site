@@ -323,6 +323,20 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
   letter-spacing:-.035em;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
 .num span{display:block;margin-top:9px;font-family:var(--mono);font-size:11.5px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.etapas{list-style:none;margin:0;padding:16px 0;display:flex;flex-wrap:wrap;gap:10px 26px;
+  border-bottom:1px solid var(--rule-soft);font-family:var(--mono);font-size:12.5px;
+  letter-spacing:.08em;text-transform:uppercase}
+.etapa{color:var(--ink-2);white-space:nowrap}
+.etapa span[aria-hidden]{font-size:14px;margin-right:2px}
+.etapa.feito{color:var(--ink)}
+.etapa.feito span[aria-hidden]{color:var(--accent)}
+.etapa.andamento span[aria-hidden]{color:var(--gold)}
+.etapa.nao{opacity:.6}
+.etapa-mais{margin-left:auto;text-transform:none;letter-spacing:0}
+.etapa-mais a{color:var(--ink-2)}
+.legenda-etapas{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px;color:var(--ink-2);margin:0 0 18px}
+.legenda-etapas span[aria-hidden]{color:var(--accent)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .grupo{padding:38px 0;border-top:1px solid var(--rule-soft)}
 .grupo:first-child{border-top:0;padding-top:0}
 .grupo > h3{color:var(--accent);font-family:var(--mono);font-size:13px;letter-spacing:.15em;

@@ -91,6 +91,24 @@ A régua está escrita na página de projetos e é a mesma escada do Patreon:
 | **beta** | **já foi jogado** do começo ao fim em inglês, mas há pendências listadas e falta a leitura final | Bank Switch |
 | **alfa** | não se sabe se atravessa: texto incompleto, telas japonesas, sem build, **ou uma build que ninguém jogou inteira** | The Seventh Hero |
 
+## Equipe e etapas (16/09/2026)
+
+**A equipe são cinco cargos, sem nomes** — direção e hacking, tradução, revisão, arte,
+testes (página Sobre, `SEED.equipe`). Decisão do dono: o Sonix saiu da assinatura, do
+rodapé dos manuais e do 1º parágrafo do "quem", que agora diz que o clã *tem raiz na CBT*.
+Não inventar pessoas para os cargos: cada cargo é uma etapa, não um currículo.
+
+**Seis etapas por jogo**, em `build/etapas.mjs` (critério no topo do arquivo, motivo de
+cada pendência ao lado da linha): hacking · tradução · revisão · arte · testes ·
+**longplay** (cada final gravado em vídeo). Valores `feito` | `andamento` | `nao`. A ficha
+mostra a faixa ✓ ◐ ○ abaixo das abas. **Isto muda a regra antiga** "o site nunca diz por
+que um projeto é alfa ou beta": a faixa diz EM QUE ETAPA ele está — o detalhe do porquê
+continua fora do site.
+
+**Guarda em `gerar.mjs`:** todo jogo da lista precisa da linha, e release exige as etapas de
+`EXIGE_RELEASE` (hoje as quatro primeiras — o texto da Sobre diz o mesmo; mudou um, muda o
+outro). Mudou o estado de um projeto? Atualize a linha em `etapas.mjs` e regere.
+
 ## A fila NÃO é um quarto nível
 
 `release`, `beta` e `alfa` dizem **o que dá para jogar hoje**. A fila diz **o que ainda

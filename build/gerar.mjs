@@ -1,6 +1,7 @@
 import { SEED } from './seed.mjs';
 import { JOGOS } from './jogos.mjs';
 import { POSTS } from './posts.mjs';
+import { ETAPAS, ETAPAS_ORDEM, EXIGE_RELEASE } from './etapas.mjs';
 import { MANUAL_FJ2 } from './manual-fj2.mjs';
 import { MANUAL_DB3 } from './manual-db3.mjs';
 import { MANUAL_CT } from './manual-ct.mjs';
@@ -25,6 +26,22 @@ const RAIZ = path.resolve(import.meta.dirname, '..');
    Patreon daquele jogo. O arquivo local so continua aqui para MEDIR o tamanho que
    o cartao mostra e para acender a bandeira do idioma — o site nunca o serve.
    Subir/atualizar no Storage: `python3 build/patreon_patches.py subir`. */
+/* Guarda das etapas (etapas.mjs): todo jogo da lista tem a sua linha, com os
+   seis valores válidos, e release só com as de EXIGE_RELEASE feitas — a página
+   Sobre diz o mesmo. */
+for (const g of JOGOS) {
+  const et = ETAPAS[g.slug];
+  if (!et) throw new Error(`${g.slug}: sem linha em build/etapas.mjs`);
+  for (const k of ETAPAS_ORDEM) {
+    if (!['feito', 'andamento', 'nao'].includes(et[k])) throw new Error(`${g.slug}: etapa "${k}" inválida (${et[k]})`);
+  }
+  if (g.nivel === 'release' && EXIGE_RELEASE.some(k => et[k] !== 'feito')) {
+    throw new Error(`${g.slug} é release, mas etapas.mjs tem etapa não feita: ${EXIGE_RELEASE.filter(k => et[k] !== 'feito').join(', ')}`);
+  }
+  g.etapas = et;
+  if (g.tipo != null && g.tipo !== 'hack') throw new Error(`${g.slug}: tipo "${g.tipo}" inválido — omita (tradução) ou use 'hack'`);
+}
+
 const PASTA_PATCH = g => (g.nivel === 'release' ? 'patches' : 'patches-privados');
 for (const g of JOGOS) {
   for (const [idi, v] of Object.entries(g.patch.versoes)) {

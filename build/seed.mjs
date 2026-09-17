@@ -67,8 +67,8 @@ export const SEED = {
   ]},
   who: {
     paras: [
-      { pt: 'O Patch Clan é o <b>Sonix</b> — ex-<b>Central Brasileira de Traduções</b>, a CBT, um dos grupos que construíram a cena de tradução brasileira quando patch andava por post de fórum e todo mundo aprendia hex editing num arquivo de texto que outro alguém escreveu às duas da manhã.',
-        en: 'Patch Clan is <b>Sonix</b> — formerly of <b>Central Brasileira de Traduções</b>, the CBT, one of the groups that built the Brazilian translation scene back when a patch travelled by forum post and everyone learned hex editing from a text file somebody else wrote at two in the morning.' },
+      { pt: 'O Patch Clan tem raiz na <b>Central Brasileira de Traduções</b>, a CBT, um dos grupos que construíram a cena de tradução brasileira quando patch andava por post de fórum e todo mundo aprendia hex editing num arquivo de texto que outro alguém escreveu às duas da manhã.',
+        en: 'Patch Clan has its roots in <b>Central Brasileira de Traduções</b>, the CBT, one of the groups that built the Brazilian translation scene back when a patch travelled by forum post and everyone learned hex editing from a text file somebody else wrote at two in the morning.' },
       { pt: 'A gente escreve as próprias ferramentas para cada jogo, porque as de uso geral param na parte interessante: um desmontador 6502 com mapa de bancos por mapper, desempacotadores de texto a nível de bit, um montador 6502 em Python, e um emulador sem janela dirigido por Lua que dá boot na ROM e fotografa a tela sem abrir nada.',
         en: 'We write our own tools for every game, because the general-purpose ones stop at the interesting part: a 6502 disassembler with a per-mapper bank map, bit-level text unpackers, a 6502 assembler in Python, and a headless emulator driven by Lua that boots the ROM and screenshots it with no window open.' },
       { pt: 'O cronograma, o controle de qualidade e o lançamento fazem parte do mesmo trabalho que o patch: nada sai por prazo, sai quando está lendo certo.',
@@ -326,5 +326,67 @@ SEED.fila = {
     pt: 'Estar na fila <b>não é promessa</b>, e a ordem não está decidida. É nessa lista que a conversa acontece com quem apoia no <b>Bank Switch</b>: qual cartucho vale a pena abrir, e em que ordem.',
     en: 'Being in the queue is <b>not a promise</b>, and the order is not decided. This list is where the conversation happens with <b>Bank Switch</b> patrons: which cartridge is worth opening, and in what order.',
     es: 'Estar en la cola <b>no es una promesa</b>, y el orden no está decidido. En esta lista ocurre la conversación con quien apoya en <b>Bank Switch</b>: qué cartucho vale la pena abrir, y en qué orden.'
+  }
+};
+
+/* A equipe: cinco cargos, sem nomes. Cada cargo é uma etapa por onde todo patch
+   passa — a mesma lista que a faixa da ficha de cada jogo mostra (etapas.mjs). */
+SEED.equipe = {
+  intro: { pt: 'Cinco cargos e seis etapas. A ficha de cada projeto mostra em que etapa ele está. Release é quando as quatro primeiras estão feitas; testes e longplay continuam depois, e cada correção sai como versão nova.',
+           en: 'Five roles and six stages. Each project page shows which stage it has reached. A release means the first four are done; testing and the longplay continue afterwards, and every fix ships as a new version.',
+           es: 'Cinco cargos y seis etapas. La ficha de cada proyecto muestra en qué etapa está. Release significa que las cuatro primeras están hechas; las pruebas y el longplay siguen después, y cada corrección sale como versión nueva.' },
+  cargos: [
+    { nome: { pt: 'Direção e hacking', en: 'Direction and hacking', es: 'Dirección y hacking' },
+      texto: { pt: 'Escolhe o jogo e abre o cartucho: ponteiros, fonte, expansão e as ferramentas de cada projeto.',
+               en: 'Picks the game and opens the cartridge: pointers, font, expansion, and the tools each project needs.',
+               es: 'Elige el juego y abre el cartucho: punteros, fuente, expansión y las herramientas de cada proyecto.' } },
+    { nome: { pt: 'Tradução', en: 'Translation', es: 'Traducción' },
+      texto: { pt: 'Do japonês para inglês, português e espanhol.',
+               en: 'From Japanese into English, Portuguese and Spanish.',
+               es: 'Del japonés al inglés, portugués y español.' } },
+    { nome: { pt: 'Revisão', en: 'Editing', es: 'Revisión' },
+      texto: { pt: 'Texto que soa natural, nomes consistentes do começo ao fim, e que cabe na caixa.',
+               en: 'Text that reads naturally, names consistent from start to finish, and lines that fit the box.',
+               es: 'Texto que suena natural, nombres coherentes de principio a fin, y que cabe en la caja.' } },
+    { nome: { pt: 'Arte', en: 'Art', es: 'Arte' },
+      texto: { pt: 'Tela de título, logos, fontes e todo texto que mora dentro de imagem.',
+               en: 'Title screen, logos, fonts, and every piece of text that lives inside an image.',
+               es: 'Pantalla de título, logos, fuentes y todo texto que vive dentro de una imagen.' } },
+    { nome: { pt: 'Testes', en: 'Testing', es: 'Pruebas' },
+      texto: { pt: 'Joga até todos os finais, caça bug, registra o que ainda está quebrado e grava o longplay.',
+               en: 'Plays through to every ending, hunts bugs, logs what is still broken, and records the longplay.',
+               es: 'Juega hasta todos los finales, caza bugs, registra lo que sigue roto y graba el longplay.' } }
+  ],
+  /* a ordem e os ids batem com ETAPAS_ORDEM em etapas.mjs */
+  etapas: [
+    { id: 'direcao',  curto: { pt: 'Hacking', en: 'Hacking', es: 'Hacking' },
+      criterio: { pt: 'O texto entra no jogo pelas nossas ferramentas, e a ROM traduzida inteira sai delas.',
+                  en: 'Text goes into the game through our own tools, and the full translated ROM comes out of them.',
+                  es: 'El texto entra al juego por nuestras herramientas, y la ROM traducida entera sale de ellas.' } },
+    { id: 'traducao', curto: { pt: 'Tradução', en: 'Translation', es: 'Traducción' },
+      criterio: { pt: 'O roteiro inteiro em inglês, dentro do jogo: falas, menus, nomes e créditos.',
+                  en: 'The whole script in English, inside the game: dialogue, menus, names and credits.',
+                  es: 'El guion entero en inglés, dentro del juego: diálogos, menús, nombres y créditos.' } },
+    { id: 'revisao',  curto: { pt: 'Revisão', en: 'Editing', es: 'Revisión' },
+      criterio: { pt: 'Uma leitura do roteiro inteiro, conferida com o manual e os guias japoneses originais.',
+                  en: 'One read of the whole script, checked against the original Japanese manual and guides.',
+                  es: 'Una lectura del guion entero, cotejada con el manual y las guías japonesas originales.' } },
+    { id: 'arte',     curto: { pt: 'Arte', en: 'Art', es: 'Arte' },
+      criterio: { pt: 'Nenhum japonês sobrando em imagem: título, logos, placas e texturas.',
+                  en: 'No Japanese left inside images: title, logos, signs and textures.',
+                  es: 'Nada de japonés en imágenes: título, logos, carteles y texturas.' } },
+    { id: 'testes',   curto: { pt: 'Testes', en: 'Testing', es: 'Pruebas' },
+      criterio: { pt: 'O jogo traduzido atravessado até todos os finais, sem pendência aberta.',
+                  en: 'The translated game played through to every ending, with nothing left open.',
+                  es: 'El juego traducido recorrido hasta todos los finales, sin nada pendiente.' } },
+    { id: 'longplay', curto: { pt: 'Longplay', en: 'Longplay', es: 'Longplay' },
+      criterio: { pt: 'Cada final gravado em vídeo, do começo ao fim, na versão traduzida.',
+                  en: 'Every ending recorded on video, start to finish, in the translated version.',
+                  es: 'Cada final grabado en video, de principio a fin, en la versión traducida.' } }
+  ],
+  estados: {
+    feito:     { pt: 'feito', en: 'done', es: 'hecho' },
+    andamento: { pt: 'em andamento', en: 'in progress', es: 'en curso' },
+    nao:       { pt: 'não começou', en: 'not started', es: 'sin empezar' }
   }
 };
