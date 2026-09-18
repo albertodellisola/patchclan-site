@@ -557,7 +557,13 @@
         (sec.lista ? '<dl class="man-lista">' + sec.lista.map(function(it){
           var chave = (typeof it.k === 'string') ? '<code>'+e(it.k)+'</code>' : L(it.k);
           return '<div><dt>'+chave+'</dt><dd>'+L(it.v)+'</dd></div>';
-        }).join('') + '</dl>' : '') + '</div>';
+        }).join('') + '</dl>' : '') +
+        /* html: seção escrita em blocos (tabela, subtítulo, várias figuras) — o manual
+           localizado do Rayearth 2. Um bloco por idioma; sem a língua, cai no inglês. */
+        (sec.html ? ['en','pt','es'].map(function(l){
+          var h = sec.html[l] || sec.html.en || sec.html.pt || sec.html.es;
+          return '<div class="'+l+'" lang="'+LANG_ATTR[l]+'">'+h+'</div>';
+        }).join('') : '') + '</div>';
       return '<section class="man-sec" id="sec-'+e(sec.id)+'">' +
         '<p class="label"><span style="color:var(--accent)">'+(i+1)+'</span> '+L(sec.titulo)+'</p>' +
         '<div class="man-corpo'+(sec.foto?'':' solo')+'">' + corpo +
