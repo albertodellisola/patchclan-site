@@ -40,7 +40,7 @@ export const SEED = {
         nota: { pt: 'a troca de banco, que é como um cartucho de 1988 cabe mais do que devia', en: 'bank switching, which is how a 1988 cartridge holds more than it should' },
         itens: [
           { pt: 'Tudo do <b>Two Bytes</b>', en: 'Everything in <b>Two Bytes</b>' },
-          { pt: 'O devlog longo, uma ou duas vezes por mês: desmontagem comentada, a aritmética de bytes por trás de cada decisão, e capturas saídas direto do emulador sem janela', en: 'The long devlog, once or twice a month: disassembly walkthroughs, the byte arithmetic behind each decision, screenshots straight from the headless emulator harness' },
+          { pt: 'O devlog longo, uma ou duas vezes por mês: desmontagem comentada, a aritmética de bytes por trás de cada decisão, e capturas direto do emulador', en: 'The long devlog, once or twice a month: disassembly walkthroughs, the byte arithmetic behind each decision, screenshots straight from the emulator' },
           { pt: 'Patches beta antes do lançamento público, com a lista de defeitos conhecidos', en: 'Beta patches before public release, with the known-issues list' },
           { pt: 'Discord de apoiadores — traga o seu mapper, a sua fonte ou a sua ROM travada', en: 'Patron Discord — bring your own mapper, font, or stuck ROM' },
           { pt: 'Seu nome no README do patch', en: 'Your name in the patch README' }
@@ -50,7 +50,7 @@ export const SEED = {
         itens: [
           { pt: 'Tudo do <b>Bank Switch</b>', en: 'Everything in <b>Bank Switch</b>' },
           { pt: '<b>Seu nome na tela de créditos do jogo</b>, desenhado em tiles, em todo patch lançado enquanto você estiver apoiando', en: '<b>Your name on the game’s credits screen</b>, drawn in tiles, in every patch released while you are pledged' },
-          { pt: 'A caixa de ferramentas: desmontador 6502, montador em Python, empacotador Huffman, construtor de fonte e o harness Lua — com notas para apontá-los para a sua própria ROM', en: 'The toolchain: 6502 disassembler, Python assembler, Huffman packer, font builder, Lua harness, with notes for pointing them at your own ROM' },
+          { pt: 'A caixa de ferramentas: desmontador 6502, montador em Python, empacotador Huffman e construtor de fonte — com notas para apontá-los para a sua própria ROM', en: 'The toolchain: 6502 disassembler, Python assembler, Huffman packer and font builder, with notes for pointing them at your own ROM' },
           { pt: 'Post-mortems, inclusive dos fracassos, antes de virarem públicos', en: 'Post-mortems, including the failures, before they go public' }
         ] }
     ]
@@ -69,8 +69,8 @@ export const SEED = {
     paras: [
       { pt: 'O Patch Clan tem raiz na <b>Central Brasileira de Traduções</b>, a CBT, um dos grupos que construíram a cena de tradução brasileira quando patch andava por post de fórum e todo mundo aprendia hex editing num arquivo de texto que outro alguém escreveu às duas da manhã.',
         en: 'Patch Clan has its roots in <b>Central Brasileira de Traduções</b>, the CBT, one of the groups that built the Brazilian translation scene back when a patch travelled by forum post and everyone learned hex editing from a text file somebody else wrote at two in the morning.' },
-      { pt: 'A gente escreve as próprias ferramentas para cada jogo, porque as de uso geral param na parte interessante: um desmontador 6502 com mapa de bancos por mapper, desempacotadores de texto a nível de bit, um montador 6502 em Python, e um emulador sem janela dirigido por Lua que dá boot na ROM e fotografa a tela sem abrir nada.',
-        en: 'We write our own tools for every game, because the general-purpose ones stop at the interesting part: a 6502 disassembler with a per-mapper bank map, bit-level text unpackers, a 6502 assembler in Python, and a headless emulator driven by Lua that boots the ROM and screenshots it with no window open.' },
+      { pt: 'A gente escreve as próprias ferramentas para cada jogo, porque as de uso geral param na parte interessante: um desmontador 6502 com mapa de bancos por mapper, desempacotadores de texto a nível de bit, um montador 6502 em Python, e um emulador próprio que dá boot na ROM e fotografa a tela.',
+        en: 'We write our own tools for every game, because the general-purpose ones stop at the interesting part: a 6502 disassembler with a per-mapper bank map, bit-level text unpackers, a 6502 assembler in Python, and an emulator of our own that boots the ROM and screenshots it.' },
       { pt: 'O cronograma, o controle de qualidade e o lançamento fazem parte do mesmo trabalho que o patch: nada sai por prazo, sai quando está lendo certo.',
         en: 'The schedule, the QA and the release are part of the same job as the patch itself: nothing ships to a deadline, it ships when it reads right.' }
     ],

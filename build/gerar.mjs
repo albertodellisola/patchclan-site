@@ -12,6 +12,7 @@ import { ES } from './es.mjs';
 import { ES_FJ2 } from './es-fj2.mjs';
 import { ES_CT } from './es-ct.mjs';
 import { ES_DB3 } from './es-db3.mjs';
+import { confere as confereTexto } from './gate_texto.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -52,6 +53,11 @@ for (const g of JOGOS) {
 }
 
 const PASTA_PATCH = g => (g.nivel === 'release' ? 'patches' : 'patches-privados');
+/* Sem patches-privados/ (worktree sem o link) o laço abaixo zera a versão de todo beta/alfa
+   em silêncio e o botão some do site — foi ao ar assim em 19/09/2026, 18 jogos sem botão. */
+if (JOGOS.some(g => g.nivel !== 'release') && !fs.existsSync(path.join(RAIZ, 'patches-privados'))) {
+  throw new Error('patches-privados/ não existe aqui — numa worktree: ln -s ~/patchclan-site/patches-privados patches-privados');
+}
 for (const g of JOGOS) {
   for (const [idi, v] of Object.entries(g.patch.versoes)) {
     if (!v) continue;
@@ -188,6 +194,9 @@ ${c.trim()}
    Documento que nao existe simplesmente nao gera link — nada fica esmaecido, nada some. */
 const MANUAIS = { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT, 'magic-knight-rayearth-2': MANUAL_MKR2, 'yu-yu-hakusho-gaiden': MANUAL_YYHG };
 const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS };
+/* Gate do texto (regra do dono, 19/09/2026): o site diz testado/jogado, nunca bot, robô que
+   joga, teste automático, emulador sem janela nem IA. Lista em build/gate_texto.mjs. */
+confereTexto(seedArquivos);
 fs.writeFileSync(path.join(RAIZ, 'index.html'), montar(seedArquivos));
 
 // 2) artifact: as mesmas imagens embutidas, porque a previa nao serve arquivos relativos

@@ -504,7 +504,7 @@ function abaGames(){
       var g = GAMES.filter(function(x){ return x.id === p.id; })[0];
       var d = JSON.parse(JSON.stringify(g.data || {}));
       Object.keys(p.campos).forEach(function(k){ d[k] = p.campos[k].ler(); });
-      return sb.from('games').update({ data: d }).eq('id', p.id);
+      return sb.from('games').update({ data: d }).eq('id', p.id).then(function(r){ if (r.error) throw r.error; });
     })).then(carrega);
   };
 }
