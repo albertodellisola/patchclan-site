@@ -15,7 +15,7 @@ export const YYHG = {
   destaque: true,
   nivel: 'release',
   versao: 'English v1.0',
-  capa: 'yyhg/01-titulo.png',
+  capa: 'yyhg/00-capa-patreon.jpg',
   linha: bi('Nenhum ponteiro de texto existe em claro na ROM: eles moram dentro de scripts comprimidos.',
             'Not one text pointer exists in the open in this ROM: they live inside compressed scripts.',
             'Ningún puntero de texto existe a la vista en la ROM: viven dentro de scripts comprimidos.'),
