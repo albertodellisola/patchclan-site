@@ -23,6 +23,7 @@ import { YYHG } from './jogo-yyhg.mjs';
 import { SFG } from './jogo-sfg.mjs';
 import { PSG } from './jogo-psg.mjs';
 import { GORILLA } from './jogo-gorilla.mjs';
+import { GORILLA_FIX } from './jogo-gorilla-fix.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
@@ -37,7 +38,8 @@ const APELO = [
   YYHG,  /* entrou em 12/09/2026, beta: cai no fim do grupo dos beta */
   GORILLA /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */,
   SFG    /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */,
-  PSG    /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */
+  PSG,   /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */
+  GORILLA_FIX /* 19/09/2026, o 1º Hacks/Fixes (tipo 'hack': só aparece nessa aba) */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };

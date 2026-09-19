@@ -22,7 +22,17 @@ export const ETAPAS_ORDEM = ['direcao', 'traducao', 'revisao', 'arte', 'testes',
    (SEED.equipe.intro): mudou aqui, muda lá. */
 export const EXIGE_RELEASE = ETAPAS_ORDEM;
 
+/* Hacks/Fixes (`tipo: 'hack'`): o jogo fica no idioma original, então tradução, revisão,
+   arte e longplay da tradução não existem. A linha de um hack tem só as duas etapas que
+   se aplicam, e a faixa da ficha mostra só elas (19/09/2026, o primeiro hack):
+     direcao   os consertos aplicados por script, com o IPS conferido byte a byte
+     testes    cada conserto provado jogando até TODOS os finais, do power-on — na
+               própria ROM consertada ou numa build que carrega os mesmos bytes
+   Release = as duas feitas; o resto é alfa. */
+export const ETAPAS_HACK = ['direcao', 'testes'];
+
 const F = 'feito', A = 'andamento', N = 'nao';
+const h = (direcao, testes) => ({ direcao, testes });
 const l = (direcao, traducao, revisao, arte, testes, longplay = N) =>
   ({ direcao, traducao, revisao, arte, testes, longplay });
 
@@ -48,5 +58,6 @@ export const ETAPAS = {
   'ninja-burai-densetsu':      l(A, A, N, A, A),  // escopo jogável: roteiro fica em japonês
   'gorilla-man':               l(F, F, F, F, F, F),  // RELEASE v1.4 build 88 (19/09): caça 3 finais, revisão 2 agentes, cobertura 540/540, longplay A/B/C
   'shining-force-gaiden':      l(A, A, A, A, A),  // telas por índice de tile; alfa não passou da abertura
+  'gorilla-man-bugfix':        h(F, F),  // só os 2 bugs do cartucho (19/09): IPS de 34 bytes; provados na EN (caça 3 finais, hp0b); a ROM só-fix não foi jogada (dono dispensou)
   'phantasy-star-gaiden':      l(A, A, A, A, A),  // menu START, 62 monstros, 外伝 do título
 };

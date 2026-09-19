@@ -115,6 +115,19 @@
           L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>') +
       '</div></div>';
   }
+  /* Hack/Fix: um arquivo só e o jogo no idioma original — a grade por idioma não se aplica. */
+  function cartaoHack(g){
+    var v = ((g.patch||{}).versoes||{}).jp, nota = (g.patch||{}).nota;
+    if (!v) return '<div class="pt-item vazio"><div class="aviso">'+L({pt:'ainda não existe',en:'does not exist yet',es:'todavía no existe'})+'</div></div>';
+    return '<div class="patch-uno"><div class="bandas"><div class="banda"><span class="cod">JP</span></div></div>' +
+      '<div class="corpo"><div>' +
+        '<h4>'+L({pt:'Um patch, o jogo em japonês',en:'One patch, the game stays in Japanese',es:'Un parche, el juego sigue en japonés'})+'</h4>' +
+        '<p class="ficha"><b>'+e(v.arquivo)+'</b> · IPS · '+e(v.tamanho) + (nota ? '<br>'+L(nota) : '') + '</p></div>' +
+      (destinoPatch(g)
+        ? '<a class="bt patreon" href="'+e(destinoPatch(g))+'" target="_blank" rel="noopener">&hearts; '+L({pt:'No Patreon',en:'On Patreon',es:'En Patreon'})+'</a>'
+        : '<a class="bt" href="'+pastaPatch(g)+'/'+e(v.arquivo)+'" download>&#9654; '+L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>') +
+      '</div></div>';
+  }
   function gradeIdiomas(versoes, pasta, tipo, destino, nota){
     if (arquivoUnico(versoes)) return cartaoUnico(versoes, pasta, tipo, destino, nota);
     return '<div class="patches">' + IDI.map(function(x){
@@ -357,7 +370,7 @@
     if (!q || !et) return '';
     var marca = {feito:'✓', andamento:'◐', nao:'○'};
     return '<ol class="etapas">' +
-      (q.etapas||[]).map(function(x){
+      (q.etapas||[]).filter(function(x){ return x.id in et; }).map(function(x){   /* hack: só as dele */
         var s = et[x.id] || 'nao';
         return '<li class="etapa '+s+'">' +
           '<span aria-hidden="true">'+marca[s]+'</span> '+L(x.curto) +
@@ -510,7 +523,7 @@
                                         en:'While the project is open, the patch goes out through Patreon.',
                                         es:'Mientras el proyecto sigue abierto, el parche sale por Patreon.'})+'</b>' : '') +
         '</div>' +
-      gradeIdiomas(g.patch.versoes, pastaPatch(g), 'IPS', destinoPatch(g), (g.patch||{}).nota) +
+      (secao(g) === 'hacks' ? cartaoHack(g) : gradeIdiomas(g.patch.versoes, pastaPatch(g), 'IPS', destinoPatch(g), (g.patch||{}).nota)) +
       leituras(g);
     out += '</div></section>';
     out += secao(g) === 'hacks'

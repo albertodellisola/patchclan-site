@@ -1,7 +1,7 @@
 import { SEED } from './seed.mjs';
 import { JOGOS } from './jogos.mjs';
 import { POSTS } from './posts.mjs';
-import { ETAPAS, ETAPAS_ORDEM, EXIGE_RELEASE } from './etapas.mjs';
+import { ETAPAS, ETAPAS_ORDEM, EXIGE_RELEASE, ETAPAS_HACK } from './etapas.mjs';
 import { MANUAL_FJ2 } from './manual-fj2.mjs';
 import { MANUAL_DB3 } from './manual-db3.mjs';
 import { MANUAL_CT } from './manual-ct.mjs';
@@ -34,12 +34,16 @@ const RAIZ = path.resolve(import.meta.dirname, '..');
 for (const g of JOGOS) {
   const et = ETAPAS[g.slug];
   if (!et) throw new Error(`${g.slug}: sem linha em build/etapas.mjs`);
-  for (const k of ETAPAS_ORDEM) {
+  /* hack (Hacks/Fixes) mede só hacking e testes: não há tradução a fazer (etapas.mjs) */
+  const hack = g.tipo === 'hack';
+  const ordem = hack ? ETAPAS_HACK : ETAPAS_ORDEM;
+  for (const k of ordem) {
     if (!['feito', 'andamento', 'nao'].includes(et[k])) throw new Error(`${g.slug}: etapa "${k}" inválida (${et[k]})`);
   }
+  if (Object.keys(et).length !== ordem.length) throw new Error(`${g.slug}: a linha em etapas.mjs não tem as etapas de um ${hack ? 'hack' : 'jogo traduzido'}`);
   /* o nível sai das etapas (régua de 17/09/2026) — mudar um exige mudar o outro */
-  const devido = EXIGE_RELEASE.every(k => et[k] === 'feito') ? 'release'
-               : (et.direcao === 'feito' && et.traducao === 'feito') ? 'beta' : 'alfa';
+  const devido = (hack ? ETAPAS_HACK : EXIGE_RELEASE).every(k => et[k] === 'feito') ? 'release'
+               : (!hack && et.direcao === 'feito' && et.traducao === 'feito') ? 'beta' : 'alfa';
   if (g.nivel !== devido) {
     throw new Error(`${g.slug} está "${g.nivel}", mas as etapas dizem "${devido}" (release = as seis; beta = hacking e tradução feitos)`);
   }
@@ -58,7 +62,8 @@ for (const g of JOGOS) {
     }
     const f = path.join(RAIZ, PASTA_PATCH(g), v.arquivo);
     if (!fs.existsSync(f)) { g.patch.versoes[idi] = null; continue; }
-    v.tamanho = Math.round(fs.statSync(f).size / 1024) + ' KB';
+    const b = fs.statSync(f).size;   /* patch de conserto tem bytes, não KB: 73 B viraria "0 KB" */
+    v.tamanho = b < 1024 ? b + ' B' : Math.round(b / 1024) + ' KB';
   }
 }
 
