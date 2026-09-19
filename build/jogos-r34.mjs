@@ -252,7 +252,8 @@ export const MKR2 = {
               '<b>Versión 1.4.4.</b> Cada nombre es ahora el mismo en todas partes (lista, diálogos y manual), los diálogos dicen el nombre completo del objeto, la pantalla de nombre acepta minúsculas y más de 150 frases se reescribieron en la revisión.') }
     ] }
   ],
-  patch: { versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
+  patch: { release: 'magic-knight-rayearth-2-v1.4.4',
+           versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
   fotos: [
     { f: 'mkr2/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O título redesenhado, com a versão no canto.', 'The redrawn title, with the version in the corner.', 'El título redibujado, con la versión en la esquina.') },
