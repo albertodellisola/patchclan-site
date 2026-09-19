@@ -46,7 +46,7 @@ export const ETAPAS = {
   'hanjuku-hero':              l(A, A, A, F, A),  // 382/425; 33 golpes esperando o dono
   'robot-poncots-64':          l(A, A, A, A, A),  // 201 listas seguradas; texturas 834 e 257
   'ninja-burai-densetsu':      l(A, A, N, A, A),  // escopo jogável: roteiro fica em japonês
-  'gorilla-man':               l(F, F, A, F, A),  // jogar limpo os três cenários; Wolf Ramen
+  'gorilla-man':               l(F, F, F, F, F, F),  // RELEASE v1.4 build 88 (19/09): caça 3 finais, revisão 2 agentes, cobertura 540/540, longplay A/B/C
   'shining-force-gaiden':      l(A, A, A, A, A),  // telas por índice de tile; alfa não passou da abertura
   'phantasy-star-gaiden':      l(A, A, A, A, A),  // menu START, 62 monstros, 外伝 do título
 };

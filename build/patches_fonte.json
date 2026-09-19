@@ -138,5 +138,12 @@
     "formato": "ips",
     "md5_original": "c46e087d966a35095df96799b0b4ffae",
     "pendente": "A traducao esta sendo reescrita em ASCII de 1 byte (pms64_ascii.z64, 10/09 16:18) depois do conserto da largura da caixa. Declarar a traduzida quando a reescrita fechar."
+  },
+  "gorilla-man-en": {
+    "projeto": "gorilla-hack",
+    "original": "gorilla-hack/rom/original.nes",
+    "formato": "ips",
+    "md5_original": "2377df3f6909fa9fd858ab03791e8db9",
+    "traduzida": "gorilla-hack/build/gorilla-en-release88.nes"
   }
 }
