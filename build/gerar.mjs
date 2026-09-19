@@ -6,6 +6,7 @@ import { MANUAL_FJ2 } from './manual-fj2.mjs';
 import { MANUAL_DB3 } from './manual-db3.mjs';
 import { MANUAL_CT } from './manual-ct.mjs';
 import { MANUAL_MKR2 } from './manual-mkr2.mjs';
+import { MANUAL_YYHG } from './manual-yyhg.mjs';
 import { GUIAS } from './guias.mjs';
 import { ES } from './es.mjs';
 import { ES_FJ2 } from './es-fj2.mjs';
@@ -180,7 +181,7 @@ ${c.trim()}
 // 1) index.html do site: imagens como arquivos em shots/
 /* Manual e guia entram do mesmo jeito: um objeto por slug, lido no site nos tres idiomas.
    Documento que nao existe simplesmente nao gera link — nada fica esmaecido, nada some. */
-const MANUAIS = { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT, 'magic-knight-rayearth-2': MANUAL_MKR2 };
+const MANUAIS = { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT, 'magic-knight-rayearth-2': MANUAL_MKR2, 'yu-yu-hakusho-gaiden': MANUAL_YYHG };
 const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS };
 fs.writeFileSync(path.join(RAIZ, 'index.html'), montar(seedArquivos));
 
