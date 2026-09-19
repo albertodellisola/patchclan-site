@@ -12,6 +12,7 @@ export const YYHG = {
   publisher: 'Sega', dev: 'Sega', ano: 1994, data: '28/01/1994',
   sistema: 'Mega Drive', mapper: '2 MB expandidos para 4 MB · SRAM de 16 KB com bateria',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
+  destaque: true,
   nivel: 'release',
   versao: 'English v1.0',
   capa: 'yyhg/01-titulo.png',
