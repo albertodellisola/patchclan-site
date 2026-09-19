@@ -38,7 +38,7 @@ export const ETAPAS = {
   'gozonji':                   l(A, A, A, F, A),  // ~1.786 falas; bancos 10 e 11
   'ultraman-club-3':           l(F, A, A, F, A),  // tela ITEM (banco 13); 17 nomes provisórios; bug 3
   'monster-maker':             l(F, A, N, F, A),  // tela de status não mapeada; lote sem revisão
-  'yu-yu-hakusho-gaiden':      l(A, A, A, A, A),  // linha dos 4 nomes; placas e logo_meio; caça na build
+  'yu-yu-hakusho-gaiden':      l(F, F, F, F, F, F),  // RELEASE 1.0 build 9 (18/09): caça 3 finais, revisão 2 agentes, 8 artes aprovadas, longplay A/B/C
   'famicom-jump-2':            l(F, F, F, F, A),  // testes 70%, sem jogatina completa
   'dragon-ball-3':             l(F, F, F, F, A),  // falta rota que escolha carta até o fim
   'pocket-monsters-stadium':   l(A, A, A, A, A),  // ETAPAS.md: nomes cortados, texturas, bugs
