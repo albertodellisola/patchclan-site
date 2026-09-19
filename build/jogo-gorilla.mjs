@@ -10,7 +10,7 @@ export const GORILLA = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'release',
   versao: 'English v1.4',
-  capa: 'gorilla/01-titulo.png',
+  capa: 'gorilla/00-capa-patreon.jpg',
   linha: bi('O jogo de tabuleiro do mangá de Harold Sakuishi que nunca saiu do Japão — e que até hoje não tinha patch nenhum, em idioma nenhum.',
             'The board game from Harold Sakuishi’s manga that never left Japan — and until now had no patch at all, in any language.',
             'El juego de mesa del manga de Harold Sakuishi que nunca salió de Japón — y que hasta hoy no tenía ningún parche, en ningún idioma.'),

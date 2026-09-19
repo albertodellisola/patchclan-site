@@ -15,7 +15,7 @@ export const GORILLA_FIX = {
   categoria: bi('Correção de bugs', 'Bug fix', 'Corrección de errores'),
   nivel: 'release',
   versao: 'Bugfix v1.0',
-  capa: 'gorilla-fix/01-final-cenario1.png',
+  capa: 'gorilla/00-capa-patreon.jpg',
   linha: bi('O cartucho japonês de 1992 sem os dois bugs que impediam de terminar a partida. O jogo continua todo em japonês.',
             'The 1992 Japanese cartridge minus the two bugs that kept a game from reaching its end. Everything stays in Japanese.',
             'El cartucho japonés de 1992 sin los dos fallos que impedían terminar la partida. Todo sigue en japonés.'),
