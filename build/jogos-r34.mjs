@@ -192,7 +192,7 @@ export const MKR2 = {
   slug: 'magic-knight-rayearth-2',
   nome: 'Magic Knight Rayearth 2',
   subtitulo: 'Making of Magic Knight',
-  jp: 'レイアース2 ～making of magicknight～',
+  jp: '魔法騎士レイアース2 〜making of magic knight〜',
   publisher: 'SEGA', dev: 'SEGA', ano: 1995, data: '1995',
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
