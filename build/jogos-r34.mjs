@@ -196,8 +196,8 @@ export const MKR2 = {
   publisher: 'SEGA', dev: 'SEGA', ano: 1995, data: '1995',
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'beta',
-  versao: 'English v1.4.3',
+  nivel: 'release',
+  versao: 'English v1.4.4',
   capa: 'mkr2/00-capa-patreon.jpg',
   linha: bi('Hikaru, Umi e Fuu voltam a Cefiro depois de Emeraude, no Game Gear. A caixa tem 12 caracteres, e MAGIC KNIGHTS tem catorze.',
             'Hikaru, Umi and Fuu return to Cefiro after Emeraude, on the Game Gear. The box holds 12 characters, and MAGIC KNIGHTS has fourteen.',
@@ -243,13 +243,17 @@ export const MKR2 = {
               '<b>The screens, not just the script</b>: title, name entry (now A-Z and <b>six letters</b> instead of four), parameters, day counter, place names, the three Knights\' mood panel and the status screen.',
               '<b>Las pantallas, no solo el guion</b>: título, entrada de nombre (ahora A-Z y <b>seis letras</b> en vez de cuatro), parámetros, contador de días, nombres de lugar, el panel de humor de las tres Guerreras y la pantalla de estado.') }
     ] },
-    { titulo: bi('O que ficou de fora', 'What did not make it', 'Lo que quedó fuera'), itens: [
-      { t: bi('<b>O jogo ainda não foi jogado do começo ao fim.</b> Cada uma das linhas foi lida antes de sair, e o final e os créditos foram conferidos no patch em inglês — foi aí que apareceu o japonês que sobrava. Mas uma partida inteira, do primeiro dia ao final, ainda não aconteceu.',
-              '<b>It has not been played start to finish yet.</b> Every line was read before shipping, and the ending and the credits were checked on the English patch — that is where the leftover Japanese turned up. But a full run, from day one to the ending, has not happened yet.',
-              '<b>Todavía no se ha jugado de principio a fin.</b> Cada línea fue leída antes de salir, y el final y los créditos se comprobaron con el parche en inglés — ahí apareció el japonés que sobraba. Pero una partida completa, del primer día al final, todavía no ha ocurrido.') }
+    { titulo: bi('Testado até o fim', 'Tested to the end', 'Probado hasta el final'), itens: [
+      { t: bi('<b>Os 11 finais</b>, cada um alcançado do primeiro dia na versão em inglês e gravado em vídeo até o fim dos créditos. O roteiro inteiro passou por duas leituras: uma com o japonês ao lado, conferindo sentido, e outra só em inglês, como quem joga. Salvar e carregar, a tela de nome e o teste de som também foram vistos na tela.',
+              '<b>All 11 endings</b>, each one reached from day one on the English version and recorded on video to the end of the credits. The whole script went through two readings: one with the Japanese alongside, checking meaning, and one in English only, the way a player reads it. Saving and loading, the name screen and the sound test were also checked on screen.',
+              '<b>Los 11 finales</b>, cada uno alcanzado desde el primer día en la versión en inglés y grabado en vídeo hasta el final de los créditos. El guion entero pasó por dos lecturas: una con el japonés al lado, comprobando el sentido, y otra solo en inglés, como la lee quien juega. Guardar y cargar, la pantalla de nombre y el test de sonido también se vieron en pantalla.') },
+      { t: bi('<b>Versão 1.4.4.</b> Cada nome agora é o mesmo em todo lugar (lista, falas e manual), as falas dizem o nome inteiro do item, a tela de nome aceita minúsculas e mais de 150 falas foram reescritas na revisão.',
+              '<b>Version 1.4.4.</b> Every name is now the same everywhere (list, dialogue and manual), dialogue gives the item\'s full name, the name screen takes lowercase, and over 150 lines were rewritten in review.',
+              '<b>Versión 1.4.4.</b> Cada nombre es ahora el mismo en todas partes (lista, diálogos y manual), los diálogos dicen el nombre completo del objeto, la pantalla de nombre acepta minúsculas y más de 150 frases se reescribieron en la revisión.') }
     ] }
   ],
-  patch: { versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
+  patch: { release: 'magic-knight-rayearth-2-v1.4.4',
+           versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
   fotos: [
     { f: 'mkr2/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O título redesenhado, com a versão no canto.', 'The redrawn title, with the version in the corner.', 'El título redibujado, con la versión en la esquina.') },

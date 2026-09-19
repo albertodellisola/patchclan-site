@@ -29,7 +29,7 @@ const l = (direcao, traducao, revisao, arte, testes, longplay = N) =>
 export const ETAPAS = {
   // levantado em 16/09/2026 das memórias e dos RETOMAR/BLOCOS de cada projeto
   'guevara':                   l(F, F, F, F, A),  // ninguém registrou jogatina até SEE YOU / NEXT PLAY
-  'magic-knight-rayearth-2':   l(F, F, F, F, A),  // 11/11 finais pela caçadora; faltam CARREGAR, nome digitado, som
+  'magic-knight-rayearth-2':   l(F, F, F, F, F, F),  // RELEASE v1.4.4 build 102 (19/09): 11/11 finais, carregar/nome/som vistos, regressão VG+R7 na 102, longplay A-K (exceção do dono p/ nomes)
   'captain-tsubasa':           l(F, A, A, F, A),  // "Passe" sem texto; msg 72; ACT 2, Paris e créditos
   'tom-sawyer':                l(F, F, A, F, A),  // THE END? e DEMONMSK abertos; final só por injeção
   'ultraman-club-2':           l(F, F, A, F, A),  // só glossário; build20 nunca jogada inteira
