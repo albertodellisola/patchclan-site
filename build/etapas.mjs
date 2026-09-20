@@ -52,7 +52,7 @@ export const ETAPAS = {
   'famicom-jump-2':            l(F, F, F, F, A),  // testes 70%, sem jogatina completa
   'dragon-ball-3':             l(F, F, F, F, A),  // falta rota que escolha carta até o fim
   'pocket-monsters-stadium':   l(A, A, A, A, A),  // ETAPAS.md: nomes cortados, texturas, bugs
-  'maniac-mansion':            l(A, A, N, A, A),  // epílogo no banco 4; 4b não feita; rota A
+  'maniac-mansion':            l(F, F, F, F, F, F),  // RELEASE v1.0 build 6 (19/09): revisão 2 agentes, 5 telas de arte aprovadas, caça 7/7 ramos, debug 814/814, longplay A-G
   'hanjuku-hero':              l(A, A, A, F, A),  // 382/425; 33 golpes esperando o dono
   'robot-poncots-64':          l(A, A, A, A, A),  // 201 listas seguradas; texturas 834 e 257
   'ninja-burai-densetsu':      l(A, A, N, A, A),  // escopo jogável: roteiro fica em japonês

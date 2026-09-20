@@ -152,5 +152,12 @@
   "formato": "ips",
   "md5_original": "2377df3f6909fa9fd858ab03791e8db9",
   "traduzida": "gorilla-hack/build/gorilla_jp_bugfix.nes"
+ },
+ "maniac-mansion-en": {
+  "projeto": "maniac-hack",
+  "original": "maniac-hack/original/maniac_jp.nes",
+  "formato": "ips",
+  "md5_original": "5835600abb0a8de98d905da545350160",
+  "traduzida": "maniac-hack/build/maniac_en.nes"
  }
 }
