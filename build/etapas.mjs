@@ -59,5 +59,6 @@ export const ETAPAS = {
   'gorilla-man':               l(F, F, F, F, F, F),  // RELEASE v1.4 build 88 (19/09): caça 3 finais, revisão 2 agentes, cobertura 540/540, longplay A/B/C
   'shining-force-gaiden':      l(A, A, A, A, A),  // telas por índice de tile; alfa não passou da abertura
   'gorilla-man-bugfix':        h(F, F),  // só os 2 bugs do cartucho (19/09): IPS de 34 bytes; provados na EN (caça 3 finais, hp0b); a ROM só-fix não foi jogada (dono dispensou)
+  'maniac-mansion-bugfix':     h(F, F),  // os 3 bugs do cartucho (21/09): IPS de 197 B, 134 bytes na ROM de 256 KB; B11/B17 = bytes da EN v1.0.1, B6 reescrito no banco 11; testes: caça 7/7 na própria ROM consertada (21/09 13h27: mesmos textos, marcos e finais A-G da base japonesa; BUG_B11 OK)
   'phantasy-star-gaiden':      l(A, A, A, A, A),  // menu START, 62 monstros, 外伝 do título
 };

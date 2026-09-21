@@ -24,6 +24,7 @@ import { SFG } from './jogo-sfg.mjs';
 import { PSG } from './jogo-psg.mjs';
 import { GORILLA } from './jogo-gorilla.mjs';
 import { GORILLA_FIX } from './jogo-gorilla-fix.mjs';
+import { MANIAC_FIX } from './jogo-maniac-fix.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
@@ -39,7 +40,8 @@ const APELO = [
   GORILLA /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */,
   SFG    /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */,
   PSG,   /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */
-  GORILLA_FIX /* 19/09/2026, o 1º Hacks/Fixes (tipo 'hack': só aparece nessa aba) */
+  GORILLA_FIX, /* 19/09/2026, o 1º Hacks/Fixes (tipo 'hack': só aparece nessa aba) */
+  MANIAC_FIX  /* 21/09/2026, o 2º Hacks/Fixes: os 3 bugs do cartucho (B6, B11, B17) */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
