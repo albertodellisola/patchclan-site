@@ -1,0 +1,11 @@
+Núcleo do Rom Patcher JS, de Marc Robledo — https://github.com/marcrobledo/RomPatcher.js
+Licença MIT (arquivo LICENSE nesta pasta; o bz2 embutido no formato BDF é da SheetJS LLC,
+licença MIT, arquivo modules/LICENSE.bz2).
+
+Copiado sem alteração do commit 3183884086825c3a57c72026234debcef1e2240c (28/08/2026):
+  rom-patcher-js/RomPatcher.js           -> RomPatcher.js
+  rom-patcher-js/modules/*.js            -> modules/*.js
+Ficou de fora a interface dele (RomPatcher.webapp.js, webworkers, webapp/, zip.js, CSS e ícones).
+
+Para atualizar: copiar os mesmos arquivos de um commit novo, trocar o hash acima e rodar
+node app/teste_node.mjs (aplica os patches do catálogo e compara o MD5 do resultado).
