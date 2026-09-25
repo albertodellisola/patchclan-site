@@ -15,6 +15,7 @@ export const SFG = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'alfa',
   capa: 'sfg/01-titulo.png',
+  patreon: 'https://www.patreon.com/patchclan/posts/shining-force-in-170184328',
   linha: bi('O Shining Force que nunca ganhou roteiro em inglês: um exército em grade no Game Gear, 22 batalhas, e uma expedição à terra do deus maligno.',
             'The Shining Force that never got an English script: a Game Gear army moving across a grid, 22 battles, and an expedition to the land of the evil god.',
             'El Shining Force que nunca tuvo guion en inglés: un ejército por casillas en la Game Gear, 22 batallas y una expedición a la tierra del dios maligno.'),

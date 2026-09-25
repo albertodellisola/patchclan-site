@@ -15,6 +15,7 @@ export const PSG = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'alfa',
   capa: 'psg/01-titulo.png',
+  patreon: 'https://www.patreon.com/patchclan/posts/phantasy-star-of-170186540',
   linha: bi('Minina cresceu sem pais na aldeia de Tedo. Perto do fim se descobre quem era a mãe dela — e o planeta já tem o nome dessa mãe.',
             'Minina grew up with no parents in the village of Tedo. Near the end you learn who her mother was — and the planet already bears that name.',
             'Minina creció sin padres en la aldea de Tedo. Cerca del final se descubre quién era su madre — y el planeta ya lleva el nombre de esa madre.'),
