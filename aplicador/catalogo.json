@@ -1,9 +1,9 @@
 {
- "gerado_em": "2026-09-23T01:03:50.511Z",
+ "gerado_em": "2026-09-27T09:16:22.114Z",
  "fonte": {
   "repositorio": "patchclan-site",
   "ref": "origin/main",
-  "commit": "cba682e459b4d6cd2577785ad7c072dc86af51ca"
+  "commit": "7d1673b181dddf8b1acc3946f0f04c7f8941529d"
  },
  "aviso": "Hashes das ROMs ORIGINAIS e dos resultados, para conferência local no navegador. Nenhuma ROM é distribuída.",
  "jogos": [
@@ -46,7 +46,7 @@
    "jogo": "Maniac Mansion",
    "tipo": "traducao",
    "nivel": "release",
-   "versao": "English v1.0.1",
+   "versao": "English v1.1 build 8",
    "idioma": "en",
    "idiomas": [
     "en"
@@ -58,10 +58,10 @@
    "url_patch": "/patches/maniac-mansion-en.ips",
    "url_patreon": null,
    "url_download_contado": null,
-   "sha256_patch": "0f9e1d49fd235feae377c5302922149a41e66d591a03c75a11c3ee01107d85eb",
-   "sha1_patch": "ee4d73e13edb5eb98e1e8e649e8ec89d5b6efe9d",
-   "md5_patch": "bfb3dec081667d518e90226fd06b6910",
-   "tamanho_patch": 71803,
+   "sha256_patch": "517fa01cae10025a9dde551fca7b55e5bbfa3d955dc639f2c7ebe20a2f0c1641",
+   "sha1_patch": "61c864768b584ca2795f70a01f6efc2f195d5b6f",
+   "md5_patch": "1e4c7a5af1757c0732d0006dd49eeca0",
+   "tamanho_patch": 74291,
    "nome_rom_esperada": "Maniac Mansion (Japan).nes",
    "regiao": "Japan",
    "md5_original": "5835600abb0a8de98d905da545350160",
@@ -75,8 +75,8 @@
     "crc32": "3da2085e",
     "cabecalho_hex": "4e45531a100021082000000700000001"
    },
-   "md5_resultado": "af306871056b7b5ee3ab6bb585fab43d",
-   "crc32_resultado": "6d0da213",
+   "md5_resultado": "39a11c29038cc1d6e6f08b3519cc5b39",
+   "crc32_resultado": "0c494958",
    "tamanho_resultado": 524304
   },
   {
@@ -130,10 +130,10 @@
    "url_patch": "/patches/gorilla-man-en.ips",
    "url_patreon": null,
    "url_download_contado": null,
-   "sha256_patch": "ddb6864f95fe5ee551d9ff5b9e214d3d569d559b9395581bc224ae025caf896c",
-   "sha1_patch": "dc646c700e8ec9a8bdcc11b32ff12a6980b8ca1e",
-   "md5_patch": "b36ef57b91c319771580f60aa81696b6",
-   "tamanho_patch": 120830,
+   "sha256_patch": "5dff9d2472c71e9f9a6a99b81061b092fe6c8c88f33a6e87aced40ed250fa1e5",
+   "sha1_patch": "c89d4d281e020f7cb59579d3ecccfa64e6fb809a",
+   "md5_patch": "d8c5e074f846f60180bc3416c6a9a6b4",
+   "tamanho_patch": 120817,
    "nome_rom_esperada": "Gorilla Man, The (Japan).nes",
    "regiao": "Japan",
    "md5_original": "2377df3f6909fa9fd858ab03791e8db9",
@@ -147,8 +147,8 @@
     "crc32": "9fd718fd",
     "cabecalho_hex": "4e45531a200040080000000700000016"
    },
-   "md5_resultado": "580b706d8e75ef73c6680cfaf5131bc5",
-   "crc32_resultado": "d2fcf7b6",
+   "md5_resultado": "f581152a0bce6f9e3b628f402b606e02",
+   "crc32_resultado": "994d8501",
    "tamanho_resultado": 524304
   },
   {
@@ -616,6 +616,39 @@
    "tamanho_resultado": 524304
   },
   {
+   "slug": "slam-dunk",
+   "chave": "slam-dunk-en",
+   "jogo": "Slam Dunk: Yonkyou Gekitotsu",
+   "tipo": "traducao",
+   "nivel": "beta",
+   "versao": null,
+   "idioma": "en",
+   "idiomas": [
+    "en"
+   ],
+   "idioma_rotulo": "EN",
+   "sistema": "Super Famicom",
+   "formato": "ips",
+   "arquivo": "slam-dunk-en.ips",
+   "url_patch": null,
+   "url_patreon": "https://www.patreon.com/patchclan/posts/slam-dunk-first-170528008?pr=true",
+   "url_download_contado": null,
+   "sha256_patch": "05690fc5554719932438a8db11882e55b655b6a84e147ffb4934e37615096095",
+   "sha1_patch": "e6083f0f4af2dcc46852434221e31cf6d0a3c6c1",
+   "md5_patch": "9788a15627737de0197f4306f381aea6",
+   "tamanho_patch": 71228,
+   "nome_rom_esperada": "Slam Dunk - Yonkyou Gekitotsu (Japan).sfc",
+   "regiao": "Japan",
+   "md5_original": "f91a1a1acc01d35779c0225b2fa947a4",
+   "crc32_original": "2bf73f89",
+   "sha1_original": "d6c9f67037a96ac86acad63b4a049990e7bf9eef",
+   "tamanho_original": 1572864,
+   "corpo": null,
+   "md5_resultado": "c8afe3062dfca3a3cf0dd9369b517c0d",
+   "crc32_resultado": "ed38703f",
+   "tamanho_resultado": 2097152
+  },
+  {
    "slug": "captain-tsubasa",
    "chave": "captain-tsubasa-en",
    "jogo": "Captain Tsubasa",
@@ -1003,12 +1036,12 @@
    "formato": "ips",
    "arquivo": "shining-force-gaiden-en.ips",
    "url_patch": null,
-   "url_patreon": "https://www.patreon.com/patchclan",
+   "url_patreon": "https://www.patreon.com/patchclan/posts/shining-force-in-170184328",
    "url_download_contado": null,
-   "sha256_patch": "7e3ec7ccc92b770890e983c1241ea36d4541d303a61abf241c97e775c0d0f2c8",
-   "sha1_patch": "851e454c5b3bd0ff57a48cdddc637c65f07a6eb2",
-   "md5_patch": "780c61d2fb3c59bf7060734e890e61ea",
-   "tamanho_patch": 36736,
+   "sha256_patch": "bc45ce4fd887ead755a905de8b92b26cf6c0e0e3f1cdc464400822e5da1641f7",
+   "sha1_patch": "46058a8f8bda2ee4d02101f6459573e4907a90f5",
+   "md5_patch": "59db7a055279955d23d63a9c23187665",
+   "tamanho_patch": 36704,
    "nome_rom_esperada": "Shining Force Gaiden - Ensei, Jashin no Kuni e (Japan).gg",
    "regiao": "Japan",
    "md5_original": "8eafd80d35251b5d3f07d5cae27241c1",
@@ -1016,8 +1049,8 @@
    "sha1_original": "bea1bea94ea745691ad944eaadc8a5576057ed53",
    "tamanho_original": 524288,
    "corpo": null,
-   "md5_resultado": "a2bbc24c676afbe433e72579c248e2ec",
-   "crc32_resultado": "8e0204cb",
+   "md5_resultado": "f9e748ba6d791595ecde962b13e4a21d",
+   "crc32_resultado": "d7d9bd26",
    "tamanho_resultado": 1048576
   },
   {
@@ -1036,7 +1069,7 @@
    "formato": "ips",
    "arquivo": "phantasy-star-gaiden-en.ips",
    "url_patch": null,
-   "url_patreon": "https://www.patreon.com/patchclan",
+   "url_patreon": "https://www.patreon.com/patchclan/posts/phantasy-star-of-170186540",
    "url_download_contado": null,
    "sha256_patch": "cf4fd22b8769cbc3a9ed685b32e8e22d9473a88740f4bffe49df8d4e5a1d9424",
    "sha1_patch": "4cb880937f8bc9016318ed2e5ccdefccc4753b5b",
