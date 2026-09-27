@@ -533,6 +533,45 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
   .man-lista > div{grid-template-columns:minmax(0,1fr);gap:6px}
   .bt{padding:15px 24px}
 }
+/* ---- anúncio no topo (27/09/2026): beta do Super Robot Taisen 64; 08 e 09 alternam por página ---- */
+.anuncio{position:relative;color:#fff;font-family:var(--sans)}
+.anuncio a{color:inherit}
+.anuncio .fecha{position:absolute;top:50%;right:10px;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:50%;
+  background:transparent;color:inherit;opacity:.75;font:600 18px/1 var(--sans);cursor:pointer;z-index:2}
+.anuncio .fecha:hover{opacity:1}
+.anuncio .fecha:focus-visible,.anuncio a:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.anuncio .cta{font-family:var(--mono);font-weight:600;font-size:13px;text-decoration:none;padding:11px 16px;border-radius:3px;white-space:nowrap}
+/* 08 · tela de título */
+.an8{overflow:hidden;display:flex;align-items:center;justify-content:center;gap:26px;padding:12px 56px 12px 22px;min-height:118px;
+  background:#140804 url(shots/srw64/banner-fundo.jpg) center 40%/cover;image-rendering:pixelated}
+.an8::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,6,4,.35),rgba(10,6,4,.85) 45%,rgba(10,6,4,.9))}
+.an8>*{position:relative}
+.an8 .logo{height:90px;border-radius:6px;image-rendering:auto;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+.an8 .logo.m{display:none}
+.an8 .t{font-size:15px;line-height:1.4;max-width:470px}
+.an8 .t b{display:block;font-family:var(--pixel);font-weight:400;font-size:13px;color:#ffd35c;margin-bottom:8px;letter-spacing:.02em}
+.an8 .cta{background:#ffd35c;color:#14110e}
+/* 09 · cartucho de N64 */
+.an9{background:linear-gradient(180deg,#2a241d,#1d1915);color:#efe9dc;display:flex;align-items:center;justify-content:center;gap:24px;
+  padding:10px 56px 0 22px;overflow:hidden;border-bottom:3px solid #96251a}
+.an9 .cart{position:relative;width:150px;height:92px;flex:0 0 auto;align-self:flex-end;background:linear-gradient(180deg,#9a9ca3,#6d6f76);
+  border-radius:10px 10px 0 0;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 -2px 12px rgba(0,0,0,.4);transform:translateY(8px)}
+.an9 .cart::before{content:"";position:absolute;top:8px;left:12px;right:12px;height:6px;background:repeating-linear-gradient(90deg,#55575d 0 4px,transparent 4px 8px);border-radius:2px}
+.an9 .cart .rot{position:absolute;left:14px;right:14px;top:20px;bottom:10px;background:#0b0b10;border-radius:3px;display:grid;place-items:center;overflow:hidden}
+.an9 .cart .rot img{width:92%;height:auto}
+.an9 .cart .sel{position:absolute;right:-6px;top:6px;background:#96251a;color:#fff;font-family:var(--pixel);font-size:8px;padding:5px 6px;transform:rotate(12deg);box-shadow:0 2px 0 #4d120c}
+.an9 .t{font-size:15px;line-height:1.4;padding-bottom:10px}
+.an9 .t b{display:block;font-weight:800;font-size:19px;letter-spacing:-.01em}
+.an9 .cta{background:#f0705c;color:#14110e;margin-bottom:10px}
+@media (max-width:600px){
+  .anuncio .fecha{top:8px;transform:none}
+  .an8{flex-wrap:wrap;gap:10px;padding:12px 44px 14px 14px;justify-content:flex-start}
+  .an8 .logo{display:none}.an8 .logo.m{display:block;height:56px}
+  .an8 .t{flex:1 1 55%;font-size:13px}.an8 .t b{font-size:10.5px}
+  .an9{flex-wrap:wrap;gap:6px 14px;padding:12px 44px 0 14px;justify-content:flex-start}
+  .an9 .cart{width:112px;height:70px;transform:none;margin-bottom:6px}.an9 .cart .rot{top:17px;bottom:8px;left:10px;right:10px}
+  .an9 .t{flex:1 1 50%;font-size:13px;padding:0}.an9 .t b{font-size:16px}.an9 .cta{order:3;margin:0 0 12px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <style>
@@ -542,7 +581,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
   :root{ --ground:#fff; --ground-2:#faf7ef; --ground-3:#fff; --ink:#12100e; --ink-2:#4a4238;
          --rule:#b9b09a; --rule-soft:#d6cfbe; --accent:#8e2318; --chip:#efe9da; }
   html,body{background:#fff!important}
-  .faixa,.masthead,footer,.voltar,.skip,.man-idx,.langsw,.burger,.leituras,.so-tela{display:none!important}
+  .anuncio,.faixa,.masthead,footer,.voltar,.skip,.man-idx,.langsw,.burger,.leituras,.so-tela{display:none!important}
   .page{max-width:none;padding:0}
   section{padding:0;border:0;break-inside:auto}
   .man-sec{padding:0 0 8mm;break-inside:avoid-page}
@@ -583,6 +622,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
 </head>
 <body>
 <a class="skip" href="#conteudo"><span class="en" lang="en">Skip to content</span><span class="pt" lang="pt-BR">Ir para o conteúdo</span><span class="es" lang="es">Ir al contenido</span></a>
+<div id="anuncio"></div>
 <div class="faixa"></div>
 <div class="page">
   <header class="masthead">
@@ -1309,6 +1349,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
     document.getElementById('selo-marca').innerHTML = L((D.content.marca||{}).selo);
     document.getElementById('tagline').innerHTML = L((D.content.footer||{}).tagline);
     menu(r);
+    anuncio();
     document.body.classList.remove('menu-aberto');
     document.getElementById('burger').setAttribute('aria-expanded','false');
     window.scrollTo(0, 0);
@@ -1331,6 +1372,47 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
     out += '<a class="apoie" href="#/apoie"'+(r.tipo==='apoie'?' aria-current="page"':'')+'>♥ '+L({pt:'Apoie',en:'Support',es:'Apoya'})+'</a>';
     document.getElementById('nav').innerHTML = out;
   }
+  /* ---------------- anúncio no topo ----------------
+     Desde 27/09/2026: beta do Super Robot Taisen 64. As opções 08 (tela de título) e 09 (cartucho)
+     alternam a cada página. O ✕ fecha em todas as páginas, por visitante. Para tirar do ar:
+     ANUNCIO.ativo = false. Anúncio novo = id novo (quem fechou o antigo volta a ver). */
+  var ANUNCIO = {
+    ativo: true, id: 'srw64-beta-2026-09',
+    link: 'https://www.patreon.com/patchclan',
+    tt:   {en:'BETA · NOW IN ENGLISH', pt:'BETA · AGORA EM INGLÊS', es:'BETA · AHORA EN INGLÉS'},
+    s:    {en:'The beta is out for Patreon patrons ($10 tier and up). The full release will be open to everyone.',
+           pt:'O beta saiu para os apoiadores do Patreon (do plano de US$ 10 para cima). O release completo vai ser aberto ao público.',
+           es:'La beta ya salió para los mecenas de Patreon (desde el nivel de US$ 10). La versión final será abierta al público.'},
+    cart: {en:'The beta is out: Super Robot Taisen 64', pt:'Saiu o beta: Super Robot Taisen 64', es:'Salió la beta: Super Robot Taisen 64'},
+    s2:   {en:'Beta out now for patrons. Full release open to everyone.', pt:'Beta no ar para apoiadores. Release completo aberto ao público.',
+           es:'Beta ya disponible para mecenas. Versión final abierta a todos.'},
+    cta:  {en:'Get the beta', pt:'Pegar o beta', es:'Consigue la beta'},
+    fecha:{en:'Close', pt:'Fechar', es:'Cerrar'}
+  };
+  var anuncioVez = 0;
+  function anuncio(){
+    var el = document.getElementById('anuncio'), A = ANUNCIO, fechado = null;
+    try { fechado = localStorage.getItem('pc-anuncio-fechado'); } catch(x){}
+    if (!A.ativo || fechado === A.id) { el.innerHTML = ''; return; }
+    try { anuncioVez = +(sessionStorage.getItem('pc-anuncio-vez') || 0) + 1; sessionStorage.setItem('pc-anuncio-vez', anuncioVez); }
+    catch(x){ anuncioVez++; }
+    var x = '<button class="fecha" type="button" data-fecha-anuncio aria-label="'+e(A.fecha.en)+'">✕</button>';
+    var cta = '<a class="cta" href="'+e(A.link)+'" target="_blank" rel="noopener">'+L(A.cta)+' →</a>';
+    el.innerHTML = (anuncioVez % 2)
+      ? '<aside class="anuncio an8" aria-label="Super Robot Taisen 64 beta">' +
+          '<img class="logo" src="shots/srw64/banner-logo-90.png" alt="Super Robot Wars 64" width="313" height="90">' +
+          '<img class="logo m" src="shots/srw64/banner-logo-56.png" alt="" width="195" height="56">' +
+          '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta+x+'</aside>'
+      : '<aside class="anuncio an9" aria-label="Super Robot Taisen 64 beta">' +
+          '<span class="cart" aria-hidden="true"><span class="rot"><img src="shots/srw64/banner-logo-40.png" alt=""></span><span class="sel">BETA</span></span>' +
+          '<span class="t"><b>'+L(A.cart)+'</b>'+L(A.s2)+'</span>'+cta+x+'</aside>';
+  }
+  document.addEventListener('click', function(ev){
+    if (!(ev.target.closest && ev.target.closest('[data-fecha-anuncio]'))) return;
+    try { localStorage.setItem('pc-anuncio-fechado', ANUNCIO.id); } catch(x){}
+    document.getElementById('anuncio').innerHTML = '';
+  });
+
   window.addEventListener('hashchange', desenha);
 
   /* rolagem interna sem trocar de rota */

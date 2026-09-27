@@ -1,5 +1,6 @@
 
 <a class="skip" href="#conteudo"><span class="en" lang="en">Skip to content</span><span class="pt" lang="pt-BR">Ir para o conteúdo</span><span class="es" lang="es">Ir al contenido</span></a>
+<div id="anuncio"></div>
 <div class="faixa"></div>
 <div class="page">
   <header class="masthead">
@@ -726,6 +727,7 @@
     document.getElementById('selo-marca').innerHTML = L((D.content.marca||{}).selo);
     document.getElementById('tagline').innerHTML = L((D.content.footer||{}).tagline);
     menu(r);
+    anuncio();
     document.body.classList.remove('menu-aberto');
     document.getElementById('burger').setAttribute('aria-expanded','false');
     window.scrollTo(0, 0);
@@ -748,6 +750,47 @@
     out += '<a class="apoie" href="#/apoie"'+(r.tipo==='apoie'?' aria-current="page"':'')+'>♥ '+L({pt:'Apoie',en:'Support',es:'Apoya'})+'</a>';
     document.getElementById('nav').innerHTML = out;
   }
+  /* ---------------- anúncio no topo ----------------
+     Desde 27/09/2026: beta do Super Robot Taisen 64. As opções 08 (tela de título) e 09 (cartucho)
+     alternam a cada página. O ✕ fecha em todas as páginas, por visitante. Para tirar do ar:
+     ANUNCIO.ativo = false. Anúncio novo = id novo (quem fechou o antigo volta a ver). */
+  var ANUNCIO = {
+    ativo: true, id: 'srw64-beta-2026-09',
+    link: 'https://www.patreon.com/patchclan',
+    tt:   {en:'BETA · NOW IN ENGLISH', pt:'BETA · AGORA EM INGLÊS', es:'BETA · AHORA EN INGLÉS'},
+    s:    {en:'The beta is out for Patreon patrons ($10 tier and up). The full release will be open to everyone.',
+           pt:'O beta saiu para os apoiadores do Patreon (do plano de US$ 10 para cima). O release completo vai ser aberto ao público.',
+           es:'La beta ya salió para los mecenas de Patreon (desde el nivel de US$ 10). La versión final será abierta al público.'},
+    cart: {en:'The beta is out: Super Robot Taisen 64', pt:'Saiu o beta: Super Robot Taisen 64', es:'Salió la beta: Super Robot Taisen 64'},
+    s2:   {en:'Beta out now for patrons. Full release open to everyone.', pt:'Beta no ar para apoiadores. Release completo aberto ao público.',
+           es:'Beta ya disponible para mecenas. Versión final abierta a todos.'},
+    cta:  {en:'Get the beta', pt:'Pegar o beta', es:'Consigue la beta'},
+    fecha:{en:'Close', pt:'Fechar', es:'Cerrar'}
+  };
+  var anuncioVez = 0;
+  function anuncio(){
+    var el = document.getElementById('anuncio'), A = ANUNCIO, fechado = null;
+    try { fechado = localStorage.getItem('pc-anuncio-fechado'); } catch(x){}
+    if (!A.ativo || fechado === A.id) { el.innerHTML = ''; return; }
+    try { anuncioVez = +(sessionStorage.getItem('pc-anuncio-vez') || 0) + 1; sessionStorage.setItem('pc-anuncio-vez', anuncioVez); }
+    catch(x){ anuncioVez++; }
+    var x = '<button class="fecha" type="button" data-fecha-anuncio aria-label="'+e(A.fecha.en)+'">✕</button>';
+    var cta = '<a class="cta" href="'+e(A.link)+'" target="_blank" rel="noopener">'+L(A.cta)+' →</a>';
+    el.innerHTML = (anuncioVez % 2)
+      ? '<aside class="anuncio an8" aria-label="Super Robot Taisen 64 beta">' +
+          '<img class="logo" src="shots/srw64/banner-logo-90.png" alt="Super Robot Wars 64" width="313" height="90">' +
+          '<img class="logo m" src="shots/srw64/banner-logo-56.png" alt="" width="195" height="56">' +
+          '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta+x+'</aside>'
+      : '<aside class="anuncio an9" aria-label="Super Robot Taisen 64 beta">' +
+          '<span class="cart" aria-hidden="true"><span class="rot"><img src="shots/srw64/banner-logo-40.png" alt=""></span><span class="sel">BETA</span></span>' +
+          '<span class="t"><b>'+L(A.cart)+'</b>'+L(A.s2)+'</span>'+cta+x+'</aside>';
+  }
+  document.addEventListener('click', function(ev){
+    if (!(ev.target.closest && ev.target.closest('[data-fecha-anuncio]'))) return;
+    try { localStorage.setItem('pc-anuncio-fechado', ANUNCIO.id); } catch(x){}
+    document.getElementById('anuncio').innerHTML = '';
+  });
+
   window.addEventListener('hashchange', desenha);
 
   /* rolagem interna sem trocar de rota */
