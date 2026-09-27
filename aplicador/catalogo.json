@@ -1,9 +1,9 @@
 {
- "gerado_em": "2026-09-27T09:16:22.114Z",
+ "gerado_em": "2026-09-27T13:08:12.948Z",
  "fonte": {
   "repositorio": "patchclan-site",
   "ref": "origin/main",
-  "commit": "7d1673b181dddf8b1acc3946f0f04c7f8941529d"
+  "commit": "c1e259267577e82946d46cb3603ea02244966766"
  },
  "aviso": "Hashes das ROMs ORIGINAIS e dos resultados, para conferência local no navegador. Nenhuma ROM é distribuída.",
  "jogos": [
@@ -1085,6 +1085,39 @@
    "md5_resultado": "9ff2aa96f58115cbd799ace283437349",
    "crc32_resultado": "d670a697",
    "tamanho_resultado": 524288
+  },
+  {
+   "slug": "super-robot-wars-64",
+   "chave": "super-robot-wars-64-en",
+   "jogo": "Super Robot Wars 64",
+   "tipo": "traducao",
+   "nivel": "beta",
+   "versao": null,
+   "idioma": "en",
+   "idiomas": [
+    "en"
+   ],
+   "idioma_rotulo": "EN",
+   "sistema": "Nintendo 64",
+   "formato": "bps",
+   "arquivo": "super-robot-wars-64-en.bps",
+   "url_patch": null,
+   "url_patreon": "https://www.patreon.com/patchclan/posts/super-robot-wars-170703831?pr=true",
+   "url_download_contado": null,
+   "sha256_patch": "2ffaeced8849699d07067ccc623846c38abe787f86dc78c4f8a3030d42bc10f6",
+   "sha1_patch": "1d8767347a2491a72d1c8e6d853863bce4ed8008",
+   "md5_patch": "c9335ef43055becb26060e8ce40f6e08",
+   "tamanho_patch": 6737546,
+   "nome_rom_esperada": "Super Robot Taisen 64 (Japan).z64",
+   "regiao": "Japan",
+   "md5_original": "3f4b73963abc91cee59c416063efd4ae",
+   "crc32_original": "85df2771",
+   "sha1_original": "9883aef6e20a46e110560c505999f3e21a1897de",
+   "tamanho_original": 33554432,
+   "corpo": null,
+   "md5_resultado": "124c07c68372f9aed38ae2a917fe42fb",
+   "crc32_resultado": "4db5640c",
+   "tamanho_resultado": 67108864
   }
  ]
 }
