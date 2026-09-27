@@ -591,10 +591,10 @@ seria pôr numa URL pública a lista inteira de links que existem para não ser 
 Faixa acima da `.faixa`, em toda rota, anunciando o **beta do Super Robot Wars 64** (ficha `super-robot-wars-64`) (só para apoiadores
 do Patreon; o release vai ser aberto ao público — nunca "free", regra dos Arautos). O dono escolheu duas das
 10 opções dos Arautos (`~/patchclan-banners/srw64-beta/`): **08 tela de título** e **09 cartucho de N64**,
-que **alternam a cada troca de página** (contador em `sessionStorage`). O ✕ fecha em todas as páginas e
+que alternavam a cada troca de página. **No mesmo dia o dono tirou a 09 (cartucho): fica só a 08, a do logo.** O ✕ fecha em todas as páginas e
 fica lembrado por visitante (`localStorage pc-anuncio-fechado` = id do anúncio).
 
-- Texto, link e id no objeto `ANUNCIO` de `build/corpo.html`; CSS `.anuncio/.an8/.an9` em `build/head.html`;
+- Texto, link e id no objeto `ANUNCIO` de `build/corpo.html`; CSS `.anuncio/.an8` em `build/head.html`;
   imagens em `shots/srw64/banner-*`.
 - **Tirar do ar:** `ativo: false` + `node build/gerar.mjs` + push. **Anúncio novo:** trocar o `id` (quem
   fechou o anterior volta a ver).

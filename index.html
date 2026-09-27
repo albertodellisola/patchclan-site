@@ -551,26 +551,11 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
 .an8 .t{font-size:15px;line-height:1.4;max-width:470px}
 .an8 .t b{display:block;font-family:var(--pixel);font-weight:400;font-size:13px;color:#ffd35c;margin-bottom:8px;letter-spacing:.02em}
 .an8 .cta{background:#ffd35c;color:#14110e}
-/* 09 · cartucho de N64 */
-.an9{background:linear-gradient(180deg,#2a241d,#1d1915);color:#efe9dc;display:flex;align-items:center;justify-content:center;gap:24px;
-  padding:10px 56px 0 22px;overflow:hidden;border-bottom:3px solid #96251a}
-.an9 .cart{position:relative;width:150px;height:92px;flex:0 0 auto;align-self:flex-end;background:linear-gradient(180deg,#9a9ca3,#6d6f76);
-  border-radius:10px 10px 0 0;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 -2px 12px rgba(0,0,0,.4);transform:translateY(8px)}
-.an9 .cart::before{content:"";position:absolute;top:8px;left:12px;right:12px;height:6px;background:repeating-linear-gradient(90deg,#55575d 0 4px,transparent 4px 8px);border-radius:2px}
-.an9 .cart .rot{position:absolute;left:14px;right:14px;top:20px;bottom:10px;background:#0b0b10;border-radius:3px;display:grid;place-items:center;overflow:hidden}
-.an9 .cart .rot img{width:92%;height:auto}
-.an9 .cart .sel{position:absolute;right:-6px;top:6px;background:#96251a;color:#fff;font-family:var(--pixel);font-size:8px;padding:5px 6px;transform:rotate(12deg);box-shadow:0 2px 0 #4d120c}
-.an9 .t{font-size:15px;line-height:1.4;padding-bottom:10px}
-.an9 .t b{display:block;font-weight:800;font-size:19px;letter-spacing:-.01em}
-.an9 .cta{background:#f0705c;color:#14110e;margin-bottom:10px}
 @media (max-width:600px){
   .anuncio .fecha{top:8px;transform:none}
   .an8{flex-wrap:wrap;gap:10px;padding:12px 44px 14px 14px;justify-content:flex-start}
   .an8 .logo{display:none}.an8 .logo.m{display:block;height:56px}
   .an8 .t{flex:1 1 55%;font-size:13px}.an8 .t b{font-size:10.5px}
-  .an9{flex-wrap:wrap;gap:6px 14px;padding:12px 44px 0 14px;justify-content:flex-start}
-  .an9 .cart{width:112px;height:70px;transform:none;margin-bottom:6px}.an9 .cart .rot{top:17px;bottom:8px;left:10px;right:10px}
-  .an9 .t{flex:1 1 50%;font-size:13px;padding:0}.an9 .t b{font-size:16px}.an9 .cta{order:3;margin:0 0 12px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -1373,8 +1358,8 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
     document.getElementById('nav').innerHTML = out;
   }
   /* ---------------- anúncio no topo ----------------
-     Desde 27/09/2026: beta do Super Robot Wars 64. As opções 08 (tela de título) e 09 (cartucho)
-     alternam a cada página. O ✕ fecha em todas as páginas, por visitante. Para tirar do ar:
+     Desde 27/09/2026: beta do Super Robot Wars 64, opção 08 (logo da tela de título). A 09 (cartucho)
+     alternava com ela e saiu no mesmo dia, a pedido do dono. O ✕ fecha em todas as páginas, por visitante. Para tirar do ar:
      ANUNCIO.ativo = false. Anúncio novo = id novo (quem fechou o antigo volta a ver). */
   var ANUNCIO = {
     ativo: true, id: 'srw64-beta-2026-09',
@@ -1383,29 +1368,19 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
     s:    {en:'The beta is out for Patreon patrons ($10 tier and up). The full release will be open to everyone.',
            pt:'O beta saiu para os apoiadores do Patreon (do plano de US$ 10 para cima). O release completo vai ser aberto ao público.',
            es:'La beta ya salió para los mecenas de Patreon (desde el nivel de US$ 10). La versión final será abierta al público.'},
-    cart: {en:'The beta is out: Super Robot Wars 64', pt:'Saiu o beta: Super Robot Wars 64', es:'Salió la beta: Super Robot Wars 64'},
-    s2:   {en:'Beta out now for patrons. Full release open to everyone.', pt:'Beta no ar para apoiadores. Release completo aberto ao público.',
-           es:'Beta ya disponible para mecenas. Versión final abierta a todos.'},
     cta:  {en:'Get the beta', pt:'Pegar o beta', es:'Consigue la beta'},
     fecha:{en:'Close', pt:'Fechar', es:'Cerrar'}
   };
-  var anuncioVez = 0;
   function anuncio(){
     var el = document.getElementById('anuncio'), A = ANUNCIO, fechado = null;
     try { fechado = localStorage.getItem('pc-anuncio-fechado'); } catch(x){}
     if (!A.ativo || fechado === A.id) { el.innerHTML = ''; return; }
-    try { anuncioVez = +(sessionStorage.getItem('pc-anuncio-vez') || 0) + 1; sessionStorage.setItem('pc-anuncio-vez', anuncioVez); }
-    catch(x){ anuncioVez++; }
     var x = '<button class="fecha" type="button" data-fecha-anuncio aria-label="'+e(A.fecha.en)+'">✕</button>';
     var cta = '<a class="cta" href="'+e(A.link)+'" target="_blank" rel="noopener">'+L(A.cta)+' →</a>';
-    el.innerHTML = (anuncioVez % 2)
-      ? '<aside class="anuncio an8" aria-label="Super Robot Wars 64 beta">' +
-          '<img class="logo" src="shots/srw64/banner-logo-90.png" alt="Super Robot Wars 64" width="313" height="90">' +
-          '<img class="logo m" src="shots/srw64/banner-logo-56.png" alt="" width="195" height="56">' +
-          '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta+x+'</aside>'
-      : '<aside class="anuncio an9" aria-label="Super Robot Wars 64 beta">' +
-          '<span class="cart" aria-hidden="true"><span class="rot"><img src="shots/srw64/banner-logo-40.png" alt=""></span><span class="sel">BETA</span></span>' +
-          '<span class="t"><b>'+L(A.cart)+'</b>'+L(A.s2)+'</span>'+cta+x+'</aside>';
+    el.innerHTML = '<aside class="anuncio an8" aria-label="Super Robot Wars 64 beta">' +
+      '<img class="logo" src="shots/srw64/banner-logo-90.png" alt="Super Robot Wars 64" width="313" height="90">' +
+      '<img class="logo m" src="shots/srw64/banner-logo-56.png" alt="" width="195" height="56">' +
+      '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta+x+'</aside>';
   }
   document.addEventListener('click', function(ev){
     if (!(ev.target.closest && ev.target.closest('[data-fecha-anuncio]'))) return;
