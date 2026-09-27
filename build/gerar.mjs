@@ -194,6 +194,18 @@ ${c.trim()}
 /* Manual e guia entram do mesmo jeito: um objeto por slug, lido no site nos tres idiomas.
    Documento que nao existe simplesmente nao gera link — nada fica esmaecido, nada some. */
 const MANUAIS = { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT, 'magic-knight-rayearth-2': MANUAL_MKR2, 'yu-yu-hakusho-gaiden': MANUAL_YYHG, 'gorilla-man': MANUAL_GORILLA };
+/* Regra do dono (27/09/2026): toda postagem do blog leva a thumbnail que o site já usa para o
+   jogo dela — a `capa` da página. O post aponta o jogo pelo slug; sem isso, não gera. E a
+   lista vai da mais nova para a mais velha, porque a primeira abre a home, antes das traduções. */
+POSTS.forEach((p, i) => {
+  const g = JOGOS.find(j => j.slug === p.jogo);
+  const quem = `post ${i + 1} (${p.date}, ${p.title_pt || p.title_en})`;
+  if (!p.jogo) throw new Error(`${quem}: falta jogo:'<slug>' — a thumbnail sai da capa desse jogo`);
+  if (!g) throw new Error(`${quem}: jogo '${p.jogo}' não existe no site — publique a página antes do post`);
+  if (!g.capa || !fs.existsSync(path.join(RAIZ, 'shots', g.capa)))
+    throw new Error(`${quem}: o jogo '${p.jogo}' não tem capa em shots/ — sem thumbnail não publica`);
+  if (i && POSTS[i - 1].date < p.date) throw new Error(`${quem}: fora de ordem — mais recente primeiro`);
+});
 const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS };
 /* Gate do texto (regra do dono, 19/09/2026): o site diz testado/jogado, nunca bot, robô que
    joga, teste automático, emulador sem janela nem IA. Lista em build/gate_texto.mjs. */

@@ -284,6 +284,13 @@
         L(h.ativo)+' — '+L({pt:'build',en:'build',es:'build'})+' '+L(data(D.posts[0].date))+'</div>' : '') +
     '</div>';
 
+    /* a noticia mais recente vem antes das traducoes (dono, 27/09/2026) */
+    var ult = (D.posts||[])[0];
+    if (ult) {
+      out += '<section><p class="label">'+L({pt:'Última notícia',en:'Latest news',es:'Última noticia'})+'</p>' +
+        cardNoticia(ult) + '</section>';
+    }
+
     /* projetos */
     out += '<section><p class="label">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</p><div class="projetos">' +
       jogos.filter(function(g){ return secao(g) === 'traducoes'; }).map(cardProjeto).join('') + '</div>' +
@@ -295,7 +302,7 @@
     out += secaoProvas();
 
     /* ultimas atualizacoes */
-    var ps = (D.posts||[]).slice(0,3);
+    var ps = (D.posts||[]).slice(1,4);  /* a primeira ja abriu a home */
     if (ps.length) {
       out += '<section><p class="label">'+L({pt:'Últimas atualizações',en:'Latest updates',es:'Últimas novedades'})+'</p>' +
         '<div class="updates">' + ps.map(cardUpdate).join('') + '</div>' +
@@ -325,8 +332,32 @@
     var t = b[0] || '';
     return t.length > 165 ? t.slice(0,162).replace(/\s+\S*$/,'') + '…' : t;
   }
+  /* A thumbnail do post e a capa que o site ja usa para o jogo dele (regra do dono, 27/09/2026).
+     O post guarda so o slug; linha antiga do Supabase sem slug cai no jogo cujo nome contem a tag. */
+  function jogoDoPost(o){
+    var js = D.games||[], t = (o.tag||'').toLowerCase();
+    for (var i = 0; i < js.length; i++) if (o.jogo && js[i].slug === o.jogo) return js[i];
+    for (var k = 0; k < js.length; k++) if (t && (js[k].nome||'').toLowerCase().indexOf(t) === 0) return js[k];
+    return null;
+  }
+  function thumbPost(o, carga){
+    var g = jogoDoPost(o);
+    if (!g || !g.capa) return '';
+    return '<a class="thumb" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true">'+capa(g.capa, '', carga)+'</a>';
+  }
+  function cardNoticia(o){
+    var g = jogoDoPost(o);
+    return '<article class="noticia">' + thumbPost(o, 'eager') +
+      '<div class="corpo">' +
+        '<div class="quando">'+L(data(o.date))+(o.build?' · '+e(o.build):'')+(o.tag?' · '+e(o.tag):'')+'</div>' +
+        '<h2>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h2>' +
+        '<p>'+L({pt:resumo(o,'pt'),en:resumo(o,'en'),es:resumo(o,'es')})+'</p>' +
+        '<div class="ler"><a href="#/atualizacoes">'+L({pt:'Ler a notícia →',en:'Read the news →',es:'Leer la noticia →'})+'</a>' +
+        (g ? '<a href="#/jogo/'+e(g.slug)+'">'+L({pt:'Página do jogo →',en:'Game page →',es:'Página del juego →'})+'</a>' : '') +
+        '</div></div></article>';
+  }
   function cardUpdate(o){
-    return '<article class="upd">' +
+    return '<article class="upd">' + thumbPost(o) +
       '<div class="quando">'+L(data(o.date))+(o.tag?' · '+e(o.tag):'')+'</div>' +
       '<h3>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h3>' +
       '<p>'+L({pt:resumo(o,'pt'),en:resumo(o,'en'),es:resumo(o,'es')})+'</p>' +
@@ -641,7 +672,7 @@
         var corpo='';
         for(var i=0;i<Math.max(pts.length,ens.length);i++)
           corpo += '<p>'+L({pt:pts[i]||ens[i],en:ens[i]||pts[i],es:ess[i]||ens[i]})+'</p>';
-        return '<article class="post"><div class="post-meta">'+L(data(o.date)) +
+        return '<article class="post"><div class="post-meta">'+thumbPost(o)+L(data(o.date)) +
           (o.build?'<span class="post-build">'+e(o.build)+'</span>':'') +
           (o.tag?'<span style="font-size:11.5px;letter-spacing:.1em;text-transform:uppercase">'+e(o.tag)+'</span>':'') +
           '</div><div><h3>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h3>' +

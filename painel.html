@@ -377,6 +377,18 @@ function editaPost(p){
   g.appendChild(fd.no); g.appendChild(fb.no); alvo.appendChild(g);
   alvo.appendChild(ft.no);
 
+  /* Regra do dono (27/09/2026): todo post tem a thumbnail que o site já usa para o jogo dele.
+     O post guarda o jogo; a thumbnail é a capa da página desse jogo. Sem jogo, não salva. */
+  var fj = el('div','campo'); fj.appendChild(el('label',null,'Jogo (a thumbnail é a capa da página dele)'));
+  var sj = document.createElement('select');
+  var op0 = document.createElement('option'); op0.value=''; op0.textContent='— escolha o jogo —'; sj.appendChild(op0);
+  function nomeJ(x){ return (x.data||{}).nome || x.slug; }
+  GAMES.slice().sort(function(a,b){ return nomeJ(a).localeCompare(nomeJ(b)); }).forEach(function(x){
+    var o = document.createElement('option'); o.value = x.slug; o.textContent = nomeJ(x);
+    if (p.jogo === x.slug) o.selected = true; sj.appendChild(o);
+  });
+  fj.appendChild(sj); alvo.appendChild(fj);
+
   var tit = campoBi({pt:p.title_pt, en:p.title_en}, {rot:'Título'}, false);
   alvo.appendChild(tit.no);
   var corpo = campoBi({pt:(p.body_pt||[]).join('\n\n'), en:(p.body_en||[]).join('\n\n')},
@@ -392,7 +404,8 @@ function editaPost(p){
   leitor = function(){
     function paras(t){ return t.split(/\n\s*\n/).map(function(s){ return s.trim().replace(/\s*\n\s*/g,' '); }).filter(Boolean); }
     var t = tit.ler(), c = corpo.ler();
-    var reg = { date: fd.i.value, build: fb.i.value, tag: ft.i.value,
+    if (!sj.value) return Promise.reject(new Error('Escolha o jogo do post: a thumbnail sai da capa dele.'));
+    var reg = { date: fd.i.value, build: fb.i.value, tag: ft.i.value, jogo: sj.value,
                 title_pt: t.pt, title_en: t.en,
                 body_pt: paras(c.pt), body_en: paras(c.en), published: chk.checked };
     var q = p.id ? sb.from('posts').update(reg).eq('id', p.id) : sb.from('posts').insert(reg);

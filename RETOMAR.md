@@ -208,6 +208,19 @@ fica órfão numa linha de três. Foi medido nas duas situações.
 tiver tradução espanhola **cai no inglês**, nunca em branco. O idioma é detectado
 pelo navegador na primeira visita e guardado depois.
 
+## Blog: a notícia mais recente abre a home, e todo post tem thumbnail (27/09/2026, dono)
+
+**Ordem da home:** herói → placar → **Última notícia** (o post mais novo, grande, com a thumbnail) →
+Traduções → … → Últimas atualizações (do 2º ao 4º post).
+
+**Todo post leva a thumbnail que o site já usa para o jogo dele** — a `capa` da página do jogo. O post
+não guarda imagem: guarda `jogo: '<slug>'` (em `build/posts.mjs` e na coluna `posts.jogo` do Supabase),
+e a imagem sai da capa. **Imposto por código:** o `gerar.mjs` aborta com post sem `jogo`, com slug que
+não existe no site, com jogo sem capa em `shots/`, ou com a lista fora da ordem (mais recente primeiro);
+o painel não salva post sem escolher o jogo. Consequência: **post de jogo que ainda não tem página não
+sai** — publica-se a página primeiro. O site no ar lê os posts do Supabase: post novo vai **nos dois**
+(`posts.mjs` e a tabela), como o do Slam Dunk.
+
 ## Os arquivos
 
 | | |

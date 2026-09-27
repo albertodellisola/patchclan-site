@@ -287,6 +287,24 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
 .ver-todas a{color:var(--accent);text-decoration:none}
 .ver-todas a:hover{text-decoration:underline}
 
+/* thumbnail do post = capa do jogo dele (a mesma moldura de CRT dos cards) */
+.thumb{display:block;background:var(--crt);padding:8px;border-radius:2px}
+.thumb img{display:block;width:100%;image-rendering:pixelated;border-radius:1px}
+.post-meta .thumb{width:100%;max-width:320px;margin-bottom:4px}
+/* a noticia mais recente, antes das traducoes */
+.noticia{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;
+  background:var(--ground-2);border:1px solid var(--rule)}
+.noticia .thumb{padding:12px;border-radius:0;display:flex;align-items:center}
+.noticia .corpo{padding:24px 26px;display:flex;flex-direction:column;gap:10px}
+.noticia .quando{font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.noticia h2{font-size:clamp(22px,2.6vw,30px);margin:0}
+.noticia p{font-size:16px;line-height:1.55;color:var(--ink-2);margin:0}
+.noticia .ler{margin-top:auto;padding-top:10px;display:flex;gap:22px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+.noticia .ler a{color:var(--accent);text-decoration:none}
+.noticia .ler a:hover{text-decoration:underline}
+@media (max-width:760px){.noticia{grid-template-columns:minmax(0,1fr)}}
+
 /* lista completa de atualizacoes */
 .posts{display:flex;flex-direction:column}
 .post{display:grid;grid-template-columns:160px minmax(0,1fr);gap:34px;padding:30px 0;
