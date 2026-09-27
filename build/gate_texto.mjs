@@ -11,7 +11,7 @@
    Conferir o que está no ar agora:  node build/gate_texto.mjs --supabase
 
    As regras são por FRASE, não por palavra solta: "portas são automáticas" (mecânica de
-   jogo) e os robôs do Robot Poncots passam; "robô que joga" e "testes automáticos" não. */
+   jogo) e os robôs do Robot Poncots e do Super Robot Wars passam; "robô que joga" e "testes automáticos" não. */
 
 const PERTO = '[^.;:!?]{0,60}?';
 const TESTE = '(?:test\\w*|prueb\\w*|probad\\w*|jog(?:a|ou|ad\\w*|ando|atina)|play(?:s|ed|ing|through)?|jueg(?:a|an)|jug(?:ó|ad\\w*|ando)|partida\\w*|gameplay|QA|verific\\w*|conferid\\w*|reproduz\\w*|reproduc\\w*|rota\\w*|routes?|ruta\\w*|captur\\w*)';
@@ -44,7 +44,7 @@ export const REGRAS = [
 
 /* Nomes que são do JOGO, não da ferramenta. Saem antes de conferir. Claude e Gemini ficam
    fora das regras pelo mesmo motivo (Claude é personagem do Shining Force). */
-const NOMES_DE_JOGO = /Ace Robot|Robot Poncots|Robopon/g;
+const NOMES_DE_JOGO = /Ace Robot|Robot Poncots|Robopon|Super Robot (?:Wars|Taisen)/g;
 const limpa = s => s.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').replace(NOMES_DE_JOGO, '·');
 
 /* Devolve [{onde, regra, trecho}] para cada string de `obj` que casa. */
