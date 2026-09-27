@@ -588,7 +588,7 @@ seria pôr numa URL pública a lista inteira de links que existem para não ser 
 
 ## Anúncio no topo de todas as páginas (27/09/2026)
 
-Faixa acima da `.faixa`, em toda rota, anunciando o **beta do Super Robot Taisen 64** (só para apoiadores
+Faixa acima da `.faixa`, em toda rota, anunciando o **beta do Super Robot Wars 64** (ficha `super-robot-wars-64`) (só para apoiadores
 do Patreon; o release vai ser aberto ao público — nunca "free", regra dos Arautos). O dono escolheu duas das
 10 opções dos Arautos (`~/patchclan-banners/srw64-beta/`): **08 tela de título** e **09 cartucho de N64**,
 que **alternam a cada troca de página** (contador em `sessionStorage`). O ✕ fecha em todas as páginas e
@@ -598,5 +598,4 @@ fica lembrado por visitante (`localStorage pc-anuncio-fechado` = id do anúncio)
   imagens em `shots/srw64/banner-*`.
 - **Tirar do ar:** `ativo: false` + `node build/gerar.mjs` + push. **Anúncio novo:** trocar o `id` (quem
   fechou o anterior volta a ver).
-- O link vai para `patreon.com/patchclan`: o SRW64 ainda não tinha ficha nem post do Patreon quando o
-  anúncio foi escrito. Trocar pelo post do beta quando existir.
+- O botão vai para o post do beta no Patreon (o mesmo `patreon` da ficha).

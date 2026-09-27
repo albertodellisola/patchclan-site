@@ -751,17 +751,17 @@
     document.getElementById('nav').innerHTML = out;
   }
   /* ---------------- anúncio no topo ----------------
-     Desde 27/09/2026: beta do Super Robot Taisen 64. As opções 08 (tela de título) e 09 (cartucho)
+     Desde 27/09/2026: beta do Super Robot Wars 64. As opções 08 (tela de título) e 09 (cartucho)
      alternam a cada página. O ✕ fecha em todas as páginas, por visitante. Para tirar do ar:
      ANUNCIO.ativo = false. Anúncio novo = id novo (quem fechou o antigo volta a ver). */
   var ANUNCIO = {
     ativo: true, id: 'srw64-beta-2026-09',
-    link: 'https://www.patreon.com/patchclan',
+    link: 'https://www.patreon.com/patchclan/posts/super-robot-wars-170703831',
     tt:   {en:'BETA · NOW IN ENGLISH', pt:'BETA · AGORA EM INGLÊS', es:'BETA · AHORA EN INGLÉS'},
     s:    {en:'The beta is out for Patreon patrons ($10 tier and up). The full release will be open to everyone.',
            pt:'O beta saiu para os apoiadores do Patreon (do plano de US$ 10 para cima). O release completo vai ser aberto ao público.',
            es:'La beta ya salió para los mecenas de Patreon (desde el nivel de US$ 10). La versión final será abierta al público.'},
-    cart: {en:'The beta is out: Super Robot Taisen 64', pt:'Saiu o beta: Super Robot Taisen 64', es:'Salió la beta: Super Robot Taisen 64'},
+    cart: {en:'The beta is out: Super Robot Wars 64', pt:'Saiu o beta: Super Robot Wars 64', es:'Salió la beta: Super Robot Wars 64'},
     s2:   {en:'Beta out now for patrons. Full release open to everyone.', pt:'Beta no ar para apoiadores. Release completo aberto ao público.',
            es:'Beta ya disponible para mecenas. Versión final abierta a todos.'},
     cta:  {en:'Get the beta', pt:'Pegar o beta', es:'Consigue la beta'},
@@ -777,11 +777,11 @@
     var x = '<button class="fecha" type="button" data-fecha-anuncio aria-label="'+e(A.fecha.en)+'">✕</button>';
     var cta = '<a class="cta" href="'+e(A.link)+'" target="_blank" rel="noopener">'+L(A.cta)+' →</a>';
     el.innerHTML = (anuncioVez % 2)
-      ? '<aside class="anuncio an8" aria-label="Super Robot Taisen 64 beta">' +
+      ? '<aside class="anuncio an8" aria-label="Super Robot Wars 64 beta">' +
           '<img class="logo" src="shots/srw64/banner-logo-90.png" alt="Super Robot Wars 64" width="313" height="90">' +
           '<img class="logo m" src="shots/srw64/banner-logo-56.png" alt="" width="195" height="56">' +
           '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta+x+'</aside>'
-      : '<aside class="anuncio an9" aria-label="Super Robot Taisen 64 beta">' +
+      : '<aside class="anuncio an9" aria-label="Super Robot Wars 64 beta">' +
           '<span class="cart" aria-hidden="true"><span class="rot"><img src="shots/srw64/banner-logo-40.png" alt=""></span><span class="sel">BETA</span></span>' +
           '<span class="t"><b>'+L(A.cart)+'</b>'+L(A.s2)+'</span>'+cta+x+'</aside>';
   }
