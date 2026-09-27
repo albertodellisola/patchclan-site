@@ -62,4 +62,5 @@ export const ETAPAS = {
   'maniac-mansion-bugfix':     h(F, F),  // os 3 bugs do cartucho (21/09): IPS de 197 B, 134 bytes na ROM de 256 KB; B11/B17 = bytes da EN v1.0.1, B6 reescrito no banco 11; testes: caça 7/7 na própria ROM consertada (21/09 13h27: mesmos textos, marcos e finais A-G da base japonesa; BUG_B11 OK)
   'phantasy-star-gaiden':      l(A, A, A, A, A),  // menu START, 62 monstros, 外伝 do título
   'slam-dunk':                 l(F, F, A, A, A),  // BETA v0.1 build 3 (25/09): 602 msgs + E2 relida contra o japonês (sem manual); telas de fim (A1d) não vistas; ninguém jogou até o fim (E1)
+  'super-robot-wars-64':       l(F, F, F, F, A),  // BETA build 124c07c6 (27/09): roteiro inteiro traduzido e inserido, revisão SENTIDO+LEITOR fechada, telas de imagem 4b fechadas, kana 0; ZERAR (6 rotas) aberto
 };
