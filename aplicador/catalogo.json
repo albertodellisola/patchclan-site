@@ -13,7 +13,7 @@
    "jogo": "Magic Knight Rayearth 2",
    "tipo": "traducao",
    "nivel": "release",
-   "versao": "English v1.4.4",
+   "versao": "English v1.5",
    "idioma": "en",
    "idiomas": [
     "en"
@@ -24,11 +24,11 @@
    "arquivo": "magic-knight-rayearth-2-en.ips",
    "url_patch": "/patches/magic-knight-rayearth-2-en.ips",
    "url_patreon": null,
-   "url_download_contado": "https://github.com/albertodellisola/patchclan-site/releases/download/magic-knight-rayearth-2-v1.4.4/magic-knight-rayearth-2-en.ips",
-   "sha256_patch": "787eb81c898613ea759d6d1761ded7b205f1a7098a07a4e8fa12f95db536e306",
-   "sha1_patch": "5d5c8ccecc65d3a61d44ff2015bceeb6d935e766",
-   "md5_patch": "81d6dcbe1281e63310a25748ffbc322d",
-   "tamanho_patch": 75523,
+   "url_download_contado": "https://github.com/albertodellisola/patchclan-site/releases/download/magic-knight-rayearth-2-v1.5/magic-knight-rayearth-2-en.ips",
+   "sha256_patch": "5f63b857afb3889bdece65eb1cce594a41f0a99af012384826211cd8887ced26",
+   "sha1_patch": "2fdb0a9daf63db247dbf8f075c7a9e0abe530978",
+   "md5_patch": "534cc717b705267dfb9e97885be92b75",
+   "tamanho_patch": 74330,
    "nome_rom_esperada": "Magic Knight Rayearth 2 (Japan).gg",
    "regiao": "Japan",
    "md5_original": "b19256c6716147a9744f5bd528f14450",
@@ -36,8 +36,8 @@
    "sha1_original": "29615d86057f3323ecda75d47102e77d364f6499",
    "tamanho_original": 524288,
    "corpo": null,
-   "md5_resultado": "93cf00993f4a0245fe93a05c82a7d43c",
-   "crc32_resultado": "47eaf28f",
+   "md5_resultado": "be4bd8aeabdb0826e63a3324e48f10ff",
+   "crc32_resultado": "6210fbe6",
    "tamanho_resultado": 524288
   },
   {
