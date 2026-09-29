@@ -277,7 +277,7 @@ export const MANIAC = {
   sistema: 'Famicom', mapper: 'Mapper 1 (SUROM) · 256 KB PRG expandido para 512 KB · CHR-RAM · save com bateria (8 KB)',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'release',
-  versao: 'English v1.1 build 8',
+  versao: 'English v1.1 build 9',
   capa: 'maniac/00-capa-patreon.jpg',
   linha: bi('Um jogo ocidental que virou cartucho japonês, e não o contrário: o Dr. Fred, a Edna e o Dave, escritos em hiragana.',
             'A Western game that became a Japanese cartridge, rather than the other way round: Dr. Fred, Edna and Dave, written in hiragana.',

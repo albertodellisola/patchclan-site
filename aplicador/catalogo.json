@@ -46,7 +46,7 @@
    "jogo": "Maniac Mansion",
    "tipo": "traducao",
    "nivel": "release",
-   "versao": "English v1.1 build 8",
+   "versao": "English v1.1 build 9",
    "idioma": "en",
    "idiomas": [
     "en"
@@ -58,9 +58,9 @@
    "url_patch": "/patches/maniac-mansion-en.ips",
    "url_patreon": null,
    "url_download_contado": null,
-   "sha256_patch": "517fa01cae10025a9dde551fca7b55e5bbfa3d955dc639f2c7ebe20a2f0c1641",
-   "sha1_patch": "61c864768b584ca2795f70a01f6efc2f195d5b6f",
-   "md5_patch": "1e4c7a5af1757c0732d0006dd49eeca0",
+   "sha256_patch": "8771db5a27a22f1a19c7993e9ee945693d1ee06fc14f77ccc83b4f8c3f66f82f",
+   "sha1_patch": "c0b04b1e8a01e317e34fd9d474d4385867de696a",
+   "md5_patch": "f8ecb0b272af3e63c9c36b6e09a6e25e",
    "tamanho_patch": 74291,
    "nome_rom_esperada": "Maniac Mansion (Japan).nes",
    "regiao": "Japan",
@@ -75,8 +75,8 @@
     "crc32": "3da2085e",
     "cabecalho_hex": "4e45531a100021082000000700000001"
    },
-   "md5_resultado": "39a11c29038cc1d6e6f08b3519cc5b39",
-   "crc32_resultado": "0c494958",
+   "md5_resultado": "5b328a7dc05bc84ad0938043f44fef86",
+   "crc32_resultado": "8ce3b942",
    "tamanho_resultado": 524304
   },
   {
