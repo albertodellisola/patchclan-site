@@ -197,7 +197,7 @@ export const MKR2 = {
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'release',
-  versao: 'English v1.4.4',
+  versao: 'English v1.5',
   capa: 'mkr2/00-capa-patreon.jpg',
   linha: bi('Hikaru, Umi e Fuu voltam a Cefiro depois de Emeraude, no Game Gear. A caixa tem 12 caracteres, e MAGIC KNIGHTS tem catorze.',
             'Hikaru, Umi and Fuu return to Cefiro after Emeraude, on the Game Gear. The box holds 12 characters, and MAGIC KNIGHTS has fourteen.',
@@ -247,12 +247,15 @@ export const MKR2 = {
       { t: bi('<b>Os 11 finais</b>, cada um alcançado do primeiro dia na versão em inglês e gravado em vídeo até o fim dos créditos. O roteiro inteiro passou por duas leituras: uma com o japonês ao lado, conferindo sentido, e outra só em inglês, como quem joga. Salvar e carregar, a tela de nome e o teste de som também foram vistos na tela.',
               '<b>All 11 endings</b>, each one reached from day one on the English version and recorded on video to the end of the credits. The whole script went through two readings: one with the Japanese alongside, checking meaning, and one in English only, the way a player reads it. Saving and loading, the name screen and the sound test were also checked on screen.',
               '<b>Los 11 finales</b>, cada uno alcanzado desde el primer día en la versión en inglés y grabado en vídeo hasta el final de los créditos. El guion entero pasó por dos lecturas: una con el japonés al lado, comprobando el sentido, y otra solo en inglés, como la lee quien juega. Guardar y cargar, la pantalla de nombre y el test de sonido también se vieron en pantalla.') },
+      { t: bi('<b>Versão 1.5.</b> As falas foram repaginadas cena a cena para o inglês: <b>220 cenas</b> agora quebram a página onde a frase pede, e não onde o japonês quebrava. Um relato do fórum levou a consertar as páginas que paravam com meia frase, a placa do festival foi redesenhada em inglês, 24 falas foram corrigidas a partir de capturas das longplays, e o texto que o jogo monta na hora (nome, dano, treino, parâmetros, itens +1) foi conferido na tela, jogando.',
+              '<b>Version 1.5.</b> Dialogue was repaginated scene by scene for English: <b>220 scenes</b> now break the page where the sentence calls for it, not where the Japanese broke. A forum report led to fixing pages that stopped mid-sentence, the festival sign was redrawn in English, 24 lines were corrected from longplay screenshots, and the text the game assembles on the fly (name, damage, training, parameters, Plus 1 items) was checked on screen, by playing.',
+              '<b>Versión 1.5.</b> Los diálogos se repaginaron escena por escena para el inglés: <b>220 escenas</b> cortan ahora la página donde lo pide la frase, y no donde cortaba el japonés. Un aviso del foro llevó a arreglar las páginas que se quedaban a media frase, el cartel del festival se redibujó en inglés, 24 frases se corrigieron a partir de capturas de los longplays, y el texto que el juego monta al vuelo (nombre, daño, entrenamiento, parámetros, objetos +1) se comprobó en pantalla, jugando.') },
       { t: bi('<b>Versão 1.4.4.</b> Cada nome agora é o mesmo em todo lugar (lista, falas e manual), as falas dizem o nome inteiro do item, a tela de nome aceita minúsculas e mais de 150 falas foram reescritas na revisão.',
               '<b>Version 1.4.4.</b> Every name is now the same everywhere (list, dialogue and manual), dialogue gives the item\'s full name, the name screen takes lowercase, and over 150 lines were rewritten in review.',
               '<b>Versión 1.4.4.</b> Cada nombre es ahora el mismo en todas partes (lista, diálogos y manual), los diálogos dicen el nombre completo del objeto, la pantalla de nombre acepta minúsculas y más de 150 frases se reescribieron en la revisión.') }
     ] }
   ],
-  patch: { release: 'magic-knight-rayearth-2-v1.4.4',
+  patch: { release: 'magic-knight-rayearth-2-v1.5',
            versoes: { en: { arquivo: 'magic-knight-rayearth-2-en.ips' }, pt: null, es: null }, rom: 'Magic Knight Rayearth 2 (Japan).gg', rom_md5: 'b19256c6716147a9744f5bd528f14450' },
   fotos: [
     { f: 'mkr2/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
