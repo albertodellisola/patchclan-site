@@ -1104,10 +1104,10 @@
    "url_patch": null,
    "url_patreon": "https://www.patreon.com/patchclan/posts/super-robot-wars-170703831?pr=true",
    "url_download_contado": null,
-   "sha256_patch": "2ffaeced8849699d07067ccc623846c38abe787f86dc78c4f8a3030d42bc10f6",
-   "sha1_patch": "1d8767347a2491a72d1c8e6d853863bce4ed8008",
-   "md5_patch": "c9335ef43055becb26060e8ce40f6e08",
-   "tamanho_patch": 6737546,
+   "sha256_patch": "ac6596dc020e2a73662dbbcfe2b91d11694ebb23a5422bdb652391c519fca7bd",
+   "sha1_patch": "0e85ef7144a27d56bd88540c4a75de03a578c05c",
+   "md5_patch": "f9b03181c36d2bf12ded73baccaefb0e",
+   "tamanho_patch": 6801629,
    "nome_rom_esperada": "Super Robot Taisen 64 (Japan).z64",
    "regiao": "Japan",
    "md5_original": "3f4b73963abc91cee59c416063efd4ae",
@@ -1115,8 +1115,8 @@
    "sha1_original": "9883aef6e20a46e110560c505999f3e21a1897de",
    "tamanho_original": 33554432,
    "corpo": null,
-   "md5_resultado": "124c07c68372f9aed38ae2a917fe42fb",
-   "crc32_resultado": "4db5640c",
+   "md5_resultado": "8df9549964492ffe3e319db69b7b1aa2",
+   "crc32_resultado": "f73b4c2d",
    "tamanho_resultado": 67108864
   }
  ]
