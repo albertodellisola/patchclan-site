@@ -27,6 +27,7 @@ import { SRW64 } from './jogo-srw64.mjs';
 import { GORILLA_FIX } from './jogo-gorilla-fix.mjs';
 import { MANIAC_FIX } from './jogo-maniac-fix.mjs';
 import { SD } from './jogo-slamdunk.mjs';
+import { LINKBATTLER } from './jogo-linkbattler.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
@@ -45,7 +46,8 @@ const APELO = [
   GORILLA_FIX, /* 19/09/2026, o 1º Hacks/Fixes (tipo 'hack': só aparece nessa aba) */
   MANIAC_FIX, /* 21/09/2026, o 2º Hacks/Fixes: os 3 bugs do cartucho (B6, B11, B17) */
   SD,         /* 25/09/2026, beta: cai no fim do grupo dos beta */
-  SRW64       /* 27/09/2026, beta: cai no fim do grupo dos beta */
+  SRW64,      /* 27/09/2026, beta: cai no fim do grupo dos beta */
+  LINKBATTLER /* 30/09/2026, beta: cai no fim do grupo dos beta, vizinho do 64 */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
