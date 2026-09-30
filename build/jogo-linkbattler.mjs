@@ -5,7 +5,7 @@
    para 'beta' (o script grava 'alfa' fixo), como no Super Robot Wars 64.
    dev = publisher de propósito (arbitragem 11 da rodada): a página só imprime o estúdio quando
    ele difere do publisher, e o «© 1999 MONEGI» da tela de licenças não prova desenvolvimento.
-   A capa é a tela de título aprovada pelo dono, ampliada 5× num banner 1902×827. */
+   A capa é a thumbnail do post do Patreon (30/09/2026), 16:9 inteira: o contain põe faixas nas laterais. */
 
 const bi = (pt, en, es) => ({ pt, en, es });
 
@@ -18,7 +18,8 @@ export const LINKBATTLER = {
   sistema: 'Game Boy Color', mapper: 'MBC5 + RAM + bateria · 1 MB (64 bancos), sem expansão · texto sem compressão',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'beta',
-  capa: 'linkbattler/00-capa-titulo.png',
+  capa: 'linkbattler/00-capa-patreon.jpg',
+  patreon: 'https://www.patreon.com/patchclan/posts/super-robot-wars-171051116?pr=true',
   linha: bi('Um cartucho de Game Boy Color de 1999 que finge ser jogo online: compre dados de robôs lendários, monte o time e programe seis rounds às cegas.',
             'A 1999 Game Boy Color cartridge that plays at being an online game: buy legendary robots\' data, build a team, lock in six rounds blind.',
             'Un cartucho de Game Boy Color de 1999 que finge ser un juego en línea: compra datos de robots legendarios, haz tu equipo y programa 6 rondas a ciegas.'),
