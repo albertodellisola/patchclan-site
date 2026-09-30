@@ -210,6 +210,9 @@ pelo navegador na primeira visita e guardado depois.
 
 ## Blog: a notícia mais recente abre a home, e todo post tem thumbnail (27/09/2026, dono)
 
+**Desde 30/09/2026 pode abrir a home mais de uma notícia** (`NOTICIAS_NA_HOME` em `build/posts.mjs`), e a
+faixa de anúncio é a lista `ANUNCIOS`. Como acrescentar: `NOTICIAS.md`, na raiz.
+
 **Ordem da home:** herói → placar → **Última notícia** (o post mais novo, grande, com a thumbnail) →
 Traduções → … → Últimas atualizações (do 2º ao 4º post).
 
@@ -594,7 +597,7 @@ do Patreon; o release vai ser aberto ao público — nunca "free", regra dos Ara
 que alternavam a cada troca de página. **No mesmo dia o dono tirou a 09 (cartucho): fica só a 08, a do logo.** O ✕ fecha em todas as páginas e
 fica lembrado por visitante (`localStorage pc-anuncio-fechado` = id do anúncio).
 
-- Texto, link e id no objeto `ANUNCIO` de `build/corpo.html`; CSS `.anuncio/.an8` em `build/head.html`;
+- Texto, link e id na lista `ANUNCIOS` de `build/corpo.html` (um item por anúncio, um por vez na tela; ver `NOTICIAS.md`); CSS `.anuncio/.an8` em `build/head.html`;
   imagens em `shots/srw64/banner-*`.
 - **Tirar do ar:** `ativo: false` + `node build/gerar.mjs` + push. **Anúncio novo:** trocar o `id` (quem
   fechou o anterior volta a ver).

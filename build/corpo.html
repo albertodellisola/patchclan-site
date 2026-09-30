@@ -285,11 +285,16 @@
         L(h.ativo)+' — '+L({pt:'build',en:'build',es:'build'})+' '+L(data(D.posts[0].date))+'</div>' : '') +
     '</div>';
 
-    /* a noticia mais recente vem antes das traducoes (dono, 27/09/2026) */
-    var ult = (D.posts||[])[0];
-    if (ult) {
+    /* as noticias vem antes das traducoes (dono, 27/09/2026). Desde 30/09/2026 pode ser mais de
+       uma: os D.noticiasHome posts mais novos (posts.mjs, NOTICIAS_NA_HOME). Uma so = o cartao
+       grande; duas ou mais = cartoes compactos lado a lado, empilhados no celular. */
+    var nots = (D.posts||[]).slice(0, Math.max(1, Math.min(+D.noticiasHome || 1, 4)));
+    if (nots.length === 1) {
       out += '<section><p class="label">'+L({pt:'Última notícia',en:'Latest news',es:'Última noticia'})+'</p>' +
-        cardNoticia(ult) + '</section>';
+        cardNoticia(nots[0]) + '</section>';
+    } else if (nots.length) {
+      out += '<section><p class="label">'+L({pt:'Últimas notícias',en:'Latest news',es:'Últimas noticias'})+'</p>' +
+        '<div class="noticias">' + nots.map(function(o){ return cardNoticia(o, true); }).join('') + '</div></section>';
     }
 
     /* projetos */
@@ -303,7 +308,7 @@
     out += secaoProvas();
 
     /* ultimas atualizacoes */
-    var ps = (D.posts||[]).slice(1,4);  /* a primeira ja abriu a home */
+    var ps = (D.posts||[]).slice(nots.length, nots.length + 3);  /* as primeiras ja abriram a home */
     if (ps.length) {
       out += '<section><p class="label">'+L({pt:'Últimas atualizações',en:'Latest updates',es:'Últimas novedades'})+'</p>' +
         '<div class="updates">' + ps.map(cardUpdate).join('') + '</div>' +
@@ -346,14 +351,19 @@
     if (!g || !g.capa) return '';
     return '<a class="thumb" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true">'+capa(g.capa, '', carga)+'</a>';
   }
-  function cardNoticia(o){
+  /* endereco de um post na pagina de atualizacoes: #/atualizacoes/<data>-<slug do jogo> */
+  function chavePost(o){
     var g = jogoDoPost(o);
-    return '<article class="noticia">' + thumbPost(o, 'eager') +
+    return e(o.date) + '-' + e(o.jogo || (g && g.slug) || 'post');
+  }
+  function cardNoticia(o, varias){
+    var g = jogoDoPost(o);
+    return '<article class="noticia'+(varias?' varias':'')+'">' + thumbPost(o, 'eager') +
       '<div class="corpo">' +
         '<div class="quando">'+L(data(o.date))+(o.build?' · '+e(o.build):'')+(o.tag?' · '+e(o.tag):'')+'</div>' +
         '<h2>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h2>' +
         '<p>'+L({pt:resumo(o,'pt'),en:resumo(o,'en'),es:resumo(o,'es')})+'</p>' +
-        '<div class="ler"><a href="#/atualizacoes">'+L({pt:'Ler a notícia →',en:'Read the news →',es:'Leer la noticia →'})+'</a>' +
+        '<div class="ler"><a href="#/atualizacoes/'+chavePost(o)+'">'+L({pt:'Ler a notícia →',en:'Read the news →',es:'Leer la noticia →'})+'</a>' +
         (g ? '<a href="#/jogo/'+e(g.slug)+'">'+L({pt:'Página do jogo →',en:'Game page →',es:'Página del juego →'})+'</a>' : '') +
         '</div></div></article>';
   }
@@ -362,7 +372,7 @@
       '<div class="quando">'+L(data(o.date))+(o.tag?' · '+e(o.tag):'')+'</div>' +
       '<h3>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h3>' +
       '<p>'+L({pt:resumo(o,'pt'),en:resumo(o,'en'),es:resumo(o,'es')})+'</p>' +
-      '<div class="ler"><a href="#/atualizacoes">'+L({pt:'Ler o devlog →',en:'Read the devlog →',es:'Leer el devlog →'})+'</a></div>' +
+      '<div class="ler"><a href="#/atualizacoes/'+chavePost(o)+'">'+L({pt:'Ler o devlog →',en:'Read the devlog →',es:'Leer el devlog →'})+'</a></div>' +
       '</article>';
   }
 
@@ -673,7 +683,7 @@
         var corpo='';
         for(var i=0;i<Math.max(pts.length,ens.length);i++)
           corpo += '<p>'+L({pt:pts[i]||ens[i],en:ens[i]||pts[i],es:ess[i]||ens[i]})+'</p>';
-        return '<article class="post"><div class="post-meta">'+thumbPost(o)+L(data(o.date)) +
+        return '<article class="post" id="post-'+chavePost(o)+'"><div class="post-meta">'+thumbPost(o)+L(data(o.date)) +
           (o.build?'<span class="post-build">'+e(o.build)+'</span>':'') +
           (o.tag?'<span style="font-size:11.5px;letter-spacing:.1em;text-transform:uppercase">'+e(o.tag)+'</span>':'') +
           '</div><div><h3>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h3>' +
@@ -702,7 +712,7 @@
     if (p[0] === 'guia' && p[1]) return { tipo:'guia', slug:p[1] };
     if (p[0] === 'traducoes' || p[0] === 'projetos') return { tipo:'projetos' };   /* #/projetos: links antigos */
     if (p[0] === 'hacks') return { tipo:'hacks' };
-    if (p[0] === 'atualizacoes') return { tipo:'atualizacoes' };
+    if (p[0] === 'atualizacoes') return { tipo:'atualizacoes', post:p[1] || '' };
     if (p[0] === 'sobre') return { tipo:'sobre' };
     if (p[0] === 'apoie') return { tipo:'apoie' };
     return { tipo:'home' };
@@ -731,6 +741,9 @@
     document.body.classList.remove('menu-aberto');
     document.getElementById('burger').setAttribute('aria-expanded','false');
     window.scrollTo(0, 0);
+    /* a noticia da home aponta para o post dela, nao para o topo da lista */
+    var alvoPost = r.post && document.getElementById('post-' + r.post);
+    if (alvoPost) alvoPost.scrollIntoView();
   }
   function menu(r){
     /* a ficha, o manual e o guia acendem o menu da seção do jogo */
@@ -751,36 +764,59 @@
     document.getElementById('nav').innerHTML = out;
   }
   /* ---------------- anúncio no topo ----------------
-     Desde 27/09/2026: beta do Super Robot Wars 64, opção 08 (logo da tela de título). A 09 (cartucho)
-     alternava com ela e saiu no mesmo dia, a pedido do dono. O ✕ fecha em todas as páginas, por visitante. Para tirar do ar:
-     ANUNCIO.ativo = false. Anúncio novo = id novo (quem fechou o antigo volta a ver). */
-  var ANUNCIO = {
-    ativo: true, id: 'srw64-beta-2026-09',
-    link: 'https://www.patreon.com/patchclan/posts/super-robot-wars-170703831',
-    tt:   {en:'BETA · NOW IN ENGLISH', pt:'BETA · AGORA EM INGLÊS', es:'BETA · AHORA EN INGLÉS'},
-    s:    {en:'The beta is out for Patreon patrons ($10 tier and up). The full release will be open to everyone.',
-           pt:'O beta saiu para os apoiadores do Patreon (do plano de US$ 10 para cima). O release completo vai ser aberto ao público.',
-           es:'La beta ya salió para los mecenas de Patreon (desde el nivel de US$ 10). La versión final será abierta al público.'},
-    cta:  {en:'Get the beta', pt:'Pegar o beta', es:'Consigue la beta'},
-    fecha:{en:'Close', pt:'Fechar', es:'Cerrar'}
-  };
+     Faixa acima de tudo, em toda rota. Desde 30/09/2026 é uma LISTA (dono: "permitir mais de uma
+     notícia"): o mais novo primeiro. Aparece UM por vez, para a faixa não crescer: com dois ou mais
+     no ar, eles se alternam a cada troca de página e o botão "1/2 ›" passa ao seguinte. O ✕ fecha só
+     o que está na tela, em todas as páginas, por visitante (localStorage pc-anuncio-fechado = ids
+     separados por vírgula). Tirar um do ar: ativo:false. Anúncio novo = id novo.
+     Campos: id, nome (do jogo), link, tt (linha em destaque), s (frase), cta (botão), e opcionais
+     logo/logoW + logoM/logoMW (imagem de 90 px e de 56 px de altura) e fundo (imagem atrás).
+     Sem logo sai o nome do jogo em letra de pixel; sem fundo, a faixa fica lisa. */
+  var ANUNCIOS = [
+    { ativo: true, id: 'srw64-beta-2026-09', nome: 'Super Robot Wars 64', rotulo: 'Super Robot Wars 64 beta',
+      link: 'https://www.patreon.com/patchclan/posts/super-robot-wars-170703831',
+      logo: 'shots/srw64/banner-logo-90.png', logoW: 313, logoM: 'shots/srw64/banner-logo-56.png', logoMW: 195,
+      fundo: 'shots/srw64/banner-fundo.jpg',
+      tt:   {en:'BETA · NOW IN ENGLISH', pt:'BETA · AGORA EM INGLÊS', es:'BETA · AHORA EN INGLÉS'},
+      s:    {en:'The beta is out for Patreon patrons ($10 tier and up). The full release will be open to everyone.',
+             pt:'O beta saiu para os apoiadores do Patreon (do plano de US$ 10 para cima). O release completo vai ser aberto ao público.',
+             es:'La beta ya salió para los mecenas de Patreon (desde el nivel de US$ 10). La versión final será abierta al público.'},
+      cta:  {en:'Get the beta', pt:'Pegar o beta', es:'Consigue la beta'} }
+  ];
+  var AN_FECHA = {en:'Close', pt:'Fechar', es:'Cerrar'}, AN_OUTRO = {en:'Next announcement', pt:'Próximo anúncio', es:'Siguiente anuncio'};
+  var anVez = 0, anNaTela = '';
+  function anFechados(){
+    var f = ''; try { f = localStorage.getItem('pc-anuncio-fechado') || ''; } catch(x){}
+    return f.split(',').filter(Boolean);
+  }
   function anuncio(){
-    var el = document.getElementById('anuncio'), A = ANUNCIO, fechado = null;
-    try { fechado = localStorage.getItem('pc-anuncio-fechado'); } catch(x){}
-    if (!A.ativo || fechado === A.id) { el.innerHTML = ''; return; }
-    var x = '<button class="fecha" type="button" data-fecha-anuncio aria-label="'+e(A.fecha.en)+'">✕</button>';
+    var el = document.getElementById('anuncio'), fechados = anFechados();
+    var vis = ANUNCIOS.filter(function(a){ return a.ativo && fechados.indexOf(a.id) < 0; });
+    if (!vis.length) { el.innerHTML = ''; anNaTela = ''; return; }
+    var n = anVez % vis.length, A = vis[n];
+    anNaTela = A.id;
+    var x = '<button class="fecha" type="button" data-fecha-anuncio aria-label="'+e(AN_FECHA.en)+'">✕</button>';
+    var vez = vis.length > 1 ? '<button class="vez" type="button" data-vez-anuncio aria-label="'+e(AN_OUTRO.en)+'">'+(n+1)+'/'+vis.length+' ›</button>' : '';
     var cta = '<a class="cta" href="'+e(A.link)+'" target="_blank" rel="noopener">'+L(A.cta)+' →</a>';
-    el.innerHTML = '<aside class="anuncio an8" aria-label="Super Robot Wars 64 beta">' +
-      '<img class="logo" src="shots/srw64/banner-logo-90.png" alt="Super Robot Wars 64" width="313" height="90">' +
-      '<img class="logo m" src="shots/srw64/banner-logo-56.png" alt="" width="195" height="56">' +
-      '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta+x+'</aside>';
+    var logo = A.logo ?
+      '<img class="logo" src="'+e(A.logo)+'" alt="'+e(A.nome)+'" width="'+e(A.logoW)+'" height="90">' +
+      '<img class="logo m" src="'+e(A.logoM || A.logo)+'" alt="" width="'+e(A.logoMW || A.logoW)+'" height="56">' :
+      '<span class="nomej">'+e(A.nome)+'</span>';
+    el.innerHTML = '<aside class="anuncio an8" aria-label="'+e(A.rotulo || A.nome)+'"' +
+      (A.fundo ? ' style="background-image:url('+e(A.fundo)+')"' : '')+'>' + logo +
+      '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta+vez+x+'</aside>';
   }
   document.addEventListener('click', function(ev){
-    if (!(ev.target.closest && ev.target.closest('[data-fecha-anuncio]'))) return;
-    try { localStorage.setItem('pc-anuncio-fechado', ANUNCIO.id); } catch(x){}
-    document.getElementById('anuncio').innerHTML = '';
+    if (!ev.target.closest) return;
+    if (ev.target.closest('[data-vez-anuncio]')) { anVez++; anuncio(); return; }
+    if (!ev.target.closest('[data-fecha-anuncio]')) return;
+    var f = anFechados(); if (anNaTela && f.indexOf(anNaTela) < 0) f.push(anNaTela);
+    try { localStorage.setItem('pc-anuncio-fechado', f.join(',')); } catch(x){}
+    anuncio();
   });
 
+  /* com mais de um anúncio, cada troca de página mostra o seguinte (antes do desenha) */
+  window.addEventListener('hashchange', function(){ anVez++; });
   window.addEventListener('hashchange', desenha);
 
   /* rolagem interna sem trocar de rota */

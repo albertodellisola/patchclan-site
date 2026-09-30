@@ -1,7 +1,14 @@
 /* Regra do dono (27/09/2026): toda postagem tem a THUMBNAIL que o site já usa para o jogo
    de que ela fala. Por isso o post não guarda imagem: guarda `jogo` (o slug da página), e a
    thumbnail é a `capa` daquele jogo. O gerar.mjs aborta com post sem jogo, com slug que não
-   existe ou com jogo sem capa. Mais recente primeiro: o primeiro da lista abre a home. */
+   existe ou com jogo sem capa. Mais recente primeiro.
+
+   NOTICIAS_NA_HOME (30/09/2026, dono: "permitir mais de uma notícia"): quantos posts, a contar
+   do mais novo, abrem a home como NOTÍCIA, antes das traduções. 1 = o cartão grande de sempre;
+   2 a 4 = cartões lado a lado (empilhados no celular). Os posts seguintes descem para "Últimas
+   atualizações". Como acrescentar uma notícia: NOTICIAS.md, na raiz. */
+export const NOTICIAS_NA_HOME = 1;
+
 export const POSTS = [
   { date:"2026-09-27", build:"beta", tag:"Super Robot Wars 64", jogo:"super-robot-wars-64",
     title_pt:"Super Robot Wars 64 sai em beta, em inglês", title_en:"Super Robot Wars 64 is out in beta, in English", title_es:"Super Robot Wars 64 sale en beta, en inglés",

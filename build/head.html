@@ -304,12 +304,32 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
 .noticia .ler a{color:var(--accent);text-decoration:none}
 .noticia .ler a:hover{text-decoration:underline}
 @media (max-width:760px){.noticia{grid-template-columns:minmax(0,1fr)}}
+/* duas ou mais noticias (30/09/2026): cartoes compactos lado a lado, para a home nao crescer.
+   Em cada um: capa pequena ao lado da data e do titulo, resumo e links embaixo, na largura toda. */
+.noticias{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.noticia.varias{grid-template-columns:minmax(0,40%) minmax(0,1fr);grid-template-rows:auto 1fr auto auto;
+  gap:10px 18px;padding:16px;align-items:start}
+.noticia.varias .thumb{grid-column:1;grid-row:1 / span 2;padding:6px;align-self:start}
+.noticia.varias .corpo{display:contents}
+.noticia.varias .quando{grid-column:2;font-size:11.5px}
+.noticia.varias h2{grid-column:2;font-size:20px;line-height:1.2}
+.noticia.varias p{grid-column:1 / -1;font-size:15px;line-height:1.5}
+.noticia.varias .ler{grid-column:1 / -1;margin-top:0;padding-top:2px;gap:6px 22px;font-size:12px}
+@media (max-width:900px){.noticias{grid-template-columns:minmax(0,1fr);gap:16px}}
+@media (max-width:760px){
+  .noticia.varias{grid-template-columns:112px minmax(0,1fr);gap:10px 14px;padding:14px}
+  .noticia.varias .thumb{padding:5px}
+  .noticia.varias .quando{font-size:11px}
+  .noticia.varias h2{font-size:18px}
+  .noticia.varias p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+}
 
 /* lista completa de atualizacoes */
 .posts{display:flex;flex-direction:column}
 .post{display:grid;grid-template-columns:160px minmax(0,1fr);gap:34px;padding:30px 0;
   border-top:1px solid var(--rule-soft)}
 .post:first-child{border-top:0;padding-top:0}
+.post{scroll-margin-top:18px}
 .post-meta{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);letter-spacing:.05em;
   display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .post-build{display:inline-block;padding:2px 7px;background:var(--chip);color:var(--ink);
@@ -526,7 +546,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
   .man-lista > div{grid-template-columns:minmax(0,1fr);gap:6px}
   .bt{padding:15px 24px}
 }
-/* ---- anúncio no topo (27/09/2026): beta do Super Robot Taisen 64; 08 e 09 alternam por página ---- */
+/* ---- anúncio no topo (27/09/2026): lista ANUNCIOS do corpo.html, um por vez; o fundo de cada um vem no style ---- */
 .anuncio{position:relative;color:#fff;font-family:var(--sans)}
 .anuncio a{color:inherit}
 .anuncio .fecha{position:absolute;top:50%;right:10px;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:50%;
@@ -536,7 +556,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
 .anuncio .cta{font-family:var(--mono);font-weight:600;font-size:13px;text-decoration:none;padding:11px 16px;border-radius:3px;white-space:nowrap}
 /* 08 · tela de título */
 .an8{overflow:hidden;display:flex;align-items:center;justify-content:center;gap:26px;padding:12px 56px 12px 22px;min-height:118px;
-  background:#140804 url(shots/srw64/banner-fundo.jpg) center 40%/cover;image-rendering:pixelated}
+  background:#140804 center 40%/cover;image-rendering:pixelated}
 .an8::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,6,4,.35),rgba(10,6,4,.85) 45%,rgba(10,6,4,.9))}
 .an8>*{position:relative}
 .an8 .logo{height:90px;border-radius:6px;image-rendering:auto;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
@@ -544,11 +564,17 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
 .an8 .t{font-size:15px;line-height:1.4;max-width:470px}
 .an8 .t b{display:block;font-family:var(--pixel);font-weight:400;font-size:13px;color:#ffd35c;margin-bottom:8px;letter-spacing:.02em}
 .an8 .cta{background:#ffd35c;color:#14110e}
+.an8 .nomej{font-family:var(--pixel);font-size:15px;line-height:1.5;max-width:300px;color:#fff;image-rendering:auto}
+.anuncio .vez{position:absolute;right:10px;bottom:7px;z-index:2;border:1px solid rgba(255,255,255,.4);border-radius:999px;
+  background:rgba(0,0,0,.4);color:inherit;font:600 11px/1 var(--mono);padding:5px 9px;cursor:pointer;image-rendering:auto}
+.anuncio .vez:hover{background:rgba(0,0,0,.65)}
+.anuncio .vez:focus-visible{outline:2px solid currentColor;outline-offset:2px}
 @media (max-width:600px){
   .anuncio .fecha{top:8px;transform:none}
   .an8{flex-wrap:wrap;gap:10px;padding:12px 44px 14px 14px;justify-content:flex-start}
   .an8 .logo{display:none}.an8 .logo.m{display:block;height:56px}
   .an8 .t{flex:1 1 55%;font-size:13px}.an8 .t b{font-size:10.5px}
+  .an8 .nomej{font-size:12px;max-width:100%;flex:1 1 100%}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>

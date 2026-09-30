@@ -1,6 +1,6 @@
 import { SEED } from './seed.mjs';
 import { JOGOS } from './jogos.mjs';
-import { POSTS } from './posts.mjs';
+import { POSTS, NOTICIAS_NA_HOME } from './posts.mjs';
 import { ETAPAS, ETAPAS_ORDEM, EXIGE_RELEASE, ETAPAS_HACK } from './etapas.mjs';
 import { MANUAL_FJ2 } from './manual-fj2.mjs';
 import { MANUAL_DB3 } from './manual-db3.mjs';
@@ -207,7 +207,11 @@ POSTS.forEach((p, i) => {
     throw new Error(`${quem}: o jogo '${p.jogo}' não tem capa em shots/ — sem thumbnail não publica`);
   if (i && POSTS[i - 1].date < p.date) throw new Error(`${quem}: fora de ordem — mais recente primeiro`);
 });
-const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS };
+/* Quantos posts abrem a home como notícia (posts.mjs). Fica fora de `content` e de `posts`
+   porque esses dois o Supabase substitui no ar; este número só muda por aqui. */
+if (!Number.isInteger(NOTICIAS_NA_HOME) || NOTICIAS_NA_HOME < 1 || NOTICIAS_NA_HOME > 4 || NOTICIAS_NA_HOME > POSTS.length)
+  throw new Error(`NOTICIAS_NA_HOME = ${NOTICIAS_NA_HOME}: tem de ser inteiro de 1 a 4 e não passar do número de posts (${POSTS.length})`);
+const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS, noticiasHome: NOTICIAS_NA_HOME };
 /* Gate do texto (regra do dono, 19/09/2026): o site diz testado/jogado, nunca bot, robô que
    joga, teste automático, emulador sem janela nem IA. Lista em build/gate_texto.mjs. */
 confereTexto(seedArquivos);
@@ -251,6 +255,6 @@ fs.writeFileSync(path.join(RAIZ, 'build/artifact.html'), art);
 const kb = n => Math.round(n / 1024);
 console.log(`index.html: ${kb(fs.statSync(path.join(RAIZ,'index.html')).size)} KB (imagens em shots/)`);
 console.log(`artifact  : ${kb(art.length)} KB (imagens embutidas)`);
-console.log(`jogos: ${JOGOS.map(g => g.slug).join(', ')} · posts: ${POSTS.length}`);
+console.log(`jogos: ${JOGOS.map(g => g.slug).join(', ')} · posts: ${POSTS.length} · notícias na home: ${NOTICIAS_NA_HOME}`);
 console.log(`manuais: ${Object.keys(MANUAIS).join(', ') || '—'} · guias: ${Object.keys(GUIAS).join(', ') || '—'}`);
 console.log(`prints por idioma: ${IDIOMAS_PRINT.map(l => `${l} ${Object.keys(VARIANTES[l]).length}`).join(' · ')}`);
