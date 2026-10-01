@@ -648,3 +648,75 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
 /* Botão de patch que sai pelo Patreon (projetos beta e alfa). */
 .bt.patreon{background:var(--accent);color:var(--sobre-accent);border-color:var(--accent)}
 </style>
+<style>
+/* ==== conserto da auditoria de 01/10/2026 (auditoria/2026-10-01, achados F01-F22) ==== */
+
+/* -- adapt -- */
+/* F01: tabela de 3+ colunas empilhada no celular (a classe e o data-label vêm do corpo.html) */
+@media (max-width:600px){
+  .man-txt table.empilha{display:block;overflow:visible;border-top:1px solid var(--rule);margin:18px 0}
+  .man-txt table.empilha thead{display:none}
+  .man-txt table.empilha tbody,.man-txt table.empilha tr{display:block}
+  .man-txt table.empilha tr{padding:12px 0 13px;border-bottom:1px solid var(--rule)}
+  .man-txt table.empilha td{display:block;border:0;padding:3px 0;font-size:15.5px;line-height:1.5}
+  .man-txt table.empilha td:first-child{font-family:var(--sans);font-weight:700;font-size:16.5px;
+    line-height:1.3;color:var(--ink);padding-bottom:5px}
+  .man-txt table.empilha td:not(:first-child)[data-label]::before{content:attr(data-label);display:block;
+    font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:1px}
+  .man-txt table.empilha td:empty{display:none}
+}
+
+/* F03: no celular o anúncio é uma linha só, 56 px, com controles de 44 px */
+.anuncio .m-linha{display:none}
+@media (max-width:600px){
+  .an8{flex-wrap:nowrap;min-height:56px;padding:6px 100px 6px 14px;gap:0}
+  .an8 .logo,.an8 .logo.m,.an8 .t,.an8 > .cta,.an8 .nomej{display:none}
+  .anuncio .m-linha{display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:44px;
+    flex:1;min-width:0;text-decoration:none;image-rendering:auto}
+  .m-linha .mn{font-family:var(--pixel);font-size:10px;line-height:1.3;color:#fff;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .m-linha .mt{font-family:var(--pixel);font-size:9px;line-height:1.3;color:#ffd35c;white-space:nowrap}
+  .anuncio .fecha{top:50%;transform:translateY(-50%);right:4px;width:44px;height:44px;border-radius:3px}
+  .anuncio .vez{top:50%;bottom:auto;transform:translateY(-50%);right:50px;height:32px;min-width:44px;
+    padding:0 9px;font-size:11px}
+  .anuncio .vez::after{content:"";position:absolute;inset:-6px 0}
+}
+
+/* F04: alvos de toque de 44 px no celular; o card de projeto inteiro é clicável */
+.proj{position:relative}
+.proj h3 a::after{content:"";position:absolute;inset:0;z-index:1}
+.proj .ir a{position:relative;z-index:2}
+.proj:hover h3 a{color:var(--accent)}
+@media (max-width:900px){
+  .burger{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0}
+  .langsw summary{min-height:44px;padding:0 12px;white-space:nowrap}
+  .noticia .ler a,.upd .ler a,.proj .ir a,.ver-todas a,.prova .onde a,.voltar,.abas a,.etapa-mais a,
+  .em-obra .onde a,.leitura .cta{display:inline-flex;align-items:center;min-height:44px}
+  .noticia .ler,.noticia.varias .ler{gap:0 22px;padding-top:0}
+  .proj .ir{padding-top:6px}
+  .abas{gap:0 22px;padding:6px 0}
+  .abas a{padding-bottom:0}
+  .upd .ler,.ver-todas{padding-top:0;margin-top:auto}
+}
+
+/* F19: índice recolhível e o "↑ Índice" flutuante */
+.idx-dobra{margin-top:30px;border-top:1px solid var(--rule)}
+.idx-dobra > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:48px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.idx-dobra > summary::-webkit-details-marker{display:none}
+.idx-dobra > summary::after{content:"";width:8px;height:8px;margin-left:auto;margin-right:4px;
+  border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px);
+  transition:transform .18s ease}
+.idx-dobra[open] > summary::after{transform:rotate(225deg) translateY(-1px)}
+.idx-dobra > summary:hover{color:var(--accent)}
+.idx-dobra .qt{color:var(--accent)}
+.idx-dobra .man-idx{margin-top:0}
+.ao-indice{position:fixed;right:16px;bottom:16px;z-index:40;display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 16px;border-radius:999px;background:var(--ink);color:var(--ground);
+  font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  box-shadow:0 6px 18px rgba(25,20,18,.28);opacity:0;transform:translateY(12px);pointer-events:none;
+  transition:opacity .2s ease,transform .2s cubic-bezier(.2,.8,.2,1)}
+.ao-indice.on{opacity:1;transform:none;pointer-events:auto}
+.ao-indice:hover{background:var(--accent);color:var(--sobre-accent)}
+@media print{.ao-indice,.idx-dobra{display:none!important}}
+</style>

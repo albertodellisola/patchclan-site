@@ -602,9 +602,13 @@
       '<section style="border-bottom:0;padding-bottom:22px"><p class="label">'+L(m.titulo)+' · '+e(g.nome)+'</p>' +
       '<div class="col"><h1 style="font-size:clamp(30px,4.4vw,46px);margin-bottom:18px">'+e(g.nome)+'</h1>' +
       '<p class="lede">'+L(m.intro)+'</p></div>' +
+      /* índice recolhível (auditoria 01/10/2026, F19): aberto no desktop, fechado no celular,
+         onde ele passava de 2.700 px antes do primeiro parágrafo */
+      '<details class="idx-dobra" id="indice"'+(celular() ? '' : ' open')+'><summary>' +
+        L({pt:'Índice',en:'Contents',es:'Índice'})+' <span class="qt">· '+m.secoes.length+'</span></summary>' +
       '<nav class="man-idx" aria-label="'+txt(m.titulo,'en')+'">' + m.secoes.map(function(sec,i){
         return '<a href="#/'+cfg.rota+'/'+e(slug)+'" data-ir="sec-'+e(sec.id)+'"><span class="n">'+(i+1)+'</span>'+L(sec.titulo)+'</a>';
-      }).join('') + '</nav></section>';
+      }).join('') + '</nav></details></section>';
     out += m.secoes.map(function(sec,i){
       var corpo = '<div class="man-txt">' +
         (sec.paras ? (sec.paras.en||sec.paras.pt||[]).map(function(_,k){
@@ -744,7 +748,48 @@
     /* a noticia da home aponta para o post dela, nao para o topo da lista */
     var alvoPost = r.post && document.getElementById('post-' + r.post);
     if (alvoPost) alvoPost.scrollIntoView();
+    depois(r);
   }
+  /* ---------------- depois de desenhar (auditoria 01/10/2026) ---------------- */
+  function celular(){ return !!(window.matchMedia && matchMedia('(max-width:900px)').matches); }
+  function depois(r){
+    tabelas();
+    aoIndice(r);
+  }
+  /* F01: tabela de 3+ colunas vira blocos empilhados no celular. O rótulo de cada célula
+     sai do cabeçalho da própria tabela (data-label), então o CSS não precisa saber o conteúdo. */
+  function tabelas(){
+    var ts = document.querySelectorAll('.man-txt table');
+    for (var i = 0; i < ts.length; i++) {
+      var t = ts[i];
+      if (t.closest('.guia-plano')) continue;          /* o plano dia a dia rola de lado, de propósito */
+      var th = t.querySelectorAll('thead th');
+      if (th.length < 3) continue;
+      t.classList.add('empilha');
+      var rot = Array.prototype.map.call(th, function(x){ return x.textContent.trim(); });
+      var trs = t.querySelectorAll('tbody tr');
+      for (var k = 0; k < trs.length; k++) {
+        var tds = trs[k].children;
+        for (var c = 0; c < tds.length; c++) if (rot[c]) tds[c].setAttribute('data-label', rot[c]);
+      }
+    }
+  }
+  /* F19: "↑ Índice" flutuante no manual e no guia, depois que o índice sai da tela */
+  var aoIdx = document.createElement('a');
+  aoIdx.className = 'ao-indice so-tela'; aoIdx.href = '#';
+  aoIdx.innerHTML = '<span aria-hidden="true">↑</span> '+L({pt:'Índice',en:'Contents',es:'Índice'});
+  document.body.appendChild(aoIdx);
+  aoIdx.addEventListener('click', function(ev){
+    var ix = document.getElementById('indice'); if (!ix) return;
+    ev.preventDefault(); ix.open = true; ix.scrollIntoView({behavior:'smooth', block:'start'});
+    var a = ix.querySelector('a'); if (a) setTimeout(function(){ a.focus({preventScroll:true}); }, 400);
+  });
+  function aoIndiceVe(){
+    var ix = document.getElementById('indice');
+    aoIdx.classList.toggle('on', !!ix && ix.getBoundingClientRect().bottom < 0);
+  }
+  function aoIndice(){ aoIndiceVe(); }
+  window.addEventListener('scroll', aoIndiceVe, {passive:true});
   function menu(r){
     /* a ficha, o manual e o guia acendem o menu da seção do jogo */
     var dele = r.slug ? secao(jogo(r.slug)) : '';
@@ -813,7 +858,10 @@
       '<span class="nomej">'+e(A.nome)+'</span>';
     el.innerHTML = '<aside class="anuncio an8" aria-label="'+e(A.rotulo || A.nome)+'"' +
       (A.fundo ? ' style="background-image:url('+e(A.fundo)+')"' : '')+'>' + logo +
-      '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta+vez+x+'</aside>';
+      '<span class="t"><b>'+L(A.tt)+'</b>'+L(A.s)+'</span>'+cta +
+      /* no celular, uma linha só (F03): nome e chamada viram o próprio link */
+      '<a class="m-linha" href="'+e(A.link)+'" target="_blank" rel="noopener"><span class="mn">'+e(A.nome)+'</span>' +
+        '<span class="mt">'+L(A.tt)+' →</span></a>'+vez+x+'</aside>';
   }
   document.addEventListener('click', function(ev){
     if (!ev.target.closest) return;
