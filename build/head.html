@@ -719,4 +719,95 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
 .ao-indice.on{opacity:1;transform:none;pointer-events:auto}
 .ao-indice:hover{background:var(--accent);color:var(--sobre-accent)}
 @media print{.ao-indice,.idx-dobra{display:none!important}}
+
+/* -- layout -- */
+/* F05: cabeçalho do celular numa linha só: logo, idioma e menu com a mesma altura, no mesmo eixo */
+@media (max-width:900px){
+  .masthead{gap:12px;padding:14px 0 13px}
+  .brand{min-width:0;gap:10px}
+  .mhright{gap:8px;flex:none}
+  .selo-marca{letter-spacing:.12em;white-space:nowrap}
+}
+
+/* F02 + F09: manual e guia com a coluna de leitura no centro; telas, mapas e tabelas saem
+   da coluna e usam a largura da página. (o celular não muda: lá a coluna já é a tela) */
+main{container-type:inline-size}
+.doc{--larga:min(1064px,100cqw);--larga-t:min(880px,100cqw)}
+.doc-cab{max-width:34em;margin-inline:auto}
+.doc-cab .col{max-width:none}
+.man-sec.solo{max-width:34em;margin-inline:auto}
+.man-sec.solo .man-txt{max-width:none}
+.man-sec.solo :is(.man-figs,.guia-figs,.mapa-wrap,.guia-plano){width:var(--larga);max-width:none;
+  margin-left:calc((100% - var(--larga)) / 2);margin-right:calc((100% - var(--larga)) / 2)}
+.man-sec.solo .man-txt table:not(.guia-plano table){width:var(--larga-t);max-width:none;
+  margin-left:calc((100% - var(--larga-t)) / 2);margin-right:calc((100% - var(--larga-t)) / 2)}
+.man-sec.solo .man-txt > div > .man-fig{margin-inline:auto}
+@media (min-width:901px){
+  .man-sec.solo :is(.man-figs,.guia-figs){gap:22px 16px;
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--cel,220px)),1fr))}
+  .man-figs .crt,.guia-figs .crt{padding:6px}
+}
+
+/* F02: Sobre — o título à esquerda e o texto à direita, em vez da coluna presa à esquerda */
+@media (min-width:901px){
+  .sobre-cab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,34em);gap:56px;align-items:start}
+  .sobre-cab h1{position:sticky;top:24px}
+}
+
+/* F08: a grade de telas segue a quantidade: 4 = 2×2, 5 = 3 + 2 no centro; 2 por linha no celular */
+.galeria{display:flex;flex-wrap:wrap;justify-content:center;gap:30px 24px}
+.galeria figure{flex:0 0 calc((100% - 48px) / 3);min-width:0}
+.galeria.n2 figure,.galeria.n4 figure{flex-basis:calc((100% - 24px) / 2)}
+.galeria.n1 figure{flex-basis:min(100%,600px)}
+.galeria .crt img{cursor:zoom-in}
+@media (max-width:900px){.galeria figure{flex-basis:calc((100% - 24px) / 2)}}
+@media (max-width:600px){
+  .galeria{gap:22px 12px}
+  .galeria figure{flex-basis:calc((100% - 12px) / 2)}
+  .galeria.n1 figure{flex-basis:100%}
+  .galeria .crt{padding:5px;border-radius:4px}
+}
+/* tela ampliada ao tocar (F08) */
+dialog.zoom{border:0;padding:0;background:transparent;max-width:none;max-height:none;overflow:visible}
+dialog.zoom::backdrop{background:rgba(11,11,16,.88)}
+dialog.zoom .crt{margin:0 auto;width:fit-content}
+dialog.zoom .crt img{cursor:zoom-out}
+dialog.zoom .zoom-leg{margin:12px auto 0;max-width:min(560px,90vw);color:#efe9dc;font-size:15px;line-height:1.45;text-align:center}
+dialog.zoom .zoom-leg b{display:block;font-family:var(--mono);font-weight:500;font-size:12.5px;letter-spacing:.09em;
+  text-transform:uppercase;margin-bottom:4px}
+dialog.zoom .zoom-x{position:fixed;top:8px;right:8px;width:44px;height:44px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;font:600 18px/1 var(--sans);cursor:pointer}
+
+/* F11: no celular o início mostra 4 traduções e o "ver todas"; os números em 2 × 2 */
+@media (max-width:600px){
+  .home-proj .proj:nth-child(n+5){display:none}
+  .placar .nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;width:100%}
+}
+
+/* F12: os cards de uma mesma linha alinham título, ficha, tipo e resumo (subgrid) */
+.proj h3{text-wrap:pretty}
+@supports (grid-template-rows:subgrid){
+  .proj{display:grid;grid-row:span 7;grid-template-rows:subgrid;row-gap:0}
+  .proj .corpo{display:contents}
+  .proj .corpo > *{margin-left:20px;margin-right:20px}
+  .proj .corpo > :first-child{margin-top:18px}
+  .proj .corpo > * + *{margin-top:8px}
+  .proj .linha{margin-top:12px}
+  .proj .ir{margin-top:0;padding-top:16px;margin-bottom:20px}
+}
+
+/* F18: Sobre — 5 cargos em 5 colunas, 6 etapas em 3 + 3 */
+@media (min-width:1000px){.rules.n5{grid-template-columns:repeat(5,minmax(0,1fr))}.rules.n5 .rule{padding-right:22px}}
+@media (min-width:601px) and (max-width:999px){.rules.n5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:601px){.rules.n3,.rules.n6,.rules.n9{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.rules.n3,.rules.n5,.rules.n6,.rules.n9{grid-template-columns:minmax(0,1fr)}}
+
+/* F22: as etapas do Apoie numeradas, sem ponto solto no começo ou no fim da linha */
+.passos{display:flex;flex-wrap:wrap;gap:4px 22px;counter-reset:passo}
+.passos span{white-space:nowrap;counter-increment:passo}
+.passos span + span::before{content:none}
+.passos span::before{content:counter(passo);color:var(--accent);margin-right:8px;font-weight:600}
+@media (max-width:600px){.passos{flex-direction:column;gap:0}}
+@media print{.doc-cab,.man-sec.solo{max-width:none}
+  .man-sec.solo :is(.man-figs,.guia-figs,.mapa-wrap,.guia-plano),.man-sec.solo .man-txt table{width:auto;margin-left:0;margin-right:0}}
 </style>

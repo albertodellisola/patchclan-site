@@ -726,6 +726,97 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
 .ao-indice.on{opacity:1;transform:none;pointer-events:auto}
 .ao-indice:hover{background:var(--accent);color:var(--sobre-accent)}
 @media print{.ao-indice,.idx-dobra{display:none!important}}
+
+/* -- layout -- */
+/* F05: cabeçalho do celular numa linha só: logo, idioma e menu com a mesma altura, no mesmo eixo */
+@media (max-width:900px){
+  .masthead{gap:12px;padding:14px 0 13px}
+  .brand{min-width:0;gap:10px}
+  .mhright{gap:8px;flex:none}
+  .selo-marca{letter-spacing:.12em;white-space:nowrap}
+}
+
+/* F02 + F09: manual e guia com a coluna de leitura no centro; telas, mapas e tabelas saem
+   da coluna e usam a largura da página. (o celular não muda: lá a coluna já é a tela) */
+main{container-type:inline-size}
+.doc{--larga:min(1064px,100cqw);--larga-t:min(880px,100cqw)}
+.doc-cab{max-width:34em;margin-inline:auto}
+.doc-cab .col{max-width:none}
+.man-sec.solo{max-width:34em;margin-inline:auto}
+.man-sec.solo .man-txt{max-width:none}
+.man-sec.solo :is(.man-figs,.guia-figs,.mapa-wrap,.guia-plano){width:var(--larga);max-width:none;
+  margin-left:calc((100% - var(--larga)) / 2);margin-right:calc((100% - var(--larga)) / 2)}
+.man-sec.solo .man-txt table:not(.guia-plano table){width:var(--larga-t);max-width:none;
+  margin-left:calc((100% - var(--larga-t)) / 2);margin-right:calc((100% - var(--larga-t)) / 2)}
+.man-sec.solo .man-txt > div > .man-fig{margin-inline:auto}
+@media (min-width:901px){
+  .man-sec.solo :is(.man-figs,.guia-figs){gap:22px 16px;
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--cel,220px)),1fr))}
+  .man-figs .crt,.guia-figs .crt{padding:6px}
+}
+
+/* F02: Sobre — o título à esquerda e o texto à direita, em vez da coluna presa à esquerda */
+@media (min-width:901px){
+  .sobre-cab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,34em);gap:56px;align-items:start}
+  .sobre-cab h1{position:sticky;top:24px}
+}
+
+/* F08: a grade de telas segue a quantidade: 4 = 2×2, 5 = 3 + 2 no centro; 2 por linha no celular */
+.galeria{display:flex;flex-wrap:wrap;justify-content:center;gap:30px 24px}
+.galeria figure{flex:0 0 calc((100% - 48px) / 3);min-width:0}
+.galeria.n2 figure,.galeria.n4 figure{flex-basis:calc((100% - 24px) / 2)}
+.galeria.n1 figure{flex-basis:min(100%,600px)}
+.galeria .crt img{cursor:zoom-in}
+@media (max-width:900px){.galeria figure{flex-basis:calc((100% - 24px) / 2)}}
+@media (max-width:600px){
+  .galeria{gap:22px 12px}
+  .galeria figure{flex-basis:calc((100% - 12px) / 2)}
+  .galeria.n1 figure{flex-basis:100%}
+  .galeria .crt{padding:5px;border-radius:4px}
+}
+/* tela ampliada ao tocar (F08) */
+dialog.zoom{border:0;padding:0;background:transparent;max-width:none;max-height:none;overflow:visible}
+dialog.zoom::backdrop{background:rgba(11,11,16,.88)}
+dialog.zoom .crt{margin:0 auto;width:fit-content}
+dialog.zoom .crt img{cursor:zoom-out}
+dialog.zoom .zoom-leg{margin:12px auto 0;max-width:min(560px,90vw);color:#efe9dc;font-size:15px;line-height:1.45;text-align:center}
+dialog.zoom .zoom-leg b{display:block;font-family:var(--mono);font-weight:500;font-size:12.5px;letter-spacing:.09em;
+  text-transform:uppercase;margin-bottom:4px}
+dialog.zoom .zoom-x{position:fixed;top:8px;right:8px;width:44px;height:44px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;font:600 18px/1 var(--sans);cursor:pointer}
+
+/* F11: no celular o início mostra 4 traduções e o "ver todas"; os números em 2 × 2 */
+@media (max-width:600px){
+  .home-proj .proj:nth-child(n+5){display:none}
+  .placar .nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;width:100%}
+}
+
+/* F12: os cards de uma mesma linha alinham título, ficha, tipo e resumo (subgrid) */
+.proj h3{text-wrap:pretty}
+@supports (grid-template-rows:subgrid){
+  .proj{display:grid;grid-row:span 7;grid-template-rows:subgrid;row-gap:0}
+  .proj .corpo{display:contents}
+  .proj .corpo > *{margin-left:20px;margin-right:20px}
+  .proj .corpo > :first-child{margin-top:18px}
+  .proj .corpo > * + *{margin-top:8px}
+  .proj .linha{margin-top:12px}
+  .proj .ir{margin-top:0;padding-top:16px;margin-bottom:20px}
+}
+
+/* F18: Sobre — 5 cargos em 5 colunas, 6 etapas em 3 + 3 */
+@media (min-width:1000px){.rules.n5{grid-template-columns:repeat(5,minmax(0,1fr))}.rules.n5 .rule{padding-right:22px}}
+@media (min-width:601px) and (max-width:999px){.rules.n5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:601px){.rules.n3,.rules.n6,.rules.n9{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.rules.n3,.rules.n5,.rules.n6,.rules.n9{grid-template-columns:minmax(0,1fr)}}
+
+/* F22: as etapas do Apoie numeradas, sem ponto solto no começo ou no fim da linha */
+.passos{display:flex;flex-wrap:wrap;gap:4px 22px;counter-reset:passo}
+.passos span{white-space:nowrap;counter-increment:passo}
+.passos span + span::before{content:none}
+.passos span::before{content:counter(passo);color:var(--accent);margin-right:8px;font-weight:600}
+@media (max-width:600px){.passos{flex-direction:column;gap:0}}
+@media print{.doc-cab,.man-sec.solo{max-width:none}
+  .man-sec.solo :is(.man-figs,.guia-figs,.mapa-wrap,.guia-plano),.man-sec.solo .man-txt table{width:auto;margin-left:0;margin-right:0}}
 </style>
 
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -975,7 +1066,9 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
   /* ---------------- HOME ---------------- */
   function home(){
     var c = D.content, h = c.hero||{}, jogos = D.games||[];
-    function conta(n){ return jogos.filter(function(g){ return g.nivel === n; }).length; }
+    /* F11: o placar conta só as traduções, para bater com a página Traduções (hacks/fixes têm a sua) */
+    var trads = jogos.filter(function(g){ return secao(g) === 'traducoes'; });
+    function conta(n){ return trads.filter(function(g){ return g.nivel === n; }).length; }
     var prontos = conta('release'), betas = conta('beta'), alfas = conta('alfa');
     var d = jogos.filter(function(g){ return g.destaque; })[0] || jogos[0];
     var out = '<div class="hero"><div class="hero-txt">' +
@@ -1008,7 +1101,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
     /* rodapé da dobra: o placar, com a atividade em destaque */
     out += '<div class="placar">' +
       '<div class="nums">' +
-        '<span><b>'+jogos.length+'</b> '+L({pt:'projetos',en:'projects',es:'proyectos'})+'</span>' +
+        '<span><b>'+trads.length+'</b> '+L({pt:'traduções',en:'translations',es:'traducciones'})+'</span>' +
         '<span><b>'+prontos+'</b> release</span>' +
         '<span><b>'+betas+'</b> beta</span>' +
         '<span><b>'+alfas+'</b> '+L({pt:'alfa',en:'alpha',es:'alfa'})+'</span>' +
@@ -1030,7 +1123,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
     }
 
     /* projetos */
-    out += '<section><p class="label">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</p><div class="projetos">' +
+    out += '<section class="home-proj"><p class="label">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</p><div class="projetos">' +
       jogos.filter(function(g){ return secao(g) === 'traducoes'; }).map(cardProjeto).join('') + '</div>' +
       '<p class="ver-todas"><a href="#/traducoes">' +
         L({pt:'Ver as traduções por estado →', en:'See the translations by stage →', es:'Ver las traducciones por estado →'}) +
@@ -1128,14 +1221,14 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
     var q = D.content.equipe; if (!q || !(q.cargos||[]).length) return '';
     var marca = {feito:'✓', andamento:'◐', nao:'○'};
     return '<section><p class="label">'+L({pt:'A equipe',en:'The team',es:'El equipo'})+'</p>' +
-      '<div class="col"><p>'+L(q.intro)+'</p></div><dl class="rules">' +
+      '<div class="col"><p>'+L(q.intro)+'</p></div><dl class="rules n'+q.cargos.length+'">' +
       q.cargos.map(function(c){
         return '<div class="rule"><dt>'+L(c.nome)+'</dt><dd>'+L(c.texto)+'</dd></div>'; }).join('') +
       '</dl></section>' +
       '<section><p class="label">'+L({pt:'As etapas',en:'The stages',es:'Las etapas'})+'</p>' +
       '<p class="legenda-etapas">' + ['feito','andamento','nao'].map(function(s){
         return '<span><span aria-hidden="true">'+marca[s]+'</span> '+L(q.estados[s])+'</span>'; }).join('') + '</p>' +
-      '<dl class="rules">' + (q.etapas||[]).map(function(x, i){
+      '<dl class="rules n'+(q.etapas||[]).length+'">' + (q.etapas||[]).map(function(x, i){
         return '<div class="rule"><dt>'+(i+1)+'. '+L(x.curto)+'</dt><dd>'+L(x.criterio)+'</dd></div>'; }).join('') +
       '</dl></section>';
   }
@@ -1280,7 +1373,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
         '</div></section>';
     }
 
-    out += '<section id="telas"><p class="label">'+L({pt:'As telas',en:'The screens',es:'Las pantallas'})+'</p><div class="galeria">' +
+    out += '<section id="telas"><p class="label">'+L({pt:'As telas',en:'The screens',es:'Las pantallas'})+'</p><div class="galeria n'+(g.fotos||[]).length+'">' +
       (g.fotos||[]).map(function(f){
         return '<figure>'+crt(f.f, e(g.nome)+' — '+txt(f.t,'en'))+
           '<figcaption><b>'+L(f.t)+'</b>'+L(f.c)+'</figcaption></figure>'; }).join('') + '</div></section>';
@@ -1331,7 +1424,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
            en:'A non-profit fan patch. Not affiliated with any of the original companies.',
            es:'Parche de fan, sin ánimo de lucro. No afiliado a ninguna de las empresas originales.'})+'</p>' +
       '</div>' +
-      '<section style="border-bottom:0;padding-bottom:22px"><p class="label">'+L(m.titulo)+' · '+e(g.nome)+'</p>' +
+      '<div class="doc"><section class="doc-cab" style="border-bottom:0;padding-bottom:22px"><p class="label"><span>'+L(m.titulo)+' · '+e(g.nome)+'</span></p>' +
       '<div class="col"><h1 style="font-size:clamp(30px,4.4vw,46px);margin-bottom:18px">'+e(g.nome)+'</h1>' +
       '<p class="lede">'+L(m.intro)+'</p></div>' +
       /* índice recolhível (auditoria 01/10/2026, F19): aberto no desktop, fechado no celular,
@@ -1355,7 +1448,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
           var h = sec.html[l] || sec.html.en || sec.html.pt || sec.html.es;
           return '<div class="'+l+'" lang="'+LANG_ATTR[l]+'">'+h+'</div>';
         }).join('') : '') + '</div>';
-      return '<section class="man-sec" id="sec-'+e(sec.id)+'">' +
+      return '<section class="man-sec'+(sec.foto?'':' solo')+'" id="sec-'+e(sec.id)+'">' +
         '<p class="label"><span style="color:var(--accent)">'+(i+1)+'</span> '+L(sec.titulo)+'</p>' +
         '<div class="man-corpo'+(sec.foto?'':' solo')+'">' + corpo +
         (sec.foto ? '<div>'+crt(sec.foto,'')+'</div>' : '') + '</div></section>';
@@ -1367,7 +1460,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
       out += '<section class="so-tela"><p class="label">'+L(DOCS[outro].rot)+'</p>' +
         '<div class="leituras">' + cartaoDoc(slug, outro) + '</div></section>';
     }
-    return out + '<a class="voltar" href="#/jogo/'+e(g.slug)+'">←&nbsp;'+e(g.nome)+'</a>';
+    return out + '</div><a class="voltar" href="#/jogo/'+e(g.slug)+'">←&nbsp;'+e(g.nome)+'</a>';
   }
 
   /* ---------------- PATREON ---------------- */
@@ -1429,11 +1522,11 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
   function paginaSobre(){
     var c = D.content, w = c.who||{};
     return '<section><p class="label">'+L({pt:'Sobre',en:'About',es:'Sobre'})+'</p>' +
-      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px);margin-bottom:26px">'+L({pt:'O Patch Clan.',en:'Patch Clan.',es:'Patch Clan.'})+'</h1>' +
-      (w.paras||[]).map(function(x){ return '<p>'+L(x)+'</p>'; }).join('') +
-      '<p class="sign"><b>Patch Clan</b> · '+L(w.sign)+'</p></div></section>' +
+      '<div class="sobre-cab"><h1 style="font-size:clamp(32px,4.6vw,48px);margin-bottom:26px">'+L({pt:'O Patch Clan.',en:'Patch Clan.',es:'Patch Clan.'})+'</h1>' +
+      '<div class="col">' + (w.paras||[]).map(function(x){ return '<p>'+L(x)+'</p>'; }).join('') +
+      '<p class="sign"><b>Patch Clan</b> · '+L(w.sign)+'</p></div></div></section>' +
       secaoEquipe() +
-      '<section><p class="label">'+L({pt:'Regras da casa',en:'House rules',es:'Reglas de la casa'})+'</p><dl class="rules">' +
+      '<section><p class="label">'+L({pt:'Regras da casa',en:'House rules',es:'Reglas de la casa'})+'</p><dl class="rules n'+((c.rules||{}).items||[]).length+'">' +
       ((c.rules||{}).items||[]).map(function(r){
         return '<div class="rule"><dt>'+L(r.title)+'</dt><dd>'+L(r.text)+'</dd></div>'; }).join('') +
       '</dl></section>' + secaoPromessas();
@@ -1486,6 +1579,7 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
   function celular(){ return !!(window.matchMedia && matchMedia('(max-width:900px)').matches); }
   function depois(r){
     tabelas();
+    gradesDeTela();
     aoIndice(r);
   }
   /* F01: tabela de 3+ colunas vira blocos empilhados no celular. O rótulo de cada célula
@@ -1506,6 +1600,34 @@ body[data-lang="es"] .en,body[data-lang="es"] .pt{display:none}
       }
     }
   }
+  /* F09: a coluna mínima da grade de telas é a própria tela do jogo (+ moldura), então no desktop
+     cabem 2 telas de 512 px ou 3 de 320 lado a lado, sem reduzir. A largura vem do width do <img>. */
+  function gradesDeTela(){
+    var gs = document.querySelectorAll('.man-figs, .guia-figs');
+    for (var i = 0; i < gs.length; i++) {
+      var im = gs[i].querySelector('.crt img[width]');
+      if (im) gs[i].style.setProperty('--cel', (+im.getAttribute('width') + 12) + 'px');
+    }
+  }
+  /* F08: tocar numa tela da galeria abre a tela grande, na maior escala inteira que cabe */
+  var zoom = document.createElement('dialog');
+  zoom.className = 'zoom';
+  zoom.innerHTML = '<button type="button" class="zoom-x">✕</button><div class="crt"><img alt=""></div><p class="zoom-leg"></p>';
+  document.body.appendChild(zoom);
+  document.addEventListener('click', function(ev){
+    if (!ev.target.closest) return;
+    if (zoom.open && (ev.target.closest('.zoom-x') || ev.target === zoom || ev.target.closest('dialog.zoom'))) { zoom.close(); return; }
+    var im = ev.target.closest('.galeria .crt img');
+    if (!im || !im.naturalWidth || !zoom.showModal) return;
+    var zi = zoom.querySelector('img'), fc = im.closest('figure').querySelector('figcaption');
+    zi.src = im.currentSrc || im.src; zi.alt = im.alt;
+    zoom.querySelector('.zoom-x').setAttribute('aria-label', txt({pt:'Fechar',en:'Close',es:'Cerrar'}, LANG_ATUAL));
+    zoom.querySelector('.zoom-leg').innerHTML = fc ? fc.innerHTML : '';
+    var k = Math.floor(Math.min((window.innerWidth - 40) / im.naturalWidth, (window.innerHeight - 190) / im.naturalHeight));
+    zi.style.width = (k >= 1 ? k * im.naturalWidth : Math.min(window.innerWidth - 40, im.naturalWidth)) + 'px';
+    zi.style.imageRendering = k >= 1 ? 'pixelated' : 'auto';
+    zoom.showModal();
+  });
   /* F19: "↑ Índice" flutuante no manual e no guia, depois que o índice sai da tela */
   var aoIdx = document.createElement('a');
   aoIdx.className = 'ao-indice so-tela'; aoIdx.href = '#';

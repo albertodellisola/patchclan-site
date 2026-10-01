@@ -243,7 +243,9 @@
   /* ---------------- HOME ---------------- */
   function home(){
     var c = D.content, h = c.hero||{}, jogos = D.games||[];
-    function conta(n){ return jogos.filter(function(g){ return g.nivel === n; }).length; }
+    /* F11: o placar conta só as traduções, para bater com a página Traduções (hacks/fixes têm a sua) */
+    var trads = jogos.filter(function(g){ return secao(g) === 'traducoes'; });
+    function conta(n){ return trads.filter(function(g){ return g.nivel === n; }).length; }
     var prontos = conta('release'), betas = conta('beta'), alfas = conta('alfa');
     var d = jogos.filter(function(g){ return g.destaque; })[0] || jogos[0];
     var out = '<div class="hero"><div class="hero-txt">' +
@@ -276,7 +278,7 @@
     /* rodapé da dobra: o placar, com a atividade em destaque */
     out += '<div class="placar">' +
       '<div class="nums">' +
-        '<span><b>'+jogos.length+'</b> '+L({pt:'projetos',en:'projects',es:'proyectos'})+'</span>' +
+        '<span><b>'+trads.length+'</b> '+L({pt:'traduções',en:'translations',es:'traducciones'})+'</span>' +
         '<span><b>'+prontos+'</b> release</span>' +
         '<span><b>'+betas+'</b> beta</span>' +
         '<span><b>'+alfas+'</b> '+L({pt:'alfa',en:'alpha',es:'alfa'})+'</span>' +
@@ -298,7 +300,7 @@
     }
 
     /* projetos */
-    out += '<section><p class="label">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</p><div class="projetos">' +
+    out += '<section class="home-proj"><p class="label">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</p><div class="projetos">' +
       jogos.filter(function(g){ return secao(g) === 'traducoes'; }).map(cardProjeto).join('') + '</div>' +
       '<p class="ver-todas"><a href="#/traducoes">' +
         L({pt:'Ver as traduções por estado →', en:'See the translations by stage →', es:'Ver las traducciones por estado →'}) +
@@ -396,14 +398,14 @@
     var q = D.content.equipe; if (!q || !(q.cargos||[]).length) return '';
     var marca = {feito:'✓', andamento:'◐', nao:'○'};
     return '<section><p class="label">'+L({pt:'A equipe',en:'The team',es:'El equipo'})+'</p>' +
-      '<div class="col"><p>'+L(q.intro)+'</p></div><dl class="rules">' +
+      '<div class="col"><p>'+L(q.intro)+'</p></div><dl class="rules n'+q.cargos.length+'">' +
       q.cargos.map(function(c){
         return '<div class="rule"><dt>'+L(c.nome)+'</dt><dd>'+L(c.texto)+'</dd></div>'; }).join('') +
       '</dl></section>' +
       '<section><p class="label">'+L({pt:'As etapas',en:'The stages',es:'Las etapas'})+'</p>' +
       '<p class="legenda-etapas">' + ['feito','andamento','nao'].map(function(s){
         return '<span><span aria-hidden="true">'+marca[s]+'</span> '+L(q.estados[s])+'</span>'; }).join('') + '</p>' +
-      '<dl class="rules">' + (q.etapas||[]).map(function(x, i){
+      '<dl class="rules n'+(q.etapas||[]).length+'">' + (q.etapas||[]).map(function(x, i){
         return '<div class="rule"><dt>'+(i+1)+'. '+L(x.curto)+'</dt><dd>'+L(x.criterio)+'</dd></div>'; }).join('') +
       '</dl></section>';
   }
@@ -548,7 +550,7 @@
         '</div></section>';
     }
 
-    out += '<section id="telas"><p class="label">'+L({pt:'As telas',en:'The screens',es:'Las pantallas'})+'</p><div class="galeria">' +
+    out += '<section id="telas"><p class="label">'+L({pt:'As telas',en:'The screens',es:'Las pantallas'})+'</p><div class="galeria n'+(g.fotos||[]).length+'">' +
       (g.fotos||[]).map(function(f){
         return '<figure>'+crt(f.f, e(g.nome)+' — '+txt(f.t,'en'))+
           '<figcaption><b>'+L(f.t)+'</b>'+L(f.c)+'</figcaption></figure>'; }).join('') + '</div></section>';
@@ -599,7 +601,7 @@
            en:'A non-profit fan patch. Not affiliated with any of the original companies.',
            es:'Parche de fan, sin ánimo de lucro. No afiliado a ninguna de las empresas originales.'})+'</p>' +
       '</div>' +
-      '<section style="border-bottom:0;padding-bottom:22px"><p class="label">'+L(m.titulo)+' · '+e(g.nome)+'</p>' +
+      '<div class="doc"><section class="doc-cab" style="border-bottom:0;padding-bottom:22px"><p class="label"><span>'+L(m.titulo)+' · '+e(g.nome)+'</span></p>' +
       '<div class="col"><h1 style="font-size:clamp(30px,4.4vw,46px);margin-bottom:18px">'+e(g.nome)+'</h1>' +
       '<p class="lede">'+L(m.intro)+'</p></div>' +
       /* índice recolhível (auditoria 01/10/2026, F19): aberto no desktop, fechado no celular,
@@ -623,7 +625,7 @@
           var h = sec.html[l] || sec.html.en || sec.html.pt || sec.html.es;
           return '<div class="'+l+'" lang="'+LANG_ATTR[l]+'">'+h+'</div>';
         }).join('') : '') + '</div>';
-      return '<section class="man-sec" id="sec-'+e(sec.id)+'">' +
+      return '<section class="man-sec'+(sec.foto?'':' solo')+'" id="sec-'+e(sec.id)+'">' +
         '<p class="label"><span style="color:var(--accent)">'+(i+1)+'</span> '+L(sec.titulo)+'</p>' +
         '<div class="man-corpo'+(sec.foto?'':' solo')+'">' + corpo +
         (sec.foto ? '<div>'+crt(sec.foto,'')+'</div>' : '') + '</div></section>';
@@ -635,7 +637,7 @@
       out += '<section class="so-tela"><p class="label">'+L(DOCS[outro].rot)+'</p>' +
         '<div class="leituras">' + cartaoDoc(slug, outro) + '</div></section>';
     }
-    return out + '<a class="voltar" href="#/jogo/'+e(g.slug)+'">←&nbsp;'+e(g.nome)+'</a>';
+    return out + '</div><a class="voltar" href="#/jogo/'+e(g.slug)+'">←&nbsp;'+e(g.nome)+'</a>';
   }
 
   /* ---------------- PATREON ---------------- */
@@ -697,11 +699,11 @@
   function paginaSobre(){
     var c = D.content, w = c.who||{};
     return '<section><p class="label">'+L({pt:'Sobre',en:'About',es:'Sobre'})+'</p>' +
-      '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px);margin-bottom:26px">'+L({pt:'O Patch Clan.',en:'Patch Clan.',es:'Patch Clan.'})+'</h1>' +
-      (w.paras||[]).map(function(x){ return '<p>'+L(x)+'</p>'; }).join('') +
-      '<p class="sign"><b>Patch Clan</b> · '+L(w.sign)+'</p></div></section>' +
+      '<div class="sobre-cab"><h1 style="font-size:clamp(32px,4.6vw,48px);margin-bottom:26px">'+L({pt:'O Patch Clan.',en:'Patch Clan.',es:'Patch Clan.'})+'</h1>' +
+      '<div class="col">' + (w.paras||[]).map(function(x){ return '<p>'+L(x)+'</p>'; }).join('') +
+      '<p class="sign"><b>Patch Clan</b> · '+L(w.sign)+'</p></div></div></section>' +
       secaoEquipe() +
-      '<section><p class="label">'+L({pt:'Regras da casa',en:'House rules',es:'Reglas de la casa'})+'</p><dl class="rules">' +
+      '<section><p class="label">'+L({pt:'Regras da casa',en:'House rules',es:'Reglas de la casa'})+'</p><dl class="rules n'+((c.rules||{}).items||[]).length+'">' +
       ((c.rules||{}).items||[]).map(function(r){
         return '<div class="rule"><dt>'+L(r.title)+'</dt><dd>'+L(r.text)+'</dd></div>'; }).join('') +
       '</dl></section>' + secaoPromessas();
@@ -754,6 +756,7 @@
   function celular(){ return !!(window.matchMedia && matchMedia('(max-width:900px)').matches); }
   function depois(r){
     tabelas();
+    gradesDeTela();
     aoIndice(r);
   }
   /* F01: tabela de 3+ colunas vira blocos empilhados no celular. O rótulo de cada célula
@@ -774,6 +777,34 @@
       }
     }
   }
+  /* F09: a coluna mínima da grade de telas é a própria tela do jogo (+ moldura), então no desktop
+     cabem 2 telas de 512 px ou 3 de 320 lado a lado, sem reduzir. A largura vem do width do <img>. */
+  function gradesDeTela(){
+    var gs = document.querySelectorAll('.man-figs, .guia-figs');
+    for (var i = 0; i < gs.length; i++) {
+      var im = gs[i].querySelector('.crt img[width]');
+      if (im) gs[i].style.setProperty('--cel', (+im.getAttribute('width') + 12) + 'px');
+    }
+  }
+  /* F08: tocar numa tela da galeria abre a tela grande, na maior escala inteira que cabe */
+  var zoom = document.createElement('dialog');
+  zoom.className = 'zoom';
+  zoom.innerHTML = '<button type="button" class="zoom-x">✕</button><div class="crt"><img alt=""></div><p class="zoom-leg"></p>';
+  document.body.appendChild(zoom);
+  document.addEventListener('click', function(ev){
+    if (!ev.target.closest) return;
+    if (zoom.open && (ev.target.closest('.zoom-x') || ev.target === zoom || ev.target.closest('dialog.zoom'))) { zoom.close(); return; }
+    var im = ev.target.closest('.galeria .crt img');
+    if (!im || !im.naturalWidth || !zoom.showModal) return;
+    var zi = zoom.querySelector('img'), fc = im.closest('figure').querySelector('figcaption');
+    zi.src = im.currentSrc || im.src; zi.alt = im.alt;
+    zoom.querySelector('.zoom-x').setAttribute('aria-label', txt({pt:'Fechar',en:'Close',es:'Cerrar'}, LANG_ATUAL));
+    zoom.querySelector('.zoom-leg').innerHTML = fc ? fc.innerHTML : '';
+    var k = Math.floor(Math.min((window.innerWidth - 40) / im.naturalWidth, (window.innerHeight - 190) / im.naturalHeight));
+    zi.style.width = (k >= 1 ? k * im.naturalWidth : Math.min(window.innerWidth - 40, im.naturalWidth)) + 'px';
+    zi.style.imageRendering = k >= 1 ? 'pixelated' : 'auto';
+    zoom.showModal();
+  });
   /* F19: "↑ Índice" flutuante no manual e no guia, depois que o índice sai da tela */
   var aoIdx = document.createElement('a');
   aoIdx.className = 'ao-indice so-tela'; aoIdx.href = '#';
