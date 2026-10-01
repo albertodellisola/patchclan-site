@@ -816,8 +816,8 @@ dialog.zoom .zoom-x{position:fixed;top:8px;right:8px;width:44px;height:44px;bord
 /* F22: as etapas do Apoie numeradas, sem ponto solto no começo ou no fim da linha */
 .passos{display:flex;flex-wrap:wrap;gap:4px 22px;counter-reset:passo}
 .passos span{white-space:nowrap;counter-increment:passo}
-.passos span + span::before{content:none}
-.passos span::before{content:counter(passo);color:var(--accent);margin-right:8px;font-weight:600}
+.passos span::before,.passos span + span::before{content:counter(passo);color:var(--accent);margin:0 8px 0 0;
+  display:inline;font-weight:600}
 @media (max-width:600px){.passos{flex-direction:column;gap:0}}
 /* -- typeset -- */
 /* F13: lista dentro de lista com recuo e marcador próprio */
