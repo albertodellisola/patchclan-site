@@ -465,6 +465,22 @@ img.capa,.vitrine .tela img.capa,.proj .tela img.capa{image-rendering:auto;aspec
 .man-txt th{font-family:var(--sans);font-size:13.5px}
 .man-fig{margin:24px 0;max-width:400px}
 .man-fig figcaption{font-size:13.5px;color:var(--ink-2);margin-top:8px}
+/* guia: várias capturas lado a lado, os mapas de aventura em SVG, a caixa de aviso e o plano dia a dia */
+.guia-figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px 16px;margin:22px 0}
+.guia-figs .man-fig{margin:0;max-width:none}
+.guia-figs .crt{padding:6px}
+.guia-figs figcaption{font-size:12.5px;line-height:1.4}
+.man-txt:has(.mapa-wrap),.man-txt:has(.guia-figs),.man-txt:has(.guia-plano){max-width:46em}
+.mapa-wrap{margin:22px 0;overflow-x:auto;border:1px solid var(--rule-soft);border-radius:5px;background:var(--ground-2);padding:10px}
+.mapa{display:block;width:100%;min-width:560px;height:auto}
+.guia-dica{border-left:3px solid var(--accent);background:var(--ground-2);padding:12px 16px;border-radius:0 4px 4px 0;font-size:15.5px!important}
+.guia-plano{margin:20px 0;border:1px solid var(--rule-soft);border-radius:5px;background:var(--ground-2)}
+.guia-plano summary{cursor:pointer;padding:12px 16px;font-family:var(--sans);font-weight:600;font-size:15px}
+.guia-plano summary:hover{color:var(--accent)}
+.guia-plano table{font-family:var(--mono);font-size:12.5px;margin:0;padding:0 12px 12px}
+.guia-plano td,.guia-plano th{padding:4px 10px 4px 0;white-space:nowrap}
+.man-txt td{font-size:14.5px}
+@media (max-width:720px){ .guia-figs{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px} }
 .man-lista{margin:24px 0 0;display:flex;flex-direction:column;gap:0}
 .man-lista > div{display:grid;grid-template-columns:126px minmax(0,1fr);gap:20px;
   padding:13px 0;border-top:1px solid var(--rule-soft)}

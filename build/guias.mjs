@@ -16,5 +16,8 @@
    Jogo sem guia simplesmente não ganha link — nada fica esmaecido, nada aparece vazio.
    Acrescentar um: escrever `guia-<jogo>.mjs`, importar aqui e pôr no objeto abaixo. */
 
+import { GUIA_MKR2 } from './guia-mkr2.mjs';
+
 export const GUIAS = {
+  'magic-knight-rayearth-2': GUIA_MKR2,
 };
