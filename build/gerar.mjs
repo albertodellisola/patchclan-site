@@ -174,7 +174,8 @@ const VARIANTES = variantes();
 
 function montar(seed, extraHead = '', shots = VARIANTES) {
   const c = corpo.replace('__SEED__', JSON.stringify(seed))
-                 .replace('__SHOTS_IDI__', JSON.stringify(shots));
+                 .replace('__SHOTS_IDI__', JSON.stringify(shots))
+                 .replace('__DIMS__', JSON.stringify(DIMS_SITE));
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -232,6 +233,40 @@ function aspasEm(o) {
   }
 }
 [MANUAIS, GUIAS].forEach(col => Object.values(col).forEach(aspasEm));
+/* F20 (auditoria 01/10/2026): largura e altura de cada tela PNG, lidas do cabeçalho do arquivo.
+   Vão no <img> do manual e do guia (texto pronto) e, pelo DIMS, nas telas que o corpo.html desenha. */
+const DIMS = {};
+function dims(rel) {
+  if (rel in DIMS) return DIMS[rel];
+  const f = path.join(RAIZ, 'shots', rel);
+  let d = null;
+  if (/\.png$/i.test(rel) && fs.existsSync(f)) {
+    const b = Buffer.alloc(24); const fd = fs.openSync(f, 'r'); fs.readSync(fd, b, 0, 24, 0); fs.closeSync(fd);
+    if (b.toString('ascii', 12, 16) === 'IHDR') d = [b.readUInt32BE(16), b.readUInt32BE(20)];
+  } else if (/\.jpe?g$/i.test(rel) && fs.existsSync(f)) {
+    const b = fs.readFileSync(f);                 /* JPEG: anda pelos marcadores até o SOF */
+    for (let i = 2; i + 9 < b.length && b[i] === 0xFF;) {
+      const mk = b[i + 1], len = b.readUInt16BE(i + 2);
+      if (mk >= 0xC0 && mk <= 0xCF && ![0xC4, 0xC8, 0xCC].includes(mk)) { d = [b.readUInt16BE(i + 7), b.readUInt16BE(i + 5)]; break; }
+      i += 2 + len;
+    }
+  }
+  return (DIMS[rel] = d);
+}
+function medidasEm(o) {
+  for (const [k, v] of Object.entries(o)) {
+    if (typeof v === 'string') {
+      if (v.includes('<img ')) o[k] = v.replace(/<img src="shots\/([^"]+)"(?![^>]*\swidth=)/g,
+        (m, rel) => { const d = dims(rel); return d ? `${m} width="${d[0]}" height="${d[1]}"` : m; });
+    } else if (v && typeof v === 'object') medidasEm(v);
+  }
+}
+[MANUAIS, GUIAS].forEach(col => Object.values(col).forEach(medidasEm));
+JOGOS.forEach(g => {
+  [g.capa, ...(g.fotos || []).map(f => f.f), ...(g.grupos || []).flatMap(gr => (gr.itens || []).map(i => i.foto))].forEach(r => r && dims(r));
+});
+[MANUAIS, GUIAS].forEach(col => Object.values(col).forEach(m => (m.secoes || []).forEach(sec => sec.foto && dims(sec.foto))));
+const DIMS_SITE = Object.fromEntries(Object.entries(DIMS).filter(([, d]) => d));
 const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS, noticiasHome: NOTICIAS_NA_HOME };
 /* Gate do texto (regra do dono, 19/09/2026): o site diz testado/jogado, nunca bot, robô que
    joga, teste automático, emulador sem janela nem IA. Lista em build/gate_texto.mjs. */
@@ -269,7 +304,8 @@ for (const l of IDIOMAS_PRINT) {
   }
 }
 const corpoArt = corpo.replace('__SEED__', JSON.stringify(clone))
-                      .replace('__SHOTS_IDI__', JSON.stringify(shotsArt));
+                      .replace('__SHOTS_IDI__', JSON.stringify(shotsArt))
+                      .replace('__DIMS__', '{}');
 const art = head + '\n' + corpoArt.trim() + '\n';
 fs.writeFileSync(path.join(RAIZ, 'build/artifact.html'), art);
 

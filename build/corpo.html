@@ -56,6 +56,8 @@
   /* prints por idioma: quem le em portugues ve a tela em portugues.
      SHOTS_IDI mapeia o print base -> a variante daquele idioma; sem variante, cai no base. */
   var SHOTS_IDI = __SHOTS_IDI__;
+  /* F20: largura e altura de cada tela (lidas do PNG no build), para a página não pular ao carregar */
+  var DIMS = __DIMS__;
   var LANG_ATUAL = 'en';
   function img(f, l){
     if (!f) return '';
@@ -67,7 +69,8 @@
   function foto(f, alt, carga){
     /* Sem captura ainda (projeto que nao rodou em emulador): bloco neutro, nunca img quebrada. */
     if (!f) return '<span class="sem-tela" aria-hidden="true"></span>';
-    return '<img src="'+img(f)+'" data-shot="'+e(f)+'" alt="'+e(alt)+'" loading="'+(carga||'lazy')+'">';
+    var d = DIMS[f];
+    return '<img src="'+img(f)+'" data-shot="'+e(f)+'"'+(d ? ' width="'+d[0]+'" height="'+d[1]+'"' : '')+' alt="'+e(alt)+'" loading="'+(carga||'lazy')+'">';
   }
   /* Capa = banner do Patreon (arte larga, nao pixel art): classe propria para o CSS nao ampliar em blocos. */
   function capa(f, alt, carga){ return foto(f, alt, carga).replace('<img ', '<img class="capa" '); }
@@ -591,7 +594,7 @@
     var out = '<div id="capa-pdf">' +
       '<p class="marca">Patch Clan</p>' +
       '<p class="kicker">'+L(m.titulo)+'</p>' +
-      '<h1>'+e(g.nome)+'</h1>' +
+      '<p class="capa-h1">'+e(g.nome)+'</p>' +   /* F17: a capa do PDF não é uma segunda h1 */
       '<p class="sub" style="font-family:var(--sans);font-weight:600;font-size:15pt;color:var(--accent);margin:2mm 0 6mm">' +
         e(g.subtitulo)+(g.traducao_titulo?' · '+e(g.traducao_titulo):'')+'</p>' +
       '<p class="lede">'+L(m.intro)+'</p>' +
@@ -757,6 +760,7 @@
   function depois(r){
     tabelas();
     gradesDeTela();
+    escala();
     aoIndice(r);
   }
   /* F01: tabela de 3+ colunas vira blocos empilhados no celular. O rótulo de cada célula
@@ -786,6 +790,31 @@
       if (im) gs[i].style.setProperty('--cel', (+im.getAttribute('width') + 12) + 'px');
     }
   }
+  /* F07: tela do jogo em escala INTEIRA (1×, 2×, 3×), para todo pixel sair do mesmo tamanho.
+     A escala é a maior que cabe na caixa, até 640 px; se nem 1× cabe (celular), a tela reduz
+     com suavização em vez de pixel duro, que é o que apagava linhas inteiras. */
+  function escala(){
+    var ims = document.querySelectorAll('main .crt img:not(.capa)');
+    for (var i = 0; i < ims.length; i++) {
+      var im = ims[i];
+      if (im.complete && im.naturalWidth) escalaUma(im);
+      else im.addEventListener('load', function(){ escalaUma(this); }, {once:true});
+    }
+  }
+  function escalaUma(im){
+    var nw = im.naturalWidth, crt = im.parentNode, fig = crt.parentNode;
+    if (!nw || !crt.classList.contains('crt') || !fig) return;
+    var solta = fig.classList.contains('man-fig') && !fig.parentNode.matches('.man-figs,.guia-figs');
+    var caixa = solta ? fig.parentNode : fig;
+    var cs = getComputedStyle(crt), pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+    var k = Math.floor(Math.min(caixa.clientWidth - pad, Math.max(nw, 640)) / nw);
+    crt.classList.toggle('inteira', k >= 1);
+    crt.classList.toggle('suave', k < 1);
+    im.style.width = k >= 1 ? (k * nw) + 'px' : '';
+    if (solta) fig.style.maxWidth = k >= 1 ? (k * nw + pad) + 'px' : '';
+  }
+  var redim = 0;
+  window.addEventListener('resize', function(){ clearTimeout(redim); redim = setTimeout(escala, 150); });
   /* F08: tocar numa tela da galeria abre a tela grande, na maior escala inteira que cabe */
   var zoom = document.createElement('dialog');
   zoom.className = 'zoom';
