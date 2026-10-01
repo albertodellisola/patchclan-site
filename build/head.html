@@ -465,6 +465,17 @@ img.capa,.vitrine .tela img.capa,.proj .tela img.capa{image-rendering:auto;aspec
 .man-txt th{font-family:var(--sans);font-size:13.5px}
 .man-fig{margin:24px 0;max-width:400px}
 .man-fig figcaption{font-size:13.5px;color:var(--ink-2);margin-top:8px}
+/* guia do Maniac: telas lado a lado, caixa de dica/aviso e passos numerados do detonado */
+.man-figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin:24px 0}
+.man-figs .man-fig{margin:0;max-width:none}
+.man-nota{border-left:3px solid var(--accent);background:var(--ground-2);padding:12px 16px;margin:20px 0;
+  font-size:15.5px;line-height:1.55;border-radius:0 4px 4px 0}
+.man-nota b:first-child{font-family:var(--sans);display:block;margin-bottom:4px}
+.man-txt ol.passos{list-style:none;padding-left:0;counter-reset:passo}
+.man-txt ol.passos > li{counter-increment:passo;position:relative;padding:0 0 10px 40px}
+.man-txt ol.passos > li::before{content:counter(passo);position:absolute;left:0;top:2px;width:26px;height:26px;
+  border-radius:50%;background:var(--accent);color:var(--sobre-accent);font-family:var(--mono);font-size:12.5px;
+  display:flex;align-items:center;justify-content:center}
 /* guia: várias capturas lado a lado, os mapas de aventura em SVG, a caixa de aviso e o plano dia a dia */
 .guia-figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px 16px;margin:22px 0}
 .guia-figs .man-fig{margin:0;max-width:none}

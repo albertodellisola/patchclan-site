@@ -17,7 +17,9 @@
    Acrescentar um: escrever `guia-<jogo>.mjs`, importar aqui e pôr no objeto abaixo. */
 
 import { GUIA_MKR2 } from './guia-mkr2.mjs';
+import { GUIA_MANIAC } from './guia-maniac.mjs';
 
 export const GUIAS = {
   'magic-knight-rayearth-2': GUIA_MKR2,
+  'maniac-mansion': GUIA_MANIAC,
 };
