@@ -513,7 +513,7 @@ img.capa,.vitrine .tela img.capa,.proj .tela img.capa{image-rendering:auto;aspec
 .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:44px}
 .tier{border:1px solid var(--rule);border-radius:5px;padding:24px;background:var(--ground-2);
   display:flex;flex-direction:column;gap:13px;position:relative}
-.tier.destaque{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.tier.recomendado{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
 .tier .fita{position:absolute;top:-11px;left:24px;background:var(--accent);color:var(--sobre-accent);
   font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
   padding:4px 11px;border-radius:2px;font-weight:500}
@@ -808,6 +808,25 @@ dialog.zoom .zoom-x{position:fixed;top:8px;right:8px;width:44px;height:44px;bord
 .passos span + span::before{content:none}
 .passos span::before{content:counter(passo);color:var(--accent);margin-right:8px;font-weight:600}
 @media (max-width:600px){.passos{flex-direction:column;gap:0}}
+/* -- typeset -- */
+/* F13: lista dentro de lista com recuo e marcador próprio */
+.man-txt li > ul,.man-txt li > ol{margin:6px 0 4px;padding-left:1.25em}
+.man-txt li > ul{list-style:circle}
+.man-txt li > ul > li{font-size:16px;line-height:1.55;color:var(--ink-2);margin-bottom:4px}
+
+/* F14: no máximo ~70 caracteres por linha no quadro Release / Beta / Alfa e na fila */
+.regua .intro,.regua dd,.regua .fecho,.fila .intro,.fila .aviso,.fila li p{max-width:68ch}
+
+/* F15: mono nunca abaixo de 13 px em rótulo, e frase de legenda em serifa de 15 px */
+.tier .nota{font-size:13.5px;line-height:1.55;letter-spacing:0}
+.tier .preco small{font-size:13px}
+.galeria figcaption{font-family:var(--serif);font-size:15px;line-height:1.45}
+.galeria figcaption b{font-family:var(--mono);font-size:12.5px;margin-bottom:4px}
+.cta-apoio .nota,.prova .onde,.pt-item .aviso{font-size:13px}
+.num span,.vitrine .cat,.proj .cat{font-size:12.5px}
+.man-sec .label{font-size:14px}
+.man-fig figcaption,.guia-figs figcaption{font-size:14.5px;line-height:1.45}
+@media (max-width:600px){.galeria figcaption{font-size:14px}.galeria figcaption b{font-size:12px}}
 @media print{.doc-cab,.man-sec.solo{max-width:none}
   .man-sec.solo :is(.man-figs,.guia-figs,.mapa-wrap,.guia-plano),.man-sec.solo .man-txt table{width:auto;margin-left:0;margin-right:0}}
 </style>

@@ -436,7 +436,7 @@
   function secao(g){ return g && g.tipo === 'hack' ? 'hacks' : 'traducoes'; }
   function paginaHacks(){
     var lista = (D.games||[]).filter(function(g){ return secao(g) === 'hacks'; });
-    var out = '<section><p class="label">Hacks/Fixes</p>' +
+    var out = '<section><p class="label">'+lista.length+' '+L({pt:'jogos sem os bugs de fábrica',en:'games without the factory bugs',es:'juegos sin los bugs de fábrica'})+'</p>' +
       '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px)">Hacks/Fixes</h1>' +
       '<p class="lede">'+L({pt:'O jogo no idioma original, sem os bugs de fábrica. Nada é traduzido aqui: o que muda é o cartucho que trava, congela ou perde o save.',
                             en:'The game in its original language, minus the factory bugs. Nothing is translated here: what changes is the cartridge that crashes, freezes or loses its save.',
@@ -458,7 +458,7 @@
     var grupos = ['release','beta','alfa'].map(function(n){
       return { n:n, t:NIVEIS[n].rot, f:function(g){ return g.nivel === n; } };
     });
-    var out = '<section><p class="label">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</p>' +
+    var out = '<section><p class="label">'+jogos.length+' '+L({pt:'projetos em andamento e prontos',en:'projects, in progress and done',es:'proyectos, en marcha y terminados'})+'</p>' +
       '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px)">'+L({pt:'Traduções',en:'Translations',es:'Traducciones'})+'</h1>' +
       '<p class="lede">'+L({pt:'O Patch Clan não é um site sobre alguns jogos: é uma oficina de projetos, e estes são os que existem hoje.',
                             en:'Patch Clan is not a site about a few games: it is a workshop of projects, and these are the ones that exist today.',
@@ -665,7 +665,7 @@
       '<div><div class="big">'+e(hs.numero)+'</div><div class="rot">'+L(hs.rotulo)+'</div>' +
         '<div class="passos">'+(hs.passos||[]).map(function(x){ return '<span>'+L(x)+'</span>'; }).join('')+'</div></div></div>' +
       '<div class="tiers">' + (p.tiers||[]).map(function(t){
-        return '<div class="tier'+(t.recomendado?' destaque':'')+'">' +
+        return '<div class="tier'+(t.recomendado?' recomendado':'')+'">' +   /* F16: "destaque" pegava o CSS do projeto em destaque */
           (t.recomendado?'<span class="fita">'+L({pt:'Recomendado',en:'Recommended',es:'Recomendado'})+'</span>':'') +
           '<div class="topo"><h3>'+e(t.nome)+'</h3>' +
           '<div class="preco">'+e(t.preco)+'<small>'+L(t.periodo)+'</small></div></div>' +

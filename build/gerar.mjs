@@ -212,6 +212,26 @@ POSTS.forEach((p, i) => {
    porque esses dois o Supabase substitui no ar; este número só muda por aqui. */
 if (!Number.isInteger(NOTICIAS_NA_HOME) || NOTICIAS_NA_HOME < 1 || NOTICIAS_NA_HOME > 4 || NOTICIAS_NA_HOME > POSTS.length)
   throw new Error(`NOTICIAS_NA_HOME = ${NOTICIAS_NA_HOME}: tem de ser inteiro de 1 a 4 e não passar do número de posts (${POSTS.length})`);
+/* Aspas tipográficas no manual e no guia (auditoria 01/10/2026, F21): só no TEXTO, nunca dentro
+   de tag (atributo de HTML continua com aspa reta). Aspa que segue espaço, parêntese ou travessão
+   abre; o resto fecha. O apóstrofo não muda (Dell'Isola leva o sinal reto). */
+function aspas(html) {
+  let ant = ' ';
+  return html.replace(/(<[^>]*>)|([^<]+)/g, (m, tag, txt) => {
+    if (tag) { if (!/^<\/?(b|strong|em|i|a|code|span|small|sup|sub)\b/i.test(tag)) ant = ' '; return tag; }
+    let out = '';
+    for (const ch of txt) { out += ch === '"' ? (/[\s(\[—–]/.test(ant) ? '“' : '”') : ch; ant = ch; }
+    return out;
+  });
+}
+function aspasEm(o) {
+  for (const [k, v] of Object.entries(o)) {
+    if (k === 'slug' || k === 'id' || k === 'foto') continue;
+    if (typeof v === 'string') { if (v.includes('"')) o[k] = aspas(v); }
+    else if (v && typeof v === 'object') aspasEm(v);
+  }
+}
+[MANUAIS, GUIAS].forEach(col => Object.values(col).forEach(aspasEm));
 const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS, noticiasHome: NOTICIAS_NA_HOME };
 /* Gate do texto (regra do dono, 19/09/2026): o site diz testado/jogado, nunca bot, robô que
    joga, teste automático, emulador sem janela nem IA. Lista em build/gate_texto.mjs. */
