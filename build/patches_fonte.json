@@ -180,5 +180,19 @@
   "formato": "ips",
   "md5_original": "5835600abb0a8de98d905da545350160",
   "traduzida": "maniac-hack/build/maniac_pt_51a4661d.nes"
+ },
+ "taekwondo-en": {
+  "projeto": "taekwondo-hack",
+  "original": "taekwondo-hack/rom/original.sfc",
+  "formato": "ips",
+  "md5_original": "e9eb2c3d0b6e21baafbfc4b614e04a3f",
+  "traduzida": "taekwondo-hack/build/taekwondo_en.sfc"
+ },
+ "taekwondo-es": {
+  "projeto": "taekwondo-hack",
+  "original": "taekwondo-hack/rom/original.sfc",
+  "formato": "ips",
+  "md5_original": "e9eb2c3d0b6e21baafbfc4b614e04a3f",
+  "traduzida": "taekwondo-hack/build/taekwondo_en.sfc"
  }
 }
