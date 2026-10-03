@@ -280,7 +280,7 @@ export const MANIAC = {
   sistema: 'Famicom', mapper: 'Mapper 1 (SUROM) · 256 KB PRG expandido para 512 KB · CHR-RAM · save com bateria (8 KB)',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'release',
-  versao: 'English v1.1 build 9',
+  versao: 'English v1.1 build 9 · Español v1.0 build 1 · Português v1.0 build 1',
   capa: 'maniac/00-capa-patreon.jpg',
   linha: bi('Um jogo ocidental que virou cartucho japonês, e não o contrário: o Dr. Fred, a Edna e o Dave, escritos em hiragana.',
             'A Western game that became a Japanese cartridge, rather than the other way round: Dr. Fred, Edna and Dave, written in hiragana.',
@@ -298,7 +298,7 @@ export const MANIAC = {
   },
   numeros: [],
   grupos: [],
-  patch: { versoes: { en: { arquivo: 'maniac-mansion-en.ips' }, pt: null, es: null }, rom: 'Maniac Mansion (Japan).nes', rom_md5: '5835600abb0a8de98d905da545350160' },
+  patch: { versoes: { en: { arquivo: 'maniac-mansion-en.ips' }, pt: { arquivo: 'maniac-mansion-pt.ips' }, es: { arquivo: 'maniac-mansion-es.ips' } }, rom: 'Maniac Mansion (Japan).nes', rom_md5: '5835600abb0a8de98d905da545350160' },
   fotos: [
     { f: 'maniac/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O logo da Lucasfilm no cartucho da Jaleco, com o subtítulo em letra latina.', 'The Lucasfilm logo on the Jaleco cartridge, with the subtitle in Latin script.', 'El logo de Lucasfilm en el cartucho de Jaleco, con el subtítulo en letra latina.') },

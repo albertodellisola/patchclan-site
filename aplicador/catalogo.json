@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-09-27T13:08:12.948Z",
+ "gerado_em": "2026-10-03T04:15:08.310Z",
  "fonte": {
   "repositorio": "patchclan-site",
   "ref": "origin/main",
@@ -46,7 +46,7 @@
    "jogo": "Maniac Mansion",
    "tipo": "traducao",
    "nivel": "release",
-   "versao": "English v1.1 build 9",
+   "versao": "English v1.1 build 9 · Español v1.0 build 1 · Português v1.0 build 1",
    "idioma": "en",
    "idiomas": [
     "en"
@@ -77,6 +77,84 @@
    },
    "md5_resultado": "5b328a7dc05bc84ad0938043f44fef86",
    "crc32_resultado": "8ce3b942",
+   "tamanho_resultado": 524304
+  },
+  {
+   "slug": "maniac-mansion",
+   "chave": "maniac-mansion-es",
+   "jogo": "Maniac Mansion",
+   "tipo": "traducao",
+   "nivel": "release",
+   "versao": "English v1.1 build 9 · Español v1.0 build 1 · Português v1.0 build 1",
+   "idioma": "es",
+   "idiomas": [
+    "es"
+   ],
+   "idioma_rotulo": "ES",
+   "sistema": "Famicom",
+   "formato": "ips",
+   "arquivo": "maniac-mansion-es.ips",
+   "url_patch": "/patches/maniac-mansion-es.ips",
+   "url_patreon": null,
+   "url_download_contado": null,
+   "sha256_patch": "010413ea672660aa22f50fae9c62a038036dab70b7d07fe35ef7ea3602282016",
+   "sha1_patch": "2049a3783bae00cffacad5f2aa3310f4f6aefc3e",
+   "md5_patch": "720f10dd35b227ca7a28c97041d0e46a",
+   "tamanho_patch": 74404,
+   "nome_rom_esperada": "Maniac Mansion (Japan).nes",
+   "regiao": "Japan",
+   "md5_original": "5835600abb0a8de98d905da545350160",
+   "crc32_original": "6571f742",
+   "sha1_original": "d5e63df09043f4bdd810cfe1eb99bf3b368826bf",
+   "tamanho_original": 262160,
+   "corpo": {
+    "tipo": "iNES",
+    "tamanho": 262144,
+    "md5": "979a6297c0a6a83dfadd327157715b9a",
+    "crc32": "3da2085e",
+    "cabecalho_hex": "4e45531a100021082000000700000001"
+   },
+   "md5_resultado": "e65291c957e8a76fa4cdbdc4c3221c1d",
+   "crc32_resultado": "b7bf7590",
+   "tamanho_resultado": 524304
+  },
+  {
+   "slug": "maniac-mansion",
+   "chave": "maniac-mansion-pt",
+   "jogo": "Maniac Mansion",
+   "tipo": "traducao",
+   "nivel": "release",
+   "versao": "English v1.1 build 9 · Español v1.0 build 1 · Português v1.0 build 1",
+   "idioma": "pt",
+   "idiomas": [
+    "pt"
+   ],
+   "idioma_rotulo": "PT",
+   "sistema": "Famicom",
+   "formato": "ips",
+   "arquivo": "maniac-mansion-pt.ips",
+   "url_patch": "/patches/maniac-mansion-pt.ips",
+   "url_patreon": null,
+   "url_download_contado": null,
+   "sha256_patch": "5c1c73f86fcdd9e2f8cc8fabc73a4513a6c2efe91df127ed757d584923c8e166",
+   "sha1_patch": "342b8c259e72da9ac667bd9a8458a721416dfba2",
+   "md5_patch": "7a2660b5bcaa9611965ec7ff7bea6897",
+   "tamanho_patch": 74162,
+   "nome_rom_esperada": "Maniac Mansion (Japan).nes",
+   "regiao": "Japan",
+   "md5_original": "5835600abb0a8de98d905da545350160",
+   "crc32_original": "6571f742",
+   "sha1_original": "d5e63df09043f4bdd810cfe1eb99bf3b368826bf",
+   "tamanho_original": 262160,
+   "corpo": {
+    "tipo": "iNES",
+    "tamanho": 262144,
+    "md5": "979a6297c0a6a83dfadd327157715b9a",
+    "crc32": "3da2085e",
+    "cabecalho_hex": "4e45531a100021082000000700000001"
+   },
+   "md5_resultado": "51a4661ddced271bfd61ba1d26c27b60",
+   "crc32_resultado": "bd08ea2c",
    "tamanho_resultado": 524304
   },
   {

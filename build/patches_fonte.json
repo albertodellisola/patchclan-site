@@ -166,5 +166,19 @@
   "formato": "ips",
   "md5_original": "5835600abb0a8de98d905da545350160",
   "traduzida": "maniac-hack/build/maniac_jp_bugfix.nes"
+ },
+ "maniac-mansion-es": {
+  "projeto": "maniac-hack",
+  "original": "maniac-hack/original/maniac_jp.nes",
+  "formato": "ips",
+  "md5_original": "5835600abb0a8de98d905da545350160",
+  "traduzida": "maniac-hack/build/maniac_es_e65291c9.nes"
+ },
+ "maniac-mansion-pt": {
+  "projeto": "maniac-hack",
+  "original": "maniac-hack/original/maniac_jp.nes",
+  "formato": "ips",
+  "md5_original": "5835600abb0a8de98d905da545350160",
+  "traduzida": "maniac-hack/build/maniac_pt_51a4661d.nes"
  }
 }
