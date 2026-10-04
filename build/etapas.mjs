@@ -55,7 +55,7 @@ export const ETAPAS = {
   'maniac-mansion':            l(F, F, F, F, F, F),  // RELEASE v1.0.1 build 7 (21/09: bugs B6, B11, B17 do cartucho consertados); v1.0 build 6 (19/09): revisão 2 agentes, 5 telas de arte aprovadas, caça 7/7 ramos, debug 814/814, longplay A-G
   'hanjuku-hero':              l(A, A, A, F, A),  // 382/425; 33 golpes esperando o dono
   'robot-poncots-64':          l(A, A, A, A, A),  // 201 listas seguradas; texturas 834 e 257
-  'ninja-burai-densetsu':      l(A, A, N, A, A),  // escopo jogável: roteiro fica em japonês
+  'ninja-burai-densetsu':      l(F, F, F, A, A),  // 04/10: BETA v0.1 build 15 (8579ad6e): roteiro inteiro em inglês, revisão fechada; falta o ZERAR
   'gorilla-man':               l(F, F, F, F, F, F),  // RELEASE v1.4 build 88 (19/09) -> build 93 no mesmo link (22/09): censo de caixas, caça 3 finais e revisão refeitos, longplay A/B/C na 93 -> build 94 no mesmo link (25/09): placa SCHOOL do portão, caça, cobertura 540/540 e longplay A/B/C na 94
   'shining-force-gaiden':      l(A, A, A, A, A),  // telas por índice de tile; alfa não passou da abertura
   'gorilla-man-bugfix':        h(F, F),  // só os 2 bugs do cartucho (19/09): IPS de 34 bytes; provados na EN (caça 3 finais, hp0b); a ROM só-fix não foi jogada (dono dispensou)
