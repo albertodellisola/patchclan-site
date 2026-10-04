@@ -417,7 +417,19 @@ export const BURAI = {
   grupos: [],
   patch: { versoes: { en: { arquivo: 'ninja-burai-densetsu-en.ips' }, pt: null, es: null }, rom: 'Ninja Burai Densetsu (Japan).md', rom_md5: 'd1263fb5efd1af669a0df2a45689c3f5' },
   fotos: [
-    { f: 'burai/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
-      c: bi('O título redesenhado em inglês, LEGEND OF THE NINJA, com o endereço da casa no rodapé.', 'The title redrawn in English, LEGEND OF THE NINJA, with the house address at the foot.', 'El título redibujado en inglés, LEGEND OF THE NINJA, con la dirección de la casa al pie.') }
+    { f: 'burai/01-titulo-legend-of-ninja-burai.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
+      c: bi('O logo novo em inglês, LEGEND OF NINJA BURAI, redesenhado em pixel na paleta do original, com o endereço da casa no rodapé.', 'The new English logo, LEGEND OF NINJA BURAI, redrawn in pixel art in the original palette, with the house address at the foot.', 'El logo nuevo en inglés, LEGEND OF NINJA BURAI, redibujado en pixel art con la paleta del original, con la dirección de la casa al pie.') },
+    { f: 'burai/02-wind-legion.png', t: bi('Abertura', 'Opening', 'Apertura'),
+      c: bi('Os três companheiros que o Kageha reuniu: o lanceiro Gonpei, o arqueiro Genba e o bushi Ukon.', 'The three companions Kageha gathered: Gonpei the lancer, Genba the archer and Ukon the bushi.', 'Los tres compañeros que reunió Kageha: el lancero Gonpei, el arquero Genba y el bushi Ukon.') },
+    { f: 'burai/03-mapa.png', t: bi('Mapa de campanha', 'Campaign map', 'Mapa de campaña'),
+      c: bi('O menu de comandos e o prazo do capítulo, contado em dias, na barra lateral.', 'The command menu and the chapter deadline, counted in days, on the sidebar.', 'El menú de órdenes y el plazo del capítulo, contado en días, en la barra lateral.') },
+    { f: 'burai/04-condicao-de-vitoria.png', t: bi('Condição de vitória', 'Winning conditions', 'Condición de victoria'),
+      c: bi('Cada capítulo abre dizendo o que é preciso para vencê-lo.', 'Every chapter opens by stating what it takes to win it.', 'Cada capítulo empieza diciendo lo que hace falta para ganarlo.') },
+    { f: 'burai/05-batalha.png', t: bi('Batalha', 'Battle', 'Batalla'),
+      c: bi('Unidades na grade, com o HP e o MP da unidade escolhida.', 'Units on the grid, with the selected unit\'s HP and MP.', 'Unidades en la cuadrícula, con el HP y el MP de la unidad elegida.') },
+    { f: 'burai/06-loja.png', t: bi('Loja', 'Shop', 'Tienda'),
+      c: bi('Compra de itens na vila, com a janela de status embaixo: o nível aparece em DAN.', 'Buying items in a village, with the status window below: the rank reads in DAN.', 'Compra de objetos en la aldea, con la ventana de estado abajo: el nivel aparece en DAN.') },
+    { f: 'burai/07-record-book.png', t: bi('Record Book', 'Record Book', 'Record Book'),
+      c: bi('O livro de registro, que guarda e retoma o jogo, refeito em inglês.', 'The record book, which saves and resumes the game, redone in English.', 'El libro de registro, que guarda y retoma la partida, rehecho en inglés.') }
   ]
 };
