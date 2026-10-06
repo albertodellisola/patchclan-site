@@ -14,7 +14,7 @@ export const YYHG = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   destaque: true,
   nivel: 'release',
-  versao: 'English v1.0',
+  versao: 'English v1.0.1',
   capa: 'yyhg/00-capa-patreon.jpg',
   linha: bi('Nenhum ponteiro de texto existe em claro na ROM: eles moram dentro de scripts comprimidos.',
             'Not one text pointer exists in the open in this ROM: they live inside compressed scripts.',
