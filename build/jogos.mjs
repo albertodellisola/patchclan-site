@@ -30,6 +30,7 @@ import { SD } from './jogo-slamdunk.mjs';
 import { LINKBATTLER } from './jogo-linkbattler.mjs';
 import { TAEKWONDO } from './jogo-taekwondo.mjs';
 import { FJ1 } from './jogo-fj1.mjs';
+import { AAG } from './jogo-aag.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
@@ -51,7 +52,8 @@ const APELO = [
   SRW64,      /* 27/09/2026, beta: cai no fim do grupo dos beta */
   LINKBATTLER, /* 30/09/2026, beta: cai no fim do grupo dos beta, vizinho do 64 */
   TAEKWONDO,  /* 03/10/2026, release v1.0 EN+ES (build b651ff2b): cai no fim do grupo dos release */
-  FJ1         /* 05/10/2026, beta Definitive Edition v2.0 build 1 (EN/PT/ES, sobre a v1.03 do BlackPaladin): cai no fim do grupo dos beta */
+  FJ1         /* 05/10/2026, beta Definitive Edition v2.0 build 1 (EN/PT/ES, sobre a v1.03 do BlackPaladin): cai no fim do grupo dos beta */,
+  AAG         /* 07/10/2026, beta v0.1 build 1 (EN/PT/ES juntas, Mega-CD): cai no fim do grupo dos beta */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
