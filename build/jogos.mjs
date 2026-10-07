@@ -3,6 +3,7 @@
    A ORDEM É A QUE APARECE, e a home mostra TODOS. Ela é agrupada por estado e,
    dentro de cada estado, por apelo ao público — decisão do dono em 09/09/2026:
      1) os release   2) os beta    3) os alfa
+   Os beta, desde 07/10/2026, vão por data (a mais recente primeiro): BETA_DESDE.
 
    O AGRUPAMENTO É AUTOMÁTICO, e é de propósito. A lista abaixo guarda só a ordem
    de APELO; quem separa release de beta de alfa é o `nivel` do próprio jogo.
@@ -58,11 +59,40 @@ const APELO = [
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
 
+/* BETAS: da mais recente para a mais antiga (dono, 07/10/2026). A primeira beta fica
+   colada nos release. A data é o dia em que o jogo virou beta no site, medida no
+   histórico do index.html no origin/main; empate no mesmo dia vai pela hora do commit.
+   Beta nova (ou jogo que sobe para beta) ganha a linha dela aqui, com data e hora.
+   Sem a linha, o gerar.mjs para com erro, e o jogo não cai num lugar qualquer. */
+const BETA_DESDE = {
+  'after-armageddon-gaiden':       '2026-10-07T03:42',
+  'famicom-jump-1':                '2026-10-05T20:33',
+  'ninja-burai-densetsu':          '2026-10-04T00:26',
+  'super-robot-wars-link-battler': '2026-09-30T10:16',
+  'super-robot-wars-64':           '2026-09-27T10:07',
+  'slam-dunk':                     '2026-09-25T08:10',
+  'famicom-jump-2':                '2026-09-16T23:02',
+  'dragon-ball-3':                 '2026-09-16T23:02',
+  'guevara':                       '2026-09-16T22:11',
+  'nekketsu-kakutou-densetsu':     '2026-09-09T23:55',
+  'gaia-saver':                    '2026-09-09T20:26',
+  'tom-sawyer':                    '2026-09-09T12:51',
+  'ultraman-club-2':               '2026-09-09T12:51',
+};
+
 for (const g of APELO) {
   if (!(g.nivel in POSTO)) {
     throw new Error(`jogos.mjs: "${g.slug}" tem nivel "${g.nivel}", que não existe em POSTO`);
   }
 }
 
-/* sort estável: preserva a ordem de apelo dentro de cada grupo */
-export const JOGOS = [...APELO].sort((a, b) => POSTO[a.nivel] - POSTO[b.nivel]);
+for (const g of APELO) {
+  if (g.nivel === 'beta' && !BETA_DESDE[g.slug]) {
+    throw new Error(`jogos.mjs: "${g.slug}" é beta e não tem data em BETA_DESDE`);
+  }
+}
+
+/* sort estável: release e alfa ficam na ordem de apelo; beta vai da mais recente à mais antiga */
+export const JOGOS = [...APELO].sort((a, b) =>
+  POSTO[a.nivel] - POSTO[b.nivel] ||
+  (a.nivel === 'beta' ? BETA_DESDE[b.slug].localeCompare(BETA_DESDE[a.slug]) : 0));
