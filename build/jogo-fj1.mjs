@@ -24,6 +24,7 @@ export const FJ1 = {
   nivel: 'beta',
   versao: 'Definitive Edition BETA v2.0 build 1',
   capa: 'fj1/00-capa-patreon.jpg',
+  patreon: 'https://www.patreon.com/patchclan/posts/famicom-jump-171676028?pr=true',
 
   /* DOSSIE §1, §2, §3.5-3.7. */
   linha: bi("O jogo dos 20 anos da Shōnen Jump na tradução do BlackPaladin, agora com save, botão de falar, pausa na briga e versões em português e espanhol.",
