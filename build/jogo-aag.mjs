@@ -14,7 +14,7 @@ export const AAG = {
   sistema: 'Mega-CD', mapper: 'CD-ROM · faixa 1 de dados (78 arquivos ISO 9660, programas 68000 carregados na Word RAM) + 38 faixas de áudio',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'beta',
-  capa: 'aag/01-titulo.png',
+  capa: 'aag/00-capa-patreon.jpg',
   patreon: 'https://www.patreon.com/patchclan/posts/after-armageddon-171677014',
   linha: bi('Os humanos sobreviveram ao fim do mundo como gado, e você joga com cinco dos demônios que o dominam: RPG de Mega-CD de 1994 que nunca saiu do Japão.',
             'Humans survived the end of the world as livestock, and you play five of the demons who rule it: a 1994 Mega-CD RPG that never left Japan.',
