@@ -16,6 +16,8 @@ import { ES_FJ2 } from './es-fj2.mjs';
 import { ES_CT } from './es-ct.mjs';
 import { ES_DB3 } from './es-db3.mjs';
 import { confere as confereTexto } from './gate_texto.mjs';
+import { DIARIO } from './diario.mjs';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -74,6 +76,47 @@ for (const g of JOGOS) {
     const b = fs.statSync(f).size;   /* patch de conserto tem bytes, não KB: 73 B viraria "0 KB" */
     v.tamanho = b < 1024 ? b + ' B' : Math.round(b / 1024) + ' KB';
   }
+}
+
+/* Guarda do DIÁRIO (build/diario.mjs, dono, 09/10/2026). A data ao lado de cada botão de
+   download é a da entrada mais nova que mexeu naquele idioma — e ela só vale enquanto o arquivo
+   for o mesmo: o md5 da entrada tem de bater com o do patch que vai ao ar. Patch trocado sem
+   entrada nova = o site não gera. */
+const md5_8 = f => crypto.createHash('md5').update(fs.readFileSync(f)).digest('hex').slice(0, 8);
+const ISO = /^\d{4}-\d{2}-\d{2}$/;
+const HOJE = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);   /* horário de Brasília */
+for (const g of JOGOS) {
+  const ds = DIARIO[g.slug];
+  if (!Array.isArray(ds) || !ds.length) throw new Error(`${g.slug}: sem entrada em build/diario.mjs — todo jogo tem diário`);
+  ds.forEach((x, i) => {
+    const quem = `diario ${g.slug} #${i + 1} (${x.data})`;
+    if (!ISO.test(x.data || '') || isNaN(Date.parse(x.data))) throw new Error(`${quem}: data inválida, use AAAA-MM-DD`);
+    if (x.data > HOJE) throw new Error(`${quem}: data no futuro`);
+    if (i && ds[i - 1].data < x.data) throw new Error(`${quem}: fora de ordem — mais nova primeiro`);
+    for (const c of ['titulo', 'texto']) for (const l of ['pt', 'en', 'es']) {
+      if (!(x[c] && String(x[c][l] || '').trim())) throw new Error(`${quem}: falta ${c}.${l}`);
+    }
+    for (const idi of x.idiomas || []) {
+      if (!(idi in g.patch.versoes)) throw new Error(`${quem}: idioma "${idi}" não existe no patch deste jogo`);
+    }
+  });
+  for (const [idi, v] of Object.entries(g.patch.versoes)) {
+    if (!v) continue;
+    const ult = ds.find(x => (x.idiomas || []).includes(idi));
+    if (!ult) throw new Error(`${g.slug}: o patch ${idi} não tem entrada no diário — de quando ele é?`);
+    const atual = md5_8(path.join(RAIZ, PASTA_PATCH(g), v.arquivo));
+    const dito = (ult.md5 || {})[idi];
+    if (dito !== atual) {
+      throw new Error(`${g.slug}: o patch ${idi} (${v.arquivo}, md5 ${atual}) não é o da entrada de ${ult.data} do diário` +
+        ` (md5 ${dito || 'nenhum'}). Patch trocado = entrada NOVA em build/diario.mjs, no topo da lista do jogo,` +
+        ` com data, o que mudou nos três idiomas e md5: { ${idi}: '${atual}' }.`);
+    }
+    v.atualizado = ult.data;
+  }
+  g.diario = ds;
+}
+for (const s of Object.keys(DIARIO)) {
+  if (!JOGOS.some(g => g.slug === s)) console.warn(`aviso: diario.mjs tem "${s}", que não está na lista do site — ignorado`);
 }
 
 /* Guarda da contagem de downloads. Um jogo que declara `patch.release` faz o botao

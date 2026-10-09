@@ -111,7 +111,7 @@
         '<h4>'+L({pt:'Um patch, os três idiomas',en:'One patch, all three languages',
                   es:'Un parche, los tres idiomas'})+'</h4>' +
         '<p class="ficha"><b>'+e(v.arquivo)+'</b> · '+tipo+' · '+e(v.tamanho) +
-          (nota ? '<br>'+L(nota) : '') + '</p></div>' +
+          (nota ? '<br>'+L(nota) : '') + '</p>' + quandoPatch(v) + '</div>' +
       (destino
         ? '<a class="bt patreon" href="'+e(destino)+'" target="_blank" rel="noopener">&hearts; ' +
           L({pt:'No Patreon',en:'On Patreon',es:'En Patreon'})+'</a>'
@@ -126,7 +126,7 @@
     return '<div class="patch-uno"><div class="bandas"><div class="banda"><span class="cod">JP</span></div></div>' +
       '<div class="corpo"><div>' +
         '<h4>'+L({pt:'Um patch, o jogo em japonês',en:'One patch, the game stays in Japanese',es:'Un parche, el juego sigue en japonés'})+'</h4>' +
-        '<p class="ficha"><b>'+e(v.arquivo)+'</b> · IPS · '+e(v.tamanho) + (nota ? '<br>'+L(nota) : '') + '</p></div>' +
+        '<p class="ficha"><b>'+e(v.arquivo)+'</b> · IPS · '+e(v.tamanho) + (nota ? '<br>'+L(nota) : '') + '</p>' + quandoPatch(v) + '</div>' +
       (destinoPatch(g)
         ? '<a class="bt patreon" href="'+e(destinoPatch(g))+'" target="_blank" rel="noopener">&hearts; '+L({pt:'No Patreon',en:'On Patreon',es:'En Patreon'})+'</a>'
         : '<a class="bt" href="'+pastaPatch(g)+'/'+e(v.arquivo)+'" download>&#9654; '+L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>') +
@@ -143,12 +143,12 @@
       }
       if (destino) {
         return '<div class="pt-item">'+cab +
-          '<div class="tam">'+tipo+' · '+e(v.tamanho)+'</div>' +
+          '<div class="tam">'+tipo+' · '+e(v.tamanho)+'</div>' + quandoPatch(v) +
           '<a class="bt patreon" href="'+e(destino)+'" target="_blank" rel="noopener">♥ ' +
           L({pt:'No Patreon',en:'On Patreon',es:'En Patreon'})+'</a></div>';
       }
       return '<div class="pt-item">'+cab +
-        '<div class="tam">'+tipo+' · '+e(v.tamanho)+'</div>' +
+        '<div class="tam">'+tipo+' · '+e(v.tamanho)+'</div>' + quandoPatch(v) +
         '<a class="bt" href="'+pasta+'/'+e(v.arquivo)+'" download>▶ ' +
         L({pt:'Baixar',en:'Download',es:'Descargar'})+'</a></div>';
     }).join('') + '</div>';
@@ -381,6 +381,61 @@
       '</article>';
   }
 
+  /* DIÁRIO DO PROJETO (dono, 09/10/2026): as duas últimas atualizações de cada jogo, com data.
+     Vem de build/diario.mjs (g.diario, conferido pelo gerar.mjs) e dos posts do blog do mesmo
+     jogo — o painel pode publicar notícia sem passar pelo repositório. Post e entrada do mesmo
+     dia são a mesma atualização: a entrada ganha o link da notícia e não aparece duas vezes. */
+  var DIARIO_NA_PAGINA = 2;
+  function diarioDoJogo(g){
+    var lista = (g.diario||[]).map(function(x){
+      return { data:x.data, versao:x.versao, idiomas:x.idiomas||[], titulo:x.titulo, texto:x.texto };
+    });
+    (D.posts||[]).forEach(function(o){
+      var pg = jogoDoPost(o); if (!pg || pg.slug !== g.slug) return;
+      var mesmo = lista.filter(function(x){ return x.data === o.date && !x.post; })[0];
+      if (mesmo) { mesmo.post = o; return; }
+      lista.push({ data:o.date, versao:o.build||null, idiomas:[], post:o,
+                   titulo:{pt:o.title_pt,en:o.title_en,es:o.title_es},
+                   texto:{pt:resumo(o,'pt'),en:resumo(o,'en'),es:resumo(o,'es')} });
+    });
+    return lista.sort(function(a,b){ return a.data < b.data ? 1 : a.data > b.data ? -1 : 0; });
+  }
+  /* "Atualizado em 06 out 2026", nos três idiomas; `meio` = no meio da frase (minúscula) */
+  function rotAtualizado(iso, meio){
+    var d = data(iso);
+    return L({ pt:(meio?'atualizado em ':'Atualizado em ')+d.pt,
+               en:(meio?'updated ':'Updated ')+d.en,
+               es:(meio?'actualizado el ':'Actualizado el ')+d.es });
+  }
+  function patchAtualizado(g){
+    var m = '', vs = (g.patch||{}).versoes||{};
+    Object.keys(vs).forEach(function(k){ var v = vs[k]; if (v && v.atualizado && v.atualizado > m) m = v.atualizado; });
+    return m;
+  }
+  function quandoPatch(v){
+    return (v && v.atualizado) ? '<time class="atual" datetime="'+e(v.atualizado)+'">'+rotAtualizado(v.atualizado)+'</time>' : '';
+  }
+  function secaoDiario(g){
+    var ds = diarioDoJogo(g).slice(0, DIARIO_NA_PAGINA);
+    if (!ds.length) return '';
+    return '<section id="diario"><p class="label">'+L({pt:'Diário do projeto',en:'Project log',es:'Diario del proyecto'})+'</p>' +
+      '<ol class="diario">' + ds.map(function(x, i){
+        return '<li><div class="d-meta">' +
+            (i === 0 ? '<span class="d-novo">'+L({pt:'Mais recente',en:'Latest',es:'Más reciente'})+'</span>' : '') +
+            '<time datetime="'+e(x.data)+'">'+L(data(x.data))+'</time>' +
+            (x.versao ? '<span class="post-build">'+e(x.versao)+'</span>' : '') +
+            (x.idiomas.length ? '<span class="d-patch">'+L({pt:'Patch',en:'Patch',es:'Parche'})+' ' +
+              x.idiomas.map(function(k){ return k.toUpperCase(); }).join(' · ')+'</span>' : '') +
+          '</div><div class="d-corpo"><h3>'+L(x.titulo)+'</h3><p>'+L(x.texto)+'</p>' +
+            (x.post ? '<a class="d-ler" href="#/atualizacoes/'+chavePost(x.post)+'">' +
+              L({pt:'Ler a notícia completa →',en:'Read the full post →',es:'Leer la noticia completa →'})+'</a>' : '') +
+          '</div></li>';
+      }).join('') + '</ol>' +
+      '<p class="ver-todas"><a href="#/atualizacoes">' +
+        L({pt:'Todas as atualizações do Patch Clan →',en:'All Patch Clan updates →',es:'Todas las novedades de Patch Clan →'}) +
+      '</a></p></section>';
+  }
+
   function secaoProvas(){
     var p = (D.content.provas||{}).itens||[];
     if (!p.length) return '';
@@ -509,7 +564,9 @@
       '<p class="sub">'+e(g.subtitulo)+(g.traducao_titulo?' · '+e(g.traducao_titulo):'')+'</p>' +
       '<p style="color:var(--ink-2);max-width:32em">'+L(g.linha)+'</p>' +
       '<p class="ficha">'+e(g.publisher)+(g.dev&&g.dev!==g.publisher?' · '+e(g.dev):'')+' · '+e(g.data)+' · '+e(g.sistema)+'<br>'+e(g.mapper) +
-        (g.versao ? '<br><span class="versao">'+L({pt:'Patch',en:'Patch',es:'Parche'})+' <b>'+e(g.versao)+'</b></span>' : '')+'</p>' +
+        (g.versao ? '<br><span class="versao">'+L({pt:'Patch',en:'Patch',es:'Parche'})+' <b>'+e(g.versao)+'</b>' +
+          (patchAtualizado(g) ? ' · '+rotAtualizado(patchAtualizado(g), true) : '')+'</span>'
+         : (patchAtualizado(g) ? '<br><span class="versao">'+L({pt:'Patch',en:'Patch',es:'Parche'})+' '+rotAtualizado(patchAtualizado(g), true)+'</span>' : ''))+'</p>' +
       '<div class="acoes-jogo">' +
         '<a class="bt" href="#/jogo/'+e(g.slug)+'" data-ir="baixar">▶ '+L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>' +
         linkDoc(g, 'manual', 'bt fora') + linkDoc(g, 'guia', 'bt fora') +
@@ -517,6 +574,7 @@
 
     out += '<nav class="abas" aria-label="'+e(g.nome)+'">' +
       '<a class="on" href="#/jogo/'+e(g.slug)+'" data-ir="sobre">'+L({pt:'Visão geral',en:'Overview',es:'Vista general'})+'</a>' +
+      (diarioDoJogo(g).length ? '<a href="#/jogo/'+e(g.slug)+'" data-ir="diario">'+L({pt:'Diário',en:'Log',es:'Diario'})+'</a>' : '') +
       (g.nivel === 'release' ? '<a href="#/jogo/'+e(g.slug)+'" data-ir="tudo">'+L({pt:'O que mudou',en:'What changed',es:'Qué cambió'})+'</a>' : '') +
       '<a href="#/jogo/'+e(g.slug)+'" data-ir="telas">'+L({pt:'Telas',en:'Screens',es:'Pantallas'})+'</a>' +
       '<a href="#/jogo/'+e(g.slug)+'" data-ir="baixar">'+L({pt:'Baixar',en:'Download',es:'Descargar'})+'</a>' +
@@ -535,6 +593,8 @@
     out += '<section id="sobre"><div class="col">' + (g.resumo ?
       (g.resumo.en||g.resumo.pt||[]).map(function(_,i){
         return '<p>'+L({pt:(g.resumo.pt||[])[i], en:(g.resumo.en||[])[i], es:(g.resumo.es||[])[i]})+'</p>'; }).join('') : '') + '</div></section>';
+
+    out += secaoDiario(g);
 
     if (completa) {
       out += '<section id="tudo"><p class="label">'+L({pt:'O que mudou',en:'What changed',es:'Qué cambió'})+'</p>';

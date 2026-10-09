@@ -224,6 +224,24 @@ o painel não salva post sem escolher o jogo. Consequência: **post de jogo que 
 sai** — publica-se a página primeiro. O site no ar lê os posts do Supabase: post novo vai **nos dois**
 (`posts.mjs` e a tabela), como o do Slam Dunk.
 
+## Diário de cada jogo e data ao lado do patch (09/10/2026, dono)
+
+Pedido: "um mini-blog para cada jogo com as últimas duas atualizações, com a data, e ao lado do
+patch a data da última atualização". Fonte: `build/diario.mjs` (um slug, uma lista, mais nova
+primeiro). A página do jogo ganhou a seção **Diário do projeto** (aba "Diário", logo depois da
+Visão geral) com as duas entradas mais novas; post do blog do mesmo jogo e mesma data vira o link
+"Ler a notícia completa", e post sem entrada entra como entrada (o painel publica sem passar
+por aqui). Cada cartão de download e a linha "Patch …" do cabeçalho mostram "Atualizado em".
+
+- **Imposto no `gerar.mjs`, sem flag:** todo jogo tem entrada; todo idioma com patch é coberto
+  por uma entrada; e a entrada mais nova de cada idioma leva o `md5` (8 hex) do arquivo. Patch
+  trocado sem entrada nova = o site não gera, e o erro já diz o md5 a pôr.
+- **A data é a do conteúdo**, não a da re-subida: em 10/09/2026 todos os privados foram
+  re-subidos ao Storage e o `Last-Modified` diz 10/09 para patches de 07/09 e 09/09. A primeira
+  versão do diário conferiu cada md5 contra o histórico do `patches/` no git.
+- As 55 entradas iniciais foram apuradas no histórico do site, no `Last-Modified` do Storage e
+  nas notas de cada projeto.
+
 ## Os arquivos
 
 | | |
