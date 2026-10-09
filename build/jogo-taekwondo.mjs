@@ -21,7 +21,7 @@ export const TAEKWONDO = {
   sistema: 'Super Famicom', mapper: 'LoROM (FastROM) · 1 MB expandido para 2 MB · sem bateria: o progresso vai por senha',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'release',
-  versao: 'English v1.0 · Español v1.0 · Português v1.0',
+  versao: 'English v1.1 · Español v1.1 · Português v1.1',
   capa: 'taekwondo/00-capa-patreon.jpg',
   linha: bi('Taekwondo de competição, lançado em 1994 só no Japão e na Coreia do Sul. A tela que escolhia japonês ou coreano agora escolhe inglês ou espanhol.',
             'Competition taekwondo, released in 1994 only in Japan and South Korea. The screen that picked Japanese or Korean now picks English or Spanish.',
