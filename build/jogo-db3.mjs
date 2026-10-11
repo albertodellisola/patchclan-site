@@ -7,8 +7,8 @@ export const DB3 = {
   publisher: 'Bandai', dev: 'Bandai', ano: 1989, data: '1989',
   sistema: 'Famicom', mapper: 'Mapper 16 (Bandai FCG-1/2) · 128 KB PRG expanded to 256 KB · 256 KB CHR',
   categoria: { pt:'Tradução + arte', en:'Translation + artwork', es:'Traducción + arte' },
-  nivel: 'beta',
-  versao: 'English v1.0 · Português v1.0',
+  nivel: 'release',
+  versao: 'English v1.0 · Português v1.0 · Español v1.0',
   capa: 'db3/00-capa-patreon.jpg',
   linha: {
     pt: 'Dragon Ball em cartas, 1989. O número de defesa da carta era um kanji desenhado na arte; agora é algarismo, e o treino deixou de ser no chute.',
@@ -76,7 +76,7 @@ export const DB3 = {
              es: 'La ROM inglesa <b>no cambió ni un byte</b> para que existiera el portugués: el idioma entra por una capa aparte, y el <code>md5</code> de la build inglesa es el mismo de antes.' } }
     ]}
   ],
-  patch: { versoes: { en: { arquivo: 'dragon-ball-3-en.ips' }, pt: { arquivo: 'dragon-ball-3-pt.ips' }, es: null }, rom: 'Dragon Ball 3 - Gokuu Den (Japan) (Rev 1).nes', rom_md5: '0bc3d5d7d1e7f2206ce1c157402ff944' },
+  patch: { versoes: { en: { arquivo: 'dragon-ball-3-en.ips' }, pt: { arquivo: 'dragon-ball-3-pt.ips' }, es: { arquivo: 'dragon-ball-3-es.ips' } }, rom: 'Dragon Ball 3 - Gokuu Den (Japan) (Rev 1).nes', rom_md5: '0bc3d5d7d1e7f2206ce1c157402ff944' },
   fotos: [
     { f: 'db3/01-titulo.png', t: { pt: 'Tela de título', en: 'Title screen' }, c: { pt: '悟空伝 redesenhado como <code>LEGEND OF GOKU</code>, dentro dos mesmos 96×32 pixels.', en: '悟空伝 redrawn as <code>LEGEND OF GOKU</code>, inside the same 96×32 pixels.' } },
     { f: 'db3/02-creditos.png', t: { pt: 'Créditos do patch', en: 'Patch credits' }, c: { pt: 'Página branca antes do título, cinco segundos, pulável.', en: 'A white page before the title, five seconds, skippable.' } },

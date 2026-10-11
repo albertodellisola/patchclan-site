@@ -50,7 +50,7 @@ export const ETAPAS = {
   'monster-maker':             l(F, A, N, F, A),  // tela de status não mapeada; lote sem revisão
   'yu-yu-hakusho-gaiden':      l(F, F, F, F, F, F),  // RELEASE 1.0 build 9 (18/09): caça 3 finais, revisão 2 agentes, 8 artes aprovadas, longplay A/B/C
   'famicom-jump-2':            l(F, F, F, F, A),  // testes 70%, sem jogatina completa
-  'dragon-ball-3':             l(F, F, F, F, A),  // falta rota que escolha carta até o fim
+  'dragon-ball-3':             l(F, F, F, F, F, F),  // RELEASE v1.0 (11/10/2026): EN 7c09e769 / PT 97dc2d55 / ES 9d2456fe; revisão, censo, cobertura, menus e leitura fechados nas 3, ZERAR do power-on nos finais A/B (diagnóstico PUBLICA RELEASE), longplay EN A/B gravada e carimbada (longplay/7c09e769/GRAVADA.json)
   'pocket-monsters-stadium':   l(A, A, A, A, A),  // ETAPAS.md: nomes cortados, texturas, bugs
   'maniac-mansion':            l(F, F, F, F, F, F),  // RELEASE v1.0.1 build 7 (21/09: bugs B6, B11, B17 do cartucho consertados); v1.0 build 6 (19/09): revisão 2 agentes, 5 telas de arte aprovadas, caça 7/7 ramos, debug 814/814, longplay A-G
   'hanjuku-hero':              l(A, A, A, F, A),  // 382/425; 33 golpes esperando o dono
