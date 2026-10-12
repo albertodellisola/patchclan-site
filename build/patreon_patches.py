@@ -49,31 +49,70 @@ def ler():
 
 def gate_site(arquivos):
     """GATE (dono, 12/10/2026: "voce nao atualizou no site a versao atual e o blog com o diario de
-    alteracoes, coloca no gate, isso nao pode acontecer"). Nenhum patch sobe para o link do Patreon
-    (nem para patches/) sem o SITE PUBLICADO já carregar esse mesmo arquivo: entrada no
-    build/diario.mjs com o md5 dele, `node build/gerar.mjs` e push no main. Confere o
-    origin/main de verdade (git fetch), não a pasta local — o ~/patchclan-site costuma ficar
-    para trás. Sem flag: barra com SystemExit(5).
+    alteracoes, coloca no gate, isso nao pode acontecer" e "corrigir no gate pra sempre incluir as
+    entradas do diario quando um patch for atualizado"). Nenhum patch sobe para o link do Patreon
+    (nem para patches/) sem o SITE PUBLICADO (origin/main, via git fetch; nunca a pasta local,
+    que fica para trás) trazer, para AQUELE arquivo:
+      1. um jogo cuja ficha aponta para ele (patch.versoes[<idi>].arquivo == nome do arquivo);
+      2. a entrada MAIS NOVA do diário daquele jogo que cobre o idioma com md5[<idi>] == md5 do
+         arquivo — patch trocado = entrada nova no build/diario.mjs, sempre;
+      3. a data ao lado do botão (versoes[<idi>].atualizado) igual à data dessa entrada.
+    Ou seja: diário, `node build/gerar.mjs` e push ANTES do upload. Sem flag: SystemExit(5).
     Por quê: em 12/10/2026 a beta 48 do Tom Sawyer subiu ao Patreon e o site seguiu mostrando a
     versão de 10/09 (251 KB) e o diário sem a atualização."""
+    import re
     if subprocess.run(['git', '-C', str(RAIZ), 'fetch', '-q', 'origin', 'main']).returncode:
+        print('GATE: git fetch falhou; sem o site publicado não há como conferir. Nada subiu.', file=sys.stderr)
         raise SystemExit(5)
     r = subprocess.run(['git', '-C', str(RAIZ), 'show', 'origin/main:index.html'],
                        capture_output=True, text=True)
-    if r.returncode:
-        print('GATE: não li o index.html do origin/main', file=sys.stderr)
+    m = re.search(r'<script type="application/json" id="seed">(.*?)</script>', r.stdout, re.S)
+    if r.returncode or not m:
+        print('GATE: não li o JSON do index.html do origin/main. Nada subiu.', file=sys.stderr)
         raise SystemExit(5)
-    faltam = [(p, hashlib.md5(p.read_bytes()).hexdigest()[:8]) for p in arquivos]
-    faltam = [(p, m) for p, m in faltam if f'"{m}"' not in r.stdout]
-    if faltam:
-        for p, m in faltam:
-            print(f'GATE: {p.name} (md5 {m}) não está no site publicado (origin/main).', file=sys.stderr)
-        print('Antes de subir: entrada NOVA no topo do jogo em build/diario.mjs com md5 {<idi>: "<md5>"},\n'
-              'versão/etapas na ficha, `node build/gerar.mjs` e push no main — numa cópia do origin/main\n'
+
+    def jogos(o):
+        if isinstance(o, dict):
+            if 'slug' in o and 'patch' in o:
+                yield o
+            for v in o.values():
+                yield from jogos(v)
+        elif isinstance(o, list):
+            for v in o:
+                yield from jogos(v)
+
+    ref = {}
+    for g in jogos(json.loads(m.group(1))):
+        for idi, v in ((g.get('patch') or {}).get('versoes') or {}).items():
+            if v and v.get('arquivo'):
+                ref.setdefault(v['arquivo'], []).append((g, idi, v))
+    erros = []
+    for p in arquivos:
+        md5 = hashlib.md5(p.read_bytes()).hexdigest()[:8]
+        if p.name not in ref:
+            erros.append(f'{p.name}: nenhum jogo do site publicado aponta para este arquivo (patch.versoes).')
+            continue
+        for g, idi, v in ref[p.name]:
+            ent = next((e for e in g.get('diario') or [] if idi in (e.get('idiomas') or [])), None)
+            if not ent:
+                erros.append(f'{p.name}: {g["slug"]}/{idi} sem nenhuma entrada no diário publicado.')
+            elif (ent.get('md5') or {}).get(idi) != md5:
+                erros.append(f'{p.name} (md5 {md5}): a entrada mais nova do diário de {g["slug"]}/{idi} '
+                             f'({ent.get("data")}) é de outro arquivo (md5 {(ent.get("md5") or {}).get(idi)}). '
+                             f'Falta a entrada NOVA desta atualização.')
+            elif v.get('atualizado') != ent.get('data'):
+                erros.append(f'{p.name}: o botão de {g["slug"]}/{idi} diz "atualizado {v.get("atualizado")}", '
+                             f'mas a entrada do diário é de {ent.get("data")}: regerar o site.')
+    if erros:
+        for e in erros:
+            print('GATE: ' + e, file=sys.stderr)
+        print('Antes de subir: entrada NOVA no topo do jogo em build/diario.mjs (data, versao, idiomas,\n'
+              'md5 {<idi>: "<md5>"}, titulo e texto nos três idiomas), versão/etapas na ficha,\n'
+              '`node build/gerar.mjs` e push no main — numa cópia do origin/main\n'
               '(git worktree add <pasta> origin/main; ln -s ~/patchclan-site/patches-privados <pasta>/),\n'
               'nunca na ~/patchclan-site atrasada. Só então rodar o subir de novo. Nada subiu.', file=sys.stderr)
         raise SystemExit(5)
-    print(f'gate do site: {len(arquivos)} patch(es) já publicados no site com o diário (origin/main)')
+    print(f'gate do site: {len(arquivos)} patch(es) no site publicado, com a entrada do diário de cada um')
 
 
 def subir(filtro=None):
