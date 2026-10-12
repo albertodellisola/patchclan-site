@@ -26,7 +26,7 @@ As duas pastas locais não servem à mesma coisa:
     patches/            release — vai para o repositório público, o site serve
     patches-privados/   beta/alfa — gitignored; o site só MEDE o tamanho aqui
 """
-import json, pathlib, secrets, sys, urllib.request
+import hashlib, json, pathlib, secrets, subprocess, sys, urllib.request
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 MANIFESTO = RAIZ / '.links-patreon.json'
@@ -47,6 +47,35 @@ def ler():
     return json.loads(MANIFESTO.read_text()) if MANIFESTO.exists() else {}
 
 
+def gate_site(arquivos):
+    """GATE (dono, 12/10/2026: "voce nao atualizou no site a versao atual e o blog com o diario de
+    alteracoes, coloca no gate, isso nao pode acontecer"). Nenhum patch sobe para o link do Patreon
+    (nem para patches/) sem o SITE PUBLICADO já carregar esse mesmo arquivo: entrada no
+    build/diario.mjs com o md5 dele, `node build/gerar.mjs` e push no main. Confere o
+    origin/main de verdade (git fetch), não a pasta local — o ~/patchclan-site costuma ficar
+    para trás. Sem flag: barra com SystemExit(5).
+    Por quê: em 12/10/2026 a beta 48 do Tom Sawyer subiu ao Patreon e o site seguiu mostrando a
+    versão de 10/09 (251 KB) e o diário sem a atualização."""
+    if subprocess.run(['git', '-C', str(RAIZ), 'fetch', '-q', 'origin', 'main']).returncode:
+        raise SystemExit(5)
+    r = subprocess.run(['git', '-C', str(RAIZ), 'show', 'origin/main:index.html'],
+                       capture_output=True, text=True)
+    if r.returncode:
+        print('GATE: não li o index.html do origin/main', file=sys.stderr)
+        raise SystemExit(5)
+    faltam = [(p, hashlib.md5(p.read_bytes()).hexdigest()[:8]) for p in arquivos]
+    faltam = [(p, m) for p, m in faltam if f'"{m}"' not in r.stdout]
+    if faltam:
+        for p, m in faltam:
+            print(f'GATE: {p.name} (md5 {m}) não está no site publicado (origin/main).', file=sys.stderr)
+        print('Antes de subir: entrada NOVA no topo do jogo em build/diario.mjs com md5 {<idi>: "<md5>"},\n'
+              'versão/etapas na ficha, `node build/gerar.mjs` e push no main — numa cópia do origin/main\n'
+              '(git worktree add <pasta> origin/main; ln -s ~/patchclan-site/patches-privados <pasta>/),\n'
+              'nunca na ~/patchclan-site atrasada. Só então rodar o subir de novo. Nada subiu.', file=sys.stderr)
+        raise SystemExit(5)
+    print(f'gate do site: {len(arquivos)} patch(es) já publicados no site com o diário (origin/main)')
+
+
 def subir(filtro=None):
     """Sobe os patches para o Storage, no MESMO objeto de sempre (token do manifesto,
     x-upsert): o link publicado nao muda.
@@ -56,6 +85,13 @@ def subir(filtro=None):
     tenha deixado na pasta vai ao ar de carona, no link dele, sem aviso."""
     sb_url, chave = ambiente()
     man = ler()
+    escolhidos = []
+    for pasta in PASTAS:
+        d = RAIZ / pasta
+        if d.exists():
+            escolhidos += [x for x in d.iterdir() if x.suffix in ('.ips', '.bps', '.xdelta')
+                           and (not filtro or filtro.lower() in x.stem.lower())]
+    gate_site(escolhidos)
     subidos = 0
     for pasta in PASTAS:
         d = RAIZ / pasta
