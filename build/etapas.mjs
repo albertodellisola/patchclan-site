@@ -41,7 +41,7 @@ export const ETAPAS = {
   'guevara':                   l(F, F, F, F, A),  // ninguém registrou jogatina até SEE YOU / NEXT PLAY
   'magic-knight-rayearth-2':   l(F, F, F, F, F, F),  // RELEASE v1.5 build 126 (29/09; refluxo de cena, meia página, placa do festival, 4m texto montado); antes v1.4.4 build 102 (19/09): 11/11 finais, carregar/nome/som vistos, regressão VG+R7 na 102, longplay A-K (exceção do dono p/ nomes)
   'captain-tsubasa':           l(F, A, A, F, A),  // "Passe" sem texto; msg 72; ACT 2, Paris e créditos
-  'tom-sawyer':                l(F, F, A, F, A),  // THE END? e DEMONMSK abertos; final só por injeção
+  'tom-sawyer':                l(F, F, F, F, A),  // revisão fechada na build 48 (12/10/2026); falta zerar até o final
   'ultraman-club-2':           l(F, F, A, F, A),  // só glossário; build20 nunca jogada inteira
   'gaia-saver':                l(F, F, A, F, A),  // ninguém jogou do começo ao fim
   'nekketsu-kakutou-densetsu': l(F, F, F, A, A),  // placa 土足厳禁 e marca circular em japonês
