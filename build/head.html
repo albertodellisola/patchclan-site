@@ -870,4 +870,22 @@ main img[width]{height:auto}
 .man-fig figcaption{max-width:none}
 @media print{.doc-cab,.man-sec.solo{max-width:none}
   .man-sec.solo :is(.man-figs,.guia-figs,.mapa-wrap,.guia-plano),.man-sec.solo .man-txt table{width:auto;margin-left:0;margin-right:0}}
+
+/* figura de largura total (figuras.json "largura":"total"): ilustração que sai da coluna e usa a página */
+.man-sec.solo .man-txt > div > .man-fig.man-larga{width:var(--larga);max-width:none;
+  margin:32px calc((100% - var(--larga)) / 2)}
+.man-larga a{display:block;border-radius:5px;overflow:hidden;cursor:zoom-in;
+  box-shadow:0 10px 30px rgba(25,20,18,.2)}
+.man-larga a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.man-larga img{display:block;width:100%;height:auto}
+.man-larga figcaption{max-width:34em;margin:10px auto 0;text-align:center}
+.man-larga .man-zoom{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--accent);white-space:nowrap}
+@media (max-width:600px){
+  .man-sec.solo .man-txt > div > .man-fig.man-larga{width:calc(100% + 24px);margin:24px -12px}
+  .man-larga a{border-radius:3px}
+}
+@media print{
+  .man-sec.solo .man-txt > div > .man-fig.man-larga{width:auto;max-width:none;margin:4mm 0;break-inside:avoid}
+  .man-larga a{box-shadow:none}.man-larga .man-zoom{display:none}
+}
 </style>
