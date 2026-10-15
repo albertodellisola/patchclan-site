@@ -336,6 +336,12 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
   border-radius:2px;font-size:11px;letter-spacing:.08em}
 .post-body{max-width:34em}
 .post-body p{font-size:16.5px;line-height:1.6;color:var(--ink-2);margin:0 0 12px}
+/* fotos dentro da noticia (dono, 15/10/2026): grade de 2, legenda curta embaixo */
+.post-fotos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px;margin:4px 0 6px}
+.post-fotos .pf{display:block;min-width:0}
+.post-fotos .pf-so{grid-column:1/-1;max-width:calc(50% - 5px)}
+.post-fotos img{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:2px}
+.post-fotos .pf-l{display:block;margin-top:5px;font-size:13px;line-height:1.4;color:var(--ink-2)}
 
 /* diario do projeto: as duas ultimas atualizacoes do jogo (dono, 09/10/2026) */
 .diario{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule);max-width:52em}
