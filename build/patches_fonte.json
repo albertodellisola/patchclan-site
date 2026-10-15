@@ -46,14 +46,14 @@
   "original": "db3-hack/original/db3_orig.nes",
   "formato": "ips",
   "md5_original": "0bc3d5d7d1e7f2206ce1c157402ff944",
-  "traduzida": "db3-hack/build/db3_en.nes"
+  "traduzida": "db3-hack/build/db3_en_20eee2a2.nes"
  },
  "dragon-ball-3-pt": {
   "projeto": "db3-hack",
   "original": "db3-hack/original/db3_orig.nes",
   "formato": "ips",
   "md5_original": "0bc3d5d7d1e7f2206ce1c157402ff944",
-  "traduzida": "db3-hack/build/db3_pt.nes"
+  "traduzida": "db3-hack/build/db3_pt_ff1ed701.nes"
  },
  "guevara-3idiomas": {
   "projeto": "guevara-hack",
@@ -201,5 +201,12 @@
   "formato": "ips",
   "md5_original": "e9eb2c3d0b6e21baafbfc4b614e04a3f",
   "traduzida": "taekwondo-hack/build/taekwondo_en_pt_6df22318.sfc"
+ },
+ "dragon-ball-3-es": {
+  "projeto": "db3-hack",
+  "original": "db3-hack/original/db3_orig.nes",
+  "formato": "ips",
+  "md5_original": "0bc3d5d7d1e7f2206ce1c157402ff944",
+  "traduzida": "db3-hack/es/build/db3_es_1538ca89.nes"
  }
 }
