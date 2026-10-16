@@ -16,7 +16,7 @@ export const DB3_FIX = {
   categoria: bi('Correção de bugs', 'Bug fix', 'Corrección de errores'),
   nivel: 'release',
   versao: 'Bugfix v1.0',
-  capa: 'db3/00-capa-patreon.jpg',
+  capa: 'db3-fix/00-capa.jpg',   /* capa retrô no estilo da caixa do Famicom (o dono, 16/10/2026) */
   linha: bi('O cartucho japonês de 1989 sem os oito defeitos de fábrica: dois travamentos, contas de nível erradas, senhas que quebram o jogo e linhas que piscam. O jogo continua todo em japonês.',
             'The 1989 Japanese cartridge minus its eight factory defects: two freezes, broken level math, passwords that break the game and flickering lines. Everything stays in Japanese.',
             'El cartucho japonés de 1989 sin sus ocho defectos de fábrica: dos cuelgues, cuentas de nivel erróneas, contraseñas que rompen el juego y líneas que parpadean. Todo sigue en japonés.'),
