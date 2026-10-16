@@ -27,6 +27,7 @@ import { GORILLA } from './jogo-gorilla.mjs';
 import { SRW64 } from './jogo-srw64.mjs';
 import { GORILLA_FIX } from './jogo-gorilla-fix.mjs';
 import { MANIAC_FIX } from './jogo-maniac-fix.mjs';
+import { DB3_FIX } from './jogo-db3-fix.mjs';
 import { SD } from './jogo-slamdunk.mjs';
 import { LINKBATTLER } from './jogo-linkbattler.mjs';
 import { TAEKWONDO } from './jogo-taekwondo.mjs';
@@ -54,7 +55,8 @@ const APELO = [
   LINKBATTLER, /* 30/09/2026, beta: cai no fim do grupo dos beta, vizinho do 64 */
   TAEKWONDO,  /* 03/10/2026, release v1.0 EN+ES (build b651ff2b): cai no fim do grupo dos release */
   FJ1         /* 05/10/2026, beta Definitive Edition v2.0 build 1 (EN/PT/ES, sobre a v1.03 do BlackPaladin): cai no fim do grupo dos beta */,
-  AAG         /* 07/10/2026, beta v0.1 build 1 (EN/PT/ES juntas, Mega-CD): cai no fim do grupo dos beta */
+  AAG         /* 07/10/2026, beta v0.1 build 1 (EN/PT/ES juntas, Mega-CD): cai no fim do grupo dos beta */,
+  DB3_FIX     /* 16/10/2026, o 3º Hacks/Fixes: os 8 defeitos do cartucho do Dragon Ball 3 (tipo 'hack': só aparece nessa aba) */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
