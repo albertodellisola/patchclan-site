@@ -16,7 +16,7 @@ export const MANIAC_FIX = {
   categoria: bi('Correção de bugs', 'Bug fix', 'Corrección de errores'),
   nivel: 'release',
   versao: 'Bugfix v1.0',
-  capa: 'maniac/00-capa-patreon.jpg',
+  capa: 'maniac-fix/00-capa.jpg',   /* capa retrô no estilo do rótulo do Famicom (o dono, 16/10/2026); antes, a da tradução */
   linha: bi('O cartucho japonês de 1988 sem três defeitos de fábrica: o objeto que sumia na mão de quem não devia, o あ vermelho na tela de senha e os três meninos mortos sem GAME OVER. O jogo continua todo em japonês.',
             'The 1988 Japanese cartridge minus three factory defects: items vanishing into the wrong hands, the red あ on the password screen, and three dead kids with no GAME OVER. Everything stays in Japanese.',
             'El cartucho japonés de 1988 sin tres defectos de fábrica: el objeto que desaparecía en manos de quien no debía, la あ roja en la pantalla de contraseña y los tres chicos muertos sin GAME OVER. Todo sigue en japonés.'),
