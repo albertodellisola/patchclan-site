@@ -14,7 +14,7 @@ export const SFG = {
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB expandido para 1 MB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'beta',
-  capa: 'sfg/00-capa-patreon.jpg',
+  capa: 'sfg/00-capa.jpg',
   patreon: 'https://www.patreon.com/patchclan/posts/shining-force-in-170184328',
   linha: bi('O Shining Force que nunca ganhou roteiro em inglês: um exército em grade no Game Gear, 22 batalhas, e uma expedição à terra do deus maligno.',
             'The Shining Force that never got an English script: a Game Gear army moving across a grid, 22 battles, and an expedition to the land of the evil god.',
