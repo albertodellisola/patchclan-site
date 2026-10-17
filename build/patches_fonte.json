@@ -208,5 +208,26 @@
   "formato": "ips",
   "md5_original": "0bc3d5d7d1e7f2206ce1c157402ff944",
   "traduzida": "db3-hack/es/build/db3_es_1538ca89.nes"
+ },
+ "shining-force-gaiden-en": {
+  "projeto": "sfg-hack",
+  "original": "sfg-hack/rom/original.gg",
+  "formato": "ips",
+  "md5_original": "8eafd80d35251b5d3f07d5cae27241c1",
+  "traduzida": "sfg-hack/build/sfg_en.gg"
+ },
+ "shining-force-gaiden-pt": {
+  "projeto": "sfg-hack",
+  "original": "sfg-hack/rom/original.gg",
+  "formato": "ips",
+  "md5_original": "8eafd80d35251b5d3f07d5cae27241c1",
+  "traduzida": "sfg-hack/build/sfg_pt.gg"
+ },
+ "shining-force-gaiden-es": {
+  "projeto": "sfg-hack",
+  "original": "sfg-hack/rom/original.gg",
+  "formato": "ips",
+  "md5_original": "8eafd80d35251b5d3f07d5cae27241c1",
+  "traduzida": "sfg-hack/build/sfg_es.gg"
  }
 }

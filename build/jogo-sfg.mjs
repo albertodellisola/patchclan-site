@@ -13,7 +13,7 @@ export const SFG = {
   publisher: 'Sega', dev: 'Sonic! Software Planning', ano: 1992, data: '1992',
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 512 KB expandido para 1 MB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'sfg/01-titulo.png',
   patreon: 'https://www.patreon.com/patchclan/posts/shining-force-in-170184328',
   linha: bi('O Shining Force que nunca ganhou roteiro em inglês: um exército em grade no Game Gear, 22 batalhas, e uma expedição à terra do deus maligno.',
@@ -32,7 +32,7 @@ export const SFG = {
   },
   numeros: [],
   grupos: [],
-  patch: { versoes: { en: { arquivo: 'shining-force-gaiden-en.ips' }, pt: null, es: null }, rom: 'Shining Force Gaiden - Ensei, Jashin no Kuni e (Japan).gg', rom_md5: '8eafd80d35251b5d3f07d5cae27241c1' },
+  patch: { versoes: { en: { arquivo: 'shining-force-gaiden-en.ips' }, pt: { arquivo: 'shining-force-gaiden-pt.ips' }, es: { arquivo: 'shining-force-gaiden-es.ips' } }, rom: 'Shining Force Gaiden - Ensei, Jashin no Kuni e (Japan).gg', rom_md5: '8eafd80d35251b5d3f07d5cae27241c1' },
   fotos: [
     { f: 'sfg/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O logotipo é gráfico, com o <b>外伝</b> desenhado na própria imagem, e <code>PRESS START BUTTON</code> abaixo dele. Sob o <code>© 1992 SEGA</code> há uma segunda assinatura na tela: <code>SONIC</code>.',

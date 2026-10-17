@@ -67,6 +67,7 @@ const POSTO = { release: 0, beta: 1, alfa: 2 };
    Beta nova (ou jogo que sobe para beta) ganha a linha dela aqui, com data e hora.
    Sem a linha, o gerar.mjs para com erro, e o jogo não cai num lugar qualquer. */
 const BETA_DESDE = {
+  'shining-force-gaiden':          '2026-10-17T07:20',
   'after-armageddon-gaiden':       '2026-10-07T03:42',
   'famicom-jump-1':                '2026-10-05T20:33',
   'ninja-burai-densetsu':          '2026-10-04T00:26',
