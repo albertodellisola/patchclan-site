@@ -15,6 +15,7 @@ export const MAKAMAKA = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'beta',
   capa: 'maka-maka/00-capa.jpg',
+  patreon: 'https://www.patreon.com/patchclan/posts/maka-maka-one-of-172819314',
   linha: bi('O Japão adora este RPG ruim: os pais viram pulgas-d\'água de propósito, a defesa despenca na escada sem querer. Em inglês, com a piada e sem o bug.',
             'Japan loves this bad RPG: your parents become water fleas on purpose, your defense collapses on stairs by accident. In English: joke kept, bug gone.',
             'Japón adora este RPG malo: los padres, pulgas de agua a propósito; la defensa, hundida en la escalera sin querer. En inglés: chiste sí, fallo no.'),
