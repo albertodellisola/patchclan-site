@@ -33,6 +33,7 @@ import { LINKBATTLER } from './jogo-linkbattler.mjs';
 import { TAEKWONDO } from './jogo-taekwondo.mjs';
 import { FJ1 } from './jogo-fj1.mjs';
 import { AAG } from './jogo-aag.mjs';
+import { MAKAMAKA } from './jogo-makamaka.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
@@ -56,7 +57,8 @@ const APELO = [
   TAEKWONDO,  /* 03/10/2026, release v1.0 EN+ES (build b651ff2b): cai no fim do grupo dos release */
   FJ1         /* 05/10/2026, beta Definitive Edition v2.0 build 1 (EN/PT/ES, sobre a v1.03 do BlackPaladin): cai no fim do grupo dos beta */,
   AAG         /* 07/10/2026, beta v0.1 build 1 (EN/PT/ES juntas, Mega-CD): cai no fim do grupo dos beta */,
-  DB3_FIX     /* 16/10/2026, o 3º Hacks/Fixes: os 8 defeitos do cartucho do Dragon Ball 3 (tipo 'hack': só aparece nessa aba) */
+  DB3_FIX     /* 16/10/2026, o 3º Hacks/Fixes: os 8 defeitos do cartucho do Dragon Ball 3 (tipo 'hack': só aparece nessa aba) */,
+  MAKAMAKA    /* 19/10/2026, beta v0.1 EN (build fce2c319): tradução + bugs do cartucho; vai por BETA_DESDE */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
@@ -67,6 +69,7 @@ const POSTO = { release: 0, beta: 1, alfa: 2 };
    Beta nova (ou jogo que sobe para beta) ganha a linha dela aqui, com data e hora.
    Sem a linha, o gerar.mjs para com erro, e o jogo não cai num lugar qualquer. */
 const BETA_DESDE = {
+  'maka-maka':                     '2026-10-19T14:00',
   'shining-force-gaiden':          '2026-10-17T07:20',
   'after-armageddon-gaiden':       '2026-10-07T03:42',
   'famicom-jump-1':                '2026-10-05T20:33',
