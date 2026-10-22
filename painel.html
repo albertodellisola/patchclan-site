@@ -377,9 +377,10 @@ function editaPost(p){
   g.appendChild(fd.no); g.appendChild(fb.no); alvo.appendChild(g);
   alvo.appendChild(ft.no);
 
-  /* Regra do dono (27/09/2026): todo post tem a thumbnail que o site já usa para o jogo dele.
-     O post guarda o jogo; a thumbnail é a capa da página desse jogo. Sem jogo, não salva. */
-  var fj = el('div','campo'); fj.appendChild(el('label',null,'Jogo (a thumbnail é a capa da página dele)'));
+  /* Thumbnail do post (dono, 22/10/2026): a QUADRADA própria da notícia, quando o post do build/posts.mjs tem `thumb`
+     (a linha do banco herda pela data e pelo jogo); sem ela, a regra de 27/09/2026: a capa da página do jogo.
+     O post guarda o jogo. Sem jogo, não salva. */
+  var fj = el('div','campo'); fj.appendChild(el('label',null,'Jogo (sem thumb quadrada no posts.mjs, a thumbnail é a capa da página dele)'));
   var sj = document.createElement('select');
   var op0 = document.createElement('option'); op0.value=''; op0.textContent='— escolha o jogo —'; sj.appendChild(op0);
   function nomeJ(x){ return (x.data||{}).nome || x.slug; }

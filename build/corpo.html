@@ -343,8 +343,10 @@
     var t = b[0] || '';
     return t.length > 165 ? t.slice(0,162).replace(/\s+\S*$/,'') + '…' : t;
   }
-  /* A thumbnail do post e a capa que o site ja usa para o jogo dele (regra do dono, 27/09/2026).
-     O post guarda so o slug; linha antiga do Supabase sem slug cai no jogo cujo nome contem a tag. */
+  /* Thumbnail do post (dono, 22/10/2026: «thumbnail quadrada pra notícia parece melhor com design»): a imagem
+     QUADRADA própria da notícia (`thumb` no posts.mjs, medida pelo gerar.mjs); sem ela, a capa que o site já usa
+     para o jogo do post (regra de 27/09/2026). O post guarda o slug do jogo; linha antiga do Supabase sem slug cai
+     no jogo cujo nome contem a tag. */
   function jogoDoPost(o){
     var js = D.games||[], t = (o.tag||'').toLowerCase();
     for (var i = 0; i < js.length; i++) if (o.jogo && js[i].slug === o.jogo) return js[i];
@@ -353,6 +355,11 @@
   }
   function thumbPost(o, carga){
     var g = jogoDoPost(o);
+    if (o.thumb) {
+      /* quadrada: arte da notícia, não pixel art — sem moldura de CRT e sem ampliar em blocos. Leva ao post. */
+      return '<a class="thumb q" href="#/atualizacoes/'+chavePost(o)+'" tabindex="-1" aria-hidden="true">' +
+        foto(o.thumb, '', carga).replace('<img ', '<img class="thumb-q" ') + '</a>';
+    }
     if (!g || !g.capa) return '';
     return '<a class="thumb" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true">'+capa(g.capa, '', carga)+'</a>';
   }
@@ -363,7 +370,7 @@
   }
   function cardNoticia(o, varias){
     var g = jogoDoPost(o);
-    return '<article class="noticia'+(varias?' varias':'')+'">' + thumbPost(o, 'eager') +
+    return '<article class="noticia'+(varias?' varias':'')+(o.thumb?' q':'')+'">' + thumbPost(o, 'eager') +
       '<div class="corpo">' +
         '<div class="quando">'+L(data(o.date))+(o.build?' · '+e(o.build):'')+(o.tag?' · '+e(o.tag):'')+'</div>' +
         '<h2>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h2>' +
@@ -373,7 +380,7 @@
         '</div></div></article>';
   }
   function cardUpdate(o){
-    return '<article class="upd">' + thumbPost(o) +
+    return '<article class="upd'+(o.thumb?' q':'')+'">' + thumbPost(o) +
       '<div class="quando">'+L(data(o.date))+(o.tag?' · '+e(o.tag):'')+'</div>' +
       '<h3>'+L({pt:o.title_pt,en:o.title_en,es:o.title_es})+'</h3>' +
       '<p>'+L({pt:resumo(o,'pt'),en:resumo(o,'en'),es:resumo(o,'es')})+'</p>' +
@@ -1089,7 +1096,14 @@
       if(!Array.isArray(conteudo)||!conteudo.length) return;
       var novo={}; conteudo.forEach(function(l){ novo[l.key]=l.value; });
       Object.keys(novo).forEach(function(k){ D.content[k]=novo[k]; });
-      if(Array.isArray(posts)) D.posts=posts;
+      if(Array.isArray(posts)){
+        /* a thumb quadrada da notícia (22/10/2026) mora no posts.mjs: a linha do banco sem ela herda a do post do
+           arquivo com a mesma data e o mesmo jogo */
+        var th = {};
+        (D.posts||[]).forEach(function(p){ if (p.thumb) th[p.date+'|'+p.jogo] = p.thumb; });
+        posts.forEach(function(p){ if (p && !p.thumb && th[p.date+'|'+p.jogo]) p.thumb = th[p.date+'|'+p.jogo]; });
+        D.posts=posts;
+      }
       if(Array.isArray(games) && games.length){
         games.forEach(function(linha){
           var alvo = jogo(linha.slug); if(!alvo || !linha.data) return;

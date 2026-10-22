@@ -240,13 +240,15 @@ ${c.trim()}
 /* Manual e guia entram do mesmo jeito: um objeto por slug, lido no site nos tres idiomas.
    Documento que nao existe simplesmente nao gera link — nada fica esmaecido, nada some. */
 const MANUAIS = { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT, 'magic-knight-rayearth-2': MANUAL_MKR2, 'yu-yu-hakusho-gaiden': MANUAL_YYHG, 'gorilla-man': MANUAL_GORILLA, 'super-robot-wars-64': MANUAL_SRW64, 'maniac-mansion': MANUAL_MANIAC };
-/* Regra do dono (27/09/2026): toda postagem do blog leva a thumbnail que o site já usa para o
-   jogo dela — a `capa` da página. O post aponta o jogo pelo slug; sem isso, não gera. E a
+/* Thumbnail do post (dono, 22/10/2026): a notícia pode ter a sua, QUADRADA (`thumb`, conferida mais abaixo,
+   depois do dims()); sem ela, vale a regra de 27/09/2026 — a thumbnail é a `capa` da página do jogo. Todo post
+   aponta o jogo pelo slug (link "Página do jogo" e thumbnail de reserva); sem isso, não gera. E a
    lista vai da mais nova para a mais velha, porque a primeira abre a home, antes das traduções. */
+const quemPost = (p, i) => `post ${i + 1} (${p.date}, ${p.title_pt || p.title_en})`;
 POSTS.forEach((p, i) => {
   const g = JOGOS.find(j => j.slug === p.jogo);
-  const quem = `post ${i + 1} (${p.date}, ${p.title_pt || p.title_en})`;
-  if (!p.jogo) throw new Error(`${quem}: falta jogo:'<slug>' — a thumbnail sai da capa desse jogo`);
+  const quem = quemPost(p, i);
+  if (!p.jogo) throw new Error(`${quem}: falta jogo:'<slug>' — é o link "Página do jogo" e, sem thumb própria, a thumbnail sai da capa desse jogo`);
   if (!g) throw new Error(`${quem}: jogo '${p.jogo}' não existe no site — publique a página antes do post`);
   if (!g.capa || !fs.existsSync(path.join(RAIZ, 'shots', g.capa)))
     throw new Error(`${quem}: o jogo '${p.jogo}' não tem capa em shots/ — sem thumbnail não publica`);
@@ -293,6 +295,14 @@ function dims(rel) {
       if (mk >= 0xC0 && mk <= 0xCF && ![0xC4, 0xC8, 0xCC].includes(mk)) { d = [b.readUInt16BE(i + 7), b.readUInt16BE(i + 5)]; break; }
       i += 2 + len;
     }
+  } else if (/\.webp$/i.test(rel) && fs.existsSync(f)) {
+    const b = fs.readFileSync(f);                 /* WebP (22/10/2026, thumb da notícia): VP8X, VP8L ou VP8 */
+    if (b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP') {
+      const t = b.toString('ascii', 12, 16);
+      if (t === 'VP8X') d = [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+      else if (t === 'VP8L') { const v = b.readUInt32LE(21); d = [1 + (v & 0x3FFF), 1 + ((v >> 14) & 0x3FFF)]; }
+      else if (t === 'VP8 ') d = [b.readUInt16LE(26) & 0x3FFF, b.readUInt16LE(28) & 0x3FFF];
+    }
   }
   return (DIMS[rel] = d);
 }
@@ -309,6 +319,24 @@ JOGOS.forEach(g => {
   [g.capa, ...(g.fotos || []).map(f => f.f), ...(g.grupos || []).flatMap(gr => (gr.itens || []).map(i => i.foto))].forEach(r => r && dims(r));
 });
 [MANUAIS, GUIAS].forEach(col => Object.values(col).forEach(m => (m.secoes || []).forEach(sec => sec.foto && dims(sec.foto))));
+/* Thumbnail QUADRADA da notícia (dono, 22/10/2026: «thumbnail quadrada pra notícia parece melhor com design»).
+   `thumb` é opcional; quando vem, o arquivo é MEDIDO: tem de existir em shots/, ser quadrado e ter 600 px ou mais
+   de lado (a Redação dos Arautos faz 1080×1080). Thumb larga, que não existe ou que não se mede = não gera. */
+const THUMB_MIN = 600;
+POSTS.forEach((p, i) => {
+  if (p.thumb == null) return;
+  const quem = quemPost(p, i);
+  if (typeof p.thumb !== 'string' || !p.thumb.trim() || /^(\/|shots\/|https?:)|\.\./.test(p.thumb))
+    throw new Error(`${quem}: thumb '${p.thumb}' — use o caminho dentro de shots/, ex.: thumb:'noticias/<arquivo>.jpg'`);
+  if (!fs.existsSync(path.join(RAIZ, 'shots', p.thumb)))
+    throw new Error(`${quem}: a thumb shots/${p.thumb} não existe — sem ela, tire o campo e o post usa a capa do jogo`);
+  const d = dims(p.thumb);
+  if (!d) throw new Error(`${quem}: não deu para medir a thumb shots/${p.thumb} — use png, jpg ou webp`);
+  if (d[0] !== d[1])
+    throw new Error(`${quem}: a thumb shots/${p.thumb} tem ${d[0]}×${d[1]}: a thumbnail da notícia é QUADRADA (a Redação faz 1080×1080)`);
+  if (d[0] < THUMB_MIN)
+    throw new Error(`${quem}: a thumb shots/${p.thumb} tem ${d[0]}×${d[1]}: pequena demais (mínimo ${THUMB_MIN}×${THUMB_MIN}; a Redação faz 1080×1080)`);
+});
 const DIMS_SITE = Object.fromEntries(Object.entries(DIMS).filter(([, d]) => d));
 const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS, noticiasHome: NOTICIAS_NA_HOME };
 /* Gate do texto (regra do dono, 19/09/2026): o site diz testado/jogado, nunca bot, robô que
@@ -323,7 +351,7 @@ function embutir(rel) {
   if (!rel) return '';
   if (!b64.has(rel)) {
     const p = path.join(RAIZ, 'shots', rel);
-    b64.set(rel, 'data:image/' + (/\.jpe?g$/i.test(rel) ? 'jpeg' : 'png') + ';base64,' + fs.readFileSync(p).toString('base64'));
+    b64.set(rel, 'data:image/' + (/\.jpe?g$/i.test(rel) ? 'jpeg' : /\.webp$/i.test(rel) ? 'webp' : 'png') + ';base64,' + fs.readFileSync(p).toString('base64'));
   }
   return b64.get(rel);
 }
@@ -333,6 +361,7 @@ clone.games.forEach(g => {
   (g.fotos || []).forEach(f => { f.f = embutir(f.f); });
   (g.grupos || []).forEach(gr => (gr.itens || []).forEach(i => { if (i.foto) i.foto = embutir(i.foto); }));
 });
+clone.posts.forEach(p => { if (p.thumb) p.thumb = embutir(p.thumb); });   /* thumb quadrada da notícia (22/10/2026) */
 [clone.manuais, clone.guias].forEach(col => Object.values(col || {}).forEach(m => {
   (m.secoes || []).forEach(sec => { if (sec.foto) sec.foto = embutir(sec.foto); });
 }));

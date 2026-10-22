@@ -18,6 +18,7 @@ primeiro; o `gerar.mjs` aborta fora de ordem), com este formato:
 
 ```js
   { date:"2026-09-30", build:"beta", tag:"<nome curto do jogo>", jogo:"<slug da ficha do jogo>",
+    thumb:"noticias/<slug>-2026-09-30.jpg",          // opcional: a thumbnail QUADRADA da notícia (seção 1b)
     title_pt:"…", title_en:"…", title_es:"…",
     body_pt:["parágrafo 1", "parágrafo 2"],
     body_en:["paragraph 1", "paragraph 2"],
@@ -25,9 +26,10 @@ primeiro; o `gerar.mjs` aborta fora de ordem), com este formato:
 ```
 
 - `date`: AAAA-MM-DD. `build`: o selo ao lado da data (`beta`, `v1.5`…). `tag`: o nome do jogo.
-- `jogo`: o slug da página do jogo. A **imagem** da notícia é a `capa` desse jogo e o link
-  "Página do jogo" vai para `#/jogo/<slug>`. Sem página com capa em `shots/`, o build aborta:
-  **a ficha do jogo entra antes (ou junto) da notícia.**
+- `jogo`: o slug da página do jogo. O link "Página do jogo" vai para `#/jogo/<slug>` e, se a notícia
+  não tiver `thumb`, a **imagem** dela é a `capa` desse jogo. Sem página com capa em `shots/`, o build
+  aborta: **a ficha do jogo entra antes (ou junto) da notícia.**
+- `thumb` (opcional, desde 22/10/2026): a thumbnail QUADRADA própria da notícia. Seção 1b.
 - `title_*` e `body_*` nos três idiomas. O cartão da home mostra o **primeiro parágrafo**, cortado
   em 165 letras; o texto inteiro aparece em Atualizações. HTML simples vale (`<b>`, `<i>`, `<a>`).
 - O texto passa pelo `build/gate_texto.mjs` (nada de bot, robô, IA, emulador sem janela).
@@ -48,6 +50,36 @@ destaque, baixar o número: ela continua em Atualizações.
 "+ Nova atualização", escolhendo o jogo) ou como foi feito com o do SRW64. Se o post ficar só no
 arquivo, a home no ar mostra como 2ª notícia o post do Slam Dunk, que é o 2º mais novo do banco.
 `NOTICIAS_NA_HOME` não passa pelo banco: só muda por aqui, com build e push.
+
+## 1b. Thumbnail QUADRADA da notícia (dono, 22/10/2026)
+
+Pedido do dono: «Vamos mudar um padrão: thumbnail quadrada pra notícia parece melhor com design». Muda a regra de
+27/09/2026, que dava a todo post a capa larga do jogo: agora a notícia pode ter **a sua imagem quadrada**, e só sem
+ela vale a capa do jogo.
+
+1. A imagem sai da **Redação dos Arautos** (skill `patchclan-midia`, `capa_noticia.py`): 1080×1080, três opções, o
+   dono escolhe na página. Ela é arte com texto (a chamada, o logo, o antes/depois), não pixel art.
+2. Copiar a escolhida para `shots/noticias/<slug>-<AAAA-MM-DD>.jpg` (png e webp também servem).
+3. No post do `build/posts.mjs`: `thumb:"noticias/<slug>-<AAAA-MM-DD>.jpg"` (caminho dentro de `shots/`).
+4. `node build/gerar.mjs`. Ele **mede o arquivo** e aborta com thumb que não existe, que não é quadrada ou que tem
+   menos de 600 px de lado. Sem flag: thumb errada não vai ao ar.
+
+Onde aparece, e como fica:
+
+| Lugar | Computador | Celular (≤ 760 px) |
+|---|---|---|
+| Home, uma notícia só | quadrado de ~320 px à esquerda, texto ao lado | quadrado na largura do cartão, em cima |
+| Home, 2 a 4 notícias (`.varias`) | quadrado de ~46% do cartão (~225 px) ao lado da data, do título e do resumo; links embaixo | quadrado de ~40% (130 a 160 px) ao lado da data e do título; resumo e links embaixo |
+| Últimas atualizações | a caixa tem a medida da capa larga dos vizinhos (a fileira não desalinha) e o quadrado fica inteiro no meio, sobre o fundo de CRT | igual |
+| Página de Atualizações | o quadrado na coluna da data (160 px) | até 220 px |
+
+Na quadrada, o clique na imagem leva à notícia (na capa do jogo, leva à página do jogo). As regras de CSS são as
+`.q` do `build/head.html`.
+
+**O site no ar lê os posts do Supabase**, e a tabela `posts` não tem coluna `thumb`: a linha do banco sem `thumb`
+**herda a do post do `posts.mjs` com a mesma data e o mesmo jogo** (`corpo.html`, conteúdo ao vivo). Por isso a thumb
+mora só no arquivo e vai ao ar com build e push; se a data ou o jogo do post mudar no painel, mudar também no
+`posts.mjs`, senão o cartão volta para a capa do jogo.
 
 ## 2. Anúncio novo na faixa do topo (opcional)
 

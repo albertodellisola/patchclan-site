@@ -208,7 +208,7 @@ fica órfão numa linha de três. Foi medido nas duas situações.
 tiver tradução espanhola **cai no inglês**, nunca em branco. O idioma é detectado
 pelo navegador na primeira visita e guardado depois.
 
-## Blog: a notícia mais recente abre a home, e todo post tem thumbnail (27/09/2026, dono)
+## Blog: a notícia mais recente abre a home, e todo post tem thumbnail (27/09/2026; quadrada própria desde 22/10/2026, dono)
 
 **Desde 30/09/2026 pode abrir a home mais de uma notícia** (`NOTICIAS_NA_HOME` em `build/posts.mjs`), e a
 faixa de anúncio é a lista `ANUNCIOS`. Como acrescentar: `NOTICIAS.md`, na raiz.
@@ -216,9 +216,14 @@ faixa de anúncio é a lista `ANUNCIOS`. Como acrescentar: `NOTICIAS.md`, na rai
 **Ordem da home:** herói → placar → **Última notícia** (o post mais novo, grande, com a thumbnail) →
 Traduções → … → Últimas atualizações (do 2º ao 4º post).
 
-**Todo post leva a thumbnail que o site já usa para o jogo dele** — a `capa` da página do jogo. O post
-não guarda imagem: guarda `jogo: '<slug>'` (em `build/posts.mjs` e na coluna `posts.jogo` do Supabase),
-e a imagem sai da capa. **Imposto por código:** o `gerar.mjs` aborta com post sem `jogo`, com slug que
+**Thumbnail do post (dono, 22/10/2026: «thumbnail quadrada pra notícia parece melhor com design»):** a
+notícia pode ter a sua, QUADRADA (`thumb: 'noticias/<arquivo>.jpg'` em `build/posts.mjs`, arquivo em
+`shots/`; a Redação dos Arautos faz 1080×1080). O `gerar.mjs` mede e aborta com thumb que não existe, que
+não é quadrada ou com menos de 600 px; o cartão da home, o de "Últimas atualizações" e a página de
+Atualizações mostram a quadrada. A linha do Supabase sem `thumb` herda a do post do arquivo com a mesma
+data e o mesmo jogo. **Sem `thumb`, vale a regra de 27/09/2026:** o post leva a thumbnail que o site já
+usa para o jogo dele — a `capa` da página do jogo. Todo post guarda `jogo: '<slug>'` (em
+`build/posts.mjs` e na coluna `posts.jogo` do Supabase). **Imposto por código:** o `gerar.mjs` aborta com post sem `jogo`, com slug que
 não existe no site, com jogo sem capa em `shots/`, ou com a lista fora da ordem (mais recente primeiro);
 o painel não salva post sem escolher o jogo. Consequência: **post de jogo que ainda não tem página não
 sai** — publica-se a página primeiro. O site no ar lê os posts do Supabase: post novo vai **nos dois**

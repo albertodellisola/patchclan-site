@@ -287,7 +287,8 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
 .ver-todas a{color:var(--accent);text-decoration:none}
 .ver-todas a:hover{text-decoration:underline}
 
-/* thumbnail do post = capa do jogo dele (a mesma moldura de CRT dos cards) */
+/* thumbnail do post: a QUADRADA própria da notícia (`thumb`, dono 22/10/2026, regras .q abaixo) ou, sem ela,
+   a capa do jogo dele (a mesma moldura de CRT dos cards) */
 .thumb{display:block;background:var(--crt);padding:8px;border-radius:2px}
 .thumb img{display:block;width:100%;image-rendering:pixelated;border-radius:1px}
 .post-meta .thumb{width:100%;max-width:320px;margin-bottom:4px}
@@ -323,6 +324,42 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
   .noticia.varias h2{font-size:18px}
   .noticia.varias p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
 }
+/* THUMBNAIL QUADRADA da notícia (dono, 22/10/2026: «thumbnail quadrada pra notícia parece melhor com design»).
+   É arte com texto, não pixel art: sem a moldura de CRT, sem ampliar em blocos, sem cortar. Medidas que a Redação
+   usa para julgar a arte: ~300 px no cartão do computador e ~160 px no celular. */
+.thumb.q{padding:0;border-radius:3px;overflow:hidden}
+.thumb.q img.thumb-q{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;image-rendering:auto;border-radius:0}
+/* uma notícia só: o quadrado à esquerda, o texto ao lado; no celular, o quadrado em cima */
+.noticia.q{grid-template-columns:minmax(0,320px) minmax(0,1fr);align-items:start}
+.noticia.q > .thumb.q{margin:14px 0 14px 14px}
+.noticia.q .corpo{padding:22px 26px}
+@media (max-width:760px){
+  .noticia.q{grid-template-columns:minmax(0,1fr)}
+  .noticia.q > .thumb.q{margin:12px 12px 0}
+}
+/* duas a quatro notícias: o quadrado ocupa a altura da data, do título e do resumo; os links embaixo */
+.noticia.varias.q{grid-template-columns:minmax(0,46%) minmax(0,1fr);grid-template-rows:auto auto 1fr auto}
+.noticia.varias.q > .thumb.q{grid-row:1 / span 3;margin:0;padding:0;align-self:start}
+.noticia.varias.q p{grid-column:2;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}
+/* notícia com a capa larga ao lado de uma quadrada (mais alta): a sobra vai para depois do resumo, não entre o
+   título e ele; sem quadrada na fileira, nada muda */
+@media (min-width:901px){
+  .noticias:has(.noticia.q) .noticia.varias:not(.q){grid-template-rows:auto auto 1fr auto}
+  .noticias:has(.noticia.q) .noticia.varias:not(.q) p{align-self:start}
+}
+/* celular: o quadrado flutua à esquerda (~150 a 180 px) e a data, o título e o resumo correm ao lado e por baixo */
+@media (max-width:760px){
+  .noticia.varias.q{display:block}
+  .noticia.varias.q > .thumb.q{float:left;width:48%;max-width:180px;margin:3px 14px 10px 0}
+  .noticia.varias.q h2{margin:8px 0 10px}
+  .noticia.varias.q p{-webkit-line-clamp:5;line-clamp:5}
+  .noticia.varias.q .ler{clear:both;display:flex;padding-top:10px}
+}
+/* "Últimas atualizações": a caixa tem a medida da capa larga dos vizinhos e o quadrado fica inteiro no meio */
+.upd.q .thumb.q{padding:8px;background:var(--crt)}
+.upd.q .thumb.q img.thumb-q{aspect-ratio:1902/827;object-fit:contain}
+/* página de Atualizações: o quadrado na coluna da data (160 px); no celular, até 220 px */
+.post-meta .thumb.q{max-width:220px}
 
 /* lista completa de atualizacoes */
 .posts{display:flex;flex-direction:column}

@@ -1,7 +1,13 @@
-/* Regra do dono (27/09/2026): toda postagem tem a THUMBNAIL que o site já usa para o jogo
-   de que ela fala. Por isso o post não guarda imagem: guarda `jogo` (o slug da página), e a
-   thumbnail é a `capa` daquele jogo. O gerar.mjs aborta com post sem jogo, com slug que não
-   existe ou com jogo sem capa. Mais recente primeiro.
+/* THUMBNAIL DA NOTÍCIA (dono, 22/10/2026: «thumbnail quadrada pra notícia parece melhor com design»):
+   o post pode ter `thumb: 'noticias/<arquivo>.jpg'` (caminho dentro de shots/), uma imagem QUADRADA própria da
+   notícia (a Redação dos Arautos a faz em 1080×1080; png, jpg ou webp). Com ela, o cartão da home, o de "Últimas
+   atualizações" e a página de Atualizações mostram a imagem quadrada. Sem ela, vale a regra antiga (27/09/2026):
+   a thumbnail é a `capa` do jogo de que o post fala. O gerar.mjs MEDE o arquivo e aborta com thumb que não existe,
+   que não é quadrada ou que tem menos de 600 px de lado.
+   Todo post guarda `jogo` (o slug da página): é o link "Página do jogo" e a thumbnail de quem não tem `thumb`. O
+   gerar.mjs aborta com post sem jogo, com slug que não existe ou com jogo sem capa. Mais recente primeiro.
+   O site no ar lê os posts do Supabase: a linha do banco sem `thumb` herda a do post daqui com a mesma data e o
+   mesmo jogo (corpo.html), então a thumb quadrada mora só neste arquivo e vai ao ar com build e push.
 
    NOTICIAS_NA_HOME (30/09/2026, dono: "permitir mais de uma notícia"): quantos posts, a contar
    do mais novo, abrem a home como NOTÍCIA, antes das traduções. 1 = o cartão grande de sempre;
