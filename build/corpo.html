@@ -742,6 +742,19 @@
   }
 
   /* ---------------- ATUALIZAÇÕES / SOBRE ---------------- */
+  /* Corpo do post com IMAGEM e LISTA (21/10/2026, notícia da beta do Maka Maka, dono: publicar com as ilustrações).
+     Item de texto continua num <p> com as três línguas em <span>, como sempre. Item que começa por <figure>, <div>,
+     <ul>/<ol> ou <h2>-<h6> é BLOCO: cada língua vai num <div> próprio, porque bloco dentro de <p>/<span> o navegador
+     fecha o <p> e solta o conteúdo fora do <span> — a imagem e a lista apareceriam nas três línguas ao mesmo tempo. */
+  var BLOCO_POST = /^\s*<(figure|div|ul|ol|h[2-6])[\s>]/i;
+  function blocoPost(par){
+    var ls = ['en','pt','es'];
+    if (!ls.some(function(l){ return BLOCO_POST.test(par[l]||''); })) return '<p>'+L(par)+'</p>';
+    var v = { en: par.en || par.pt || par.es, pt: par.pt || par.en || par.es, es: par.es || par.en || par.pt };
+    return ls.map(function(l){
+      return '<div class="'+l+' post-bloco" lang="'+LANG_ATTR[l]+'">'+e(v[l])+'</div>';
+    }).join('');
+  }
   function paginaAtualizacoes(){
     return '<section><p class="label">'+L({pt:'Atualizações',en:'Updates',es:'Novedades'})+'</p>' +
       '<div class="col"><h1 style="font-size:clamp(32px,4.6vw,48px)">'+L({pt:'Atualizações',en:'Updates',es:'Novedades'})+'</h1></div>' +
@@ -751,7 +764,7 @@
         var ess=(o.body_es&&o.body_es.length?o.body_es:ens)||[];
         var corpo='';
         for(var i=0;i<Math.max(pts.length,ens.length);i++)
-          corpo += '<p>'+L({pt:pts[i]||ens[i],en:ens[i]||pts[i],es:ess[i]||ens[i]})+'</p>';
+          corpo += blocoPost({pt:pts[i]||ens[i],en:ens[i]||pts[i],es:ess[i]||ens[i]});
         return '<article class="post" id="post-'+chavePost(o)+'"><div class="post-meta">'+thumbPost(o)+L(data(o.date)) +
           (o.build?'<span class="post-build">'+e(o.build)+'</span>':'') +
           (o.tag?'<span style="font-size:11.5px;letter-spacing:.1em;text-transform:uppercase">'+e(o.tag)+'</span>':'') +

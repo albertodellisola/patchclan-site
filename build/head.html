@@ -342,6 +342,17 @@ section{padding:64px 0;border-bottom:1px solid var(--rule)}
 .post-fotos .pf-so{grid-column:1/-1;max-width:calc(50% - 5px)}
 .post-fotos img{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:2px}
 .post-fotos .pf-l{display:block;margin-top:5px;font-size:13px;line-height:1.4;color:var(--ink-2)}
+/* bloco no corpo do post (21/10/2026, notícia do Maka Maka): ilustração na largura da coluna e a lista «O que muda» */
+.post-body > div.post-bloco{display:block;margin:6px 0 20px}   /* .en/.pt/.es são inline; o esconder por idioma vem depois e vence */
+.post-fig{margin:0}
+.post-fig img{display:block;width:100%;height:auto;border-radius:2px}
+.post-fig figcaption{margin-top:7px;font-size:14px;line-height:1.45;color:var(--ink-2)}
+.post-muda{border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);padding:14px 0 6px}
+.post-muda h4{font-size:19px;line-height:1.3;margin:0 0 6px;color:var(--ink)}
+.post-muda h5{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink);margin:14px 0 6px}
+.post-muda ul{margin:0 0 6px;padding-left:1.15em}
+.post-muda li{font-size:16px;line-height:1.5;color:var(--ink-2);margin:0 0 5px}
 
 /* diario do projeto: as duas ultimas atualizacoes do jogo (dono, 09/10/2026) */
 .diario{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule);max-width:52em}
