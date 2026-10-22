@@ -15,7 +15,7 @@ export const NEKOZAMURAI = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'alfa',
   versao: 'English ALPHA v0.1 (Discs 1–3)',
-  capa: 'neko-zamurai/00-capa.jpg',
+  capa: 'neko-zamurai/00-capa-patreon.jpg',
   linha: bi('Em Edo, os humanos só veem um gato. Um velho o batiza de Jubei, «como o famoso Yagyū Jūbei», e o gato samurai pensa: já era o meu nome.',
             'In Edo, humans see only a cat. An old man names him Jubei, “after the famous Yagyū Jūbei,” and the samurai cat thinks: that was my name already.',
             'En Edo, los humanos solo ven un gato. Un anciano le pone Jubei por el famoso Yagyū Jūbei, y el gato samurái piensa: me llamo así de toda la vida.'),
