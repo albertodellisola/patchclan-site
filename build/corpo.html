@@ -630,7 +630,7 @@
                                         en:'While the project is open, the patch goes out through Patreon.',
                                         es:'Mientras el proyecto sigue abierto, el parche sale por Patreon.'})+'</b>' : '') +
         '</div>' +
-      (secao(g) === 'hacks' ? cartaoHack(g) : gradeIdiomas(g.patch.versoes, pastaPatch(g), 'IPS', destinoPatch(g), (g.patch||{}).nota)) +
+      (secao(g) === 'hacks' ? cartaoHack(g) : gradeIdiomas(g.patch.versoes, pastaPatch(g), e((g.patch||{}).tipo || 'IPS'), destinoPatch(g), (g.patch||{}).nota)) +
       leituras(g);
     out += '</div></section>';
     out += secao(g) === 'hacks'

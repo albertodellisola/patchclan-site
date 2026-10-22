@@ -128,7 +128,7 @@ def subir(filtro=None):
     for pasta in PASTAS:
         d = RAIZ / pasta
         if d.exists():
-            escolhidos += [x for x in d.iterdir() if x.suffix in ('.ips', '.bps', '.xdelta')
+            escolhidos += [x for x in d.iterdir() if x.suffix in ('.ips', '.bps', '.xdelta', '.zip')
                            and (not filtro or filtro.lower() in x.stem.lower())]
     gate_site(escolhidos)
     subidos = 0
@@ -136,7 +136,7 @@ def subir(filtro=None):
         d = RAIZ / pasta
         if not d.exists():
             continue
-        for p in sorted(x for x in d.iterdir() if x.suffix in ('.ips', '.bps')):
+        for p in sorted(x for x in d.iterdir() if x.suffix in ('.ips', '.bps', '.xdelta', '.zip')):
             base = p.stem
             if filtro and filtro.lower() not in base.lower():
                 continue

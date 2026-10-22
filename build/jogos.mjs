@@ -34,6 +34,7 @@ import { TAEKWONDO } from './jogo-taekwondo.mjs';
 import { FJ1 } from './jogo-fj1.mjs';
 import { AAG } from './jogo-aag.mjs';
 import { MAKAMAKA } from './jogo-makamaka.mjs';
+import { NEKOZAMURAI } from './jogo-nekozamurai.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
@@ -58,7 +59,8 @@ const APELO = [
   FJ1         /* 05/10/2026, beta Definitive Edition v2.0 build 1 (EN/PT/ES, sobre a v1.03 do BlackPaladin): cai no fim do grupo dos beta */,
   AAG         /* 07/10/2026, beta v0.1 build 1 (EN/PT/ES juntas, Mega-CD): cai no fim do grupo dos beta */,
   DB3_FIX     /* 16/10/2026, o 3º Hacks/Fixes: os 8 defeitos do cartucho do Dragon Ball 3 (tipo 'hack': só aparece nessa aba) */,
-  MAKAMAKA    /* 19/10/2026, beta v0.1 EN (build fce2c319): tradução + bugs do cartucho; vai por BETA_DESDE */
+  MAKAMAKA    /* 19/10/2026, beta v0.1 EN (build fce2c319): tradução + bugs do cartucho; vai por BETA_DESDE */,
+  NEKOZAMURAI /* 22/10/2026, alfa v0.1 EN (os 3 discos num zip de 3 xdelta, md5 f2250142): o 1º PlayStation; cai no fim do grupo dos alfa */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
