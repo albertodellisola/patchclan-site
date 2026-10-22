@@ -1,4 +1,6 @@
 /* Famicom Jump: Heroes History, Definitive Edition: entra no site como BETA (05/10/2026).
+   RELEASE do INGLÊS v2.0 (build bcbab3a9, IPS a1168854) em 22/10/2026, por ordem do dono («pode publicar»,
+   página R11 aprovada). PT/ES seguem BETA no Patreon: o site tem um nível por jogo, então saem do botão daqui.
    Copy do roteirista dos Arautos, 2ª rodada (depois do CETICO.md e do CHECAGEM.md). Fonte única de fatos:
    ~/fj1-analise/midia/site/DOSSIE.md (seções citadas ao lado de cada bloco) + CHECAGEM.md.
    Base: a tradução inglesa v1.03 do BlackPaladin, revisada e ampliada em parceria com ele
@@ -21,8 +23,8 @@ export const FJ1 = {
   sistema: 'Famicom',
   mapper: 'Mapper 16 (Bandai), submapper 5 · 256 KB PRG · CHR 128 → 256 KB · EEPROM 24C02 de 256 B',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'beta',
-  versao: 'Definitive Edition BETA v2.0 build 1',
+  nivel: 'release',
+  versao: 'English v2.0',
   capa: 'fj1/00-capa-patreon.jpg',
   patreon: 'https://www.patreon.com/patchclan/posts/famicom-jump-171676028?pr=true',
 
@@ -38,20 +40,20 @@ export const FJ1 = {
       /* §2 */
       "Quem abriu o jogo inteiro para quem não lê japonês foi o <b>BlackPaladin</b>. Ele traduziu as 682 falas, os nomes de personagens e itens, os minijogos, os menus, a tela da senha e o final, trocou a fonte por uma com minúsculas e fez o inglês caber praticamente no espaço que o japonês ocupava no cartucho. Para isso, onde a linha de 17 letras ia partir uma palavra, ele chegou a juntar duas no texto de um jeito que a própria quebra de linha separa de novo na tela, um truque que quem joga nem percebe. A v1.0 saiu em 22 de agosto de 2022 e a v1.03 em 21 de março de 2025, com o título <i>Heroes History</i>. Com ele trabalharam Zynk Oxhyde, que redesenhou o logotipo como <i>Famicom Jump / HEROES HISTORY</i>, phonymike e Gideon Zhi na programação, cccmar nos testes, Cavery210 nos relatos de bug e scum, que ajustou a v1.03 para rodar no Mesen.",
       /* §2 (D8), §3, beta */
-      "Esta <b>Definitive Edition</b> mantém o texto dele, revisado fala a fala com o japonês, e foi feita em parceria com ele: a tela de abertura traz o crédito <i>Translation: BlackPaladin &amp; Patch Clan</i>. Ela acrescenta save, botão de falar, pausa na briga, uma caixa de fala mais larga e duas línguas novas. Abaixo, cada mudança com o antes e o depois. É uma beta: a edição ainda não foi jogada de ponta a ponta nas três línguas.",
+      "Esta <b>Definitive Edition</b> mantém o texto dele, revisado fala a fala com o japonês, e foi feita em parceria com ele: a tela de abertura traz o crédito <i>Translation: BlackPaladin &amp; Patch Clan</i>. Ela acrescenta save, botão de falar, pausa na briga, uma caixa de fala mais larga e duas línguas novas. Abaixo, cada mudança com o antes e o depois. A versão em inglês é a release; as em português e espanhol seguem em beta, para os apoiadores do Patreon.",
       /* §3.7 */
       "As duas ROMs novas, em <b>português do Brasil</b> e em <b>espanhol latino</b>, foram traduzidas direto do japonês: as 682 falas, com os nomes das dublagens de cada língua. A fonte do jogo não tinha acentos, e eles foram desenhados no estilo das letras dela."
     ],
     en: [
       "<i>Famicom Jump: Eiyuu Retsuden</i> came out on February 25, 1989 (the title screen carries a 1988 copyright), from Bandai with TOSE, to mark the 20th anniversary of <i>Weekly Shōnen Jump</i>. A boy reading the magazine gets pulled inside it and has to save Jump World from King Piccolo, recruiting heroes from Dragon Ball, Fist of the North Star, JoJo, Saint Seiya, Kinnikuman, City Hunter and more. It is an action RPG, with boss fights played like a fighting game, shooting, sports and racing minigames and, at the end, a command battle between 16 heroes and 13 villains. The opening, the boy falling into the magazine, was already in English on the Japanese cartridge.",
       "<b>BlackPaladin</b> is the one who opened the whole game to people who don't read Japanese. He translated all 682 lines, the character and item names, the minigames, the menus, the password screen and the ending, swapped in a font with lower case, and fit the English into almost exactly the space the Japanese took up on the cartridge. To get there, where a 17-letter line was about to split a word, he sometimes joined two words in the text in a way the line break itself pulls apart again on screen, a trick players never notice. v1.0 came out on August 22, 2022 and v1.03 on March 21, 2025, under the title <i>Heroes History</i>. Working with him were Zynk Oxhyde, who redrew the logo as <i>Famicom Jump / HEROES HISTORY</i>, phonymike and Gideon Zhi on programming, cccmar on testing, Cavery210 on bug reports, and scum, who made v1.03 run in Mesen.",
-      "This <b>Definitive Edition</b> keeps his text, reviewed line by line against the Japanese, and was made in partnership with him: the opening screen carries the credit <i>Translation: BlackPaladin &amp; Patch Clan</i>. It adds saving, a talk button, pause in fights, a wider text box and two new languages. Every change is listed below, before and after. This is a beta: the edition has not yet been played start to finish in all three languages.",
+      "This <b>Definitive Edition</b> keeps his text, reviewed line by line against the Japanese, and was made in partnership with him: the opening screen carries the credit <i>Translation: BlackPaladin &amp; Patch Clan</i>. It adds saving, a talk button, pause in fights, a wider text box and two new languages. Every change is listed below, before and after. The English version is the release; the Portuguese and Spanish ones are still in beta, for Patreon supporters.",
       "The two new ROMs, in <b>Brazilian Portuguese</b> and <b>Latin American Spanish</b>, were translated straight from the Japanese: all 682 lines, with the names each language's dub uses. The game's font had no accents, so they were drawn to match its letters."
     ],
     es: [
       "<i>Famicom Jump: Eiyuu Retsuden</i> salió el 25 de febrero de 1989 (la pantalla de título lleva el © de 1988), de Bandai con TOSE, para celebrar los 20 años de la <i>Weekly Shōnen Jump</i>. Un chico que está leyendo la revista termina adentro de ella y tiene que salvar el Mundo Jump de Piccolo Daimaō, reclutando héroes de Dragon Ball, Hokuto no Ken, JoJo, Saint Seiya, Kinnikuman, City Hunter y otras series. Es un RPG de acción, con peleas contra jefes al estilo de juego de pelea, minijuegos de disparos, deportes y carreras y, al final, una batalla por comandos entre 16 héroes y 13 villanos. La introducción, la del chico que cae en la revista, ya venía en inglés en el cartucho japonés.",
       "El que abrió el juego entero a quienes no leen japonés fue <b>BlackPaladin</b>. Tradujo las 682 líneas, los nombres de personajes y objetos, los minijuegos, los menús, la pantalla de contraseña y el final, cambió la fuente por una con minúsculas y logró que el inglés cupiera casi en el mismo espacio que el japonés ocupaba en el cartucho. Para eso, donde la línea de 17 letras iba a partir una palabra, a veces juntaba dos en el texto de manera que el propio salto de línea las vuelve a separar en pantalla, un truco que el jugador ni nota. La v1.0 salió el 22 de agosto de 2022 y la v1.03 el 21 de marzo de 2025, con el título <i>Heroes History</i>. Con él trabajaron Zynk Oxhyde, que redibujó el logotipo como <i>Famicom Jump / HEROES HISTORY</i>, phonymike y Gideon Zhi en la programación, cccmar en las pruebas, Cavery210 en los reportes de errores y scum, que hizo que la v1.03 corriera en Mesen.",
-      "Esta <b>Definitive Edition</b> conserva su texto, revisado línea por línea con el japonés, y se hizo en colaboración con él: la pantalla de inicio lleva el crédito <i>Translation: BlackPaladin &amp; Patch Clan</i>. Suma guardado, botón para hablar, pausa en las peleas, una caja de diálogo más ancha y dos idiomas nuevos. Abajo está cada cambio, con el antes y el después. Es una beta: la edición todavía no se ha jugado de principio a fin en los tres idiomas.",
+      "Esta <b>Definitive Edition</b> conserva su texto, revisado línea por línea con el japonés, y se hizo en colaboración con él: la pantalla de inicio lleva el crédito <i>Translation: BlackPaladin &amp; Patch Clan</i>. Suma guardado, botón para hablar, pausa en las peleas, una caja de diálogo más ancha y dos idiomas nuevos. Abajo está cada cambio, con el antes y el después. La versión en inglés es la release; las de portugués y español siguen en beta, para quienes apoyan en Patreon.",
       "Las dos ROMs nuevas, en <b>portugués de Brasil</b> y en <b>español latino</b>, se tradujeron directamente del japonés: las 682 líneas, con los nombres de los doblajes de cada idioma. La fuente del juego no tenía acentos, y se dibujaron al estilo de sus letras."
     ]
   },
@@ -153,8 +155,8 @@ export const FJ1 = {
   /* DOSSIE §5 + CHECAGEM:124 (sem "conferido no Mesen"). Sem md5 de build. */
   patch: {
     versoes: { en: { arquivo: 'famicom-jump-1-en.ips' },
-               pt: { arquivo: 'famicom-jump-1-pt.ips' },
-               es: { arquivo: 'famicom-jump-1-es.ips' } },
+               pt: null,   /* BETA no Patreon (patches-privados/famicom-jump-1-pt.ips, Storage) */
+               es: null }, /* BETA no Patreon (patches-privados/famicom-jump-1-es.ips, Storage) */
     rom: 'Famicom Jump - Eiyuu Retsuden (Japan).nes',
     rom_md5: '8d8f6600197f0f4e9f92c5ef72ec9b9d',
     nota: bi("ROM japonesa com cabeçalho, 393.232 bytes · CRC32 80B4C1DE (sem cabeçalho: 393.216 bytes, CRC32 D343C66A, os mesmos que o readme do BlackPaladin pede). Cada IPS vai sobre essa ROM japonesa limpa, não sobre a v1.03 já traduzida, e dá uma ROM de 524.304 bytes. O save usa a EEPROM 24C02 do chip da Bandai, declarada no cabeçalho (mapper 16, submapper 5); o Mesen emula essa EEPROM. Em emulador sem ela, o CONTINUE funciona como no original, pela senha. Serve em Flips, Lunar IPS ou ROM Patcher JS.",
