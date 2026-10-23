@@ -1,6 +1,8 @@
 /* Famicom Jump: Heroes History, Definitive Edition: entra no site como BETA (05/10/2026).
    RELEASE do INGLÊS v2.0 (build bcbab3a9, IPS a1168854) em 22/10/2026, por ordem do dono («pode publicar»,
-   página R11 aprovada). PT/ES seguem BETA no Patreon: o site tem um nível por jogo, então saem do botão daqui.
+   página R11 aprovada). v2.1 (build 23c46eb6, IPS 498a4de3) no MESMO link em 23/10/2026, por ordem do dono
+   («Publicar 2.1 e subir ela»): 24 falas do banco 5 reescritas (QUEBRA) e a tela da edição VERSION 2.1 BUILD 4.
+   PT/ES seguem BETA no Patreon: o site tem um nível por jogo, então saem do botão daqui.
    Copy do roteirista dos Arautos, 2ª rodada (depois do CETICO.md e do CHECAGEM.md). Fonte única de fatos:
    ~/fj1-analise/midia/site/DOSSIE.md (seções citadas ao lado de cada bloco) + CHECAGEM.md.
    Base: a tradução inglesa v1.03 do BlackPaladin, revisada e ampliada em parceria com ele
@@ -24,7 +26,7 @@ export const FJ1 = {
   mapper: 'Mapper 16 (Bandai), submapper 5 · 256 KB PRG · CHR 128 → 256 KB · EEPROM 24C02 de 256 B',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'release',
-  versao: 'English v2.0',
+  versao: 'English v2.1',
   capa: 'fj1/00-capa-patreon.jpg',
   patreon: 'https://www.patreon.com/patchclan/posts/famicom-jump-171676028?pr=true',
 
