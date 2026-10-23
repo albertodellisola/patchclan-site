@@ -42,7 +42,7 @@ export const ETAPAS = {
   'magic-knight-rayearth-2':   l(F, F, F, F, F, F),  // RELEASE v1.5 build 126 (29/09; refluxo de cena, meia página, placa do festival, 4m texto montado); antes v1.4.4 build 102 (19/09): 11/11 finais, carregar/nome/som vistos, regressão VG+R7 na 102, longplay A-K (exceção do dono p/ nomes)
   'captain-tsubasa':           l(F, A, A, F, A),  // "Passe" sem texto; msg 72; ACT 2, Paris e créditos
   'tom-sawyer':                l(F, F, F, F, A),  // revisão fechada na build 48 (12/10/2026); falta zerar até o final
-  'ultraman-club-2':           l(F, F, A, F, A),  // só glossário; build20 nunca jogada inteira
+  'ultraman-club-2':           l(F, F, F, F, F, F),  // RELEASE EN v1.0 build e2a2b3a5 (23/10/2026): ZERAR do power-on (JP zv11 + caça EN r1), revisão fechada, leitura 4885 telas, longplay A
   'gaia-saver':                l(F, F, A, F, A),  // ninguém jogou do começo ao fim
   'nekketsu-kakutou-densetsu': l(F, F, F, A, A),  // placa 土足厳禁 e marca circular em japonês
   'gozonji':                   l(A, A, A, F, A),  // ~1.786 falas; bancos 10 e 11

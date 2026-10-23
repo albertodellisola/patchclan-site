@@ -11,7 +11,7 @@ export const ULTRAMAN2 = {
   publisher: 'Shinsei', dev: 'Tsuburaya Prod.', ano: 1989, data: '1989',
   sistema: 'Famicom', mapper: 'MMC3 · 128 KB PRG expandido para 256 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'beta',
+  nivel: 'release',
   capa: 'u2/00-capa-patreon.jpg',
   linha: bi('O RPG em que Zoffy, Ace, Taro e Seven viram bonecos de cabeça grande — e o bestiário inteiro, perto de noventa monstros, saiu em inglês.',
             'The RPG where Zoffy, Ace, Taro and Seven become big-headed figures — with the whole bestiary, close to ninety monsters, now in English.',
@@ -60,13 +60,13 @@ export const ULTRAMAN2 = {
               '<b>Round-trip verified:</b> what is written in the ROM is read back and compared, byte for byte, against the English script — 653 entries, zero mismatches. And a box checker confirms 22 columns by 4 lines in dialogue, and 22 columns in battle, before anything ships.',
               '<b>Round-trip verificado:</b> lo grabado en la ROM se lee de vuelta y se compara, byte a byte, con el guion en inglés — 653 entradas, cero divergencias.'), foto: 'u2/02-creditos.png' }
     ]},
-    { titulo: bi('O que falta para sair do alfa', 'What is left before it leaves alpha', 'Lo que falta para salir del alfa'), itens: [
-      { t: bi('<b>Percorrer o jogo do começo ao fim.</b> A cobertura do texto foi medida por varredura, não por jogatina: a Terra dos Ultras, o cemitério de monstros e o final não foram vistos na tela.',
-              '<b>Playing the game end to end.</b> Text coverage was measured by scanning, not by playing: the Land of Ultra, the monster graveyard and the ending have not been seen on screen.',
-              '<b>Recorrer el juego de principio a fin.</b> La cobertura se midió por barrido, no jugando.') },
-      { t: bi('Conferir na tela as <b>146 linhas de combate</b> uma a uma. Elas cabem por medição — nome mais mensagem em 22 colunas — mas nem todas foram vistas renderizadas.',
-              'Checking the <b>146 battle lines</b> on screen, one by one. They fit by measurement — name plus message within 22 columns — but not all have been seen rendered.',
-              'Comprobar en pantalla las <b>146 líneas de combate</b>, una a una.') }
+    { titulo: bi('O que a versão 1.0 traz', 'What version 1.0 brings', 'Lo que trae la versión 1.0'), itens: [
+      { t: bi('O jogo <b>percorrido do começo ao fim</b> na versão traduzida, com o texto revisado e lido na tela.',
+              'The game <b>played from start to finish</b> on the translated version, with the text revised and read on screen.',
+              'El juego <b>recorrido de principio a fin</b> en la versión traducida, con el texto revisado y leído en pantalla.') },
+      { t: bi('Um menu <b>OPTIONS</b> na tela de título, com dez opções: AUTO SAVE, QUICK TEXT, ALWAYS RUN, ENCOUNTERS, WEAK FOES, KEEP EXP, DOUBLE EXP, RUIN RAY GUARD, ALLY TAKEOVER e HIDE USELESS KO.',
+              'An <b>OPTIONS</b> menu on the title screen, with ten options: AUTO SAVE, QUICK TEXT, ALWAYS RUN, ENCOUNTERS, WEAK FOES, KEEP EXP, DOUBLE EXP, RUIN RAY GUARD, ALLY TAKEOVER and HIDE USELESS KO.',
+              'Un menú <b>OPTIONS</b> en la pantalla de título, con diez opciones: AUTO SAVE, QUICK TEXT, ALWAYS RUN, ENCOUNTERS, WEAK FOES, KEEP EXP, DOUBLE EXP, RUIN RAY GUARD, ALLY TAKEOVER y HIDE USELESS KO.') }
     ]}
   ],
   patch: { versoes: { en: { arquivo: 'ultraman-club-2-en.ips' }, pt: null, es: null },
