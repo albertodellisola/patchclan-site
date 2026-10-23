@@ -51,7 +51,7 @@ export const ETAPAS = {
   'yu-yu-hakusho-gaiden':      l(F, F, F, F, F, F),  // RELEASE 1.0 build 9 (18/09): caça 3 finais, revisão 2 agentes, 8 artes aprovadas, longplay A/B/C
   'famicom-jump-2':            l(F, F, F, F, A),  // testes 70%, sem jogatina completa
   'dragon-ball-3':             l(F, F, F, F, F, F),  // RELEASE v1.1 (14/10/2026): EN 20eee2a2 / PT ff1ed701 / ES 1538ca89, mesmo link. Antes: RELEASE v1.0 (11/10/2026): EN 7c09e769 / PT 97dc2d55 / ES 9d2456fe; revisão, censo, cobertura, menus e leitura fechados nas 3, ZERAR do power-on nos finais A/B (diagnóstico PUBLICA RELEASE), longplay EN A/B gravada e carimbada (longplay/7c09e769/GRAVADA.json)
-  'pocket-monsters-stadium':   l(A, A, A, A, A),  // ETAPAS.md: nomes cortados, texturas, bugs
+  'pocket-monsters-stadium':   l(F, F, F, F, F, F),  // RELEASE 1.0 build 41 (23/10/2026, 5cbf2b8b): 6 finais do power-on, revisão fechada, telas aprovadas, longplay A-F
   'maniac-mansion':            l(F, F, F, F, F, F),  // RELEASE EN v1.2 build 10 (19/10/2026, f12819c0, mesmo link: quadro rasgado ao clicar, TURN ON/OFF, pausa, あ do teste de som, tela PC dos artistas); ES v1.1 build 2 (19/10/2026, 77a19396, mesmo link: os mesmos consertos + bios do Dave e do Bernard); PT v1.1 build 2 (19/10/2026, cf0bdd68, mesmo link: os mesmos consertos + seta da senha). Antes: RELEASE v1.0.1 build 7 (21/09: bugs B6, B11, B17 do cartucho consertados); v1.0 build 6 (19/09): revisão 2 agentes, 5 telas de arte aprovadas, caça 7/7 ramos, debug 814/814, longplay A-G
   'hanjuku-hero':              l(A, A, A, F, A),  // 382/425; 33 golpes esperando o dono
   'robot-poncots-64':          l(A, A, A, A, A),  // 201 listas seguradas; texturas 834 e 257
