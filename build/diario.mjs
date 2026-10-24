@@ -20,6 +20,16 @@
    Por quê: a data ao lado do botão só vale se acompanhar o arquivo; uma data que não expira
    quando o patch muda diria "atualizado em" uma coisa que já não é a que se baixa. */
 export const DIARIO = {
+  'digimon-xros-wars-blue': [
+    { data:"2026-10-24", versao:"BETA v0.1", idiomas:["en"], md5:{"en": "071d7ef4"},
+      titulo:{"pt": "Digimon Story: Super Xros Wars Blue sai em beta, todo em inglês", "en": "Digimon Story: Super Xros Wars Blue is out in beta, all in English", "es": "Digimon Story: Super Xros Wars Blue sale en beta, todo en inglés"},
+      texto:{"pt": "Diálogos, menus, golpes, itens e missões do cartucho Blue estão em inglês, numa fonte de largura variável feita para o DS. O patch sai pelo Patreon; falta ainda zerar o jogo traduzido do começo ao fim.", "en": "Dialogue, menus, moves, items and quests on the Blue cartridge are in English, in a variable-width font made for the DS. The patch comes through Patreon; the translated game has still to be finished from start to end.", "es": "Diálogos, menús, ataques, objetos y misiones del cartucho Blue están en inglés, con una fuente de ancho variable hecha para la DS. El parche sale por Patreon; aún falta terminar el juego traducido de principio a fin."} },
+  ],
+  'digimon-xros-wars-red': [
+    { data:"2026-10-24", versao:"BETA v0.1", idiomas:["en"], md5:{"en": "dd32b2c1"},
+      titulo:{"pt": "Digimon Story: Super Xros Wars Red sai em beta, todo em inglês", "en": "Digimon Story: Super Xros Wars Red is out in beta, all in English", "es": "Digimon Story: Super Xros Wars Red sale en beta, todo en inglés"},
+      texto:{"pt": "Diálogos, menus, golpes, itens e missões do cartucho Red estão em inglês, numa fonte de largura variável feita para o DS. O patch sai pelo Patreon; falta ainda zerar o jogo traduzido do começo ao fim.", "en": "Dialogue, menus, moves, items and quests on the Red cartridge are in English, in a variable-width font made for the DS. The patch comes through Patreon; the translated game has still to be finished from start to end.", "es": "Diálogos, menús, ataques, objetos y misiones del cartucho Red están en inglés, con una fuente de ancho variable hecha para la DS. El parche sale por Patreon; aún falta terminar el juego traducido de principio a fin."} },
+  ],
   'magic-knight-rayearth-2': [
     { data:"2026-10-01", versao:null, idiomas:[],
       titulo:{"pt": "Guia completo do jogo em inglês, espanhol e português", "en": "Full walkthrough in English, Spanish and Portuguese", "es": "Guía completa en inglés, español y portugués"},

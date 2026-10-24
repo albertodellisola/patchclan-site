@@ -35,6 +35,7 @@ import { FJ1 } from './jogo-fj1.mjs';
 import { AAG } from './jogo-aag.mjs';
 import { MAKAMAKA } from './jogo-makamaka.mjs';
 import { NEKOZAMURAI } from './jogo-nekozamurai.mjs';
+import { DIGIMON_BLUE, DIGIMON_RED } from './jogo-digimon.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
 
@@ -60,7 +61,9 @@ const APELO = [
   AAG         /* 07/10/2026, beta v0.1 build 1 (EN/PT/ES juntas, Mega-CD): cai no fim do grupo dos beta */,
   DB3_FIX     /* 16/10/2026, o 3º Hacks/Fixes: os 8 defeitos do cartucho do Dragon Ball 3 (tipo 'hack': só aparece nessa aba) */,
   MAKAMAKA    /* 19/10/2026, beta v0.1 EN (build fce2c319): tradução + bugs do cartucho; vai por BETA_DESDE */,
-  NEKOZAMURAI /* 22/10/2026, alfa v0.1 EN (os 3 discos num zip de 3 xdelta, md5 f2250142): o 1º PlayStation; cai no fim do grupo dos alfa */
+  NEKOZAMURAI /* 22/10/2026, alfa v0.1 EN (os 3 discos num zip de 3 xdelta, md5 f2250142): o 1º PlayStation; cai no fim do grupo dos alfa */,
+  DIGIMON_BLUE /* 24/10/2026, beta v0.1 EN (build aed76ac3, BPS md5 071d7ef4): o 1º Nintendo DS; vai por BETA_DESDE */,
+  DIGIMON_RED  /* 24/10/2026, beta v0.1 EN (build d34ca37d, BPS md5 dd32b2c1); vai por BETA_DESDE */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
@@ -71,6 +74,8 @@ const POSTO = { release: 0, beta: 1, alfa: 2 };
    Beta nova (ou jogo que sobe para beta) ganha a linha dela aqui, com data e hora.
    Sem a linha, o gerar.mjs para com erro, e o jogo não cai num lugar qualquer. */
 const BETA_DESDE = {
+  'digimon-xros-wars-red':         '2026-10-24T12:00',
+  'digimon-xros-wars-blue':        '2026-10-24T12:01',
   'maka-maka':                     '2026-10-19T14:00',
   'shining-force-gaiden':          '2026-10-17T07:20',
   'after-armageddon-gaiden':       '2026-10-07T03:42',
