@@ -3,7 +3,9 @@
    A ORDEM É A QUE APARECE, e a home mostra TODOS. Ela é agrupada por estado e,
    dentro de cada estado, por apelo ao público — decisão do dono em 09/09/2026:
      1) os release   2) os beta    3) os alfa
-   Os beta, desde 07/10/2026, vão por data (a mais recente primeiro): BETA_DESDE.
+   Dentro de cada estado, a ordem é de LANÇAMENTO, a mais recente primeiro: os beta
+   desde 07/10/2026, e os release e os alfa também desde 24/10/2026 (dono: «reordenar
+   todos releases, alpha e beta ... em ordem decrescente de lançamento»). Tabela DESDE.
 
    O AGRUPAMENTO É AUTOMÁTICO, e é de propósito. A lista abaixo guarda só a ordem
    de APELO; quem separa release de beta de alfa é o `nivel` do próprio jogo.
@@ -47,50 +49,71 @@ const APELO = [
   FJ2, CT, GUEVARA, DB3, MKR2,
   TOM, ULTRAMAN2,
   PMS64, MANIAC, GAIA, NEKKETSU, GOZONJI, HANJUKU, ULTRAMAN3, ROBOPON, BURAI, MONSTERMAKER,
-  YYHG,  /* entrou em 12/09/2026, beta: cai no fim do grupo dos beta */
-  GORILLA /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */,
-  SFG    /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */,
-  PSG,   /* entrou em 12/09/2026, alfa: cai no fim do grupo dos alfa */
+  YYHG,  /* entrou em 12/09/2026, beta; vai por DESDE */
+  GORILLA /* entrou em 12/09/2026, alfa; vai por DESDE */,
+  SFG    /* entrou em 12/09/2026, alfa; vai por DESDE */,
+  PSG,   /* entrou em 12/09/2026, alfa; vai por DESDE */
   GORILLA_FIX, /* 19/09/2026, o 1º Hacks/Fixes (tipo 'hack': só aparece nessa aba) */
   MANIAC_FIX, /* 21/09/2026, o 2º Hacks/Fixes: os 3 bugs do cartucho (B6, B11, B17) */
-  SD,         /* 25/09/2026, beta: cai no fim do grupo dos beta */
-  SRW64,      /* 27/09/2026, beta: cai no fim do grupo dos beta */
-  LINKBATTLER, /* 30/09/2026, beta: cai no fim do grupo dos beta, vizinho do 64 */
-  TAEKWONDO,  /* 03/10/2026, release v1.0 EN+ES (build b651ff2b): cai no fim do grupo dos release */
-  FJ1         /* 05/10/2026, beta Definitive Edition v2.0 build 1 (EN/PT/ES, sobre a v1.03 do BlackPaladin): cai no fim do grupo dos beta */,
-  AAG         /* 07/10/2026, beta v0.1 build 1 (EN/PT/ES juntas, Mega-CD): cai no fim do grupo dos beta */,
+  SD,         /* 25/09/2026, beta; vai por DESDE */
+  SRW64,      /* 27/09/2026, beta; vai por DESDE */
+  LINKBATTLER, /* 30/09/2026, beta; vai por DESDE */
+  TAEKWONDO,  /* 03/10/2026, release v1.0 EN+ES (build b651ff2b); vai por DESDE */
+  FJ1         /* 05/10/2026, beta Definitive Edition v2.0 build 1 (EN/PT/ES, sobre a v1.03 do BlackPaladin); vai por DESDE */,
+  AAG         /* 07/10/2026, beta v0.1 build 1 (EN/PT/ES juntas, Mega-CD); vai por DESDE */,
   DB3_FIX     /* 16/10/2026, o 3º Hacks/Fixes: os 8 defeitos do cartucho do Dragon Ball 3 (tipo 'hack': só aparece nessa aba) */,
-  MAKAMAKA    /* 19/10/2026, beta v0.1 EN (build fce2c319): tradução + bugs do cartucho; vai por BETA_DESDE */,
-  NEKOZAMURAI /* 22/10/2026, alfa v0.1 EN (os 3 discos num zip de 3 xdelta, md5 f2250142): o 1º PlayStation; cai no fim do grupo dos alfa */,
-  DIGIMON_BLUE /* 24/10/2026, beta v0.1 EN (build aed76ac3, BPS md5 071d7ef4): o 1º Nintendo DS; vai por BETA_DESDE */,
-  DIGIMON_RED  /* 24/10/2026, beta v0.1 EN (build d34ca37d, BPS md5 dd32b2c1); vai por BETA_DESDE */
+  MAKAMAKA    /* 19/10/2026, beta v0.1 EN (build fce2c319): tradução + bugs do cartucho; vai por DESDE */,
+  NEKOZAMURAI /* 22/10/2026, alfa v0.1 EN (os 3 discos num zip de 3 xdelta, md5 f2250142): o 1º PlayStation; vai por DESDE */,
+  DIGIMON_BLUE /* 24/10/2026, beta v0.1 EN (build aed76ac3, BPS md5 071d7ef4): o 1º Nintendo DS; vai por DESDE */,
+  DIGIMON_RED  /* 24/10/2026, beta v0.1 EN (build d34ca37d, BPS md5 dd32b2c1); vai por DESDE */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
 
-/* BETAS: da mais recente para a mais antiga (dono, 07/10/2026). A primeira beta fica
-   colada nos release. A data é o dia em que o jogo virou beta no site, medida no
-   histórico do index.html no origin/main; empate no mesmo dia vai pela hora do commit.
-   Beta nova (ou jogo que sobe para beta) ganha a linha dela aqui, com data e hora.
+/* LANÇAMENTO: da mais recente para a mais antiga, dentro de cada estado (beta desde
+   07/10/2026; release e alfa desde 24/10/2026). A data é o dia em que o jogo ENTROU no
+   estado atual no site, medida no histórico do index.html no origin/main (um jogo que
+   caiu de estado e voltou conta a volta); empate no mesmo commit vai pela ordem de APELO.
+   Jogo novo, ou que muda de estado, ganha (ou troca) a linha dele aqui, com data e hora.
    Sem a linha, o gerar.mjs para com erro, e o jogo não cai num lugar qualquer. */
-const BETA_DESDE = {
+const DESDE = {
+  /* release */
+  'ultraman-club-2':               '2026-10-23T03:22',
+  'pocket-monsters-stadium':       '2026-10-23T00:32',
+  'famicom-jump-1':                '2026-10-22T06:28',
+  'dragon-ball-3-bugfix':          '2026-10-16T09:52',
+  'dragon-ball-3':                 '2026-10-11T05:13',
+  'taekwondo':                     '2026-10-03T08:21',
+  'maniac-mansion-bugfix':         '2026-09-21T13:29',
+  'maniac-mansion':                '2026-09-19T22:13',
+  'gorilla-man-bugfix':            '2026-09-19T07:51',
+  'gorilla-man':                   '2026-09-19T07:06',
+  'magic-knight-rayearth-2':       '2026-09-19T06:17',
+  'yu-yu-hakusho-gaiden':          '2026-09-18T23:31',
+  /* beta */
   'digimon-xros-wars-red':         '2026-10-24T12:00',
   'digimon-xros-wars-blue':        '2026-10-24T12:01',
   'maka-maka':                     '2026-10-19T14:00',
   'shining-force-gaiden':          '2026-10-17T07:20',
   'after-armageddon-gaiden':       '2026-10-07T03:42',
-  'famicom-jump-1':                '2026-10-05T20:33',
   'ninja-burai-densetsu':          '2026-10-04T00:26',
   'super-robot-wars-link-battler': '2026-09-30T10:16',
   'super-robot-wars-64':           '2026-09-27T10:07',
   'slam-dunk':                     '2026-09-25T08:10',
   'famicom-jump-2':                '2026-09-16T23:02',
-  'dragon-ball-3':                 '2026-09-16T23:02',
   'guevara':                       '2026-09-16T22:11',
   'nekketsu-kakutou-densetsu':     '2026-09-09T23:55',
   'gaia-saver':                    '2026-09-09T20:26',
   'tom-sawyer':                    '2026-09-09T12:51',
-  'ultraman-club-2':               '2026-09-09T12:51',
+  /* alfa */
+  'neko-zamurai':                  '2026-10-22T06:21',
+  'captain-tsubasa':               '2026-09-16T23:02',
+  'gozonji':                       '2026-09-16T23:02',
+  'ultraman-club-3':               '2026-09-16T23:02',
+  'monster-maker':                 '2026-09-16T23:02',
+  'phantasy-star-gaiden':          '2026-09-13T21:56',
+  'hanjuku-hero':                  '2026-09-09T11:57',
+  'robot-poncots-64':              '2026-09-09T11:57',
 };
 
 for (const g of APELO) {
@@ -100,12 +123,12 @@ for (const g of APELO) {
 }
 
 for (const g of APELO) {
-  if (g.nivel === 'beta' && !BETA_DESDE[g.slug]) {
-    throw new Error(`jogos.mjs: "${g.slug}" é beta e não tem data em BETA_DESDE`);
+  if (!DESDE[g.slug]) {
+    throw new Error(`jogos.mjs: "${g.slug}" (${g.nivel}) não tem data de lançamento em DESDE`);
   }
 }
 
-/* sort estável: release e alfa ficam na ordem de apelo; beta vai da mais recente à mais antiga */
+/* sort estável: por estado e, dentro dele, do lançamento mais recente ao mais antigo */
 export const JOGOS = [...APELO].sort((a, b) =>
   POSTO[a.nivel] - POSTO[b.nivel] ||
-  (a.nivel === 'beta' ? BETA_DESDE[b.slug].localeCompare(BETA_DESDE[a.slug]) : 0));
+  DESDE[b.slug].localeCompare(DESDE[a.slug]));
