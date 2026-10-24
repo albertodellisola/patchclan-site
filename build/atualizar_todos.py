@@ -5,6 +5,7 @@
     python3 build/atualizar_todos.py conferir tsubasa
     python3 build/atualizar_todos.py atualizar       # grava os que mudaram (NAO sobe)
     python3 build/atualizar_todos.py atualizar gaia
+    python3 build/atualizar_todos.py atualizar gorilla-man-en --cabecalho
 
 POR QUE ISTO EXISTE: o link de cada patch e PERMANENTE — o token no nome e sorteado
 uma vez (`patreon_patches.py`) e o upload sobrescreve o mesmo objeto. Entao atualizar
@@ -22,11 +23,16 @@ Dai as tres guardas, todas por medicao e nenhuma por confianca:
    nivel, e trabalho da skill `atualizar-site` — esta aqui so refaz o que ja existe,
    e por isso nao consegue mudar link nem vazar beta para o repositorio publico.
 
+MESMA ROM, PATCH DIFERENTE (24/10/2026): o gerador passou a gravar os bytes 4-15 do
+cabecalho de NES inteiros. Um patch antigo que, aplicado na nossa base, ja da a traduzida
+NAO mudou de ROM: entra em "ja em dia", com a falta do cabecalho listada a parte, e so e'
+regravado com `--cabecalho` (pedido expresso, um jogo por vez).
+
 Quem NAO tem `traduzida` no manifesto esta pendente de decisao humana (qual build e a
 canonica) e e' saltado com o motivo impresso. Adivinhar ali seria publicar errado.
 
 Depois de `atualizar`, o resto e o caminho de sempre:
-    python3 build/patreon_patches.py subir     # mesmo link, conteudo novo
+    python3 build/patreon_patches.py subir <jogo>   # mesmo link, conteudo novo (NUNCA subir puro)
     node build/gerar.mjs                       # remede o tamanho mostrado no cartao
     git add -A && git commit && git push       # so os release vao pro git
 """
@@ -60,13 +66,13 @@ def onde_esta(base: str, fmt: str):
     return None
 
 
-def rodar(escrever: bool, busca: str | None):
+def rodar(escrever: bool, busca: str | None, cabecalho: bool = False):
     man = json.loads(MANIFESTO.read_text())
     alvos = {k: v for k, v in man.items() if not busca or busca.lower() in k.lower()}
     if not alvos:
         sys.exit(f'nada casa com "{busca}". Ha: ' + ', '.join(sorted(man)))
 
-    mudou, igual, pulado, erro = [], [], [], []
+    mudou, igual, pulado, erro, so_cab = [], [], [], [], []
     tmp = RAIZ / '.tmp_patch'
 
     for base in sorted(alvos):
@@ -102,10 +108,23 @@ def rodar(escrever: bool, busca: str | None):
         ok = (gerar_ips.aplicar(ob, novo) == alvo) if fmt == 'ips' else verificar_bps(orig, novo, alvo, tmp)
         if not ok:
             erro.append((base, 'o patch gerado NAO reproduz a ROM traduzida — nada gravado')); continue
+        if fmt == 'ips' and gerar_ips.conferir_cabecalho(ob, novo, alvo):
+            erro.append((base, 'numa base de cabecalho iNES 1.0 o patch gerado NAO da a traduzida — nada gravado'))
+            continue
 
         velho = atual.read_bytes()
         if novo == velho:
             igual.append((base, atual.parent.name, len(novo)))
+            continue
+
+        if fmt == 'ips' and gerar_ips.aplicar(ob, velho) == alvo:      # mesma ROM na nossa base
+            alheia = gerar_ips.conferir_cabecalho(ob, velho, alvo)
+            if not alheia:
+                igual.append((base, atual.parent.name, len(velho)))
+                continue
+            so_cab.append((base, atual, len(velho), len(novo), alheia))
+            if escrever and cabecalho:
+                atual.write_bytes(novo)
             continue
 
         mudou.append((base, atual, len(velho), len(novo), trad))
@@ -124,6 +143,14 @@ def rodar(escrever: bool, busca: str | None):
         print(f'\n=== já em dia ({len(igual)}) ===')
         for base, pasta, n in igual:
             print(f'  {base:32s} {pasta:17s} {n//1024:4d} KB')
+    if so_cab:
+        titulo = 'GRAVADO' if (escrever and cabecalho) else 'mesma ROM, mas o patch não grava o cabeçalho NES inteiro'
+        print(f'\n=== {titulo} ({len(so_cab)}) ===')
+        for base, p, a, b, alheia in so_cab:
+            print(f'  {base:32s} {p.parent.name:17s} {a:7d} B -> {b:7d} B   '
+                  f'cabeçalho difere numa base {", ".join(alheia)}')
+        if not (escrever and cabecalho):
+            print('  (não muda de ROM; só regrava com pedido expresso: atualizar <jogo> --cabecalho)')
     if pulado:
         print(f'\n=== pendente de decisão ({len(pulado)}) ===')
         for base, por in pulado:
@@ -133,9 +160,9 @@ def rodar(escrever: bool, busca: str | None):
         for base, por in erro:
             print(f'  {base}\n      {por}')
 
-    if mudou and escrever:
+    if (mudou or (so_cab and cabecalho)) and escrever:
         print('\nGravado. O link de cada um continua o mesmo. Falta:\n'
-              '  python3 build/patreon_patches.py subir\n'
+              '  python3 build/patreon_patches.py subir <jogo>   (um por vez, nunca subir puro)\n'
               '  node build/gerar.mjs\n'
               '  git add -A && git commit -m "..." && git push')
     elif mudou:
@@ -144,7 +171,11 @@ def rodar(escrever: bool, busca: str | None):
 
 
 if __name__ == '__main__':
-    cmd = sys.argv[1] if len(sys.argv) > 1 else 'conferir'
+    args = [a for a in sys.argv[1:] if a != '--cabecalho']
+    cab = '--cabecalho' in sys.argv[1:]
+    cmd = args[0] if args else 'conferir'
     if cmd not in ('conferir', 'atualizar'):
         print(__doc__); sys.exit(2)
-    sys.exit(rodar(cmd == 'atualizar', sys.argv[2] if len(sys.argv) > 2 else None))
+    if cab and len(args) < 2:
+        sys.exit('--cabecalho regrava patch que nao muda de ROM: diga o jogo (atualizar <jogo> --cabecalho)')
+    sys.exit(rodar(cmd == 'atualizar', args[1] if len(args) > 1 else None, cab))

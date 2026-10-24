@@ -7,16 +7,44 @@ porque escrever além do fim do arquivo o estende.
 
 Formato: "PATCH" + registros [off:3][tam:2][dados] + "EOF".
 Registro RLE ([tam:2]=0 + [n:2][byte:1]) para runs longos — bancos novos são quase todos $FF.
+
+ROM de NES (24/10/2026): o 1º registro grava os bytes 4-15 do cabeçalho INTEIROS, mesmo os
+que já batem com a nossa base. O jogador aplica noutro dump, quase sempre de cabeçalho iNES 1.0;
+gravando só a diferença, o Maniac e o Gorilla saíam com byte 7 = 08 (NES 2.0) e byte 11 = 00
+(sem CHR-RAM) = tela de lixo no MiSTer. `conferir_cabecalho` prova o resultado nessas bases.
 """
 import sys, os, hashlib
 
 MAX = 0xFFFF
 EOF_OFF = 0x454F46          # "EOF": nenhum registro pode começar aqui
+INES = b"NES\x1a"
+
+
+def eh_nes(rom: bytes) -> bool:
+    return len(rom) >= 16 and rom[:4] == INES
+
+
+def bases_alheias(orig: bytes):
+    """A nossa base com o cabeçalho que o jogador costuma ter: iNES 1.0 limpo e com lixo."""
+    ines1 = bytearray(orig)
+    ines1[7:16] = bytes((orig[7] & 0xF0,)) + bytes(8)           # sem os campos do NES 2.0
+    sujo = bytearray(orig)
+    sujo[7:16] = b"DiskDude!"                                    # lixo de dump antigo
+    return {"iNES 1.0": bytes(ines1), "DiskDude!": bytes(sujo)}
+
+
+def conferir_cabecalho(orig: bytes, ips: bytes, novo: bytes):
+    """Patch de NES aplicado numa base de cabeçalho alheio tem de dar a traduzida inteira.
+    Devolve a lista das bases que falham (vazia = ok)."""
+    if not eh_nes(orig):
+        return []
+    return [nome for nome, base in bases_alheias(orig).items() if aplicar(base, ips) != novo]
 
 
 def gerar(orig: bytes, novo: bytes) -> bytes:
     assert len(novo) >= len(orig), "a traduzida não pode ser menor que a original"
     out = bytearray(b"PATCH")
+    nes = eh_nes(orig) and eh_nes(novo)
 
     def emitir(off, dados):
         i = 0
@@ -57,6 +85,11 @@ def gerar(orig: bytes, novo: bytes) -> bytes:
 
     n = len(orig)
     i = 0
+    if nes:                                                 # cabeçalho inteiro, sempre
+        out.extend((4).to_bytes(3, "big") + (12).to_bytes(2, "big") + novo[4:16])
+        if novo[:4] != orig[:4]:
+            emitir(0, novo[:4])
+        i = 16
     while i < n:                                            # trechos alterados dentro do original
         if novo[i] == orig[i]:
             i += 1
@@ -108,7 +141,13 @@ if __name__ == "__main__":
         dif = sum(1 for a, b in zip(volta, novo) if a != b) + abs(len(volta) - len(novo))
         print(f"FALHOU: {dif} bytes divergem", file=sys.stderr)
         sys.exit(1)
+    falhas = conferir_cabecalho(orig, ips, novo)
+    if falhas:
+        print(f"FALHOU: numa base de cabeçalho {', '.join(falhas)} o patch não dá a traduzida",
+              file=sys.stderr)
+        sys.exit(1)
     open(saida, "wb").write(ips)
     print(f"{os.path.basename(saida)}: {len(ips)//1024} KB  "
           f"(original {len(orig)//1024} KB -> traduzida {len(novo)//1024} KB)  "
-          f"aplicação conferida ✓  md5 alvo {hashlib.md5(novo).hexdigest()[:12]}")
+          f"aplicação conferida ✓  md5 alvo {hashlib.md5(novo).hexdigest()[:12]}"
+          + (f"  cabeçalho {novo[4:16].hex(' ')} também na base iNES 1.0 ✓" if eh_nes(orig) else ""))
