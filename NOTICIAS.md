@@ -29,7 +29,7 @@ primeiro; o `gerar.mjs` aborta fora de ordem), com este formato:
 - `jogo`: o slug da página do jogo. O link "Página do jogo" vai para `#/jogo/<slug>` e, se a notícia
   não tiver `thumb`, a **imagem** dela é a `capa` desse jogo. Sem página com capa em `shots/`, o build
   aborta: **a ficha do jogo entra antes (ou junto) da notícia.**
-- `thumb` (opcional, desde 22/10/2026): a thumbnail QUADRADA própria da notícia. Seção 1b.
+- `thumb` (OBRIGATÓRIA para notícia com `date` ≥ 2026-10-24; antes era opcional): a thumbnail QUADRADA própria da notícia. Seção 1b.
 - `title_*` e `body_*` nos três idiomas. O cartão da home mostra o **primeiro parágrafo**, cortado
   em 165 letras; o texto inteiro aparece em Atualizações. HTML simples vale (`<b>`, `<i>`, `<a>`).
 - O texto passa pelo `build/gate_texto.mjs` (nada de bot, robô, IA, emulador sem janela).
@@ -63,6 +63,8 @@ ela vale a capa do jogo.
 3. No post do `build/posts.mjs`: `thumb:"noticias/<slug>-<AAAA-MM-DD>.jpg"` (caminho dentro de `shots/`).
 4. `node build/gerar.mjs`. Ele **mede o arquivo** e aborta com thumb que não existe, que não é quadrada ou que tem
    menos de 600 px de lado. Sem flag: thumb errada não vai ao ar.
+
+**Distinção notícia × jogo (dono, 24/10/2026):** «Vamos criar a partir de agora uma distinção no site patchclan: noticias terão a thumbnail quadrada e os jogos terão a sua thumbnail no tamanho traidicional.» O `gerar.mjs` impõe: (a) post com `date` ≥ 2026-10-24 sem `thumb` quadrada **não gera** (1080×1080 dos Arautos, `capa_noticia.py`); posts antigos seguem com o fallback para a capa do jogo; (b) a `capa` da ficha de todo jogo tem de ser LARGA (largura/altura ≥ 1,1; o padrão é 1902×827): capa quadrada ou em pé não gera.
 
 Onde aparece, e como fica:
 

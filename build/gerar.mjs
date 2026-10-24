@@ -337,6 +337,22 @@ POSTS.forEach((p, i) => {
   if (d[0] < THUMB_MIN)
     throw new Error(`${quem}: a thumb shots/${p.thumb} tem ${d[0]}×${d[1]}: pequena demais (mínimo ${THUMB_MIN}×${THUMB_MIN}; a Redação faz 1080×1080)`);
 });
+/* DISTINÇÃO (dono, 24/10/2026): «noticias terão a thumbnail quadrada e os jogos terão a sua thumbnail no tamanho
+   traidicional». (a) Notícia com date >= 2026-10-24 TEM de ter `thumb` quadrada (posts antigos seguem com a capa do
+   jogo). (b) A `capa` da ficha de todo jogo é a thumbnail tradicional LARGA: largura/altura >= CAPA_RAZAO_MIN
+   (medidas em 24/10/2026: 1902×827 e 1200×522 = 2,30; 1200×675 e 1672×941 = 1,78; títulos 640×480 = 1,33 e 160×144 = 1,11 (psg, o mais apertado); o padrão é 1902×827, mas o limite 1,1 é o que todas as capas atuais passam; quadrada ou em pé = não gera). */
+const NOTICIA_THUMB_DESDE = '2026-10-24', CAPA_RAZAO_MIN = 1.1;
+POSTS.forEach((p, i) => {
+  if (p.date >= NOTICIA_THUMB_DESDE && !p.thumb)
+    throw new Error(`${quemPost(p, i)}: notícia nova (a partir de ${NOTICIA_THUMB_DESDE}) precisa de thumb QUADRADA 1080×1080 dos Arautos (capa_noticia.py): thumb:'noticias/<arquivo>.jpg'`);
+});
+JOGOS.forEach(g => {
+  if (!g.capa) return;
+  const d = dims(g.capa);
+  if (!d) throw new Error(`jogo '${g.slug}': não deu para medir a capa shots/${g.capa}`);
+  if (d[0] / d[1] < CAPA_RAZAO_MIN)
+    throw new Error(`jogo '${g.slug}': a capa shots/${g.capa} tem ${d[0]}×${d[1]}: a capa da ficha é a thumbnail tradicional LARGA (padrão 1902×827; largura/altura >= ${CAPA_RAZAO_MIN}), não quadrada nem em pé`);
+});
 const DIMS_SITE = Object.fromEntries(Object.entries(DIMS).filter(([, d]) => d));
 const seedArquivos = { content: SEED, games: JOGOS, posts: POSTS, manuais: MANUAIS, guias: GUIAS, noticiasHome: NOTICIAS_NA_HOME };
 /* Gate do texto (regra do dono, 19/09/2026): o site diz testado/jogado, nunca bot, robô que
