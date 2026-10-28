@@ -119,6 +119,20 @@
           L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>') +
       '</div></div>';
   }
+  /* Patch extra de um idioma (ficha `patch.extras`): segundo arquivo do mesmo idioma, num cartão próprio
+     abaixo da grade. Sempre de patches/: o gerar.mjs só aceita extra em jogo release. */
+  function cartoesExtra(g){
+    return ((g.patch||{}).extras||[]).map(function(x){
+      var idi = IDI.filter(function(i){ return i[0] === x.idioma; })[0];
+      return '<div class="patch-uno patch-extra"><div class="bandas"><div class="banda">' +
+          '<span class="fl" aria-hidden="true">'+idi[1]+'</span><span class="cod">'+L(idi[2])+'</span></div></div>' +
+        '<div class="corpo"><div><h4>'+L(x.titulo)+'</h4>' +
+          '<p class="ficha"><b>'+e(x.arquivo)+'</b> · IPS · '+e(x.tamanho)+'<br>'+L(x.nota)+'</p>' + quandoPatch(x) + '</div>' +
+        '<a class="bt" href="patches/'+e(x.arquivo)+'" download>&#9654; ' +
+          L({pt:'Baixar o patch',en:'Download the patch',es:'Descargar el parche'})+'</a>' +
+        '</div></div>';
+    }).join('');
+  }
   /* Hack/Fix: um arquivo só e o jogo no idioma original — a grade por idioma não se aplica. */
   function cartaoHack(g){
     var v = ((g.patch||{}).versoes||{}).jp, nota = (g.patch||{}).nota;
@@ -417,6 +431,7 @@
   function patchAtualizado(g){
     var m = '', vs = (g.patch||{}).versoes||{};
     Object.keys(vs).forEach(function(k){ var v = vs[k]; if (v && v.atualizado && v.atualizado > m) m = v.atualizado; });
+    ((g.patch||{}).extras||[]).forEach(function(v){ if (v.atualizado && v.atualizado > m) m = v.atualizado; });
     return m;
   }
   function quandoPatch(v){
@@ -637,7 +652,7 @@
                                         en:'While the project is open, the patch goes out through Patreon.',
                                         es:'Mientras el proyecto sigue abierto, el parche sale por Patreon.'})+'</b>' : '') +
         '</div>' +
-      (secao(g) === 'hacks' ? cartaoHack(g) : gradeIdiomas(g.patch.versoes, pastaPatch(g), e((g.patch||{}).tipo || 'IPS'), destinoPatch(g), (g.patch||{}).nota)) +
+      (secao(g) === 'hacks' ? cartaoHack(g) : gradeIdiomas(g.patch.versoes, pastaPatch(g), e((g.patch||{}).tipo || 'IPS'), destinoPatch(g), (g.patch||{}).nota) + cartoesExtra(g)) +
       leituras(g);
     out += '</div></section>';
     out += secao(g) === 'hacks'

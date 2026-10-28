@@ -349,7 +349,12 @@ export const PMS64 = {
               '<b>Tres sufijos quedaron fuera.</b> En el mapa, la placa muestra solo el nombre del Pokémon, sin el hábitat; en la Pokédex, la categoría sale sin «POKéMON», como en el Red/Blue en inglés; y la línea de experiencia dice «17101 TO L76». Vuelven en la próxima versión.') }
     ]}
   ],
-  patch: { versoes: { en: { arquivo: 'pocket-monsters-stadium-en.ips' }, pt: null, es: null }, rom: 'Pocket Monsters Stadium (Japan).z64', rom_md5: 'c46e087d966a35095df96799b0b4ffae' },
+  patch: { versoes: { en: { arquivo: 'pocket-monsters-stadium-en.ips' }, pt: null, es: null }, rom: 'Pocket Monsters Stadium (Japan).z64', rom_md5: 'c46e087d966a35095df96799b0b4ffae',
+    extras: [{ idioma: 'en', arquivo: 'pocket-monsters-stadium-en-translation-only.ips',
+      titulo: { pt: 'Só a tradução', en: 'Translation only', es: 'Solo la traducción' },
+      nota: { pt: 'O mesmo texto em inglês, com a mecânica do cartucho japonês intacta. O patch acima também corrige dois bugs do cartucho (a tabela de tipos e o erro de 1 em 256 dos golpes de 100%); este os deixa como no original, para o jogo competitivo.',
+              en: 'The same English text, with the Japanese cartridge’s mechanics untouched. The patch above also fixes two cartridge bugs (the type chart and the 1-in-256 miss on 100% moves); this one keeps them as in the original, for competitive play.',
+              es: 'El mismo texto en inglés, con la mecánica del cartucho japonés intacta. El parche de arriba también corrige dos fallos del cartucho (la tabla de tipos y el fallo de 1 entre 256 de los ataques de 100 %); este los deja como en el original, para el juego competitivo.' } }] },
   fotos: [
     { f: 'pms64/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O Stadium japonês de 1998.', 'The Japanese Stadium of 1998.', 'El Stadium japonés de 1998.') },

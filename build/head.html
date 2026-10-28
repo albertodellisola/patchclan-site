@@ -500,6 +500,10 @@ img.capa,.vitrine .tela img.capa,.proj .tela img.capa{image-rendering:auto;aspec
 .patch-uno .ficha{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--ink-2);margin:0}
 .patch-uno .ficha b{color:var(--ink);font-weight:500}
 .patch-uno .bt{justify-content:center}
+/* patch extra de um idioma: o mesmo cartão, com uma banda só, abaixo da grade */
+.patch-extra{margin-top:16px}
+.patch-extra .bandas{grid-template-columns:minmax(0,1fr)}
+.patch-extra .ficha b{overflow-wrap:anywhere}
 @media (max-width:720px){
   .patch-uno .corpo{grid-template-columns:minmax(0,1fr);gap:18px}
   .patch-uno .bt{width:100%}

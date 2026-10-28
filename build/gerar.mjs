@@ -77,6 +77,23 @@ for (const g of JOGOS) {
     v.tamanho = b < 1024 ? b + ' B' : Math.round(b / 1024) + ' KB';
   }
 }
+/* Patch EXTRA de um idioma (ficha `patch.extras`, 27/10/2026): um segundo arquivo do mesmo idioma, com
+   cartão próprio — o «translation only» do Stadium, pedido da comunidade competitiva. Só em release (sai de
+   patches/, de graça), e o arquivo tem de existir: extra sem arquivo para o site, em vez de sumir em silêncio. */
+for (const g of JOGOS) {
+  for (const x of g.patch.extras || []) {
+    const quem = `${g.slug}: patch extra ${x.arquivo}`;
+    if (g.nivel !== 'release') throw new Error(`${quem} — extra só em jogo release`);
+    if (!g.patch.versoes[x.idioma]) throw new Error(`${quem} — o idioma "${x.idioma}" não tem patch principal`);
+    for (const c of ['titulo', 'nota']) for (const l of ['pt', 'en', 'es']) {
+      if (!(x[c] && String(x[c][l] || '').trim())) throw new Error(`${quem}: falta ${c}.${l}`);
+    }
+    const f = path.join(RAIZ, 'patches', x.arquivo);
+    if (!fs.existsSync(f)) throw new Error(`${quem} não existe em patches/`);
+    const b = fs.statSync(f).size;
+    x.tamanho = b < 1024 ? b + ' B' : Math.round(b / 1024) + ' KB';
+  }
+}
 
 /* Guarda do DIÁRIO (build/diario.mjs, dono, 09/10/2026). A data ao lado de cada botão de
    download é a da entrada mais nova que mexeu naquele idioma — e ela só vale enquanto o arquivo
@@ -99,6 +116,9 @@ for (const g of JOGOS) {
     for (const idi of x.idiomas || []) {
       if (!(idi in g.patch.versoes)) throw new Error(`${quem}: idioma "${idi}" não existe no patch deste jogo`);
     }
+    for (const a of Object.keys(x.extras || {})) {
+      if (!(g.patch.extras || []).some(v => v.arquivo === a)) throw new Error(`${quem}: o extra "${a}" não está na ficha`);
+    }
   });
   for (const [idi, v] of Object.entries(g.patch.versoes)) {
     if (!v) continue;
@@ -110,6 +130,16 @@ for (const g of JOGOS) {
       throw new Error(`${g.slug}: o patch ${idi} (${v.arquivo}, md5 ${atual}) não é o da entrada de ${ult.data} do diário` +
         ` (md5 ${dito || 'nenhum'}). Patch trocado = entrada NOVA em build/diario.mjs, no topo da lista do jogo,` +
         ` com data, o que mudou nos três idiomas e md5: { ${idi}: '${atual}' }.`);
+    }
+    v.atualizado = ult.data;
+  }
+  /* o extra segue a mesma regra, com o md5 em `extras: { '<arquivo>': '<md5>' }` da entrada */
+  for (const v of g.patch.extras || []) {
+    const ult = ds.find(x => (x.extras || {})[v.arquivo]);
+    const atual = md5_8(path.join(RAIZ, 'patches', v.arquivo));
+    if (!ult || ult.extras[v.arquivo] !== atual) {
+      throw new Error(`${g.slug}: o patch extra ${v.arquivo} (md5 ${atual}) não é o da entrada mais nova do diário que o cita` +
+        ` (${ult ? ult.data + ', md5 ' + ult.extras[v.arquivo] : 'nenhuma'}). Entrada NOVA com extras: { '${v.arquivo}': '${atual}' }.`);
     }
     v.atualizado = ult.data;
   }
