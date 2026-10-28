@@ -15,7 +15,7 @@ export const SEPTENTRION = {
   nivel: 'beta',
   versao: 'beta v0.1',
   capa: 'septentrion/00-capa.jpg',
-  patreon: 'https://www.patreon.com/patchclan',
+  patreon: 'https://www.patreon.com/patchclan/posts/septentrion-snes-173617939?pr=true',
   linha: bi('Um navio afunda e você tem 60 minutos para fugir com quem conseguir salvar. De volta o bar, a bebedeira e o pastor que a versão americana cortou.',
             'A ship is sinking and you have 60 minutes to escape with whoever you can save. The bar, the drinking and the minister the US release cut are back.',
             'Un barco se hunde y tienes 60 minutos para huir con quien logres salvar. Vuelven el bar, la borrachera y el pastor que la versión estadounidense recortó.'),
