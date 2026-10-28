@@ -37,6 +37,7 @@ import { FJ1 } from './jogo-fj1.mjs';
 import { AAG } from './jogo-aag.mjs';
 import { MAKAMAKA } from './jogo-makamaka.mjs';
 import { NEKOZAMURAI } from './jogo-nekozamurai.mjs';
+import { SEPTENTRION } from './jogo-septentrion.mjs';
 import { DIGIMON_BLUE, DIGIMON_RED } from './jogo-digimon.mjs';
 
 /* Só a ordem de apelo ao público. O estado NÃO se declara aqui. */
@@ -65,7 +66,8 @@ const APELO = [
   MAKAMAKA    /* 19/10/2026, beta v0.1 EN (build fce2c319): tradução + bugs do cartucho; vai por DESDE */,
   NEKOZAMURAI /* 22/10/2026, alfa v0.1 EN (os 3 discos num zip de 3 xdelta, md5 f2250142): o 1º PlayStation; vai por DESDE */,
   DIGIMON_BLUE /* 24/10/2026, beta v0.1 EN (build aed76ac3, BPS md5 071d7ef4): o 1º Nintendo DS; vai por DESDE */,
-  DIGIMON_RED  /* 24/10/2026, beta v0.1 EN (build d34ca37d, BPS md5 dd32b2c1); vai por DESDE */
+  DIGIMON_RED, /* 24/10/2026, beta v0.1 EN (build d34ca37d, BPS md5 dd32b2c1); vai por DESDE */
+  SEPTENTRION  /* 27/10/2026, beta v0.1 EN/PT/ES (traduzida direto do japonês); vai por DESDE */
 ];
 
 const POSTO = { release: 0, beta: 1, alfa: 2 };
@@ -91,6 +93,7 @@ const DESDE = {
   'magic-knight-rayearth-2':       '2026-09-19T06:17',
   'yu-yu-hakusho-gaiden':          '2026-09-18T23:31',
   /* beta */
+  'septentrion':                   '2026-10-27T21:45',
   'digimon-xros-wars-red':         '2026-10-24T12:00',
   'digimon-xros-wars-blue':        '2026-10-24T12:01',
   'maka-maka':                     '2026-10-19T14:00',
