@@ -88,7 +88,9 @@
   }
   var IDI = [['en','🇺🇸',{en:'English',pt:'Inglês',es:'Inglés'}],
              ['pt','🇧🇷',{en:'Portuguese',pt:'Português',es:'Portugués'}],
-             ['es','🇪🇸',{en:'Spanish',pt:'Espanhol',es:'Español'}]];
+             ['es','🇪🇸',{en:'Spanish',pt:'Espanhol',es:'Español'}],
+             /* 4º elemento = idioma OPCIONAL (alemão do Septentrion, 03/11/2026): só aparece na grade do jogo que tem o patch */
+             ['de','🇩🇪',{en:'German',pt:'Alemão',es:'Alemán'},true]];
   /* grade de download por idioma: o que não existe fica esmaecido */
   /* `destino`, quando vem preenchido, manda o botão para fora em vez de baixar o
      arquivo: é o que faz beta e alfa saírem pelo Patreon. Release não recebe destino
@@ -148,7 +150,7 @@
   }
   function gradeIdiomas(versoes, pasta, tipo, destino, nota){
     if (arquivoUnico(versoes)) return cartaoUnico(versoes, pasta, tipo, destino, nota);
-    return '<div class="patches">' + IDI.map(function(x){
+    return '<div class="patches">' + IDI.filter(function(x){ return !x[3] || (versoes||{})[x[0]]; }).map(function(x){
       var v = (versoes||{})[x[0]];
       var cab = '<div class="idi"><span class="fl" aria-hidden="true">'+x[1]+'</span>'+L(x[2])+'</div>';
       if (!v) {
