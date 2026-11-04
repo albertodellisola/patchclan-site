@@ -48,7 +48,7 @@ export const ETAPAS = {
   'gozonji':                   l(A, A, A, F, A),  // ~1.786 falas; bancos 10 e 11
   'ultraman-club-3':           l(F, A, A, F, A),  // tela ITEM (banco 13); 17 nomes provisórios; bug 3
   'monster-maker':             l(F, A, N, F, A),  // tela de status não mapeada; lote sem revisão
-  'yu-yu-hakusho-gaiden':      l(F, F, F, F, F, F),  // RELEASE 1.0 build 9 (18/09): caça 3 finais, revisão 2 agentes, 8 artes aprovadas, longplay A/B/C
+  'yu-yu-hakusho-gaiden':      l(F, F, F, F, F, F),  // RELEASE 1.0.1 build 12 (04/11): 3 finais do power-on, revisão 2 agentes, leitura 3.944 telas, 8 artes aprovadas, longplay A/B/C
   'famicom-jump-2':            l(F, F, F, F, A),  // testes 70%, sem jogatina completa
   'dragon-ball-3':             l(F, F, F, F, F, F),  // RELEASE v1.1 (14/10/2026): EN 20eee2a2 / PT ff1ed701 / ES 1538ca89, mesmo link. Antes: RELEASE v1.0 (11/10/2026): EN 7c09e769 / PT 97dc2d55 / ES 9d2456fe; revisão, censo, cobertura, menus e leitura fechados nas 3, ZERAR do power-on nos finais A/B (diagnóstico PUBLICA RELEASE), longplay EN A/B gravada e carimbada (longplay/7c09e769/GRAVADA.json)
   'pocket-monsters-stadium':   l(F, F, F, F, F, F),  // RELEASE 1.0 build 41 (23/10/2026, 5cbf2b8b): 6 finais do power-on, revisão fechada, telas aprovadas, longplay A-F

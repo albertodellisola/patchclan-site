@@ -229,5 +229,12 @@
   "formato": "ips",
   "md5_original": "8eafd80d35251b5d3f07d5cae27241c1",
   "traduzida": "sfg-hack/build/sfg_es.gg"
+ },
+ "yu-yu-hakusho-gaiden-en": {
+  "projeto": "yyhg-hack",
+  "original": "yyhg-hack/original/yyhg-jp.md",
+  "formato": "ips",
+  "md5_original": "a339561a0d46fee4c2569de0b237a02b",
+  "traduzida": "yyhg-hack/build/yyhg-en-release12.md"
  }
 }
