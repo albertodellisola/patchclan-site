@@ -13,7 +13,7 @@ export const PSG = {
   publisher: 'Sega', dev: 'Japan System Supply', ano: 1992, data: '1992',
   sistema: 'Game Gear', mapper: 'Mapper Sega padrão · 256 KB expandido para 512 KB',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'alfa',
+  nivel: 'beta',
   capa: 'psg/01-titulo.png',
   patreon: 'https://www.patreon.com/patchclan/posts/phantasy-star-of-170186540',
   linha: bi('Minina cresceu sem pais na aldeia de Tedo. Perto do fim se descobre quem era a mãe dela — e o planeta já tem o nome dessa mãe.',
@@ -32,7 +32,7 @@ export const PSG = {
   },
   numeros: [],
   grupos: [],
-  patch: { versoes: { en: { arquivo: 'phantasy-star-gaiden-en.ips' }, pt: null, es: null }, rom: 'Phantasy Star Gaiden (Japan).gg', rom_md5: '54be96ca21885145108f1c02e4d88eba' },
+  patch: { versoes: { en: { arquivo: 'phantasy-star-gaiden-en.ips' }, pt: { arquivo: 'phantasy-star-gaiden-pt.ips' }, es: { arquivo: 'phantasy-star-gaiden-es.ips' } }, rom: 'Phantasy Star Gaiden (Japan).gg', rom_md5: '54be96ca21885145108f1c02e4d88eba' },
   fotos: [
     { f: 'psg/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('<code>PHANTASY STAR</code> com o subtítulo <b>外伝</b> desenhado na imagem, o mapa do mundo ocupando o meio da tela e <code>©1992 SEGA</code> embaixo.',
