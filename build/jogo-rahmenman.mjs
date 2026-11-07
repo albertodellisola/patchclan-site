@@ -15,6 +15,7 @@ export const RAHMENMAN = {
   categoria: bi('Tradução', 'Translation', 'Traducción'),
   nivel: 'beta',
   capa: 'tatakae-ramenman/00-capa.jpg',
+  patreon: 'https://www.patreon.com/patchclan/posts/tatakae-ramenman-174652307',
   linha: bi('Inglês, português e espanhol para o Ramenman de Kinnikuman, numa aventura de 1988: sem os sinais do kana, a caixa de fala dobrou de linhas.',
             'English, Portuguese and Spanish for Kinnikuman\'s Ramenman, in a 1988 adventure: without the kana marks, the text box doubled its lines.',
             'Inglés, portugués y español para el Ramenman de Kinnikuman, en una aventura de 1988: sin los signos del kana, la caja de diálogo duplicó sus líneas.'),
