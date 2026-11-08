@@ -82,6 +82,7 @@ const POSTO = { release: 0, beta: 1, alfa: 2 };
    Sem a linha, o gerar.mjs para com erro, e o jogo não cai num lugar qualquer. */
 const DESDE = {
   /* release */
+  'captain-tsubasa':               '2026-11-08T09:53',
   'ultraman-club-2':               '2026-10-23T03:22',
   'pocket-monsters-stadium':       '2026-10-23T00:32',
   'famicom-jump-1':                '2026-10-22T06:28',
@@ -96,6 +97,7 @@ const DESDE = {
   'yu-yu-hakusho-gaiden':          '2026-09-18T23:31',
   /* beta */
   'tatakae-ramenman':              '2026-11-07T12:00',
+  'phantasy-star-gaiden':          '2026-11-05T12:13',
   'septentrion':                   '2026-10-27T21:45',
   'digimon-xros-wars-red':         '2026-10-24T12:00',
   'digimon-xros-wars-blue':        '2026-10-24T12:01',
@@ -113,11 +115,9 @@ const DESDE = {
   'tom-sawyer':                    '2026-09-09T12:51',
   /* alfa */
   'neko-zamurai':                  '2026-10-22T06:21',
-  'captain-tsubasa':               '2026-09-16T23:02',
   'gozonji':                       '2026-09-16T23:02',
   'ultraman-club-3':               '2026-09-16T23:02',
   'monster-maker':                 '2026-09-16T23:02',
-  'phantasy-star-gaiden':          '2026-09-13T21:56',
   'hanjuku-hero':                  '2026-09-09T11:57',
   'robot-poncots-64':              '2026-09-09T11:57',
 };
