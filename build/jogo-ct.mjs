@@ -6,7 +6,7 @@ export const CT = {
   publisher: 'Tecmo', dev: 'Tecmo', ano: 1988, data: '1988',
   sistema: 'Famicom', mapper: 'MMC1 · 128 KB PRG expanded to 256 KB · 128 KB CHR-ROM',
   categoria: { pt:'Tradução + melhorias', en:'Translation + improvement', es:'Traducción + mejoras' },
-  nivel: 'alfa',
+  nivel: 'release',
   capa: 'ct/00-capa-patreon.jpg',
   linha: {
     pt: 'Super Campeões, o futebol por menu de 1988 — com Benji no gol, Neia na gerência e o Treinador Milani no banco, como na Manchete.',
@@ -62,7 +62,7 @@ export const CT = {
              es: 'El guardado nuevo se probó <b>apagando y encendiendo de verdad</b>, con dos procesos de emulador y un archivo de guardado real de por medio — no con un savestate, que no prueba nada sobre la pila.' } }
     ]}
   ],
-  patch: { versoes: { en: { arquivo: 'captain-tsubasa-en.ips' }, pt: { arquivo: 'captain-tsubasa-pt.ips' }, es: { arquivo: 'captain-tsubasa-es.ips' } }, rom: 'Captain Tsubasa (Japan).nes', rom_md5: 'eeb77e6e0e0b5695f9a35f47979c4722' },
+  patch: { versoes: { en: { arquivo: 'captain-tsubasa-en.ips' }, pt: null, es: null }, rom: 'Captain Tsubasa (Japan).nes', rom_md5: 'eeb77e6e0e0b5695f9a35f47979c4722' },
   fotos: [
     { f: 'ct/01-titulo.png', t: { pt: 'Tela de título', en: 'Title screen' }, c: { pt: 'O logo redesenhado em 122 tiles, com a bola nova e o avião no canto.', en: 'The logo redrawn in 122 tiles, with the new ball and the aeroplane in the corner.' } },
     { f: 'ct/03-narrador.png', t: { pt: 'Narração', en: 'Commentary' }, c: { pt: 'Quatro linhas onde cabiam duas: o código de controle novo dobra a largura útil.', en: 'Four lines where two used to fit: the new control code doubles the usable width.' } },
