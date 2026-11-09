@@ -1,6 +1,8 @@
 /* Digimon Story: Super Xros Wars — Blue e Red (Nintendo DS) — entram no site como BETA v0.1 EN (24/10/2026),
    por ordem literal do dono: «subir as duas como beta com o patch no Patreon e fora do site gratuito.»
    Builds: Blue aed76ac3 (md5 aed76ac320114814061e4ffaec26aaa0), Red d34ca37d (md5 d34ca37d0bdbf2cf7bed984c7bcd4e3f).
+   09/11/2026 (dono: «atualizar tudo»), mesmo link: Blue 27f07af1 (BPS md5 4f956329), Red 63649e44 (BPS md5 fc994011),
+   com os nomes dos jogos oficiais em inglês. O xdelta do Storage segue o de 08/10 (nenhuma ficha o cita; o gate não sobe).
    Duas fichas, porque são dois cartuchos com ROM original e patch próprios (o patch de um não serve no outro).
    Formato do patch: BPS (a ROM de DS tem 64 MB e o IPS não endereça além de 16 MB), como o SRW64 e o Robopon 64.
    A `capa` é a thumbnail tradicional escolhida pelo dono (Arautos); enquanto não vem, vale uma tela provisória LOCAL. */
