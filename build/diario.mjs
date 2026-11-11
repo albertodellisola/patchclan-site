@@ -148,6 +148,13 @@ export const DIARIO = {
       texto:{"pt": "O RPG de comédia da Sigma de 1992 para Super Famicom sai em beta em inglês, com bugs do cartucho consertados e as piadas no lugar. O equilíbrio é o de 1992: o balanceamento vem num segundo patch.", "en": "Sigma's 1992 Super Famicom comedy RPG is out in English, in beta, with cartridge bugs fixed and the jokes left in. The balance is still 1992's: rebalancing comes in a second patch.", "es": "El RPG de comedia de Sigma de 1992 para Super Famicom sale en beta en inglés, con fallos del cartucho corregidos y los chistes en su sitio. El equilibrio es el de 1992: el reajuste llegará en un segundo parche."} },
   ],
   'after-armageddon-gaiden': [
+    { data:"2026-11-11", versao:"Beta v0.3.1", idiomas:["en", "pt", "es"], md5:{"en": "16bae6cf", "pt": "90d53b55", "es": "2493533d"},
+      titulo:{"pt": "Beta 3.1: tela de escolher o personagem consertada",
+      "en": "Beta 3.1: character select screen fixed",
+      "es": "Beta 3.1: pantalla para elegir personaje corregida"},
+      texto:{"pt": "No mesmo link, a Beta 3.1 conserta a tela de escolher o personagem em Estado e em Equipar: o resumo do personagem cobria o menu e a lista, que mostrava só os dois últimos nomes. Agora o resumo fica na parte de baixo da tela, e o menu e a lista aparecem inteiros. Os saves da Beta 3 continuam valendo.",
+      "en": "At the same link, Beta 3.1 fixes the character select screen in Status and Equip: the character summary covered the menu and the list, which showed only its last two names. The summary now sits at the bottom of the screen, and the menu and list are shown in full. Beta 3 saves still work.",
+      "es": "En el mismo enlace, la Beta 3.1 corrige la pantalla para elegir personaje en Estado y en Equipar: el resumen del personaje tapaba el menú y la lista, que solo mostraba los dos últimos nombres. Ahora el resumen queda en la parte de abajo de la pantalla, y el menú y la lista se ven completos. Las partidas guardadas de la Beta 3 siguen sirviendo."} },
     { data:"2026-11-10", versao:"Beta v0.3 build 3", idiomas:["en", "pt", "es"], md5:{"en": "ff372594", "pt": "92fc31c5", "es": "b2df747e"},
       titulo:{"pt": "Beta 3: menus sem abreviações e avisos da batalha traduzidos",
       "en": "Beta 3: menus without abbreviations, battle notices translated",
