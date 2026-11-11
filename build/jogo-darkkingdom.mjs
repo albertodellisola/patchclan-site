@@ -15,6 +15,7 @@ export const DARK_KINGDOM = {
   nivel: 'beta',
   versao: 'beta v0.1',
   capa: 'dark-kingdom/00-capa.jpg',
+  patreon: 'https://www.patreon.com/patchclan/posts/dark-kingdom-rpg-175017891',
   linha: bi("Aliste-se e avance missão a missão neste RPG de 1994 que nunca saiu do Japão; um evento opcional decide qual dos dois finais você vê.",
             "Enlist and advance mission by mission in this 1994 RPG that never left Japan; an optional event decides which of its two endings you see.",
             "Alístate y avanza misión a misión en este RPG de 1994 que nunca salió de Japón; un evento opcional decide cuál de los dos finales ves."),
