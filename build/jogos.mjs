@@ -38,6 +38,7 @@ import { AAG } from './jogo-aag.mjs';
 import { MAKAMAKA } from './jogo-makamaka.mjs';
 import { NEKOZAMURAI } from './jogo-nekozamurai.mjs';
 import { SEPTENTRION } from './jogo-septentrion.mjs';
+import { DARK_KINGDOM } from './jogo-darkkingdom.mjs';
 import { DIGIMON_BLUE, DIGIMON_RED } from './jogo-digimon.mjs';
 import { RAHMENMAN } from './jogo-rahmenman.mjs';
 
@@ -69,6 +70,7 @@ const APELO = [
   DIGIMON_BLUE /* 24/10/2026, beta v0.1 EN (build aed76ac3, BPS md5 071d7ef4): o 1º Nintendo DS; vai por DESDE */,
   DIGIMON_RED, /* 24/10/2026, beta v0.1 EN (build d34ca37d, BPS md5 dd32b2c1); vai por DESDE */
   SEPTENTRION  /* 27/10/2026, beta v0.1 EN/PT/ES (traduzida direto do japonês); vai por DESDE */,
+  DARK_KINGDOM /* 11/11/2026, beta v0.1 EN/PT/ES (traduzida direto do japonês); vai por DESDE */,
   RAHMENMAN /* 07/11/2026, beta v0.9 EN/PT/ES (builds b356bb9a/7bbca364/7af31090); vai por DESDE */
 ];
 
@@ -96,6 +98,7 @@ const DESDE = {
   'magic-knight-rayearth-2':       '2026-09-19T06:17',
   'yu-yu-hakusho-gaiden':          '2026-09-18T23:31',
   /* beta */
+  'dark-kingdom':                  '2026-11-11T06:10',
   'tatakae-ramenman':              '2026-11-07T12:00',
   'phantasy-star-gaiden':          '2026-11-05T12:13',
   'septentrion':                   '2026-10-27T21:45',
