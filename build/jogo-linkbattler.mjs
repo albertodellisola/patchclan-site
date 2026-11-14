@@ -36,7 +36,7 @@ export const LINKBATTLER = {
   },
   numeros: [],
   grupos: [],
-  patch: { versoes: { en: { arquivo: 'super-robot-wars-link-battler-en.ips' }, pt: null, es: null }, rom: 'Super Robot Taisen - Link Battler (Japan) (SGB Enhanced) (GB Compatible).gbc', rom_md5: 'd710cd23e7e38023297d04e935dbebae' },
+  patch: { versoes: { en: { arquivo: 'super-robot-wars-link-battler-en.ips' }, pt: { arquivo: 'super-robot-wars-link-battler-pt.ips' }, es: { arquivo: 'super-robot-wars-link-battler-es.ips' } }, rom: 'Super Robot Taisen - Link Battler (Japan) (SGB Enhanced) (GB Compatible).gbc', rom_md5: 'd710cd23e7e38023297d04e935dbebae' },
   fotos: [
     { f: 'linkbattler/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O logotipo redesenhado em inglês: <code>SUPER ROBOT WARS</code> em laranja sobre a mancha vermelha, <code>LINK BATTLER</code> em azul, na diagonal, e <code>PUSH START BUTTON</code> embaixo.',
