@@ -19,9 +19,11 @@
 import { GUIA_MKR2 } from './guia-mkr2.mjs';
 import { GUIA_MANIAC } from './guia-maniac.mjs';
 import { GUIA_YYHG } from './guia-yyhg.mjs';
+import { GUIA_FJ2 } from './guia-fj2.mjs';   // gerado por ~/fj2-hack/site_docs/montar.py
 
 export const GUIAS = {
   'magic-knight-rayearth-2': GUIA_MKR2,
   'maniac-mansion': GUIA_MANIAC,
   'yu-yu-hakusho-gaiden': GUIA_YYHG,
+  'famicom-jump-2': GUIA_FJ2,
 };

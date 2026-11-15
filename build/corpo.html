@@ -696,7 +696,8 @@
       '<details class="idx-dobra" id="indice"'+(celular() ? '' : ' open')+'><summary>' +
         L({pt:'Índice',en:'Contents',es:'Índice'})+' <span class="qt">· '+m.secoes.length+'</span></summary>' +
       '<nav class="man-idx" aria-label="'+txt(m.titulo,'en')+'">' + m.secoes.map(function(sec,i){
-        return '<a href="#/'+cfg.rota+'/'+e(slug)+'" data-ir="sec-'+e(sec.id)+'"><span class="n">'+(i+1)+'</span>'+L(sec.titulo)+'</a>';
+        /* sec.n: número próprio da seção (o detonado do FJ2 numera só os capítulos; apêndice leva letra) */
+        return '<a href="#/'+cfg.rota+'/'+e(slug)+'" data-ir="sec-'+e(sec.id)+'"><span class="n">'+e(sec.n != null ? sec.n : i+1)+'</span>'+L(sec.titulo)+'</a>';
       }).join('') + '</nav></details></section>';
     out += m.secoes.map(function(sec,i){
       var corpo = '<div class="man-txt">' +
@@ -713,7 +714,7 @@
           return '<div class="'+l+'" lang="'+LANG_ATTR[l]+'">'+h+'</div>';
         }).join('') : '') + '</div>';
       return '<section class="man-sec'+(sec.foto?'':' solo')+'" id="sec-'+e(sec.id)+'">' +
-        '<p class="label"><span style="color:var(--accent)">'+(i+1)+'</span> '+L(sec.titulo)+'</p>' +
+        '<p class="label"><span style="color:var(--accent)">'+e(sec.n != null ? sec.n : i+1)+'</span> '+L(sec.titulo)+'</p>' +
         '<div class="man-corpo'+(sec.foto?'':' solo')+'">' + corpo +
         (sec.foto ? '<div>'+crt(sec.foto,'')+'</div>' : '') + '</div></section>';
     }).join('');

@@ -206,14 +206,9 @@ for (const g of JOGOS) {
   (t.numeros || []).forEach((n, i) => por(g.numeros[i].r, n));
 }
 
-// o manual do FJ2 foi escrito em EN/PT; o espanhol vem do es-fj2
-por(MANUAL_FJ2.titulo, ES_FJ2.manual.titulo);
-por(MANUAL_FJ2.intro, ES_FJ2.manual.intro);
-ES_FJ2.manual.secoes.forEach((sec, i) => {
-  const alvo = MANUAL_FJ2.secoes[i]; if (!alvo) return;
-  por(alvo.titulo, sec.titulo);
-  if (sec.paras && alvo.paras) alvo.paras.es = sec.paras;
-});
+// o manual do FJ2 (15/11/2026) é gerado por ~/fj2-hack/site_docs/montar.py já com os três idiomas:
+// a fusão antiga do es-fj2 (por índice de seção) apagaria o espanhol novo.
+
 
 const head  = fs.readFileSync(path.join(RAIZ, 'build/head.html'), 'utf8');
 const corpo = fs.readFileSync(path.join(RAIZ, 'build/corpo.html'), 'utf8');

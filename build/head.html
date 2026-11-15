@@ -571,6 +571,61 @@ img.capa,.vitrine .tela img.capa,.proj .tela img.capa{image-rendering:auto;aspec
 .guia-plano td,.guia-plano th{padding:4px 10px 4px 0;white-space:nowrap}
 .man-txt td{font-size:14.5px}
 @media (max-width:720px){ .guia-figs{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px} }
+
+/* ---- revista (Famicom Jump II, 15/11/2026): abertura de capítulo, ficha rápida, esferas, quadros ---- */
+.rv-abre{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:end;
+  margin:4px 0 26px;padding:0 0 18px;border-bottom:3px solid var(--ink)}
+.rv-num{font-family:var(--pixel);font-size:clamp(40px,6.4vw,70px);line-height:.92;color:var(--accent)}
+.rv-kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
+.man-txt .rv-tit{font-family:var(--sans);font-weight:800;font-size:clamp(25px,3.6vw,38px);line-height:1.06;
+  letter-spacing:-.02em;margin:0;color:var(--ink)}
+.rv-esf{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:14px;font-family:var(--mono);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.rv-esf b{color:var(--ink);font-weight:600}
+.rv-esf .bolas{display:flex;gap:5px}
+.rv-esf i{width:20px;height:20px;border-radius:50%;border:1.5px dashed var(--rule);display:grid;place-items:center;
+  font-style:normal;font-size:10px;line-height:1}
+.rv-esf i.on{border:0;background:radial-gradient(circle at 34% 30%,#ffe3a1 0 18%,#f5a524 42%,#c66a0a 100%)}
+.rv-esf i.on::after{content:"★";color:#c22a12}
+.rv-ficha{display:flex;flex-wrap:wrap;gap:8px 10px;margin:0 0 26px;padding:0;list-style:none}
+.man-txt .rv-ficha li{font-family:var(--mono);font-size:12.5px;line-height:1.4;background:var(--ground-2);
+  border:1px solid var(--rule);border-radius:3px;padding:6px 10px;color:var(--ink-2)}
+.rv-ficha li b{color:var(--ink);font-weight:600}
+.rv-box{border:1px solid var(--rule);border-radius:4px;background:var(--ground-2);padding:15px 18px 12px;margin:24px 0}
+.man-txt .rv-box p,.man-txt .rv-box li{font-size:15.5px;line-height:1.55}
+.rv-box p{margin:0 0 9px}
+.rv-box ul{margin:0 0 9px;padding-left:1.2em}
+.rv-tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:600;padding:3px 8px;border-radius:2px;margin:0 0 10px!important;background:var(--chip);color:var(--ink)}
+.man-txt .rv-nome{font-family:var(--sans);font-weight:800;font-size:20px;line-height:1.2;margin:0 0 8px}
+.rv-chefe{border:2px solid var(--accent);background:var(--ground-3)}
+.rv-chefe .rv-tag{background:var(--accent);color:var(--sobre-accent)}
+.rv-atencao{border-left:5px solid var(--accent)}
+.rv-atencao .rv-tag{background:transparent;color:var(--accent);padding-left:0}
+.rv-segredo{border:1px dashed var(--gold)}
+.rv-segredo .rv-tag{background:var(--gold);color:var(--sobre-gold,#fff)}
+.rv-grupo{border-color:var(--gold);background:var(--ground-3)}
+.rv-grupo .rv-tag{background:var(--ink);color:var(--ground)}
+.rv-dados{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;margin:4px 0 10px;
+  font-size:14.5px;line-height:1.45}
+.rv-dados dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding-top:2px}
+.rv-dados dd{margin:0}
+.man-txt .rv-chamada{font-family:var(--sans);font-weight:700;font-size:clamp(19px,2.3vw,24px);line-height:1.3;
+  border-left:5px solid var(--accent);padding:4px 0 4px 18px;margin:28px 0}
+@media (max-width:600px){
+  .rv-abre{gap:14px}
+  .rv-dados{grid-template-columns:minmax(0,1fr);gap:0}
+  .rv-dados dd{margin:0 0 8px}
+}
+@media print{
+  .rv-abre{border-bottom:2px solid #12100e;margin:0 0 5mm;padding-bottom:3mm}
+  .rv-num{font-size:26pt;color:#8e2318}
+  .man-txt .rv-tit{font-size:17pt}
+  .rv-box{break-inside:avoid;background:#fff;padding:3mm 4mm;margin:4mm 0}
+  .man-txt .rv-box p,.man-txt .rv-box li{font-size:9.5pt}
+  .rv-chefe .rv-tag,.rv-grupo .rv-tag,.rv-segredo .rv-tag{background:#12100e;color:#fff}
+  .rv-esf i.on{background:#f5a524}
+}
 .man-lista{margin:24px 0 0;display:flex;flex-direction:column;gap:0}
 .man-lista > div{display:grid;grid-template-columns:126px minmax(0,1fr);gap:20px;
   padding:13px 0;border-top:1px solid var(--rule-soft)}
