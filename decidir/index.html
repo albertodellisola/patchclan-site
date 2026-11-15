@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+<meta name="referrer" content="no-referrer">
+<title>Decisões — Patch Clan</title>
+<!--
+  Página de DECISÕES do dono (14/11/2026: «criar uma pagina dentro do patchclan pra eu decidir por ela, vai ser mais
+  facil, colocar todos»). PRIVADA: fora do menu e do sitemap, noindex, e sem dado nenhum no HTML: cartões, respostas e
+  imagens só chegam depois do login, e o banco só libera a conta do dono (public.eh_dono(), migração
+  supabase/migrations/20261114230000_decisoes_dono.sql). Os cartões sobem do Mac com
+  ~/estado-patchclan/decisoes_site.py subir; cada clique grava uma linha em decisoes_respostas e o
+  decisoes_site.py baixar (launchd, a cada 2 min) leva a resposta a ~/estado-patchclan/todos/respostas_site/, no formato do Salvar antigo, que o respostas_salvas() lê.
+  Regras mantidas do perguntas_dono.py: imagem NUNCA encolhe (o tamanho vem do Mac: próprio × k inteiro, lado maior
+  >= 640 px; a rolagem é dentro do cartão), opções para clicar em todo cartão, «Nenhuma serve» em arte, cartão
+  respondido sai sozinho, reprovado volta só quando a assinatura muda (opção ou imagem nova).
+-->
+<style>
+:root{--bg:#111;--fg:#eee;--box:#1d2a33;--box2:#0f1114;--ok:#ffd76a;--mut:#9aa;--bom:#7ee2a8;--ruim:#ff8a80;--linha:#345;--aviso:#3a2c08}
+:root[data-theme="light"]{--bg:#f4f5f7;--fg:#15191d;--box:#fff;--box2:#eef1f4;--ok:#8a5a00;--mut:#5b6670;--bom:#11753f;--ruim:#b3261e;--linha:#c9d2da;--aviso:#fff3cd}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;padding:20px 16px 60px;background:var(--bg);color:var(--fg);line-height:1.5;overflow-x:hidden}
+h1{font-size:22px;margin:0 0 4px}
+.m{color:var(--mut);font-size:14px}
+b,.ok{color:var(--ok)}
+.topo{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;max-width:1000px}
+button{font:inherit;cursor:pointer}
+.bt{background:var(--ok);color:#111;border:0;border-radius:6px;padding:10px 20px;font-weight:700;font-size:16px}
+.bt2{background:transparent;color:var(--mut);border:1px solid var(--linha);border-radius:6px;padding:6px 12px;font-size:14px}
+.bt2:hover{color:var(--fg)}
+#login{max-width:360px;margin:40px auto}
+#login input{display:block;width:100%;margin:6px 0 12px;padding:10px;border-radius:6px;border:1px solid var(--linha);background:var(--box2);color:var(--fg);font-size:16px}
+#erro{color:var(--ruim);min-height:1.5em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.chip{background:var(--box);color:var(--fg);border:1px solid var(--linha);border-radius:999px;padding:5px 12px;font-size:14px}
+.chip.on{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok)}
+.chip .n{color:var(--mut);margin-left:4px}
+ul{padding:0;margin:0}
+li.c{list-style:none;background:var(--box);padding:12px 14px;border-radius:8px;margin:12px 0;overflow-x:auto;transition:opacity .4s}
+li.c.sai{opacity:.35}
+.txt,.ocup,.st,textarea{max-width:1000px}
+.jogo{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.ocup{background:var(--aviso);border-left:4px solid var(--ok);padding:6px 10px;border-radius:4px;margin:8px 0;font-size:14px}
+.fig{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;align-items:flex-start}
+figure{margin:0;flex:0 0 auto;max-width:none}
+figure img{max-width:none;image-rendering:pixelated;border:1px solid var(--linha);background:#000;display:block}
+figure video{max-width:100%;border:1px solid var(--linha);background:#000}
+figcaption{color:var(--mut);font-size:13px}
+.tela{display:inline-block;background:#00104a;border:3px solid #dde;border-radius:4px;padding:8px 12px;margin:6px 8px 6px 0;font:16px/1.35 Menlo,monospace;white-space:pre;color:#fff}
+.grp h4{margin:14px 0 6px;color:var(--ok);font-size:16px}
+.grade{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
+.op{position:relative;display:flex;flex-direction:column;gap:6px;background:var(--box2);color:var(--fg);border:3px solid var(--linha);border-radius:8px;padding:8px;text-align:left;user-select:none;-webkit-user-select:none;min-height:48px}
+.op:hover{border-color:#89a}
+.op[aria-pressed="true"]{border-color:var(--ok);box-shadow:0 0 0 2px var(--ok)}
+.op img{max-width:none;image-rendering:pixelated;background:#000;pointer-events:none;display:block;-webkit-user-drag:none;user-select:none}
+.op span{font-size:15px}
+.op span::before{content:"○ ";color:var(--mut)}
+.op[aria-pressed="true"] span::before{content:"✔ ";color:var(--ok)}
+.op em{color:var(--bom);font-style:normal;font-size:13px;margin-left:6px}
+.op.nenhuma{justify-content:center;color:var(--mut)}
+textarea{display:block;width:100%;margin-top:10px;background:var(--box2);color:var(--fg);border:1px solid var(--linha);border-radius:6px;padding:8px;font:15px -apple-system,sans-serif}
+.st{margin-top:8px;font-size:14px;color:var(--mut);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.st .g{color:var(--bom);font-weight:700}
+.st .e{color:var(--ruim);font-weight:700}
+#vazio{padding:30px 0}
+details{margin-top:28px;max-width:1000px}
+details li{list-style:none;padding:6px 0;border-bottom:1px solid var(--linha);font-size:14px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+</style>
+</head>
+<body>
+<div id="login" hidden>
+  <h1>Decisões do Patch Clan</h1>
+  <p class="m">Entre com a mesma conta do painel.</p>
+  <form id="fl">
+    <label>E-mail<input id="lg-mail" type="email" autocomplete="username" required></label>
+    <label>Senha<input id="lg-senha" type="password" autocomplete="current-password" required></label>
+    <button class="bt" type="submit">Entrar</button>
+    <p id="erro"></p>
+  </form>
+</div>
+
+<div id="app" hidden>
+  <div class="topo">
+    <div>
+      <h1>Decisões de todos os jogos</h1>
+      <div class="m" id="resumo">Carregando…</div>
+    </div>
+    <div><button class="bt2" id="recarregar" type="button">Recarregar</button> <button class="bt2" id="sair" type="button">Sair</button></div>
+  </div>
+  <p class="m" style="max-width:1000px">Cada clique grava na hora. Quando todos os grupos de um cartão estão escolhidos, ele sai da lista em poucos segundos (dá para desfazer). «Nenhuma serve» manda refazer: o cartão só volta com opções novas.</p>
+  <div class="chips" id="chips"></div>
+  <ul id="lista"></ul>
+  <p class="m" id="vazio" hidden>Nada esperando por você agora.</p>
+  <details id="feitos" hidden><summary class="m">Respondidos (<span id="nfeitos">0</span>)</summary><ul id="lfeitos"></ul></details>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="/config.js"></script>
+<script>
+(function(){
+'use strict';
+var CFG = window.PATCHCLAN_CONFIG || {};
+var sb = window.supabase.createClient(CFG.url, CFG.anon);
+var $ = function(id){ return document.getElementById(id); };
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+var CARDS = [], ULT = {}, URLS = {}, ST = {}, FEITOS = [], FILTRO = '', CARREGADO = 0;
+var SAI_MS = 5000;
+try { FILTRO = localStorage.getItem('decidir_filtro') || ''; } catch (x) {}
+
+function grupos(c){ var g = []; (c.opcoes || []).forEach(function(o){ if (g.indexOf(o.grupo || '') < 0) g.push(o.grupo || ''); }); return g; }
+function gk(g){ return g || 'escolha'; }
+function completo(c, e){ return grupos(c).every(function(g){ return e[gk(g)] && e[gk(g)].id; }); }
+function respondido(c){ var u = ULT[c.chave]; return !!(u && u.completa && u.assinatura === c.assinatura); }
+
+// ---------------------------------------------------------------- login
+function entrou(){ $('login').hidden = true; $('app').hidden = false; carregar(); }
+function pedeLogin(){ $('app').hidden = true; $('login').hidden = false; }
+$('fl').onsubmit = function(ev){
+  ev.preventDefault(); $('erro').textContent = '';
+  sb.auth.signInWithPassword({ email: $('lg-mail').value.trim(), password: $('lg-senha').value })
+    .then(function(r){ if (r.error) $('erro').textContent = 'Não entrou: ' + r.error.message; else entrou(); });
+};
+$('sair').onclick = function(){ sb.auth.signOut().then(function(){ location.reload(); }); };
+$('recarregar').onclick = function(){ carregar(); };
+document.addEventListener('visibilitychange', function(){
+  if (!document.hidden && CARREGADO && Date.now() - CARREGADO > 45 * 60 * 1000) carregar();   // URL assinada vale 1 h
+});
+
+// ---------------------------------------------------------------- dados
+function todas(tabela, campos, ordem){
+  var out = [];
+  function pag(n){
+    var q = sb.from(tabela).select(campos);
+    ordem.forEach(function(o){ q = q.order(o, { ascending: true }); });
+    return q.range(n, n + 999).then(function(r){
+      if (r.error) throw r.error;
+      out = out.concat(r.data || []);
+      return (r.data || []).length < 1000 ? out : pag(n + 1000);
+    });
+  }
+  return pag(0);
+}
+
+function carregar(){
+  $('resumo').textContent = 'Carregando…';
+  Promise.all([
+    sb.from('decisoes_cartoes').select('*').eq('ativo', true).order('pasta').order('chave'),
+    todas('decisoes_respostas', 'chave,assinatura,escolhas,observacao,completa,criado,id', ['criado', 'id'])
+  ]).then(function(rs){
+    if (rs[0].error) throw rs[0].error;
+    CARDS = rs[0].data || [];
+    ULT = {}; rs[1].forEach(function(x){ ULT[x.chave] = x; });
+    CARDS.forEach(function(c){
+      if (ST[c.chave]) return;
+      var u = ULT[c.chave], ids = {};
+      (c.opcoes || []).forEach(function(o){ ids[gk(o.grupo) + '|' + o.id] = 1; });
+      var base = (u && u.assinatura === c.assinatura) ? (u.escolhas || {}) : (c.pre || {});
+      var e = {};
+      Object.keys(base).forEach(function(g){
+        var v = base[g]; if (v && v.id && (ids[g + '|' + v.id] || v.id === 'nenhuma')) e[g] = { id: String(v.id), rotulo: v.rotulo || '' };
+      });
+      ST[c.chave] = { e: e, t: (u && u.assinatura === c.assinatura) ? (u.observacao || '') : '' };
+    });
+    var caminhos = [];
+    CARDS.forEach(function(c){
+      (c.imagens || []).forEach(function(m){ if (m.path) caminhos.push(m.path); });
+      (c.opcoes || []).forEach(function(o){ if (o.path) caminhos.push(o.path); });
+    });
+    caminhos = caminhos.filter(function(p, i){ return caminhos.indexOf(p) === i; });
+    var lotes = [];
+    for (var i = 0; i < caminhos.length; i += 100) lotes.push(caminhos.slice(i, i + 100));
+    return Promise.all(lotes.map(function(l){ return sb.storage.from('decisoes').createSignedUrls(l, 3600); }));
+  }).then(function(rs){
+    URLS = {};
+    rs.forEach(function(r){ if (r.error) throw r.error; (r.data || []).forEach(function(x){ if (x.signedUrl) URLS[x.path] = x.signedUrl; }); });
+    CARREGADO = Date.now();
+    FEITOS = CARDS.filter(respondido);
+    desenha();
+  }).catch(function(e){
+    $('resumo').innerHTML = '<span style="color:var(--ruim)">Não carregou: ' + esc(e.message || e) + '</span>';
+  });
+}
+
+// ---------------------------------------------------------------- tela
+function img(path, w, h, alt, extra){
+  var u = URLS[path];
+  if (!u) return '<span class="m">[imagem não carregou]</span>';
+  var tam = (w && h) ? ' width="' + w + '" height="' + h + '" style="width:' + w + 'px;height:' + h + 'px"' : '';
+  return '<img src="' + esc(u) + '" loading="lazy" draggable="false"' + tam + ' alt="' + esc(alt) + '"' + (extra || '') + '>';
+}
+
+function cartaoHTML(c){
+  var s = ST[c.chave], h = [];
+  h.push('<div class="txt"><div class="jogo">' + esc(c.jogo) + '</div><b>' + esc(c.tipo) + '</b> — ' + esc(c.texto) + '</div>');
+  if (c.ocupado) h.push('<div class="ocup">Outra aba está mexendo neste jogo agora (' + esc(c.ocupado) + '). Pode decidir: a resposta fica gravada e o projeto a lê quando passar por aqui.</div>');
+  h.push('<div class="fig">');
+  (c.imagens || []).forEach(function(m){
+    var tag = m.video ? (URLS[m.path] ? '<video src="' + esc(URLS[m.path]) + '" controls muted playsinline></video>' : '')
+                      : img(m.path, m.w, m.h, m.legenda);
+    h.push('<figure' + (m.largo ? ' class="largo"' : '') + '>' + tag + '<figcaption>' + esc(m.legenda || '') + '</figcaption></figure>');
+  });
+  h.push('</div>');
+  (c.caixas || []).forEach(function(cx){ h.push('<div class="tela">' + esc((cx || []).join('\n')) + '</div>'); });
+  grupos(c).forEach(function(g){
+    var ops = (c.opcoes || []).filter(function(o){ return (o.grupo || '') === g; });
+    if (c.arte) ops = ops.concat([{ id: 'nenhuma', rotulo: 'Nenhuma serve: pedir outras', grupo: g }]);
+    h.push('<div class="grp">' + (g ? '<h4>' + esc(g) + '</h4>' : '') + '<div class="grade">');
+    ops.forEach(function(o){
+      var sel = s.e[gk(g)] && s.e[gk(g)].id === String(o.id);
+      h.push('<button type="button" class="op' + (o.id === 'nenhuma' ? ' nenhuma' : '') + '" aria-pressed="' + (sel ? 'true' : 'false') +
+             '" data-c="' + esc(c.chave) + '" data-g="' + esc(g) + '" data-id="' + esc(o.id) + '" data-r="' + esc(o.rotulo) + '">' +
+             (o.path ? img(o.path, o.w, o.h, o.rotulo) : '') +
+             '<span>' + esc(o.rotulo) + (o.recomendada ? ' <em>recomendada</em>' : '') + '</span></button>');
+    });
+    h.push('</div></div>');
+  });
+  h.push('<textarea rows="2" placeholder="Observação (opcional)" data-c="' + esc(c.chave) + '">' + esc(s.t) + '</textarea>');
+  h.push('<div class="st" id="st-' + esc(c.chave) + '">' + statusHTML(c) + '</div>');
+  return h.join('');
+}
+
+function statusHTML(c){
+  var s = ST[c.chave], falta = grupos(c).filter(function(g){ return !(s.e[gk(g)] && s.e[gk(g)].id); });
+  if (!falta.length) return respondido(c) ? '<span class="g">Respondido ✔</span>'
+    : 'As escolhas de antes vieram marcadas. Clique na opção certa de um grupo para confirmar.';
+  var feitos = grupos(c).length - falta.length;
+  return feitos ? 'Falta: ' + esc(falta.map(function(g){ return g || 'a escolha'; }).join(', ')) : 'Escolha uma opção' + (grupos(c).length > 1 ? ' em cada grupo' : '') + '.';
+}
+
+function desenha(){
+  var pend = CARDS.filter(function(c){ return !respondido(c); });
+  var jogos = {};
+  pend.forEach(function(c){ jogos[c.jogo] = (jogos[c.jogo] || 0) + 1; });
+  if (FILTRO && !jogos[FILTRO]) FILTRO = '';
+  var nomes = Object.keys(jogos).sort(function(a, b){ return a.localeCompare(b); });
+  $('resumo').textContent = pend.length + ' decisões em ' + nomes.length + ' jogos' +
+    (CARDS.length ? ' · cartões subidos em ' + new Date(CARDS.reduce(function(m, c){ return c.atualizado > m ? c.atualizado : m; }, '')).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }) : '');
+  $('chips').innerHTML = (nomes.length > 1 ? ['<button type="button" class="chip' + (FILTRO ? '' : ' on') + '" data-j="">Todos<span class="n">' + pend.length + '</span></button>'] : [])
+    .concat(nomes.length > 1 ? nomes.map(function(j){ return '<button type="button" class="chip' + (FILTRO === j ? ' on' : '') + '" data-j="' + esc(j) + '">' + esc(j) + '<span class="n">' + jogos[j] + '</span></button>'; }) : []).join('');
+  var vis = pend.filter(function(c){ return !FILTRO || c.jogo === FILTRO; });
+  $('lista').innerHTML = vis.map(function(c){ return '<li class="c" data-c="' + esc(c.chave) + '">' + cartaoHTML(c) + '</li>'; }).join('');
+  $('vazio').hidden = pend.length > 0;
+  $('nfeitos').textContent = FEITOS.length;
+  $('feitos').hidden = !FEITOS.length;
+  $('lfeitos').innerHTML = FEITOS.map(function(c){
+    return '<li><span><span class="m">' + esc(c.jogo) + '</span> · ' + esc(c.tipo) + ' — ' + esc(resumoEscolhas(c)) + '</span>' +
+           '<button type="button" class="bt2" data-reabre="' + esc(c.chave) + '">Reabrir</button></li>';
+  }).join('');
+}
+
+function resumoEscolhas(c){
+  var e = (ST[c.chave] || {}).e || {};
+  return Object.keys(e).map(function(g){ return (g !== 'escolha' ? g + ': ' : '') + e[g].rotulo; }).join(' · ');
+}
+
+// ---------------------------------------------------------------- gravar
+function card(ch){ for (var i = 0; i < CARDS.length; i++) if (CARDS[i].chave === ch) return CARDS[i]; return null; }
+function li(ch){ var l = document.querySelectorAll('li.c'); for (var i = 0; i < l.length; i++) if (l[i].getAttribute('data-c') === ch) return l[i]; return null; }
+function st(ch){ var a = document.querySelectorAll('.st'); for (var i = 0; i < a.length; i++) if (a[i].id === 'st-' + ch) return a[i]; return null; }
+
+function grava(c, depois){
+  var s = ST[c.chave], comp = completo(c, s.e), linha = {
+    chave: c.chave, assinatura: c.assinatura, escolhas: s.e, observacao: s.t || '', completa: comp
+  };
+  var el = st(c.chave);
+  if (el) el.innerHTML = statusHTML(c) + ' <span class="m">gravando…</span>';
+  return sb.from('decisoes_respostas').insert(linha).select('chave,assinatura,escolhas,observacao,completa,criado,id').then(function(r){
+    var el2 = st(c.chave);
+    if (r.error) {
+      if (el2) el2.innerHTML = '<span class="e">Não gravou: ' + esc(r.error.message) + '. Clique de novo.</span>';
+      return false;
+    }
+    ULT[c.chave] = (r.data && r.data[0]) || linha;
+    var hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    if (el2) el2.innerHTML = statusHTML(c) + ' <span class="m">gravado às ' + hora + '</span>' + (comp ? ' <button type="button" class="bt2" data-desfaz="' + esc(c.chave) + '">Desfazer</button>' : '');
+    if (depois) depois(comp);
+    return true;
+  });
+}
+
+var SAIDA = {};
+function agendaSaida(c){
+  var l = li(c.chave); if (l) l.classList.add('sai');
+  clearTimeout(SAIDA[c.chave]);
+  SAIDA[c.chave] = setTimeout(function(){
+    delete SAIDA[c.chave];
+    if (!respondido(c)) return;
+    if (FEITOS.indexOf(c) < 0) FEITOS.push(c);
+    desenha();
+  }, SAI_MS);
+}
+
+var ULTIMO = {};
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest('button');
+  if (!b) return;
+  if (b.hasAttribute('data-j')) {
+    FILTRO = b.getAttribute('data-j');
+    try { localStorage.setItem('decidir_filtro', FILTRO); } catch (x) {}
+    desenha(); window.scrollTo(0, 0); return;
+  }
+  if (b.hasAttribute('data-desfaz')) {
+    var cd = card(b.getAttribute('data-desfaz')), g0 = ULTIMO[cd.chave];
+    clearTimeout(SAIDA[cd.chave]); delete SAIDA[cd.chave];
+    if (g0 !== undefined) delete ST[cd.chave].e[gk(g0)];
+    var l0 = li(cd.chave); if (l0) { l0.classList.remove('sai'); l0.innerHTML = cartaoHTML(cd); }
+    grava(cd); return;
+  }
+  if (b.hasAttribute('data-reabre')) {
+    var cr = card(b.getAttribute('data-reabre'));
+    FEITOS = FEITOS.filter(function(x){ return x !== cr; });
+    ULT[cr.chave] = Object.assign({}, ULT[cr.chave], { completa: false });
+    FILTRO = ''; desenha();
+    var lr = li(cr.chave); if (lr) lr.scrollIntoView({ block: 'start' });
+    return;
+  }
+  if (!b.classList.contains('op')) return;
+  var c = card(b.getAttribute('data-c')); if (!c) return;
+  var g = b.getAttribute('data-g'), id = b.getAttribute('data-id');
+  var rot = id === 'nenhuma' ? 'Nenhuma serve' : b.getAttribute('data-r');
+  ST[c.chave].e[gk(g)] = { id: id, rotulo: rot };
+  ULTIMO[c.chave] = g;
+  var irm = b.parentNode.querySelectorAll('.op');
+  for (var i = 0; i < irm.length; i++) irm[i].setAttribute('aria-pressed', irm[i] === b ? 'true' : 'false');
+  grava(c, function(comp){ if (comp) agendaSaida(c); });
+});
+
+var OBS = {};
+document.addEventListener('input', function(ev){
+  var t = ev.target; if (!t.matches('textarea[data-c]')) return;
+  var c = card(t.getAttribute('data-c')); if (!c) return;
+  ST[c.chave].t = t.value;
+  clearTimeout(OBS[c.chave]);
+  OBS[c.chave] = setTimeout(function(){ grava(c); }, 1200);
+});
+
+sb.auth.getSession().then(function(r){ if (r.data && r.data.session) entrou(); else pedeLogin(); });
+})();
+</script>
+</body>
+</html>
