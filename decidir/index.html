@@ -9,8 +9,10 @@
 <!--
   Página de DECISÕES do dono (14/11/2026: «criar uma pagina dentro do patchclan pra eu decidir por ela, vai ser mais
   facil, colocar todos»). PRIVADA: fora do menu e do sitemap, noindex, e sem dado nenhum no HTML: cartões, respostas e
-  imagens só chegam depois do login, e o banco só libera a conta do dono (public.eh_dono(), migração
-  supabase/migrations/20261114230000_decisoes_dono.sql). Os cartões sobem do Mac com
+  imagens só chegam depois da SENHA (dono, 14/11/2026: «quero apenas uma senha pro site, sem login»). A senha é
+  conferida no banco (bcrypt, decidir_entrar(); 20 erros em 10 min travam), que devolve um token guardado neste
+  aparelho; dados e gravação só pelas funções decidir_dados()/decidir_responder() com o token (migração
+  supabase/migrations/20261114234500_decidir_senha.sql). A senha NUNCA vai neste arquivo. Os cartões sobem do Mac com
   ~/estado-patchclan/decisoes_site.py subir; cada clique grava uma linha em decisoes_respostas e o
   decisoes_site.py baixar (launchd, a cada 2 min) leva a resposta a ~/estado-patchclan/todos/respostas_site/, no formato do Salvar antigo, que o respostas_salvas() lê.
   Regras mantidas do perguntas_dono.py: imagem NUNCA encolhe (o tamanho vem do Mac: próprio × k inteiro, lado maior
@@ -73,10 +75,8 @@ details li{list-style:none;padding:6px 0;border-bottom:1px solid var(--linha);fo
 <body>
 <div id="login" hidden>
   <h1>Decisões do Patch Clan</h1>
-  <p class="m">Entre com a mesma conta do painel.</p>
   <form id="fl">
-    <label>E-mail<input id="lg-mail" type="email" autocomplete="username" required></label>
-    <label>Senha<input id="lg-senha" type="password" autocomplete="current-password" required></label>
+    <label>Senha<input id="lg-senha" type="password" autocomplete="current-password" required autofocus></label>
     <button class="bt" type="submit">Entrar</button>
     <p id="erro"></p>
   </form>
@@ -97,13 +97,24 @@ details li{list-style:none;padding:6px 0;border-bottom:1px solid var(--linha);fo
   <details id="feitos" hidden><summary class="m">Respondidos (<span id="nfeitos">0</span>)</summary><ul id="lfeitos"></ul></details>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="/config.js"></script>
 <script>
 (function(){
 'use strict';
 var CFG = window.PATCHCLAN_CONFIG || {};
-var sb = window.supabase.createClient(CFG.url, CFG.anon);
+var TOK = '';
+try { TOK = localStorage.getItem('decidir_token') || ''; } catch (x) {}
+function rpc(fn, corpo){
+  return fetch(CFG.url + '/rest/v1/rpc/' + fn, { method: 'POST',
+    headers: { apikey: CFG.anon, Authorization: 'Bearer ' + CFG.anon, 'Content-Type': 'application/json' },
+    body: JSON.stringify(corpo) }).then(function(r){
+      return r.json().catch(function(){ return null; }).then(function(j){
+        if (!r.ok) { var e = new Error((j && j.message) || ('erro ' + r.status)); e.code = j && j.code; throw e; }
+        return j;
+      });
+    });
+}
+function guardaTok(t){ TOK = t || ''; try { if (TOK) localStorage.setItem('decidir_token', TOK); else localStorage.removeItem('decidir_token'); } catch (x) {} }
 var $ = function(id){ return document.getElementById(id); };
 var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
 var CARDS = [], ULT = {}, URLS = {}, ST = {}, FEITOS = [], FILTRO = '', CARREGADO = 0;
@@ -120,39 +131,22 @@ function entrou(){ $('login').hidden = true; $('app').hidden = false; carregar()
 function pedeLogin(){ $('app').hidden = true; $('login').hidden = false; }
 $('fl').onsubmit = function(ev){
   ev.preventDefault(); $('erro').textContent = '';
-  sb.auth.signInWithPassword({ email: $('lg-mail').value.trim(), password: $('lg-senha').value })
-    .then(function(r){ if (r.error) $('erro').textContent = 'Não entrou: ' + r.error.message; else entrou(); });
+  rpc('decidir_entrar', { senha: $('lg-senha').value }).then(function(t){
+    if (!t) { $('erro').textContent = 'Senha errada.'; return; }
+    guardaTok(t); $('lg-senha').value = ''; entrou();
+  }).catch(function(e){ $('erro').textContent = e.message; });
 };
-$('sair').onclick = function(){ sb.auth.signOut().then(function(){ location.reload(); }); };
+$('sair').onclick = function(){ rpc('decidir_sair', { tok: TOK }).catch(function(){}).then(function(){ guardaTok(''); location.reload(); }); };
 $('recarregar').onclick = function(){ carregar(); };
-document.addEventListener('visibilitychange', function(){
-  if (!document.hidden && CARREGADO && Date.now() - CARREGADO > 45 * 60 * 1000) carregar();   // URL assinada vale 1 h
-});
+function vencida(e){ if (e && e.code === 'P0002') { guardaTok(''); pedeLogin(); return true; } return false; }
 
 // ---------------------------------------------------------------- dados
-function todas(tabela, campos, ordem){
-  var out = [];
-  function pag(n){
-    var q = sb.from(tabela).select(campos);
-    ordem.forEach(function(o){ q = q.order(o, { ascending: true }); });
-    return q.range(n, n + 999).then(function(r){
-      if (r.error) throw r.error;
-      out = out.concat(r.data || []);
-      return (r.data || []).length < 1000 ? out : pag(n + 1000);
-    });
-  }
-  return pag(0);
-}
-
 function carregar(){
   $('resumo').textContent = 'Carregando…';
-  Promise.all([
-    sb.from('decisoes_cartoes').select('*').eq('ativo', true).order('pasta').order('chave'),
-    todas('decisoes_respostas', 'chave,assinatura,escolhas,observacao,completa,criado,id', ['criado', 'id'])
-  ]).then(function(rs){
-    if (rs[0].error) throw rs[0].error;
-    CARDS = rs[0].data || [];
-    ULT = {}; rs[1].forEach(function(x){ ULT[x.chave] = x; });
+  rpc('decidir_dados', { tok: TOK }).then(function(d){
+    CARDS = d.cartoes || [];
+    ULT = {}; (d.respostas || []).forEach(function(x){ ULT[x.chave] = x; });
+    URLS = d.urls || {};
     CARDS.forEach(function(c){
       if (ST[c.chave]) return;
       var u = ULT[c.chave], ids = {};
@@ -164,22 +158,11 @@ function carregar(){
       });
       ST[c.chave] = { e: e, t: (u && u.assinatura === c.assinatura) ? (u.observacao || '') : '' };
     });
-    var caminhos = [];
-    CARDS.forEach(function(c){
-      (c.imagens || []).forEach(function(m){ if (m.path) caminhos.push(m.path); });
-      (c.opcoes || []).forEach(function(o){ if (o.path) caminhos.push(o.path); });
-    });
-    caminhos = caminhos.filter(function(p, i){ return caminhos.indexOf(p) === i; });
-    var lotes = [];
-    for (var i = 0; i < caminhos.length; i += 100) lotes.push(caminhos.slice(i, i + 100));
-    return Promise.all(lotes.map(function(l){ return sb.storage.from('decisoes').createSignedUrls(l, 3600); }));
-  }).then(function(rs){
-    URLS = {};
-    rs.forEach(function(r){ if (r.error) throw r.error; (r.data || []).forEach(function(x){ if (x.signedUrl) URLS[x.path] = x.signedUrl; }); });
     CARREGADO = Date.now();
     FEITOS = CARDS.filter(respondido);
     desenha();
   }).catch(function(e){
+    if (vencida(e)) return;
     $('resumo').innerHTML = '<span style="color:var(--ruim)">Não carregou: ' + esc(e.message || e) + '</span>';
   });
 }
@@ -267,17 +250,19 @@ function grava(c, depois){
   };
   var el = st(c.chave);
   if (el) el.innerHTML = statusHTML(c) + ' <span class="m">gravando…</span>';
-  return sb.from('decisoes_respostas').insert(linha).select('chave,assinatura,escolhas,observacao,completa,criado,id').then(function(r){
+  return rpc('decidir_responder', { tok: TOK, p_chave: linha.chave, p_assinatura: linha.assinatura, p_escolhas: linha.escolhas,
+                                    p_observacao: linha.observacao, p_completa: linha.completa }).then(function(r){
     var el2 = st(c.chave);
-    if (r.error) {
-      if (el2) el2.innerHTML = '<span class="e">Não gravou: ' + esc(r.error.message) + '. Clique de novo.</span>';
-      return false;
-    }
-    ULT[c.chave] = (r.data && r.data[0]) || linha;
+    ULT[c.chave] = r || linha;
     var hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
     if (el2) el2.innerHTML = statusHTML(c) + ' <span class="m">gravado às ' + hora + '</span>' + (comp ? ' <button type="button" class="bt2" data-desfaz="' + esc(c.chave) + '">Desfazer</button>' : '');
     if (depois) depois(comp);
     return true;
+  }).catch(function(e){
+    if (vencida(e)) return false;
+    var el3 = st(c.chave);
+    if (el3) el3.innerHTML = '<span class="e">Não gravou: ' + esc(e.message) + '. Clique de novo.</span>';
+    return false;
   });
 }
 
@@ -337,7 +322,7 @@ document.addEventListener('input', function(ev){
   OBS[c.chave] = setTimeout(function(){ grava(c); }, 1200);
 });
 
-sb.auth.getSession().then(function(r){ if (r.data && r.data.session) entrou(); else pedeLogin(); });
+if (TOK) entrou(); else pedeLogin();
 })();
 </script>
 </body>
