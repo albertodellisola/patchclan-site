@@ -19,6 +19,7 @@
 import { GUIA_MKR2 } from './guia-mkr2.mjs';
 import { GUIA_MANIAC } from './guia-maniac.mjs';
 import { GUIA_YYHG } from './guia-yyhg.mjs';
+import { GUIA_TOM } from './guia-tom.mjs';    // gerado por localizacao-de-manual/scripts/site.py --tipo guia
 import { GUIA_FJ2 } from './guia-fj2.mjs';   // gerado por ~/fj2-hack/site_docs/montar.py
 
 export const GUIAS = {
@@ -26,4 +27,5 @@ export const GUIAS = {
   'maniac-mansion': GUIA_MANIAC,
   'yu-yu-hakusho-gaiden': GUIA_YYHG,
   'famicom-jump-2': GUIA_FJ2,
+  'tom-sawyer': GUIA_TOM,
 };

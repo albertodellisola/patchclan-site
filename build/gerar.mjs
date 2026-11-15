@@ -10,6 +10,7 @@ import { MANUAL_YYHG } from './manual-yyhg.mjs';
 import { MANUAL_GORILLA } from './manual-gorilla.mjs';
 import { MANUAL_SRW64 } from './manual-srw64.mjs';
 import { MANUAL_MANIAC } from './manual-maniac.mjs';
+import { MANUAL_TOM } from './manual-tom.mjs';
 import { GUIAS } from './guias.mjs';
 import { ES } from './es.mjs';
 import { ES_FJ2 } from './es-fj2.mjs';
@@ -264,7 +265,7 @@ ${c.trim()}
 // 1) index.html do site: imagens como arquivos em shots/
 /* Manual e guia entram do mesmo jeito: um objeto por slug, lido no site nos tres idiomas.
    Documento que nao existe simplesmente nao gera link — nada fica esmaecido, nada some. */
-const MANUAIS = { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT, 'magic-knight-rayearth-2': MANUAL_MKR2, 'yu-yu-hakusho-gaiden': MANUAL_YYHG, 'gorilla-man': MANUAL_GORILLA, 'super-robot-wars-64': MANUAL_SRW64, 'maniac-mansion': MANUAL_MANIAC };
+const MANUAIS = { 'famicom-jump-2': MANUAL_FJ2, 'dragon-ball-3': MANUAL_DB3, 'captain-tsubasa': MANUAL_CT, 'magic-knight-rayearth-2': MANUAL_MKR2, 'yu-yu-hakusho-gaiden': MANUAL_YYHG, 'gorilla-man': MANUAL_GORILLA, 'super-robot-wars-64': MANUAL_SRW64, 'maniac-mansion': MANUAL_MANIAC, 'tom-sawyer': MANUAL_TOM };
 /* Thumbnail do post (dono, 22/10/2026): a notícia pode ter a sua, QUADRADA (`thumb`, conferida mais abaixo,
    depois do dims()); sem ela, vale a regra de 27/09/2026 — a thumbnail é a `capa` da página do jogo. Todo post
    aponta o jogo pelo slug (link "Página do jogo" e thumbnail de reserva); sem isso, não gera. E a
