@@ -211,7 +211,7 @@ for (const g of JOGOS) {
 // a fusão antiga do es-fj2 (por índice de seção) apagaria o espanhol novo.
 
 
-const head  = fs.readFileSync(path.join(RAIZ, 'build/head.html'), 'utf8');
+const head  = fs.readFileSync(path.join(RAIZ, 'build/head.html'), 'utf8') + '\n<style>/* detonado do Dragon Ball 3 (build/db3-detonado.css) */\n' + fs.readFileSync(path.join(RAIZ, 'build/db3-detonado.css'), 'utf8') + '</style>\n';
 const corpo = fs.readFileSync(path.join(RAIZ, 'build/corpo.html'), 'utf8');
 
 /* prints por idioma: shots/<jogo>/<idi>/<arquivo> e a variante de shots/<jogo>/<arquivo>.

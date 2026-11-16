@@ -44,7 +44,7 @@ export const REGRAS = [
 
 /* Nomes que são do JOGO, não da ferramenta. Saem antes de conferir. Claude e Gemini ficam
    fora das regras pelo mesmo motivo (Claude é personagem do Shining Force). */
-const NOMES_DE_JOGO = /Ace Robot|Robot Poncots|Robopon|Super Robot (?:Wars|Taisen)/g;
+const NOMES_DE_JOGO = /Pilaf Bots?|Ace Robot|Robot Poncots|Robopon|Super Robot (?:Wars|Taisen)/g;
 const limpa = s => s.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').replace(NOMES_DE_JOGO, '·');
 
 /* Devolve [{onde, regra, trecho}] para cada string de `obj` que casa. */
