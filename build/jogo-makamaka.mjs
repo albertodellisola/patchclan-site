@@ -33,7 +33,7 @@ export const MAKAMAKA = {
   },
   numeros: [],
   grupos: [],
-  patch: { versoes: { en: { arquivo: 'maka-maka-en.ips' }, pt: null, es: null }, rom: 'Maka Maka (Japan).sfc', rom_md5: '91fb2b63750df613c7f3fd67fd0ff903' },
+  patch: { versoes: { en: { arquivo: 'maka-maka-en.ips' }, pt: { arquivo: 'maka-maka-pt.ips' }, es: { arquivo: 'maka-maka-es.ips' } }, rom: 'Maka Maka (Japan).sfc', rom_md5: '91fb2b63750df613c7f3fd67fd0ff903' },
   fotos: [
     { f: 'maka-maka/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O logo de quatro losangos que no cartucho traz 摩訶摩訶 virou <code>MA·KA·MA·KA</code>, desenhado nos tiles que eram só do logo e do copyright, na paleta única da tela, sem cor nova; a linha ©1992 相原製作所, que leva o nome do Aihara, virou <code>AIHARA SEISAKUSHO</code>. O <code>PUSH START BUTTON</code> e o logo da Sigma já vinham em letras.',
