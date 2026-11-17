@@ -373,8 +373,13 @@
     var g = jogoDoPost(o);
     if (o.thumb) {
       /* quadrada: arte da notícia, não pixel art — sem moldura de CRT e sem ampliar em blocos. Leva ao post. */
-      return '<a class="thumb q" href="#/atualizacoes/'+chavePost(o)+'" tabindex="-1" aria-hidden="true">' +
-        foto(o.thumb, '', carga).replace('<img ', '<img class="thumb-q" ') + '</a>';
+      /* por idioma (17/11/2026): { pt, en, es } = uma imagem por língua, cada uma num span que o CSS do idioma esconde */
+      var q = typeof o.thumb === 'string' ? foto(o.thumb, '', carga).replace('<img ', '<img class="thumb-q" ') :
+        ['en', 'pt', 'es'].map(function(l){
+          return '<span class="thumb-l '+l+'" lang="'+LANG_ATTR[l]+'">' +
+            foto(o.thumb[l], '', carga).replace('<img ', '<img class="thumb-q" ') + '</span>';
+        }).join('');
+      return '<a class="thumb q" href="#/atualizacoes/'+chavePost(o)+'" tabindex="-1" aria-hidden="true">' + q + '</a>';
     }
     if (!g || !g.capa) return '';
     return '<a class="thumb" href="#/jogo/'+e(g.slug)+'" tabindex="-1" aria-hidden="true">'+capa(g.capa, '', carga)+'</a>';

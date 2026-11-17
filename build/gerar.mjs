@@ -349,19 +349,32 @@ JOGOS.forEach(g => {
    `thumb` é opcional; quando vem, o arquivo é MEDIDO: tem de existir em shots/, ser quadrado e ter 600 px ou mais
    de lado (a Redação dos Arautos faz 1080×1080). Thumb larga, que não existe ou que não se mede = não gera. */
 const THUMB_MIN = 600;
+/* Thumb POR IDIOMA (dono, 17/11/2026: «criar uma versão da thumbnail quadrada em cada um dos idiomas»): `thumb` pode
+   ser um caminho só ou { pt, en, es } com os três; cada um é medido como acima e o corpo.html mostra o do idioma da página. */
+const THUMB_LINGUAS = ['pt', 'en', 'es'];
+function thumbsDe(p, quem) {
+  if (typeof p.thumb === 'string') return [p.thumb];
+  if (!p.thumb || typeof p.thumb !== 'object' || Array.isArray(p.thumb))
+    throw new Error(`${quem}: thumb tem de ser 'noticias/<arquivo>.jpg' ou { pt, en, es }`);
+  const ks = Object.keys(p.thumb).sort().join(','), quer = [...THUMB_LINGUAS].sort().join(',');
+  if (ks !== quer) throw new Error(`${quem}: thumb por idioma precisa de exatamente ${quer} (veio ${ks})`);
+  return THUMB_LINGUAS.map(l => p.thumb[l]);
+}
 POSTS.forEach((p, i) => {
   if (p.thumb == null) return;
   const quem = quemPost(p, i);
-  if (typeof p.thumb !== 'string' || !p.thumb.trim() || /^(\/|shots\/|https?:)|\.\./.test(p.thumb))
-    throw new Error(`${quem}: thumb '${p.thumb}' — use o caminho dentro de shots/, ex.: thumb:'noticias/<arquivo>.jpg'`);
-  if (!fs.existsSync(path.join(RAIZ, 'shots', p.thumb)))
-    throw new Error(`${quem}: a thumb shots/${p.thumb} não existe — sem ela, tire o campo e o post usa a capa do jogo`);
-  const d = dims(p.thumb);
-  if (!d) throw new Error(`${quem}: não deu para medir a thumb shots/${p.thumb} — use png, jpg ou webp`);
-  if (d[0] !== d[1])
-    throw new Error(`${quem}: a thumb shots/${p.thumb} tem ${d[0]}×${d[1]}: a thumbnail da notícia é QUADRADA (a Redação faz 1080×1080)`);
-  if (d[0] < THUMB_MIN)
-    throw new Error(`${quem}: a thumb shots/${p.thumb} tem ${d[0]}×${d[1]}: pequena demais (mínimo ${THUMB_MIN}×${THUMB_MIN}; a Redação faz 1080×1080)`);
+  thumbsDe(p, quem).forEach(t => {
+    if (typeof t !== 'string' || !t.trim() || /^(\/|shots\/|https?:)|\.\./.test(t))
+      throw new Error(`${quem}: thumb '${t}' — use o caminho dentro de shots/, ex.: thumb:'noticias/<arquivo>.jpg'`);
+    if (!fs.existsSync(path.join(RAIZ, 'shots', t)))
+      throw new Error(`${quem}: a thumb shots/${t} não existe — sem ela, tire o campo e o post usa a capa do jogo`);
+    const d = dims(t);
+    if (!d) throw new Error(`${quem}: não deu para medir a thumb shots/${t} — use png, jpg ou webp`);
+    if (d[0] !== d[1])
+      throw new Error(`${quem}: a thumb shots/${t} tem ${d[0]}×${d[1]}: a thumbnail da notícia é QUADRADA (a Redação faz 1080×1080)`);
+    if (d[0] < THUMB_MIN)
+      throw new Error(`${quem}: a thumb shots/${t} tem ${d[0]}×${d[1]}: pequena demais (mínimo ${THUMB_MIN}×${THUMB_MIN}; a Redação faz 1080×1080)`);
+  });
 });
 /* DISTINÇÃO (dono, 24/10/2026): «noticias terão a thumbnail quadrada e os jogos terão a sua thumbnail no tamanho
    traidicional». (a) Notícia com date >= 2026-10-24 TEM de ter `thumb` quadrada (posts antigos seguem com a capa do
@@ -403,7 +416,8 @@ clone.games.forEach(g => {
   (g.fotos || []).forEach(f => { f.f = embutir(f.f); });
   (g.grupos || []).forEach(gr => (gr.itens || []).forEach(i => { if (i.foto) i.foto = embutir(i.foto); }));
 });
-clone.posts.forEach(p => { if (p.thumb) p.thumb = embutir(p.thumb); });   /* thumb quadrada da notícia (22/10/2026) */
+clone.posts.forEach(p => { if (typeof p.thumb === 'string') p.thumb = embutir(p.thumb);
+  else if (p.thumb) p.thumb = Object.fromEntries(Object.entries(p.thumb).map(([l, t]) => [l, embutir(t)])); });   /* thumb quadrada da notícia (22/10/2026) */
 [clone.manuais, clone.guias].forEach(col => Object.values(col || {}).forEach(m => {
   (m.secoes || []).forEach(sec => { if (sec.foto) sec.foto = embutir(sec.foto); });
 }));
