@@ -1,5 +1,12 @@
 export const ES_DB3 = {
   grupos: [
+    { titulo: "Lo que trae la versión 1.3", itens: [
+      "En el <b>mapa completo</b> del SELECT, Goku aparece <b>donde está</b>, y los lugares por los que ya pasaste quedan <b>marcados</b>.",
+      "Los entrenamientos tienen <b>marcador</b> en pantalla, y en los menús de la aventura con hasta tres opciones, <b>arriba y abajo</b> también mueven el cursor.",
+      "En el combate, <b>mantener A</b> pasa las cajas de texto; una pulsación de A funciona como en el cartucho.",
+      "<b>Yamcha</b> tiene dibujo nuevo, él y Chaoz tienen <b>colores nuevos</b> en los torneos, y el número de estrellas de cada carta lleva ahora el <b>dibujo de una estrella</b> al lado.",
+      "El <b>marco rosa y blanco</b> del borde del mapa, que la versión 1.1 quitaba, <b>vuelve</b>, como en el cartucho. Y la opción <code>CONTINUE</code> ya no se cuelga al cargar."
+    ]},
     { titulo: "Lo que trae la versión 1.1", itens: [
       "El juego ahora <b>guarda</b>, en <b>dos espacios</b>, cada uno con una <b>copia de reserva</b>. El menú tiene <code>Guardar</code>, y el <code>CONTINUE</code> del título abre los dos espacios. La contraseña sigue valiendo, así que quien prefiera apuntarla puede seguir haciéndolo. El guardado se probó en emulador (Mesen y FCEUmm), todavía no en cartucho.",
       "Al encender, una pantalla nueva, con <b>ilustración propia</b>, pregunta la <b>velocidad del texto</b>: rápida o normal. En rápida, los diálogos van <b>el doble de deprisa</b> y las cartas del mapa llegan antes a la mano.",
