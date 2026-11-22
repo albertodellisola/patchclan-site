@@ -84,6 +84,7 @@ const POSTO = { release: 0, beta: 1, alfa: 2 };
    Sem a linha, o gerar.mjs para com erro, e o jogo não cai num lugar qualquer. */
 const DESDE = {
   /* release */
+  'tom-sawyer':                    '2026-11-21T20:50',
   'captain-tsubasa':               '2026-11-08T09:53',
   'ultraman-club-2':               '2026-10-23T03:22',
   'pocket-monsters-stadium':       '2026-10-23T00:32',
@@ -115,7 +116,6 @@ const DESDE = {
   'guevara':                       '2026-09-16T22:11',
   'nekketsu-kakutou-densetsu':     '2026-09-09T23:55',
   'gaia-saver':                    '2026-09-09T20:26',
-  'tom-sawyer':                    '2026-09-09T12:51',
   /* alfa */
   'neko-zamurai':                  '2026-10-22T06:21',
   'gozonji':                       '2026-09-16T23:02',
