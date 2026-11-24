@@ -104,6 +104,15 @@ details li{list-style:none;padding:6px 0;border-bottom:1px solid var(--linha);fo
 var CFG = window.PATCHCLAN_CONFIG || {};
 var TOK = '';
 try { TOK = localStorage.getItem('decidir_token') || ''; } catch (x) {}
+// LINK COM CHAVE (dono, 24/11/2026: «remover essa senha»): patchclan.com/decidir/#k=<chave> entra sem digitar nada.
+// A chave fica guardada neste aparelho e sai da barra de endereço; quem não tem a chave continua parado na senha.
+(function(){
+  var mk = /(?:^#|&)k=([0-9a-f]{32,128})/.exec(location.hash || '');
+  if (!mk) return;
+  TOK = mk[1];
+  try { localStorage.setItem('decidir_token', TOK); } catch (x) {}
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (x) {}
+})();
 function rpc(fn, corpo){
   return fetch(CFG.url + '/rest/v1/rpc/' + fn, { method: 'POST',
     headers: { apikey: CFG.anon, Authorization: 'Bearer ' + CFG.anon, 'Content-Type': 'application/json' },
