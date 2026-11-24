@@ -266,3 +266,188 @@
 .dzsb .dz-tab th{background:#ffd200;color:#111;text-transform:uppercase;font-size:.78em;letter-spacing:.04em}
 .dzsb .dz-tab tr:nth-child(odd) td{background:rgba(255,210,0,.10)}
 .dzsb .dz-senha{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.02em;background:var(--ground-3);border:1.5px solid var(--ink);border-radius:3px;padding:2px 6px;color:var(--ink);word-break:break-all;white-space:normal}
+
+/* 23/11/2026 (dono: «Corrigir o DB3 como no Tom e subir»): LARGURA + design F da prévia aprovada (16/11). Estavam no
+   ~/db3-detonado/extras/gera_mjs.py e na prévia, mas nunca chegaram a este arquivo: no ar a revista saía numa coluna de 612 px. */
+html:has(.dzsb){overflow-x:clip}
+.man-sec.solo:has(.dzsb){max-width:none}
+.man-sec:has(.dzsb) :is(.man-corpo,.man-txt){max-width:none}
+.man-txt>.dzsb,.man-corpo .dzsb{width:calc(100vw - 32px);max-width:none;margin-left:calc(50% - 50vw + 16px);margin-right:0}
+.dzsb .dz{max-width:none;padding-left:clamp(16px,3.4vw,72px);padding-right:clamp(16px,3.4vw,72px)}
+.dzsb .dz-corpo{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,3vw,56px)}
+.dzsb .dz-corpo:not(:has(>:nth-child(2))){grid-template-columns:1fr}
+.dzsb .dz-corpo:not(:has(>:nth-child(2)))>.dz-txt:not(:has(>:not(p))){columns:3 26em;column-gap:clamp(32px,4vw,72px)}
+.dzsb .dz-corpo:not(:has(>:nth-child(2)))>.dz-txt>p{break-inside:avoid}
+.dzsb .dz-abre{grid-template-columns:minmax(0,1fr) minmax(300px,30%)}
+.dzsb .dz-chefe{grid-template-columns:minmax(0,500px) minmax(0,1fr)}
+.dzsb .dz-figs{grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));grid-auto-flow:row dense;align-items:start;gap:22px 20px}
+.dzsb .dz-figs>.dz-mapa-passo{grid-row:span 2}
+.dzsb .dz-mapa-larga{max-width:1280px}
+.dzsb .dz-tab:has(.dz-senha) td{white-space:normal;text-align:left;vertical-align:top}
+.dzsb .dz-tab:has(.dz-senha) td:first-child{width:1%}
+.dzsb .dz-tab .dz-senha{display:inline-block;width:calc(21.6ch + 16px);white-space:normal}
+.dzsb .dz-grp{white-space:nowrap;word-break:keep-all}
+.dzsb .dz-tab:has(.dz-senha) td:nth-child(2),.dzsb .dz-tab:has(.dz-senha) th:nth-child(2){text-align:center;white-space:nowrap}
+.dzsb .dz-tab:has(.dz-senha) th{text-align:left}
+@media (max-width:760px){.man-txt>.dzsb,.man-corpo .dzsb{width:calc(100vw - 16px);margin-left:calc(50% - 50vw + 8px)}
+.dzsb .dz-corpo,.dzsb .dz-chefe,.dzsb .dz-abre{grid-template-columns:1fr}
+.dzsb .dz-corpo:not(:has(>:nth-child(2)))>.dz-txt{columns:auto}
+.dzsb .dz-tab:has(.dz-senha),.dzsb .dz-tab:has(.dz-senha) tbody{display:block}
+.dzsb .dz-tab:has(.dz-senha) tr{display:grid;grid-template-columns:auto 1fr;align-items:start}
+.dzsb .dz-tab:has(.dz-senha) td:nth-child(3){grid-column:1/-1;padding-top:0}
+.dzsb .dz-tab:has(.dz-senha) th:nth-child(3){display:none}
+.dzsb .dz-tab:has(.dz-senha) :is(td,th):nth-child(2){text-align:left}}
+
+/* DESIGN escolhido pelo dono em 16/11/2026 (design/F/override.css: índice, passo, link e WATCH OUT da proposta C; TIP da proposta A; um ícone do jogo por dica) */
+/* ===== Designer C · «MÓDULOS» =====
+   Cada passo = um módulo recortado (papel branco, borda preta, sombra chapada colorida), com respiro entre eles.
+   Dentro do módulo, um MOSAICO: texto em bloco de 2 colunas de grade, telas, mapa, TIP e WATCH OUT como peças
+   quadradas do porte da ficha «IN THIS SECTION». */
+
+/* ---------- 1. tipografia maior ---------- */
+.dzsb .dz-txt p{font-size:19px;line-height:1.6;margin:0 0 16px}
+.dzsb .dz-txt p:last-child{margin-bottom:0}
+.dzsb .dz-f figcaption{font-size:15px;line-height:1.35;margin-top:8px}
+.dzsb .dz-dek{font-size:21px}
+.dzsb .dz-ficha dt{font-size:13px}
+.dzsb .dz-ficha dd{font-size:16.5px;line-height:1.38}
+.dzsb .dz-ficha h3{font-size:24px}
+.dzsb .dz-bolas em{font-size:14px}
+.dzsb .dz-onde{font-size:14.5px;padding:4px 9px;max-width:100%;overflow-wrap:anywhere}
+.dzsb .dz-cmd,.dzsb .dz-alvo{font-size:15px}
+.dzsb .dz-m{width:26px;height:26px;font-size:14px}
+.dzsb .dz-rota h5{font-size:15.5px}
+.dzsb .dz-rota p{font-size:17px;line-height:1.55}
+.dzsb .dz-caixas p{font-size:17px;line-height:1.5}
+.dzsb .dz-chefe-dados dd{font-size:16.5px}
+.dzsb .dz-chefe-dados dt{font-size:13px}
+.dzsb .dz-chefe-dados p{font-size:17px;line-height:1.55}
+.dzsb .dz-chefe-rot{font-size:13px!important}
+.dzsb .dz-check h3{font-size:17px}
+.dzsb .dz-check li{font-size:17px;padding:6px 0 6px 30px}
+.dzsb .dz-check li::before{top:9px}
+.dzsb .dz-prox{font-size:18px}
+.dzsb .dz-txt ul{font-size:19px;line-height:1.6}
+.dzsb .dz-tab{font-size:17px}
+.dzsb .dz-senha{font-size:15px}
+.dzsb .tb-leg li{font-size:15px}
+.dzsb .dz-mapa-tab figcaption,.dzsb .dz-mapa-passo-f figcaption{font-size:15px}
+
+/* ---------- 4. links legíveis ---------- */
+.dzsb .dz-onde a{color:#111;background:#ffe100;padding:1px 7px;margin:0 -4px;border-radius:3px;text-decoration:none;
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.35)}
+.dzsb .dz-onde a:hover,.dzsb .dz-onde a:focus-visible{background:#fff;color:#d0021b}
+.dzsb .dz-txt a,.dzsb .dz-caixas a,.dzsb .dz-chefe-dados a,.dzsb .dz-check a,.dzsb .dz-dek a{color:#0b2f7a;font-weight:700;
+  text-decoration:underline;text-decoration-color:#0057b8;text-decoration-thickness:2px;text-underline-offset:3px;
+  background:linear-gradient(transparent 58%,#ffe98a 58%)}
+.dzsb .dz-txt a:hover,.dzsb .dz-caixas a:hover{color:#d0021b;text-decoration-color:#d0021b}
+.dzsb .dz-ficha a{color:#ffe100;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 3. o MÓDULO ---------- */
+.dzsb .dz-passo{--pad:clamp(16px,2.3vw,34px);
+  position:relative;background:#fff;border:3px solid #111;border-radius:6px;box-shadow:9px 9px 0 #0057b8;
+  padding:0 var(--pad) calc(var(--pad) + 4px);margin:0 0 60px;
+  display:grid;align-items:start}
+.dzsb .dz>section.dz-passo:nth-of-type(3n+2){box-shadow:9px 9px 0 #d0021b}
+.dzsb .dz>section.dz-passo:nth-of-type(3n){box-shadow:9px 9px 0 #111}
+.dzsb .dz-abre + .dz-passo,.dzsb .dz-mapa-cap + .dz-passo{margin-top:28px}
+/* faixa de título do módulo: retícula creme, recortada na borda */
+.dzsb .dz-passo>.dz-tit{grid-column:1/-1;margin:0 calc(-1 * var(--pad)) 2px;padding:16px var(--pad) 16px;gap:20px;
+  background:#fff4c4;background-image:radial-gradient(#f6c94a 1.3px,transparent 1.5px);background-size:9px 9px;
+  border-bottom:3px solid #111;border-radius:3px 3px 0 0}
+.dzsb .dz-tit>div{min-width:0}
+.dzsb .dz-tit h2{overflow-wrap:break-word}
+.dzsb .dz-n{width:80px;height:80px;font-size:34px}
+/* o corpo se desmancha: TEXTO à esquerda com as caixas embaixo dele; TELAS à direita num mosaico de 2 colunas
+   (colunas CSS = sem buracos entre as fotos). Linhas: 1 título · 2 ficha do chefe · 3 texto · 4 caixas · 5 extras */
+.dzsb .dz-passo{grid-template-columns:minmax(0,1fr) minmax(0,1fr);row-gap:0;column-gap:clamp(26px,3vw,48px)}
+.dzsb .dz-passo>.dz-corpo{display:contents}
+.dzsb .dz-passo>.dz-tit{grid-row:1;margin-bottom:30px}
+.dzsb .dz-passo>.dz-chefe{grid-row:2;grid-column:1/-1;margin:0 0 34px}
+.dzsb .dz-passo .dz-txt{grid-row:3;grid-column:1}
+.dzsb .dz-passo .dz-figs{grid-row:3/span 2;grid-column:2;display:block;columns:2 250px;column-gap:24px}
+.dzsb .dz-passo .dz-figs>*{break-inside:avoid;margin:0 0 26px}
+.dzsb .dz-passo>.dz-caixas{grid-row:4;grid-column:1;margin-top:30px}
+.dzsb .dz-passo>.dz-mapa-larga{grid-row:5;grid-column:1/-1;margin:30px auto 0;width:100%}
+.dzsb .dz-passo>.dz-ficha{grid-row:5;grid-column:1;margin-top:30px}
+/* sem telas: o texto vira colunas de revista na largura toda e as caixas formam uma fileira de peças embaixo */
+.dzsb .dz-passo:not(:has(.dz-figs>*)) .dz-txt{grid-column:1/-1}
+.dzsb .dz-passo:not(:has(.dz-figs>*)) .dz-txt:not(:has(table)){columns:2 24em;column-gap:clamp(36px,4vw,72px);column-rule:2px dotted #c9bfa6}
+.dzsb .dz-passo:not(:has(.dz-figs>*)) .dz-txt:not(:has(>:nth-child(2))){columns:auto;column-rule:0;max-width:40em}
+.dzsb .dz-passo:not(:has(.dz-figs>*))>.dz-caixas{grid-column:1/-1}
+.dzsb .dz .dz-passo .dz-corpo>.dz-txt>p{break-inside:auto;orphans:2;widows:2}
+.dzsb .dz-txt>.dz-rotas,.dzsb .dz-txt>ul,.dzsb .dz-txt>table{break-inside:avoid}
+.dzsb .dz-rotas{gap:16px;margin:6px 0 20px}
+
+/* ---------- 5 e 6. TIP e WATCH OUT: peças do porte da ficha, lado a lado embaixo do texto ---------- */
+.dzsb .dz-caixas{grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:26px 24px;align-items:start}
+.dzsb .dz-dica{background:#6fd0f5;color:#0a2540;border:3px solid #111;border-radius:14px;box-shadow:6px 6px 0 #111;
+  padding:18px 20px 20px;min-height:170px;display:flex;flex-direction:column;gap:10px;transform:rotate(-.8deg)}
+.dzsb .dz-dica h4{position:static;margin:0;font-size:21px;line-height:1.12;color:#fff;
+  text-shadow:2px 2px 0 #111,-1px -1px 0 #111,1px -1px 0 #111,-1px 1px 0 #111;text-transform:uppercase}
+.dzsb .dz-dica .dz-mini{max-width:100%;margin-top:4px;border:2px solid #111}
+.dzsb .dz-alerta{background:#fff;padding:14px 16px 16px;border-width:10px;display:flex;flex-direction:column;gap:9px;margin:0}
+.dzsb .dz-alerta h4{margin:0;font-size:21px;line-height:1.12}
+.dzsb .dz-alerta-img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 50%;
+  image-rendering:pixelated;border:3px solid #111;box-shadow:4px 4px 0 #d0021b;margin:0 0 6px}
+.dzsb .dz-alerta.dz-treino .dz-alerta-img{box-shadow:4px 4px 0 #0057b8}
+.dzsb .dz-chefe .dz-f img{height:auto}
+
+/* ---------- 2. índice como a ficha azul «IN THIS GUIDE» ---------- */
+main:has(.dzsb) #indice{--w:min(1180px,calc(100vw - 32px));width:var(--w);margin:34px 0 18px calc((100% - var(--w)) / 2);
+  background:#0057b8;color:#fff;border:3px solid #111;border-top:3px solid #111;border-radius:14px;box-shadow:7px 7px 0 #111;
+  padding:4px clamp(16px,2.2vw,30px) 14px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+main:has(.dzsb) #indice>summary{color:#ffe100;font:italic 800 25px/1.1 "Archivo","Helvetica Neue",Arial,sans-serif;
+  text-transform:uppercase;letter-spacing:0;padding:16px 0 14px;border-bottom:2px solid rgba(255,225,0,.7)}
+main:has(.dzsb) #indice>summary .qt{color:#fff;font-style:normal;font-size:17px}
+main:has(.dzsb) #indice>summary::after{border-color:#ffe100}
+main:has(.dzsb) #indice>summary:hover{color:#fff}
+main:has(.dzsb) #indice .man-idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));column-gap:30px;columns:auto}
+main:has(.dzsb) #indice .man-idx a{display:flex;align-items:center;gap:12px;color:#fff;font:700 17.5px/1.3 "Archivo","Helvetica Neue",Arial,sans-serif;
+  padding:12px 2px;border-bottom:1px dashed rgba(255,255,255,.45);text-decoration:none}
+main:has(.dzsb) #indice .man-idx a:hover,main:has(.dzsb) #indice .man-idx a:focus-visible{color:#ffe100}
+main:has(.dzsb) #indice .man-idx .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:radial-gradient(circle at 35% 30%,#fff6c8 0 12%,#ffb52e 40%,#e8780c 100%);color:#7a2b00;
+  font:800 13px/1 "Archivo","Helvetica Neue",Arial,sans-serif;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+
+/* ---------- respostas por largura ---------- */
+@media (max-width:760px){
+  .dzsb .dz{padding-left:12px;padding-right:12px}
+  .dzsb .dz-passo{grid-template-columns:minmax(0,1fr);margin-bottom:44px;box-shadow:6px 6px 0 #0057b8}
+  .dzsb .dz>section.dz-passo:nth-of-type(3n+2){box-shadow:6px 6px 0 #d0021b}
+  .dzsb .dz>section.dz-passo:nth-of-type(3n){box-shadow:6px 6px 0 #111}
+  .dzsb .dz-passo>*,.dzsb .dz-passo .dz-txt,.dzsb .dz-passo .dz-figs{grid-row:auto!important;grid-column:1/-1!important}
+  .dzsb .dz-passo .dz-figs{margin-top:26px;columns:2 220px}
+  .dzsb .dz-dica{transform:none}
+  .dzsb .dz-tit h2{font-size:25px}
+  .dzsb .dz-n{width:60px;height:60px;font-size:24px}
+  .dzsb .dz-passo>.dz-tit{gap:14px;padding:12px var(--pad)}
+  .dzsb .dz-txt p{font-size:18px}
+  .dzsb .dz-rotas{grid-template-columns:1fr}
+  main:has(.dzsb) #indice>summary{font-size:22px}
+}
+
+/* ===== TIP do A dentro do layout C (dono, 16/11/2026: índice, passo, link e WATCH OUT = C; TIP = A
+   «colocar algum icone extraido do jogo para simbolizar a dica») ===== */
+.dzsb .dz-dica{background:#3cb2ee;color:#06222c;border:0;border-radius:14px;box-shadow:6px 6px 0 #111;
+  padding:16px 20px 18px;transform:rotate(-.8deg);min-height:0;display:block;max-width:380px;position:relative}
+.dzsb .dz-dica a{color:#06222c;text-decoration-color:#06222c}
+.dzsb .dz-dica h4{font-size:21px;line-height:1.12;text-transform:uppercase;margin:0 0 10px;padding:0 54px 9px 0;color:#fff;
+  text-shadow:2px 2px 0 #111;border-bottom:1px dashed rgba(6,34,44,.5)}
+.dzsb .dz-dica h4::before{display:block;width:max-content;font-size:14px;line-height:1;letter-spacing:.04em;padding:5px 9px 4px;
+  margin:0 0 9px;text-shadow:none;transform:rotate(-2deg);content:"TIP!";background:#111;color:#ffe100}
+.dzsb .dz-dica .dz-mini{max-width:100%}
+/* um ícone do jogo por dica (dono, 16/11/2026: «um icone [...] para cada uma das dicas»), recorte nativo ampliado sem borrar */
+.dzsb .dz .dz-dica img.dz-dica-ico{position:absolute;top:-18px;right:-14px;width:64px;height:64px;object-fit:contain;transform:rotate(6deg);
+  image-rendering:pixelated;background:#111;border:3px solid #111;box-shadow:3px 3px 0 #111;margin:0}
+@media (max-width:760px){.dzsb .dz-dica{transform:none;max-width:none}.dzsb .dz .dz-dica img.dz-dica-ico{right:-6px}}
+/* dica dos seis capangas do Piccolo (dono, 16/11/2026: «nao deixar os nomes todos misturados, deixar uma linha de espaço
+   entre eles. Pode mudar o formato do quadrado para retangulo»): retângulo na largura da fileira, um capanga por parágrafo */
+.dzsb .dz .dz-dica.dz-dica-larga{max-width:none;grid-column:1/-1}
+.dzsb .dz-dica-larga .dz-capangas{margin:6px 0 16px;padding:12px 0 2px;border-top:1px dashed rgba(6,34,44,.5);border-bottom:1px dashed rgba(6,34,44,.5)}
+.dzsb .dz-dica-larga .dz-capangas p{margin:0 0 14px}
+.dzsb .dz-dica-larga .dz-num{white-space:nowrap}
+/* a regra das tabelas largas do manual (.man-sec.solo .man-txt table: largura --larga-t e margem negativa para sair da coluna de 34em)
+   empurrava a tabela para fora da caixa com a revista na largura toda (23/11/2026): no DB3 a tabela fica na largura do passo */
+.man-txt .dzsb:not(.dztom) .dz-tab{width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important}
+.dzsb:not(.dztom) .dz-passo>.dz-corpo>.dz-tab,.dzsb:not(.dztom) .dz-passo>.dz-tab{grid-column:1/-1}

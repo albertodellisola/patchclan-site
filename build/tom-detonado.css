@@ -334,6 +334,10 @@ main:has(.dztom) #indice .man-idx a .n{flex:none;width:36px;height:36px;display:
 main:has(.dztom) #indice .man-idx a>span:not(.n){min-width:0;flex:1}
 main:has(.dztom) #indice .man-idx a[href]::after{content:"▶";flex:none;font-size:11px;color:#c22f45}
 main:has(.dztom) #indice .man-idx a[href]:hover{background:rgba(47,122,75,.1)}
+/* dono, 23/11/2026: «quando passo o mouse no menu, fica amarelo, nao da pra ler, deixar vermelho» (o amarelo vinha do design F do DB3) */
+main:has(.dztom) #indice .man-idx a:hover,main:has(.dztom) #indice .man-idx a:focus-visible{color:#c22f45}
+main:has(.dztom) #indice>summary{border-bottom:0}
+main:has(.dztom) #indice>summary::after{border-color:#fff}
 main:has(.dztom) #indice .man-idx a[href]:hover .n{background:#c22f45;box-shadow:inset 0 0 0 2px #c22f45,inset 0 0 0 4px #f1ece1}
 main:has(.dztom) #indice .man-idx a.dz-vazio{color:#545b52;opacity:1;cursor:default}
 main:has(.dztom) #indice .man-idx a.dz-vazio .n{background:transparent;color:#2f7a4b;box-shadow:inset 0 0 0 2px #2f7a4b}
@@ -430,6 +434,11 @@ main:has(.dztom) #indice .man-idx{grid-template-columns:repeat(auto-fill,minmax(
 .dzsb.dztom .dz-passo{padding:52px 0 28px}
 .dzsb.dztom .dz-chefe.dz-carta .dz-janela{min-height:0;padding:44px 0 18px}
 }
+/* 23/11/2026: restos amarelos do DB3 no extra «Os chefes» (tabela e link no rótulo de lugar) no verde do visual B */
+.dzsb.dztom .dz-tab th{background:var(--verde);color:#fff}
+.dzsb.dztom .dz-tab tr:nth-child(odd) td{background:rgba(47,122,75,.07)}
+.dzsb.dztom .dz-onde a{background:none;color:#fff;padding:0;margin:0;text-decoration:underline;text-underline-offset:3px}
+.dzsb.dztom .dz-onde a:hover,.dzsb.dztom .dz-onde a:focus-visible{background:none;color:#fff;text-decoration-thickness:2px}
 
 /* ===== MANUAL DO JOGADOR no visual B (dono, 23/11/2026: «atualizar o manual do jogo com o mesmo visual»).
    O html de cada seção vem do manual-tom.mjs (localizacao-de-manual), embrulhado por build/tom-manual-b.mjs em
