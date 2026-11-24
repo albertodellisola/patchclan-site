@@ -90,7 +90,7 @@
 /* só na prévia (o cap1.html ainda não traz o <img>; o chefe.html traz): o mesmo sprite 4× por CSS */
 main:has(.dztom) #sec-cap1 #p004 .dz-retrato:empty{background:url(shots/tom-sawyer/detonado/ds/wriggler.png) 0 0/96px 140px no-repeat;image-rendering:pixelated}
 main:has(.dztom) #sec-cap1 #p004 .dz-janela:has(.dz-retrato:empty)::after{content:"WRIGGLER";color:#f4f0e6;font:400 18px/1 var(--pixel);letter-spacing:.12em}
-.dzsb.dztom .dz-chefe-dados{padding:4px 0 0}
+.dzsb.dztom .dz-chefe-dados{padding:18px 24px 24px} /* 23/11 dono: «Lutas do bosque ao norte» colado na margem esquerda → recuo interno igual aos outros blocos */
 .dzsb.dztom .dz-chefe-rot{display:inline-block;background:var(--verm);color:#fff;font:800 12px/1 var(--redondo)!important;padding:7px 13px;border-radius:999px;letter-spacing:.08em!important}
 .dzsb.dztom .dz-chefe-dados h3{margin:12px 0 10px;font:900 30px/1.15 var(--sans);color:var(--verde-e)}
 .dzsb.dztom .dz-chefe-dados dl>div{grid-template-columns:118px 1fr;padding:8px 0;border-bottom:2px dotted rgba(47,122,75,.5)}
@@ -197,6 +197,7 @@ main:has(.dztom) #indice .man-idx a.dz-vazio .n{background:transparent;color:#2f
 .dzsb.dztom .dz-chefe.dz-carta .dz-carta-in{grid-template-columns:minmax(0,1fr);padding:16px;gap:20px}
 .dzsb.dztom .dz-chefe.dz-carta .dz-janela{min-height:230px}
 .dzsb.dztom .dz-chefe-dados h3{font-size:25px}
+.dzsb.dztom .dz-chefe-dados{padding:14px 14px 16px}
 .dzsb.dztom .dz-chefe-dados dl>div,.dzsb.dztom .dz-forca-lev>div{grid-template-columns:96px 1fr}
 .dzsb.dztom .dz-forca{padding:30px 10px 12px}
 .dzsb.dztom .dz-forca-herois{gap:6px}
@@ -222,6 +223,8 @@ main:has(.dztom) #indice .man-idx{grid-template-columns:minmax(0,1fr)}
 .dzsb.dztom .dz-passo:has(.dz-figs>.dz-f:only-child)>.dz-tit{grid-column:1}
 .dzsb.dztom .dz-passo .dz-figs:has(>.dz-f:only-child){grid-row:1/span 4;columns:auto}
 .dzsb.dztom .dz-figs>.dz-f:only-child img{width:272px;max-width:100%}
+/* passo com ficha: a ficha desce para baixo da tela (antes a tela da coluna 2 cobria a FORÇA RECOMENDADA) */
+.dzsb.dztom .dz-passo:has(>.dz-chefe):has(.dz-figs>.dz-f:only-child)>.dz-chefe{grid-column:1/-1;grid-row:5}
 /* ficha do chefe: janela do tamanho do sprite (6×) */
 .dzsb.dztom .dz-chefe.dz-carta .dz-carta-in{grid-template-columns:minmax(0,250px) minmax(0,1fr);padding:22px}
 .dzsb.dztom .dz-chefe.dz-carta .dz-janela{min-height:0;padding:46px 12px 22px}
