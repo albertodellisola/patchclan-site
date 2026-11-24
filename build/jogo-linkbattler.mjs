@@ -40,9 +40,9 @@ export const LINKBATTLER = {
   patch: { versoes: { en: { arquivo: 'super-robot-wars-link-battler-en.ips' }, pt: null, es: null }, rom: 'Super Robot Taisen - Link Battler (Japan) (SGB Enhanced) (GB Compatible).gbc', rom_md5: 'd710cd23e7e38023297d04e935dbebae' },
   fotos: [
     { f: 'linkbattler/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
-      c: bi('O logotipo redesenhado em inglês: <code>SUPER ROBOT WARS</code> em laranja sobre a mancha vermelha, <code>LINK BATTLER</code> em azul, na diagonal, e <code>PUSH START BUTTON</code> embaixo.',
-           'The logo redrawn in English: <code>SUPER ROBOT WARS</code> in orange over the red splash, <code>LINK BATTLER</code> in blue, on the diagonal, and <code>PUSH START BUTTON</code> below.',
-           'El logotipo redibujado en inglés: <code>SUPER ROBOT WARS</code> en naranja sobre la mancha roja, <code>LINK BATTLER</code> en azul, en diagonal, y <code>PUSH START BUTTON</code> debajo.') },
+      c: bi('O logotipo redesenhado em inglês: <code>SUPER ROBOT WARS</code> em laranja sobre a mancha vermelha, <code>LINK BATTLER</code> em azul, na horizontal, com rastros de velocidade, e <code>PUSH START BUTTON</code> embaixo.',
+           'The logo redrawn in English: <code>SUPER ROBOT WARS</code> in orange over the red splash, <code>LINK BATTLER</code> in blue, level, with speed lines, and <code>PUSH START BUTTON</code> below.',
+           'El logotipo redibujado en inglés: <code>SUPER ROBOT WARS</code> en naranja sobre la mancha roja, <code>LINK BATTLER</code> en azul, en horizontal, con estelas de velocidad, y <code>PUSH START BUTTON</code> debajo.') },
     { f: 'linkbattler/03-prologo.png', t: bi('O prólogo', 'The prologue', 'El prólogo'),
       c: bi('A página que abre a história, em texto puro. <i>A century and a half has passed</i> ocupa a linha de cima inteira: 31 caracteres numa caixa que, com a fonte de fábrica, levava dezoito.',
            'The page that opens the story, in plain text. <i>A century and a half has passed</i> fills the whole top line: 31 characters in a box that held eighteen with the factory font.',
