@@ -1,4 +1,186 @@
 /* DESIGN FINAL do Tom Sawyer (design/FINAL/override.css, escopado em .dztom) */
+/* Da PRÉVIA APROVADA (base/molde.html, l. 1306-1483): LARGURA da revista + design F do DB3 (16/11/2026), a base sobre a qual
+   o design/FINAL/override.css foi desenhado. Nunca chegou ao CSS do site (build/db3-detonado.css): sem ele o passo não monta a grade
+   (23/11/2026). O gera_mjs.py escopa tudo em .dzsb.dztom.dztom. */
+html:has(.dzsb.dztom){overflow-x:clip}
+.man-sec.solo:has(.dzsb.dztom){max-width:none}
+.man-sec:has(.dzsb.dztom) :is(.man-corpo,.man-txt){max-width:none}
+.man-txt>.dzsb.dztom,.man-corpo .dzsb.dztom{width:calc(100vw - 32px);max-width:none;margin-left:calc(50% - 50vw + 16px);margin-right:0}
+.dzsb.dztom .dz{max-width:none;padding-left:clamp(16px,3.4vw,72px);padding-right:clamp(16px,3.4vw,72px)}
+.dzsb.dztom .dz-corpo{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,3vw,56px)}
+.dzsb.dztom .dz-corpo:not(:has(>:nth-child(2))){grid-template-columns:1fr}
+.dzsb.dztom .dz-corpo:not(:has(>:nth-child(2)))>.dz-txt:not(:has(>:not(p))){columns:3 26em;column-gap:clamp(32px,4vw,72px)}
+.dzsb.dztom .dz-corpo:not(:has(>:nth-child(2)))>.dz-txt>p{break-inside:avoid}
+.dzsb.dztom .dz-abre{grid-template-columns:minmax(0,1fr) minmax(300px,30%)}
+.dzsb.dztom .dz-chefe{grid-template-columns:minmax(0,500px) minmax(0,1fr)}
+.dzsb.dztom .dz-figs{grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));grid-auto-flow:row dense;align-items:start;gap:22px 20px}
+.dzsb.dztom .dz-figs>.dz-mapa-passo{grid-row:span 2}
+.dzsb.dztom .dz-mapa-larga{max-width:1280px}
+.dzsb.dztom .dz-tab:has(.dz-senha) td{white-space:normal;text-align:left;vertical-align:top}
+.dzsb.dztom .dz-tab:has(.dz-senha) td:first-child{width:1%}
+.dzsb.dztom .dz-tab .dz-senha{display:inline-block;width:calc(21.6ch + 16px);white-space:normal}
+.dzsb.dztom .dz-grp{white-space:nowrap;word-break:keep-all}
+.dzsb.dztom .dz-tab:has(.dz-senha) td:nth-child(2),.dzsb.dztom .dz-tab:has(.dz-senha) th:nth-child(2){text-align:center;white-space:nowrap}
+.dzsb.dztom .dz-tab:has(.dz-senha) th{text-align:left}
+@media (max-width:760px){.man-txt>.dzsb.dztom,.man-corpo .dzsb.dztom{width:calc(100vw - 16px);margin-left:calc(50% - 50vw + 8px)}
+.dzsb.dztom .dz-corpo,.dzsb.dztom .dz-chefe,.dzsb.dztom .dz-abre{grid-template-columns:1fr}
+.dzsb.dztom .dz-corpo:not(:has(>:nth-child(2)))>.dz-txt{columns:auto}
+.dzsb.dztom .dz-tab:has(.dz-senha),.dzsb.dztom .dz-tab:has(.dz-senha) tbody{display:block}
+.dzsb.dztom .dz-tab:has(.dz-senha) tr{display:grid;grid-template-columns:auto 1fr;align-items:start}
+.dzsb.dztom .dz-tab:has(.dz-senha) td:nth-child(3){grid-column:1/-1;padding-top:0}
+.dzsb.dztom .dz-tab:has(.dz-senha) th:nth-child(3){display:none}
+.dzsb.dztom .dz-tab:has(.dz-senha) :is(td,th):nth-child(2){text-align:left}}
+
+/* DESIGN escolhido pelo dono em 16/11/2026 (design/F/override.css: índice, passo, link e WATCH OUT da proposta C; TIP da proposta A; um ícone do jogo por dica) */
+/* ===== Designer C · «MÓDULOS» =====
+   Cada passo = um módulo recortado (papel branco, borda preta, sombra chapada colorida), com respiro entre eles.
+   Dentro do módulo, um MOSAICO: texto em bloco de 2 colunas de grade, telas, mapa, TIP e WATCH OUT como peças
+   quadradas do porte da ficha «IN THIS SECTION». */
+
+/* ---------- 1. tipografia maior ---------- */
+.dzsb.dztom .dz-txt p{font-size:19px;line-height:1.6;margin:0 0 16px}
+.dzsb.dztom .dz-txt p:last-child{margin-bottom:0}
+.dzsb.dztom .dz-f figcaption{font-size:15px;line-height:1.35;margin-top:8px}
+.dzsb.dztom .dz-dek{font-size:21px}
+.dzsb.dztom .dz-ficha dt{font-size:13px}
+.dzsb.dztom .dz-ficha dd{font-size:16.5px;line-height:1.38}
+.dzsb.dztom .dz-ficha h3{font-size:24px}
+.dzsb.dztom .dz-bolas em{font-size:14px}
+.dzsb.dztom .dz-onde{font-size:14.5px;padding:4px 9px;max-width:100%;overflow-wrap:anywhere}
+.dzsb.dztom .dz-cmd,.dzsb.dztom .dz-alvo{font-size:15px}
+.dzsb.dztom .dz-m{width:26px;height:26px;font-size:14px}
+.dzsb.dztom .dz-rota h5{font-size:15.5px}
+.dzsb.dztom .dz-rota p{font-size:17px;line-height:1.55}
+.dzsb.dztom .dz-caixas p{font-size:17px;line-height:1.5}
+.dzsb.dztom .dz-chefe-dados dd{font-size:16.5px}
+.dzsb.dztom .dz-chefe-dados dt{font-size:13px}
+.dzsb.dztom .dz-chefe-dados p{font-size:17px;line-height:1.55}
+.dzsb.dztom .dz-chefe-rot{font-size:13px!important}
+.dzsb.dztom .dz-check h3{font-size:17px}
+.dzsb.dztom .dz-check li{font-size:17px;padding:6px 0 6px 30px}
+.dzsb.dztom .dz-check li::before{top:9px}
+.dzsb.dztom .dz-prox{font-size:18px}
+.dzsb.dztom .dz-txt ul{font-size:19px;line-height:1.6}
+.dzsb.dztom .dz-tab{font-size:17px}
+.dzsb.dztom .dz-senha{font-size:15px}
+.dzsb.dztom .tb-leg li{font-size:15px}
+.dzsb.dztom .dz-mapa-tab figcaption,.dzsb.dztom .dz-mapa-passo-f figcaption{font-size:15px}
+
+/* ---------- 4. links legíveis ---------- */
+.dzsb.dztom .dz-onde a{color:#111;background:#ffe100;padding:1px 7px;margin:0 -4px;border-radius:3px;text-decoration:none;
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.35)}
+.dzsb.dztom .dz-onde a:hover,.dzsb.dztom .dz-onde a:focus-visible{background:#fff;color:#d0021b}
+.dzsb.dztom .dz-txt a,.dzsb.dztom .dz-caixas a,.dzsb.dztom .dz-chefe-dados a,.dzsb.dztom .dz-check a,.dzsb.dztom .dz-dek a{color:#0b2f7a;font-weight:700;
+  text-decoration:underline;text-decoration-color:#0057b8;text-decoration-thickness:2px;text-underline-offset:3px;
+  background:linear-gradient(transparent 58%,#ffe98a 58%)}
+.dzsb.dztom .dz-txt a:hover,.dzsb.dztom .dz-caixas a:hover{color:#d0021b;text-decoration-color:#d0021b}
+.dzsb.dztom .dz-ficha a{color:#ffe100;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 3. o MÓDULO ---------- */
+.dzsb.dztom .dz-passo{--pad:clamp(16px,2.3vw,34px);
+  position:relative;background:#fff;border:3px solid #111;border-radius:6px;box-shadow:9px 9px 0 #0057b8;
+  padding:0 var(--pad) calc(var(--pad) + 4px);margin:0 0 60px;
+  display:grid;align-items:start}
+.dzsb.dztom .dz>section.dz-passo:nth-of-type(3n+2){box-shadow:9px 9px 0 #d0021b}
+.dzsb.dztom .dz>section.dz-passo:nth-of-type(3n){box-shadow:9px 9px 0 #111}
+.dzsb.dztom .dz-abre + .dz-passo,.dzsb.dztom .dz-mapa-cap + .dz-passo{margin-top:28px}
+/* faixa de título do módulo: retícula creme, recortada na borda */
+.dzsb.dztom .dz-passo>.dz-tit{grid-column:1/-1;margin:0 calc(-1 * var(--pad)) 2px;padding:16px var(--pad) 16px;gap:20px;
+  background:#fff4c4;background-image:radial-gradient(#f6c94a 1.3px,transparent 1.5px);background-size:9px 9px;
+  border-bottom:3px solid #111;border-radius:3px 3px 0 0}
+.dzsb.dztom .dz-tit>div{min-width:0}
+.dzsb.dztom .dz-tit h2{overflow-wrap:break-word}
+.dzsb.dztom .dz-n{width:80px;height:80px;font-size:34px}
+/* o corpo se desmancha: TEXTO à esquerda com as caixas embaixo dele; TELAS à direita num mosaico de 2 colunas
+   (colunas CSS = sem buracos entre as fotos). Linhas: 1 título · 2 ficha do chefe · 3 texto · 4 caixas · 5 extras */
+.dzsb.dztom .dz-passo{grid-template-columns:minmax(0,1fr) minmax(0,1fr);row-gap:0;column-gap:clamp(26px,3vw,48px)}
+.dzsb.dztom .dz-passo>.dz-corpo{display:contents}
+.dzsb.dztom .dz-passo>.dz-tit{grid-row:1;margin-bottom:30px}
+.dzsb.dztom .dz-passo>.dz-chefe{grid-row:2;grid-column:1/-1;margin:0 0 34px}
+.dzsb.dztom .dz-passo .dz-txt{grid-row:3;grid-column:1}
+.dzsb.dztom .dz-passo .dz-figs{grid-row:3/span 2;grid-column:2;display:block;columns:2 250px;column-gap:24px}
+.dzsb.dztom .dz-passo .dz-figs>*{break-inside:avoid;margin:0 0 26px}
+.dzsb.dztom .dz-passo>.dz-caixas{grid-row:4;grid-column:1;margin-top:30px}
+.dzsb.dztom .dz-passo>.dz-mapa-larga{grid-row:5;grid-column:1/-1;margin:30px auto 0;width:100%}
+.dzsb.dztom .dz-passo>.dz-ficha{grid-row:5;grid-column:1;margin-top:30px}
+/* sem telas: o texto vira colunas de revista na largura toda e as caixas formam uma fileira de peças embaixo */
+.dzsb.dztom .dz-passo:not(:has(.dz-figs>*)) .dz-txt{grid-column:1/-1}
+.dzsb.dztom .dz-passo:not(:has(.dz-figs>*)) .dz-txt:not(:has(table)){columns:2 24em;column-gap:clamp(36px,4vw,72px);column-rule:2px dotted #c9bfa6}
+.dzsb.dztom .dz-passo:not(:has(.dz-figs>*)) .dz-txt:not(:has(>:nth-child(2))){columns:auto;column-rule:0;max-width:40em}
+.dzsb.dztom .dz-passo:not(:has(.dz-figs>*))>.dz-caixas{grid-column:1/-1}
+.dzsb.dztom .dz .dz-passo .dz-corpo>.dz-txt>p{break-inside:auto;orphans:2;widows:2}
+.dzsb.dztom .dz-txt>.dz-rotas,.dzsb.dztom .dz-txt>ul,.dzsb.dztom .dz-txt>table{break-inside:avoid}
+.dzsb.dztom .dz-rotas{gap:16px;margin:6px 0 20px}
+
+/* ---------- 5 e 6. TIP e WATCH OUT: peças do porte da ficha, lado a lado embaixo do texto ---------- */
+.dzsb.dztom .dz-caixas{grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:26px 24px;align-items:start}
+.dzsb.dztom .dz-dica{background:#6fd0f5;color:#0a2540;border:3px solid #111;border-radius:14px;box-shadow:6px 6px 0 #111;
+  padding:18px 20px 20px;min-height:170px;display:flex;flex-direction:column;gap:10px;transform:rotate(-.8deg)}
+.dzsb.dztom .dz-dica h4{position:static;margin:0;font-size:21px;line-height:1.12;color:#fff;
+  text-shadow:2px 2px 0 #111,-1px -1px 0 #111,1px -1px 0 #111,-1px 1px 0 #111;text-transform:uppercase}
+.dzsb.dztom .dz-dica .dz-mini{max-width:100%;margin-top:4px;border:2px solid #111}
+.dzsb.dztom .dz-alerta{background:#fff;padding:14px 16px 16px;border-width:10px;display:flex;flex-direction:column;gap:9px;margin:0}
+.dzsb.dztom .dz-alerta h4{margin:0;font-size:21px;line-height:1.12}
+.dzsb.dztom .dz-alerta-img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 50%;
+  image-rendering:pixelated;border:3px solid #111;box-shadow:4px 4px 0 #d0021b;margin:0 0 6px}
+.dzsb.dztom .dz-alerta.dz-treino .dz-alerta-img{box-shadow:4px 4px 0 #0057b8}
+.dzsb.dztom .dz-chefe .dz-f img{height:auto}
+
+/* ---------- 2. índice como a ficha azul «IN THIS GUIDE» ---------- */
+main:has(.dztom) #indice{--w:min(1180px,calc(100vw - 32px));width:var(--w);margin:34px 0 18px calc((100% - var(--w)) / 2);
+  background:#0057b8;color:#fff;border:3px solid #111;border-top:3px solid #111;border-radius:14px;box-shadow:7px 7px 0 #111;
+  padding:4px clamp(16px,2.2vw,30px) 14px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+main:has(.dztom) #indice>summary{color:#ffe100;font:italic 800 25px/1.1 "Archivo","Helvetica Neue",Arial,sans-serif;
+  text-transform:uppercase;letter-spacing:0;padding:16px 0 14px;border-bottom:2px solid rgba(255,225,0,.7)}
+main:has(.dztom) #indice>summary .qt{color:#fff;font-style:normal;font-size:17px}
+main:has(.dztom) #indice>summary::after{border-color:#ffe100}
+main:has(.dztom) #indice>summary:hover{color:#fff}
+main:has(.dztom) #indice .man-idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));column-gap:30px;columns:auto}
+main:has(.dztom) #indice .man-idx a{display:flex;align-items:center;gap:12px;color:#fff;font:700 17.5px/1.3 "Archivo","Helvetica Neue",Arial,sans-serif;
+  padding:12px 2px;border-bottom:1px dashed rgba(255,255,255,.45);text-decoration:none}
+main:has(.dztom) #indice .man-idx a:hover,main:has(.dztom) #indice .man-idx a:focus-visible{color:#ffe100}
+main:has(.dztom) #indice .man-idx .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:radial-gradient(circle at 35% 30%,#fff6c8 0 12%,#ffb52e 40%,#e8780c 100%);color:#7a2b00;
+  font:800 13px/1 "Archivo","Helvetica Neue",Arial,sans-serif;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+
+/* ---------- respostas por largura ---------- */
+@media (max-width:760px){
+  .dzsb.dztom .dz{padding-left:12px;padding-right:12px}
+  .dzsb.dztom .dz-passo{grid-template-columns:minmax(0,1fr);margin-bottom:44px;box-shadow:6px 6px 0 #0057b8}
+  .dzsb.dztom .dz>section.dz-passo:nth-of-type(3n+2){box-shadow:6px 6px 0 #d0021b}
+  .dzsb.dztom .dz>section.dz-passo:nth-of-type(3n){box-shadow:6px 6px 0 #111}
+  .dzsb.dztom .dz-passo>*,.dzsb.dztom .dz-passo .dz-txt,.dzsb.dztom .dz-passo .dz-figs{grid-row:auto!important;grid-column:1/-1!important}
+  .dzsb.dztom .dz-passo .dz-figs{margin-top:26px;columns:2 220px}
+  .dzsb.dztom .dz-dica{transform:none}
+  .dzsb.dztom .dz-tit h2{font-size:25px}
+  .dzsb.dztom .dz-n{width:60px;height:60px;font-size:24px}
+  .dzsb.dztom .dz-passo>.dz-tit{gap:14px;padding:12px var(--pad)}
+  .dzsb.dztom .dz-txt p{font-size:18px}
+  .dzsb.dztom .dz-rotas{grid-template-columns:1fr}
+  main:has(.dztom) #indice>summary{font-size:22px}
+}
+
+/* ===== TIP do A dentro do layout C (dono, 16/11/2026: índice, passo, link e WATCH OUT = C; TIP = A
+   «colocar algum icone extraido do jogo para simbolizar a dica») ===== */
+.dzsb.dztom .dz-dica{background:#3cb2ee;color:#06222c;border:0;border-radius:14px;box-shadow:6px 6px 0 #111;
+  padding:16px 20px 18px;transform:rotate(-.8deg);min-height:0;display:block;max-width:380px;position:relative}
+.dzsb.dztom .dz-dica a{color:#06222c;text-decoration-color:#06222c}
+.dzsb.dztom .dz-dica h4{font-size:21px;line-height:1.12;text-transform:uppercase;margin:0 0 10px;padding:0 54px 9px 0;color:#fff;
+  text-shadow:2px 2px 0 #111;border-bottom:1px dashed rgba(6,34,44,.5)}
+.dzsb.dztom .dz-dica h4::before{display:block;width:max-content;font-size:14px;line-height:1;letter-spacing:.04em;padding:5px 9px 4px;
+  margin:0 0 9px;text-shadow:none;transform:rotate(-2deg);content:"TIP!";background:#111;color:#ffe100}
+.dzsb.dztom .dz-dica .dz-mini{max-width:100%}
+/* um ícone do jogo por dica (dono, 16/11/2026: «um icone [...] para cada uma das dicas»), recorte nativo ampliado sem borrar */
+.dzsb.dztom .dz .dz-dica img.dz-dica-ico{position:absolute;top:-18px;right:-14px;width:64px;height:64px;object-fit:contain;transform:rotate(6deg);
+  image-rendering:pixelated;background:#111;border:3px solid #111;box-shadow:3px 3px 0 #111;margin:0}
+@media (max-width:760px){.dzsb.dztom .dz-dica{transform:none;max-width:none}.dzsb.dztom .dz .dz-dica img.dz-dica-ico{right:-6px}}
+/* dica dos seis capangas do Piccolo (dono, 16/11/2026: «nao deixar os nomes todos misturados, deixar uma linha de espaço
+   entre eles. Pode mudar o formato do quadrado para retangulo»): retângulo na largura da fileira, um capanga por parágrafo */
+.dzsb.dztom .dz .dz-dica.dz-dica-larga{max-width:none;grid-column:1/-1}
+.dzsb.dztom .dz-dica-larga .dz-capangas{margin:6px 0 16px;padding:12px 0 2px;border-top:1px dashed rgba(6,34,44,.5);border-bottom:1px dashed rgba(6,34,44,.5)}
+.dzsb.dztom .dz-dica-larga .dz-capangas p{margin:0 0 14px}
+.dzsb.dztom .dz-dica-larga .dz-num{white-space:nowrap}
+
 
 /* Direção B · Caixa e manual da Square (Famicom, 1989): papel acinzentado do manual, impressão em VERDE e VERMELHO,
    fio verde duplo do cabeçalho com o «Tom Sawyer» cursivo (recorte da p. 4), logo da capa (recorte da p. 1),
@@ -247,4 +429,99 @@ main:has(.dztom) #indice .man-idx{grid-template-columns:repeat(auto-fill,minmax(
 .dzsb.dztom .dz{padding:0 10px 48px}
 .dzsb.dztom .dz-passo{padding:52px 0 28px}
 .dzsb.dztom .dz-chefe.dz-carta .dz-janela{min-height:0;padding:44px 0 18px}
+}
+
+/* ===== MANUAL DO JOGADOR no visual B (dono, 23/11/2026: «atualizar o manual do jogo com o mesmo visual»).
+   O html de cada seção vem do manual-tom.mjs (localizacao-de-manual), embrulhado por build/tom-manual-b.mjs em
+   .dzsb.dztom.dzman > .dz > (.dzm-capa | .dzm-pag). Cada seção = uma página do manual da Square de 1989: papel, moldura
+   verde dupla, fio verde com o «Tom Sawyer» cursivo no topo, número no quadrado verde, texto em duas colunas.
+   Escopo: o gera_mjs.py troca .dzsb.dztom por .dzsb.dztom.dztom. */
+.dzsb.dztom.dzman{background:none;box-shadow:none;margin-bottom:8px}
+.dzsb.dztom.dzman .dz{padding-bottom:18px}
+
+/* página e capa: a moldura da capa do detonado (dz-abre) */
+.dzsb.dztom.dzman :is(.dzm-pag,.dzm-capa){position:relative;margin:18px 0 0;padding:72px 40px 40px;background:var(--papel-2);border:4px solid var(--verde);
+  border-radius:20px;box-shadow:inset 0 0 0 5px var(--papel-2),inset 0 0 0 7px var(--verde),0 4px 0 var(--verde-e)}
+.dzsb.dztom.dzman :is(.dzm-pag,.dzm-capa)::before{content:"";position:absolute;left:16px;right:16px;top:12px;height:40px;
+  background:url(shots/tom-sawyer/detonado/ds/faixa_topo.png) right 0 top 0/auto 40px no-repeat,
+  linear-gradient(var(--verde),var(--verde)) 0 17px/calc(100% - 470px) 12px no-repeat}
+
+/* cabeçalho da página: número no quadrado verde (o do passo) e título */
+.dzsb.dztom.dzman .dzm-cab{display:flex;align-items:center;gap:18px;margin:0 0 26px}
+.dzsb.dztom.dzman .dzm-n{flex:none;width:64px;height:64px;display:grid;place-items:center;background:var(--verde);color:#fff;font:400 26px/1 var(--pixel);
+  border-radius:12px;box-shadow:inset 0 0 0 3px var(--verde),inset 0 0 0 5px var(--papel-2),5px 5px 0 var(--verm)}
+.dzsb.dztom.dzman .dzm-cab h2{margin:0;font:900 clamp(26px,2.6vw,36px)/1.15 var(--sans);color:var(--verde-e);letter-spacing:-.01em}
+
+/* capa: o logo da caixa, o pílula verde, o título grande e a tela de título na janela preta */
+.dzsb.dztom.dzman .dzm-capa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:20px 48px;align-items:center}
+.dzsb.dztom.dzman .dzm-capa-txt{display:grid;gap:16px;justify-items:start}
+.dzsb.dztom.dzman .dzm-logo{width:min(100%,520px);aspect-ratio:605/250;background:url(shots/tom-sawyer/detonado/ds/logo_capa.png) left center/contain no-repeat}
+.dzsb.dztom.dzman .dzm-capa-txt>*{grid-area:auto;margin:0}
+.dzsb.dztom.dzman .dzm-kicker{background:var(--verde);color:#fff;font:800 13px/1 var(--redondo);letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;border-radius:999px}
+.dzsb.dztom.dzman .dzm-capa h1{margin:0;font:900 clamp(34px,4.4vw,56px)/1.08 var(--sans);color:var(--verde-e);letter-spacing:-.01em}
+.dzsb.dztom.dzman .dzm-capa h1::before{content:"■";color:var(--verm);font-size:.72em;margin-right:.2em;vertical-align:.08em}
+.dzsb.dztom.dzman .dzm-capa-txt p{margin:0;font-size:18px;line-height:1.65;color:var(--tinta-2)}
+.dzsb.dztom.dzman .dzm-capa-txt p strong{color:var(--verm-e);font:800 14px/1 var(--redondo);letter-spacing:.08em;text-transform:uppercase}
+.dzsb.dztom.dzman .dzm-capa-fig .man-fig{margin:8px auto}
+
+/* corpo em duas colunas de revista (coluna mínima = a tela 2× + moldura) */
+.dzsb.dztom.dzman .dzm-txt{color:var(--tinta)}
+@media (min-width:1100px){
+.dzsb.dztom.dzman .dzm-txt{columns:2 540px;column-gap:clamp(40px,4vw,72px);column-rule:2px dotted rgba(47,122,75,.38)}
+}
+.dzsb.dztom.dzman .dzm-txt>:first-child{margin-top:0}
+.dzsb.dztom.dzman .dzm-txt :is(figure,table,ul,ol,blockquote,.man-nota){break-inside:avoid}
+.dzsb.dztom.dzman .dzm-txt p{margin:0 0 14px;font-family:var(--sans);font-size:17.5px;line-height:1.75;color:var(--tinta);orphans:3;widows:3}
+.dzsb.dztom.dzman .dzm-txt strong,.dzsb.dztom.dzman .dzm-txt b{color:var(--verm-e);font-weight:800}
+.dzsb.dztom.dzman .dzm-txt em{font-style:italic}
+.dzsb.dztom.dzman .dzm-txt a{color:var(--verm-e);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+/* subtítulo = o «■» vermelho dos títulos do manual */
+.dzsb.dztom.dzman .dzm-txt h3{margin:30px 0 12px;font:900 22px/1.25 var(--sans);color:var(--verde-e);break-after:avoid;text-transform:none;letter-spacing:0}
+.dzsb.dztom.dzman .dzm-txt h3::before{content:"■ ";color:var(--verm)}
+/* listas: quadradinho verde; numeradas: número na pílula vermelha */
+.dzsb.dztom.dzman .dzm-txt :is(ul,ol){margin:0 0 18px;padding-left:1.4em;font-size:17px;line-height:1.65}
+.dzsb.dztom.dzman .dzm-txt ul{list-style:square}
+.dzsb.dztom.dzman .dzm-txt li{margin:0 0 7px}
+.dzsb.dztom.dzman .dzm-txt ul>li::marker{color:var(--verde);font-size:1.1em}
+.dzsb.dztom.dzman .dzm-txt ol>li::marker{color:var(--verm);font-weight:800;font-family:var(--redondo)}
+/* citação = caixa de fio verde (o fecho do detonado) */
+.dzsb.dztom.dzman .dzm-txt blockquote{margin:6px 0 20px;padding:18px 22px;background:#fbf8f1;border:3px solid var(--verde);border-radius:14px;
+  box-shadow:5px 5px 0 var(--verde-c)}
+.dzsb.dztom.dzman .dzm-txt blockquote p:last-child{margin-bottom:0}
+
+/* tela do jogo = a janela preta do Famicom com fio verde por fora (só sombra: não muda a conta da escala inteira do site) */
+.dzsb.dztom.dzman .man-fig{margin:14px 0 26px;max-width:100%}
+.dzsb.dztom.dzman .crt{background:#0e110e;padding:6px;border-radius:10px;
+  box-shadow:0 0 0 3px var(--verde-e),0 0 0 6px var(--papel-2),0 0 0 8px var(--verde)}
+.dzsb.dztom.dzman .crt img{max-width:100%;border-radius:3px}
+.dzsb.dztom.dzman .man-fig figcaption{position:relative;margin-top:16px;padding-left:16px;font:500 13.5px/1.4 var(--sans);color:var(--tinta-2)}
+.dzsb.dztom.dzman .man-fig figcaption::before{content:"▶";position:absolute;left:0;top:2px;font-size:10px;color:var(--verde)}
+
+/* tabela = a caixa «もくじ»: moldura verde, cabeçalho em faixa verde, linhas pontilhadas */
+.man-txt .dzsb.dztom.dzman .dzm-txt table{display:table;width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;margin:8px 0 24px;border-collapse:separate;border-spacing:0;overflow:hidden;
+  background:#fbf8f1;border:3px solid var(--verde);border-radius:14px;font-size:15.5px;line-height:1.5}
+.man-txt .dzsb.dztom.dzman .dzm-txt th{background:var(--verde);color:#fff;font:800 12.5px/1.3 var(--redondo);letter-spacing:.06em;text-transform:uppercase;
+  padding:10px 14px;border:0;text-align:left}
+.man-txt .dzsb.dztom.dzman .dzm-txt td{padding:9px 14px;border:0;border-bottom:2px dotted rgba(47,122,75,.45);vertical-align:top;color:var(--tinta)}
+.man-txt .dzsb.dztom.dzman .dzm-txt tr:last-child td{border-bottom:0}
+.man-txt .dzsb.dztom.dzman .dzm-txt td:first-child{font-weight:800;color:var(--verde-e)}
+
+@media (max-width:760px){
+.dzsb.dztom.dzman :is(.dzm-pag,.dzm-capa){padding:50px 16px 22px;border-radius:16px;margin-top:12px}
+.dzsb.dztom.dzman :is(.dzm-pag,.dzm-capa)::before{left:10px;right:10px;top:10px;height:28px;
+  background:url(shots/tom-sawyer/detonado/ds/faixa_topo.png) right 0 top 0/auto 28px no-repeat,linear-gradient(var(--verde),var(--verde)) 0 12px/calc(100% - 330px) 8px no-repeat}
+.dzsb.dztom.dzman .dzm-capa{grid-template-columns:minmax(0,1fr)}
+.dzsb.dztom.dzman .dzm-cab{gap:14px;margin-bottom:18px}
+.dzsb.dztom.dzman .dzm-n{width:52px;height:52px;font-size:21px}
+.dzsb.dztom.dzman .dzm-cab h2{font-size:24px}
+.dzsb.dztom.dzman .dzm-txt p{font-size:17px}
+.dzsb.dztom.dzman .crt{box-shadow:0 0 0 2px var(--verde-e),0 0 0 4px var(--papel-2),0 0 0 6px var(--verde)}
+}
+/* tabela de 3+ colunas empilhada no celular (classe .empilha do site): cada linha vira um cartão */
+@media (max-width:600px){
+.man-txt .dzsb.dztom.dzman .dzm-txt table.empilha{display:block;border-top:3px solid var(--verde)}
+.man-txt .dzsb.dztom.dzman .dzm-txt table.empilha tr{padding:10px 14px 11px;border-bottom:2px dotted rgba(47,122,75,.45)}
+.man-txt .dzsb.dztom.dzman .dzm-txt table.empilha tr:last-child{border-bottom:0}
+.man-txt .dzsb.dztom.dzman .dzm-txt table.empilha td{padding:3px 0;border:0}
+.man-txt .dzsb.dztom.dzman .dzm-txt table.empilha td:not(:first-child)[data-label]::before{font-family:var(--redondo);font-weight:800;color:var(--verde-e)}
 }
