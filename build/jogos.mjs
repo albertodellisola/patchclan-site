@@ -84,6 +84,7 @@ const POSTO = { release: 0, beta: 1, alfa: 2 };
    Sem a linha, o gerar.mjs para com erro, e o jogo não cai num lugar qualquer. */
 const DESDE = {
   /* release */
+  'super-robot-wars-link-battler': '2026-11-24T13:30',
   'tom-sawyer':                    '2026-11-21T20:50',
   'captain-tsubasa':               '2026-11-08T09:53',
   'ultraman-club-2':               '2026-10-23T03:22',
@@ -109,7 +110,6 @@ const DESDE = {
   'shining-force-gaiden':          '2026-10-17T07:20',
   'after-armageddon-gaiden':       '2026-10-07T03:42',
   'ninja-burai-densetsu':          '2026-10-04T00:26',
-  'super-robot-wars-link-battler': '2026-09-30T10:16',
   'super-robot-wars-64':           '2026-09-27T10:07',
   'slam-dunk':                     '2026-09-25T08:10',
   'famicom-jump-2':                '2026-09-16T23:02',

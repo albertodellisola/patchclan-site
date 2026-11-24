@@ -1,4 +1,5 @@
-/* Super Robot Wars: Link Battler — entrou no site como beta (30/09/2026). A copy é da rodada10 (copy/rodada10/):
+/* Super Robot Wars: Link Battler — entrou no site como beta (30/09/2026); RELEASE EN v1.0 em 24/11/2026 (build ea5e24fc).
+   PT/ES (BETA 5) saíram do site com o release e seguem só no link do Patreon (dono, 24/11/2026: «Só EN no site»). A copy é da rodada10 (copy/rodada10/):
    quatro copywriters, fusão pela prova, assinatura pelo universo, espanhol traduzido e
    revisado. Texto assinado: mudar aqui sem passar pela equipe é fusão unilateral.
    Montado por ~/.claude/skills/subir-jogo-alfa/scripts/monta_ficha.py; o `nivel` foi trocado à mão
@@ -17,7 +18,7 @@ export const LINKBATTLER = {
   publisher: 'Banpresto', dev: 'Banpresto', ano: 1999, data: '01/10/1999',
   sistema: 'Game Boy Color', mapper: 'MBC5 + RAM + bateria · 1 MB (64 bancos), sem expansão · texto sem compressão',
   categoria: bi('Tradução', 'Translation', 'Traducción'),
-  nivel: 'beta',
+  nivel: 'release',
   capa: 'linkbattler/00-capa-patreon.jpg',
   patreon: 'https://www.patreon.com/patchclan/posts/super-robot-wars-171051116?pr=true',
   linha: bi('Um cartucho de Game Boy Color de 1999 que finge ser jogo online: compre dados de robôs lendários, monte o time e programe seis rounds às cegas.',
@@ -36,7 +37,7 @@ export const LINKBATTLER = {
   },
   numeros: [],
   grupos: [],
-  patch: { versoes: { en: { arquivo: 'super-robot-wars-link-battler-en.ips' }, pt: { arquivo: 'super-robot-wars-link-battler-pt.ips' }, es: { arquivo: 'super-robot-wars-link-battler-es.ips' } }, rom: 'Super Robot Taisen - Link Battler (Japan) (SGB Enhanced) (GB Compatible).gbc', rom_md5: 'd710cd23e7e38023297d04e935dbebae' },
+  patch: { versoes: { en: { arquivo: 'super-robot-wars-link-battler-en.ips' }, pt: null, es: null }, rom: 'Super Robot Taisen - Link Battler (Japan) (SGB Enhanced) (GB Compatible).gbc', rom_md5: 'd710cd23e7e38023297d04e935dbebae' },
   fotos: [
     { f: 'linkbattler/01-titulo.png', t: bi('Tela de título', 'Title screen', 'Pantalla de título'),
       c: bi('O logotipo redesenhado em inglês: <code>SUPER ROBOT WARS</code> em laranja sobre a mancha vermelha, <code>LINK BATTLER</code> em azul, na diagonal, e <code>PUSH START BUTTON</code> embaixo.',
